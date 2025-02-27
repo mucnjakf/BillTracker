@@ -28,4 +28,16 @@ internal static class CustomerMapper
 			customer.Telephone,
 			customer.City?.Name ?? "-");
 	}
+
+	internal static BillCustomerDto ToBillCustomerDto(this Customer customer)
+	{
+		return new BillCustomerDto(
+			customer.Id,
+			customer.Guid,
+			customer.Name,
+			customer.Surname,
+			customer.Email,
+			customer.Telephone,
+			customer.City?.Name ?? "-");
+	}
 }
