@@ -5,7 +5,7 @@ using billtracker_api.Mappers;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace billtracker_api.Endpoints.Customers;
+namespace billtracker_api.Endpoints;
 
 internal sealed record CreateCustomerRequest(
 	string Name,

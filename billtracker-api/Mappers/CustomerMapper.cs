@@ -1,5 +1,4 @@
 using billtracker_api.Dtos;
-using billtracker_api.Endpoints.Customers;
 using billtracker_api.Entities;
 
 namespace billtracker_api.Mappers;
@@ -20,18 +19,6 @@ internal static class CustomerMapper
 	internal static CustomerDto ToCustomerDto(this Customer customer)
 	{
 		return new(
-			customer.Id,
-			customer.Guid,
-			customer.Name,
-			customer.Surname,
-			customer.Email,
-			customer.Telephone,
-			customer.City?.Name ?? "-");
-	}
-
-	internal static BillCustomerDto ToBillCustomerDto(this Customer customer)
-	{
-		return new BillCustomerDto(
 			customer.Id,
 			customer.Guid,
 			customer.Name,

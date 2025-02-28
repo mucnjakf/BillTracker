@@ -1,6 +1,6 @@
 namespace billtracker_api.Dtos;
 
-internal sealed record BillSellerDto(
+internal sealed record SellerDto(
 	int Id,
 	Guid Guid,
 	string Name,

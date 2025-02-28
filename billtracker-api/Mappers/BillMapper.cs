@@ -19,8 +19,8 @@ internal static class BillMapper
 			bill.BillNumber,
 			bill.Comment,
 			bill.Total,
-			bill.Customer.ToBillCustomerDto(),
-			bill.Seller?.ToBillSellerDto(),
-			bill.CreditCard?.ToBillCreditCardDto());
+			bill.Customer.ToCustomerDto(),
+			bill.Seller?.ToSellerDto(),
+			bill.CreditCard?.ToCreditCardDto());
 	}
 }

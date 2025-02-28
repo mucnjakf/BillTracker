@@ -3,7 +3,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace billtracker_api.Endpoints.Customers;
+namespace billtracker_api.Endpoints;
 
 internal sealed record UpdateCustomerRequest
 {

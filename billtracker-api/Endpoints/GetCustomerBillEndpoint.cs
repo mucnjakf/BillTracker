@@ -5,7 +5,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Endpoints.Bills;
+namespace billtracker_api.Endpoints;
 
 internal sealed record GetCustomerBillRequest
 {

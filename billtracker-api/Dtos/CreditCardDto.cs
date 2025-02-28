@@ -1,6 +1,6 @@
 namespace billtracker_api.Dtos;
 
-internal sealed record BillCreditCardDto(
+internal sealed record CreditCardDto(
 	int Id,
 	Guid Guid,
 	string Type,

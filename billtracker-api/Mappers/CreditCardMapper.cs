@@ -5,9 +5,9 @@ namespace billtracker_api.Mappers;
 
 internal static class CreditCardMapper
 {
-	internal static BillCreditCardDto ToBillCreditCardDto(this CreditCard creditCard)
+	internal static CreditCardDto ToCreditCardDto(this CreditCard creditCard)
 	{
-		return new BillCreditCardDto(
+		return new CreditCardDto(
 			creditCard.Id,
 			creditCard.Guid,
 			creditCard.Type,

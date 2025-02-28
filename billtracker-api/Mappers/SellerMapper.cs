@@ -5,9 +5,9 @@ namespace billtracker_api.Mappers;
 
 internal static class SellerMapper
 {
-	internal static BillSellerDto ToBillSellerDto(this Seller seller)
+	internal static SellerDto ToSellerDto(this Seller seller)
 	{
-		return new BillSellerDto(
+		return new SellerDto(
 			seller.Id,
 			seller.Guid,
 			seller.Name,

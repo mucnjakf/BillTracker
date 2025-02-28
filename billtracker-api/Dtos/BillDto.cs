@@ -7,6 +7,6 @@ internal sealed record BillDto(
 	string BillNumber,
 	string Comment,
 	decimal Total,
-	BillCustomerDto Customer,
-	BillSellerDto? Seller,
-	BillCreditCardDto? CreditCard);
+	CustomerDto Customer,
+	SellerDto? Seller,
+	CreditCardDto? CreditCard);

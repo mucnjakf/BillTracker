@@ -6,9 +6,9 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Endpoints.Bills;
+namespace billtracker_api.Endpoints;
 
-internal sealed record GetCustomerBillsRequest
+internal sealed record GetCustomerBillTableRequest
 {
 	[RouteParam]
 	public int CustomerId { get; set; }
@@ -23,7 +23,7 @@ internal sealed record GetCustomerBillsRequest
 	public string? SearchQuery { get; set; } = null;
 }
 
-internal sealed class GetCustomerBillsTableEndpoint(AppDbContext appDbContext) : Endpoint<GetCustomerBillsRequest, Ok<PagedList<CustomerBillTableDto>>>
+internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext) : Endpoint<GetCustomerBillTableRequest, Ok<PagedList<CustomerBillTableDto>>>
 {
 	public override void Configure()
 	{
@@ -31,7 +31,7 @@ internal sealed class GetCustomerBillsTableEndpoint(AppDbContext appDbContext) :
 		AllowAnonymous();
 	}
 
-	public override async Task<Ok<PagedList<CustomerBillTableDto>>> ExecuteAsync(GetCustomerBillsRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<CustomerBillTableDto>>> ExecuteAsync(GetCustomerBillTableRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.Bills
 			.AsNoTracking()
@@ -45,9 +45,9 @@ internal sealed class GetCustomerBillsTableEndpoint(AppDbContext appDbContext) :
 		}
 
 		var bills = query.Select(x => x.ToCustomerBillTableDto());
-		
+
 		var billsTable = await PagedList<CustomerBillTableDto>.ToPagedListAsync(bills, req.PageNumber, req.PageSize);
-		
+
 		return TypedResults.Ok(billsTable);
 	}
 }
