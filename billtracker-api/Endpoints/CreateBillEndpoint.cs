@@ -29,6 +29,7 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext) : Endpoint<C
 	{
 		Post("/api/customers/{customerId}/bills");
 		AllowAnonymous();
+		Description(x => x.WithTags("Bills"));
 	}
 
 	public override async Task<Results<Created<BillDto>, NotFound>> ExecuteAsync(CreateBillRequest req, CancellationToken ct)

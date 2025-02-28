@@ -30,6 +30,7 @@ internal sealed class GetItemTableEndpoint(AppDbContext appDbContext) : Endpoint
 	{
 		Get("/api/bills/{billId}/items/table");
 		AllowAnonymous();
+		Description(x => x.WithTags("Items"));
 	}
 
 	public override async Task<Ok<PagedList<ItemTableDto>>> ExecuteAsync(GetItemTableRequest req, CancellationToken ct)

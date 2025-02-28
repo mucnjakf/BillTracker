@@ -1,6 +1,6 @@
 namespace billtracker_api.Entities;
 
-internal class SubCategory
+internal sealed class SubCategory
 {
 	public int Id { get; set; }
 

@@ -22,6 +22,7 @@ internal sealed class GetItemEndpoint(AppDbContext appDbContext) : Endpoint<GetI
 	{
 		Get("/api/bills/{billId}/items/{itemId}");
 		AllowAnonymous();
+		Description(x => x.WithTags("Items"));
 	}
 
 	public override async Task<Results<Ok<ItemDto>, NotFound>> ExecuteAsync(GetItemRequest req, CancellationToken ct)

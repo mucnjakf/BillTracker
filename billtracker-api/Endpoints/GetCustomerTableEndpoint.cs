@@ -27,6 +27,7 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext) : Endp
 	{
 		Get("/api/customers/table");
 		AllowAnonymous();
+		Description(x => x.WithTags("Customers"));
 	}
 
 	public override async Task<Ok<PagedList<CustomerTableDto>>> ExecuteAsync(GetCustomerTableRequest req, CancellationToken ct)

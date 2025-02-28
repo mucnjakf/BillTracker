@@ -16,6 +16,7 @@ internal sealed class DeleteCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 	{
 		Delete("/api/customers/{customerId}");
 		AllowAnonymous();
+		Description(x => x.WithTags("Customers"));
 	}
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteCustomerRequest req, CancellationToken ct)

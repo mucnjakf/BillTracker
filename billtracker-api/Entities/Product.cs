@@ -1,6 +1,6 @@
 namespace billtracker_api.Entities;
 
-internal class Product
+internal sealed class Product
 {
 	public int Id { get; set; }
 

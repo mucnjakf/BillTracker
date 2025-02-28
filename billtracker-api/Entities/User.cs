@@ -1,6 +1,6 @@
 namespace billtracker_api.Entities;
 
-internal sealed class Category
+internal sealed class User
 {
 	public int Id { get; set; }
 
@@ -8,5 +8,9 @@ internal sealed class Category
 
 	public string Name { get; set; } = null!;
 
-	public IEnumerable<SubCategory>? SubCategories { get; set; }
+	public string Surname { get; set; } = null!;
+
+	public string Email { get; set; } = null!;
+
+	public string Password { get; set; } = null!;
 }

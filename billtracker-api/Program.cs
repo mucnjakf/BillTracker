@@ -1,5 +1,7 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api;
@@ -12,7 +14,19 @@ public static class Program
 		{
 			builder.Services.AddOpenApi();
 
-			builder.Services.AddFastEndpoints();
+			builder.Services
+				.AddFastEndpoints()
+				.SwaggerDocument(options =>
+				{
+					options.DocumentSettings = settings =>
+					{
+						settings.Title = "BillTracker API";
+						settings.Version = "v1";
+					};
+					options.AutoTagPathSegmentIndex = 0;
+				});
+
+			builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
 			builder.Services.AddDatabase(builder.Configuration);
 		}
@@ -26,7 +40,8 @@ public static class Program
 
 			app.UseHttpsRedirection();
 
-			app.UseFastEndpoints();
+			app.UseFastEndpoints()
+				.UseSwaggerGen();
 
 			app.Run();
 		}

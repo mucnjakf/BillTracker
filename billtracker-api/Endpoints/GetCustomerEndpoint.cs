@@ -19,6 +19,7 @@ internal sealed class GetCustomerEndpoint(AppDbContext appDbContext) : Endpoint<
 	{
 		Get("/api/customers/{customerId}");
 		AllowAnonymous();
+		Description(x => x.WithTags("Customers"));
 	}
 
 	public override async Task<Results<Ok<CustomerDto>, NotFound>> ExecuteAsync(GetCustomerRequest req, CancellationToken ct)

@@ -29,6 +29,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext) : Endpoint
 	{
 		Get("/api/customers/{customerId}/bills/table");
 		AllowAnonymous();
+		Description(x => x.WithTags("Bills"));
 	}
 
 	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetBillTableRequest req, CancellationToken ct)

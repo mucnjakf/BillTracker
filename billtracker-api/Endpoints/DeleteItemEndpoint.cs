@@ -20,6 +20,7 @@ internal sealed class DeleteItemEndpoint(AppDbContext appDbContext) : Endpoint<D
 	{
 		Delete("/api/bills/{billId}/items/{itemId}");
 		AllowAnonymous();
+		Description(x => x.WithTags("Items"));
 	}
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteItemRequest req, CancellationToken ct)

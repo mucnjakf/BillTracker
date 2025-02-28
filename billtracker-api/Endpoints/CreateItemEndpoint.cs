@@ -24,6 +24,7 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext) : Endpoint<C
 	{
 		Post("/api/bills/{billId}/items");
 		AllowAnonymous();
+		Description(x => x.WithTags("Items"));
 	}
 
 	public override async Task<Results<Created<ItemDto>, NotFound>> ExecuteAsync(CreateItemRequest req, CancellationToken ct)

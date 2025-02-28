@@ -23,10 +23,12 @@ internal sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbC
 
 	public DbSet<SubCategory> SubCategories { get; set; }
 
+	public DbSet<User> Users { get; set; }
+
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		base.OnModelCreating(modelBuilder);
-		
+
 		modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 	}
 }

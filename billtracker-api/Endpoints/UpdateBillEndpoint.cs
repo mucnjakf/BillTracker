@@ -24,6 +24,7 @@ internal sealed class UpdateBillEndpoint(AppDbContext appDbContext) : Endpoint<U
 	{
 		Put("/api/customers/{customerId}/bills/{billId}");
 		AllowAnonymous();
+		Description(x => x.WithTags("Bills"));
 	}
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateBillRequest req, CancellationToken ct)

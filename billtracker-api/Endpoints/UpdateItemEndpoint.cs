@@ -22,6 +22,7 @@ internal sealed class UpdateItemEndpoint(AppDbContext appDbContext) : Endpoint<U
 	{
 		Put("/api/bills/{billId}/items/{itemId}");
 		AllowAnonymous();
+		Description(x => x.WithTags("Items"));
 	}
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateItemRequest req, CancellationToken ct)

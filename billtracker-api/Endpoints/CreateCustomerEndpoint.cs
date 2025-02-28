@@ -20,6 +20,7 @@ internal sealed class CreateCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 	{
 		Post("/api/customers");
 		AllowAnonymous();
+		Description(x => x.WithTags("Customers"));
 	}
 
 	public override async Task<Created<CustomerDto>> ExecuteAsync(CreateCustomerRequest req, CancellationToken ct)
