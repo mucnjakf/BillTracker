@@ -12,8 +12,6 @@ internal class Bill
 
 	public string Comment { get; set; } = null!;
 
-	public decimal Total { get; set; } // TODO: updateat kod dodavanja itema
-
 	public int CustomerId { get; set; }
 
 	public Customer Customer { get; set; } = null!;

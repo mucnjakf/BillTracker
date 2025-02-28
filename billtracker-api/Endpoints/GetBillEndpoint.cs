@@ -32,6 +32,7 @@ internal sealed class GetBillEndpoint(AppDbContext appDbContext) : Endpoint<GetB
 			.ThenInclude(x => x.City)
 			.Include(x => x.Seller)
 			.Include(x => x.CreditCard)
+			.Include(x => x.Items)
 			.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
 
 		if (bill is null)

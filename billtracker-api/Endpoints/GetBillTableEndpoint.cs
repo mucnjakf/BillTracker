@@ -35,6 +35,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext) : Endpoint
 	{
 		var query = appDbContext.Bills
 			.AsNoTracking()
+			.Include(x => x.Items)
 			.Where(x => x.CustomerId == req.CustomerId);
 
 		if (!string.IsNullOrWhiteSpace(req.SearchQuery))

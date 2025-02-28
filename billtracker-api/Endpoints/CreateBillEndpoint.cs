@@ -49,7 +49,6 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext) : Endpoint<C
 			Date = req.Date,
 			BillNumber = req.BillNumber,
 			Comment = req.Comment,
-			Total = 0,
 			CustomerId = customer.Id,
 			SellerId = seller?.Id,
 			CreditCardId = creditCard?.Id

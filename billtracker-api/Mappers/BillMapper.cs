@@ -7,7 +7,7 @@ internal static class BillMapper
 {
 	internal static BillTableDto ToBillTableDto(this Bill bill)
 	{
-		return new(bill.Id, bill.Date, bill.BillNumber, bill.Total);
+		return new(bill.Id, bill.Date, bill.BillNumber, bill.Items?.Sum(x => x.TotalPrice) ?? 0);
 	}
 
 	internal static BillDto ToBillDto(this Bill bill)
@@ -18,7 +18,7 @@ internal static class BillMapper
 			bill.Date,
 			bill.BillNumber,
 			bill.Comment,
-			bill.Total,
+			bill.Items?.Sum(x => x.TotalPrice) ?? 0,
 			bill.Customer.ToCustomerDto(),
 			bill.Seller?.ToSellerDto(),
 			bill.CreditCard?.ToCreditCardDto());
