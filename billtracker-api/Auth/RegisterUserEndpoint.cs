@@ -18,9 +18,9 @@ internal sealed class RegisterUserEndpoint(AppDbContext appDbContext, IPasswordH
 
 	public override async Task<Results<NoContent, BadRequest>> ExecuteAsync(RegisterUserRequest req, CancellationToken ct)
 	{
-		var userExists = await appDbContext.Users.AnyAsync(x => x.Email == req.Email, ct);
+		var emailInUse = await appDbContext.Users.AnyAsync(x => x.Email == req.Email, ct);
 
-		if (userExists)
+		if (emailInUse)
 		{
 			return TypedResults.BadRequest();
 		}
