@@ -7,7 +7,7 @@ internal static class SellerMapper
 {
 	internal static SellerDto ToSellerDto(this Seller seller)
 	{
-		return new SellerDto(
+		return new(
 			seller.Id,
 			seller.Guid,
 			seller.Name,

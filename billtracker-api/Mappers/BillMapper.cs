@@ -5,14 +5,14 @@ namespace billtracker_api.Mappers;
 
 internal static class BillMapper
 {
-	internal static BillTableDto ToCustomerBillTableDto(this Bill bill)
+	internal static BillTableDto ToBillTableDto(this Bill bill)
 	{
 		return new(bill.Id, bill.Date, bill.BillNumber, bill.Total);
 	}
 
 	internal static BillDto ToBillDto(this Bill bill)
 	{
-		return new BillDto(
+		return new(
 			bill.Id,
 			bill.Guid,
 			bill.Date,

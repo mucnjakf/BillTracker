@@ -7,7 +7,7 @@ internal static class CreditCardMapper
 {
 	internal static CreditCardDto ToCreditCardDto(this CreditCard creditCard)
 	{
-		return new CreditCardDto(
+		return new(
 			creditCard.Id,
 			creditCard.Guid,
 			creditCard.Type,

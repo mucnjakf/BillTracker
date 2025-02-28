@@ -44,7 +44,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext) : Endpoint
 			query = query.Where(x => x.BillNumber.Contains(capitalizedSearchQuery));
 		}
 
-		var bills = query.Select(x => x.ToCustomerBillTableDto());
+		var bills = query.Select(x => x.ToBillTableDto());
 
 		var billsTable = await PagedList<BillTableDto>.ToPagedListAsync(bills, req.PageNumber, req.PageSize);
 
