@@ -22,8 +22,8 @@ internal sealed class UpdateBillEndpoint(AppDbContext appDbContext) : Endpoint<U
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Put("/api/customers/{customerId}/bills/{billId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Bills"));
 	}
 

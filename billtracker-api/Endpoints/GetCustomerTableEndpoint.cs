@@ -25,8 +25,8 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext) : Endp
 {
 	public override void Configure()
 	{
-		Get("/api/customers/table");
 		AllowAnonymous();
+		Get("/api/customers/table");
 		Description(x => x.WithTags("Customers"));
 	}
 

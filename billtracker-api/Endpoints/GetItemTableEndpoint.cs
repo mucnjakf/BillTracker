@@ -28,8 +28,8 @@ internal sealed class GetItemTableEndpoint(AppDbContext appDbContext) : Endpoint
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Get("/api/bills/{billId}/items/table");
-		AllowAnonymous();
 		Description(x => x.WithTags("Items"));
 	}
 

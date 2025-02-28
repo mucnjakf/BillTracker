@@ -14,8 +14,8 @@ internal sealed class DeleteCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Delete("/api/customers/{customerId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Customers"));
 	}
 

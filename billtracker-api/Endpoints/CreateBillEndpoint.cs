@@ -27,8 +27,8 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext) : Endpoint<C
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Post("/api/customers/{customerId}/bills");
-		AllowAnonymous();
 		Description(x => x.WithTags("Bills"));
 	}
 

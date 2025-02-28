@@ -22,8 +22,8 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext) : Endpoint<C
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Post("/api/bills/{billId}/items");
-		AllowAnonymous();
 		Description(x => x.WithTags("Items"));
 	}
 

@@ -27,8 +27,8 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext) : Endpoint
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Get("/api/customers/{customerId}/bills/table");
-		AllowAnonymous();
 		Description(x => x.WithTags("Bills"));
 	}
 

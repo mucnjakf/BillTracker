@@ -1,14 +1,17 @@
 using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
+using FastEndpoints.Security;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace billtracker_api.Endpoints;
 
 internal sealed record LoginUserRequest(string Email, string Password);
 
-internal sealed class LoginUserEndpoint(AppDbContext appDbContext, IPasswordHasher passwordHasher) : Endpoint<LoginUserRequest, Results<Ok<AuthDto>, NotFound, UnauthorizedHttpResult>>
+internal sealed class LoginUserEndpoint(AppDbContext appDbContext, IPasswordHasher passwordHasher, IConfiguration configuration)
+	: Endpoint<LoginUserRequest, Results<Ok<AuthDto>, NotFound, UnauthorizedHttpResult>>
 {
 	public override void Configure()
 	{
@@ -33,10 +36,19 @@ internal sealed class LoginUserEndpoint(AppDbContext appDbContext, IPasswordHash
 			return TypedResults.Unauthorized();
 		}
 
-		var authDto = new AuthDto("accesstoken");
+		var jwt = JwtBearer.CreateToken(options =>
+		{
+			options.SigningKey = configuration["Jwt:Secret"]!;
+			options.ExpireAt = DateTime.UtcNow.AddDays(configuration.GetValue<int>("Jwt:ExpireDays"));
+			options.User.Roles.Add("User");
+			options.User.Claims.Add((JwtRegisteredClaimNames.Sub, user.Id.ToString()));
+			options.User.Claims.Add((JwtRegisteredClaimNames.Email, user.Email));
+			options.Issuer = configuration["Jwt:Issuer"];
+			options.Audience = configuration["Jwt:Audience"];
+		});
+
+		var authDto = new AuthDto(jwt);
 
 		return TypedResults.Ok(authDto);
 	}
 }
-
-internal sealed record AuthDto(string AccessToken);

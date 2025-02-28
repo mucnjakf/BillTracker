@@ -25,8 +25,8 @@ internal sealed class UpdateCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Put("/api/customers/{customerId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Customers"));
 	}
 

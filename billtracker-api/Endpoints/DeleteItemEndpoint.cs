@@ -18,8 +18,8 @@ internal sealed class DeleteItemEndpoint(AppDbContext appDbContext) : Endpoint<D
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Delete("/api/bills/{billId}/items/{itemId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Items"));
 	}
 

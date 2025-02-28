@@ -18,8 +18,8 @@ internal sealed class CreateCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Post("/api/customers");
-		AllowAnonymous();
 		Description(x => x.WithTags("Customers"));
 	}
 

@@ -17,8 +17,8 @@ internal sealed class GetCustomerEndpoint(AppDbContext appDbContext) : Endpoint<
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Get("/api/customers/{customerId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Customers"));
 	}
 

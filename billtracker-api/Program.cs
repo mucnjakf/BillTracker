@@ -1,6 +1,7 @@
 using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
+using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,39 +13,51 @@ public static class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 		{
-			builder.Services.AddOpenApi();
-
 			builder.Services
+				.AddOpenApi()
+				.AddAuthenticationJwtBearer(options => options.SigningKey = builder.Configuration["Jwt:Secret"])
+				.AddAuthorization()
 				.AddFastEndpoints()
-				.SwaggerDocument(options =>
-				{
-					options.DocumentSettings = settings =>
-					{
-						settings.Title = "BillTracker API";
-						settings.Version = "v1";
-					};
-					options.AutoTagPathSegmentIndex = 0;
-				});
-
-			builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
-
-			builder.Services.AddDatabase(builder.Configuration);
+				.AddSwagger()
+				.AddPasswordHasher()
+				.AddDatabase(builder.Configuration);
 		}
 
 		var app = builder.Build();
 		{
-			if (app.Environment.IsDevelopment())
-			{
-				app.MapOpenApi();
-			}
+			app.MapOpenApi();
 
-			app.UseHttpsRedirection();
-
-			app.UseFastEndpoints()
+			app
+				.UseHttpsRedirection()
+				.UseAuthentication()
+				.UseAuthorization()
+				.UseFastEndpoints()
 				.UseSwaggerGen();
 
 			app.Run();
 		}
+	}
+
+	private static IServiceCollection AddSwagger(this IServiceCollection services)
+	{
+		services.SwaggerDocument(options =>
+		{
+			options.DocumentSettings = settings =>
+			{
+				settings.Title = "BillTracker API";
+				settings.Version = "v1";
+			};
+			options.AutoTagPathSegmentIndex = 0;
+		});
+
+		return services;
+	}
+
+	private static IServiceCollection AddPasswordHasher(this IServiceCollection services)
+	{
+		services.AddSingleton<IPasswordHasher, PasswordHasher>();
+
+		return services;
 	}
 
 	private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)

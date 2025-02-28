@@ -20,8 +20,8 @@ internal sealed class UpdateItemEndpoint(AppDbContext appDbContext) : Endpoint<U
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Put("/api/bills/{billId}/items/{itemId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Items"));
 	}
 

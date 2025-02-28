@@ -18,8 +18,8 @@ internal sealed class DeleteBillEndpoint(AppDbContext appDbContext) : Endpoint<D
 {
 	public override void Configure()
 	{
+		Roles("User");
 		Delete("/api/customers/{customerId}/bills/{billId}");
-		AllowAnonymous();
 		Description(x => x.WithTags("Bills"));
 	}
 
