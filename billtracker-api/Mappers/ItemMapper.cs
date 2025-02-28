@@ -14,4 +14,15 @@ internal static class ItemMapper
 			item.Quantity,
 			item.TotalPrice);
 	}
+
+	internal static ItemDto ToItemDto(this Item item)
+	{
+		return new(
+			item.Id,
+			item.Guid,
+			item.Quantity,
+			item.TotalPrice,
+			item.Bill.ToBillDto(),
+			item.Product.ToProductDto());
+	}
 }
