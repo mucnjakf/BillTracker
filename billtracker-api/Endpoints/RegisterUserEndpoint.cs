@@ -9,16 +9,16 @@ namespace billtracker_api.Endpoints;
 
 internal sealed record RegisterUserRequest(string Name, string Surname, string Email, string Password);
 
-internal sealed class RegisterUserEndpoint(AppDbContext appDbContext, IPasswordHasher passwordHasher) : Endpoint<RegisterUserRequest, Results<Ok, BadRequest>>
+internal sealed class RegisterUserEndpoint(AppDbContext appDbContext, IPasswordHasher passwordHasher) : Endpoint<RegisterUserRequest, Results<NoContent, BadRequest>>
 {
 	public override void Configure()
 	{
-		Post("/api/auth/register");
 		AllowAnonymous();
+		Post("/api/auth/register");
 		Description(x => x.WithTags("Auth"));
 	}
 
-	public override async Task<Results<Ok, BadRequest>> ExecuteAsync(RegisterUserRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, BadRequest>> ExecuteAsync(RegisterUserRequest req, CancellationToken ct)
 	{
 		var userExists = await appDbContext.Users.AnyAsync(x => x.Email == req.Email, ct);
 
@@ -38,6 +38,6 @@ internal sealed class RegisterUserEndpoint(AppDbContext appDbContext, IPasswordH
 		await appDbContext.Users.AddAsync(user, ct);
 		await appDbContext.SaveChangesAsync(ct);
 
-		return TypedResults.Ok();
+		return TypedResults.NoContent();
 	}
 }
