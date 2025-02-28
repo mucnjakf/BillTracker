@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Endpoints;
 
-internal sealed record GetCustomerBillTableRequest
+internal sealed record GetBillTableRequest
 {
 	[RouteParam]
 	public int CustomerId { get; set; }
@@ -23,7 +23,7 @@ internal sealed record GetCustomerBillTableRequest
 	public string? SearchQuery { get; set; } = null;
 }
 
-internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext) : Endpoint<GetCustomerBillTableRequest, Ok<PagedList<BillTableDto>>>
+internal sealed class GetBillTableEndpoint(AppDbContext appDbContext) : Endpoint<GetBillTableRequest, Ok<PagedList<BillTableDto>>>
 {
 	public override void Configure()
 	{
@@ -31,7 +31,7 @@ internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext) : 
 		AllowAnonymous();
 	}
 
-	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetCustomerBillTableRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetBillTableRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.Bills
 			.AsNoTracking()

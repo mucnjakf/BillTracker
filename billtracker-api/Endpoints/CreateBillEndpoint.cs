@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace billtracker_api.Endpoints;
 
-internal sealed record CreateCustomerBillRequest
+internal sealed record CreateBillRequest
 {
 	[RouteParam]
 	public int CustomerId { get; set; }
@@ -23,7 +23,7 @@ internal sealed record CreateCustomerBillRequest
 	public int? CreditCardId { get; set; } // TODO: doesent make sense to have credit card  here without customer
 }
 
-internal sealed class CreateCustomerBillEndpoint(AppDbContext appDbContext) : Endpoint<CreateCustomerBillRequest, Results<Created<BillDto>, NotFound>>
+internal sealed class CreateBillEndpoint(AppDbContext appDbContext) : Endpoint<CreateBillRequest, Results<Created<BillDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -31,7 +31,7 @@ internal sealed class CreateCustomerBillEndpoint(AppDbContext appDbContext) : En
 		AllowAnonymous();
 	}
 
-	public override async Task<Results<Created<BillDto>, NotFound>> ExecuteAsync(CreateCustomerBillRequest req, CancellationToken ct)
+	public override async Task<Results<Created<BillDto>, NotFound>> ExecuteAsync(CreateBillRequest req, CancellationToken ct)
 	{
 		var customer = await appDbContext.Customers.FindAsync([req.CustomerId], ct);
 
