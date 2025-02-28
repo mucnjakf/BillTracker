@@ -5,28 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Endpoints;
 
-internal sealed record UpdateBillRequest
+internal sealed record DeleteBillRequest
 {
 	[RouteParam]
 	public int CustomerId { get; set; }
 
 	[RouteParam]
 	public int BillId { get; set; }
-
-	public DateTimeOffset Date { get; set; }
-
-	public string Comment { get; set; } = null!;
 }
 
-internal sealed class UpdateBillEndpoint(AppDbContext appDbContext) : Endpoint<UpdateBillRequest, Results<NoContent, NotFound>>
+internal sealed class DeleteBillEndpoint(AppDbContext appDbContext) : Endpoint<DeleteBillRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
-		Put("/api/customers/{customerId}/bills/{billId}");
+		Delete("/api/customers/{customerId}/bills/{billId}");
 		AllowAnonymous();
 	}
 
-	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateBillRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteBillRequest req, CancellationToken ct)
 	{
 		var bill = await appDbContext.Bills.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
 
@@ -35,9 +31,7 @@ internal sealed class UpdateBillEndpoint(AppDbContext appDbContext) : Endpoint<U
 			return TypedResults.NotFound();
 		}
 
-		bill.Date = req.Date;
-		bill.Comment = req.Comment;
-
+		appDbContext.Bills.Remove(bill);
 		await appDbContext.SaveChangesAsync(ct);
 
 		return TypedResults.NoContent();
