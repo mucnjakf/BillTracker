@@ -24,6 +24,7 @@ internal sealed class GetCustomerEndpoint(AppDbContext appDbContext) : Endpoint<
 	public override async Task<Results<Ok<CustomerDto>, NotFound>> ExecuteAsync(GetCustomerRequest req, CancellationToken ct)
 	{
 		var customer = await appDbContext.Customers
+			.AsNoTracking()
 			.Include(x => x.City)
 			.SingleOrDefaultAsync(x => x.Id == req.CustomerId, ct);
 
