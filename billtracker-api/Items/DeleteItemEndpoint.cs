@@ -8,13 +8,14 @@ namespace billtracker_api.Items;
 internal sealed record DeleteItemRequest
 {
 	[RouteParam]
-	public int BillId { get; set; }
+	public int BillId { get; init; }
 
 	[RouteParam]
-	public int ItemId { get; set; }
+	public int ItemId { get; init; }
 }
 
-internal sealed class DeleteItemEndpoint(AppDbContext appDbContext) : Endpoint<DeleteItemRequest, Results<NoContent, NotFound>>
+internal sealed class DeleteItemEndpoint(AppDbContext appDbContext)
+	: Endpoint<DeleteItemRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
@@ -25,7 +26,8 @@ internal sealed class DeleteItemEndpoint(AppDbContext appDbContext) : Endpoint<D
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteItemRequest req, CancellationToken ct)
 	{
-		var item = await appDbContext.Items.SingleOrDefaultAsync(x => x.BillId == req.BillId && x.Id == req.ItemId, ct);
+		var item = await appDbContext.Items
+			.SingleOrDefaultAsync(x => x.BillId == req.BillId && x.Id == req.ItemId, ct);
 
 		if (item is null)
 		{

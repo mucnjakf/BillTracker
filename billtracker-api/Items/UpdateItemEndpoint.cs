@@ -8,15 +8,16 @@ namespace billtracker_api.Items;
 internal sealed record UpdateItemRequest
 {
 	[RouteParam]
-	public int BillId { get; set; }
+	public int BillId { get; init; }
 
 	[RouteParam]
-	public int ItemId { get; set; }
+	public int ItemId { get; init; }
 
-	public int Quantity { get; set; }
+	public int Quantity { get; init; }
 }
 
-internal sealed class UpdateItemEndpoint(AppDbContext appDbContext) : Endpoint<UpdateItemRequest, Results<NoContent, NotFound>>
+internal sealed class UpdateItemEndpoint(AppDbContext appDbContext)
+	: Endpoint<UpdateItemRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{

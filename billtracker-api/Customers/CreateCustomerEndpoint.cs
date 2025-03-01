@@ -11,7 +11,8 @@ internal sealed record CreateCustomerRequest(
 	string Telephone,
 	int? CityId);
 
-internal sealed class CreateCustomerEndpoint(AppDbContext appDbContext) : Endpoint<CreateCustomerRequest, Created<CustomerDto>>
+internal sealed class CreateCustomerEndpoint(AppDbContext appDbContext)
+	: Endpoint<CreateCustomerRequest, Created<CustomerDto>>
 {
 	public override void Configure()
 	{

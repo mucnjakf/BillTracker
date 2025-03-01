@@ -8,20 +8,21 @@ namespace billtracker_api.Customers;
 internal sealed record UpdateCustomerRequest
 {
 	[FromRoute]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 
-	public string Name { get; set; } = null!;
+	public string Name { get; init; } = null!;
 
-	public string Surname { get; set; } = null!;
+	public string Surname { get; init; } = null!;
 
-	public string Email { get; set; } = null!;
+	public string Email { get; init; } = null!;
 
-	public string Telephone { get; set; } = null!;
+	public string Telephone { get; init; } = null!;
 
-	public int? CityId { get; set; }
+	public int? CityId { get; init; }
 }
 
-internal sealed class UpdateCustomerEndpoint(AppDbContext appDbContext) : Endpoint<UpdateCustomerRequest, Results<NoContent, NotFound>>
+internal sealed class UpdateCustomerEndpoint(AppDbContext appDbContext)
+	: Endpoint<UpdateCustomerRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
@@ -30,7 +31,9 @@ internal sealed class UpdateCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 		Description(x => x.WithTags("Customers"));
 	}
 
-	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateCustomerRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(
+		UpdateCustomerRequest req,
+		CancellationToken ct)
 	{
 		var customer = await appDbContext.Customers.FindAsync([req.CustomerId], cancellationToken: ct);
 

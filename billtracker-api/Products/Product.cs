@@ -5,21 +5,21 @@ namespace billtracker_api.Products;
 
 internal sealed class Product
 {
-	public int Id { get; set; }
+	public int Id { get; init; }
 
-	public Guid Guid { get; set; } = Guid.NewGuid();
+	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; set; } = null!;
+	public string Name { get; init; } = null!;
 
-	public string ProductNumber { get; set; } = null!;
+	public string ProductNumber { get; init; } = null!;
 
-	public string Color { get; set; } = null!;
+	public string Color { get; init; } = null!;
 
-	public decimal Price { get; set; }
+	public decimal Price { get; init; }
 	
-	public int SubCategoryId { get; set; }
+	public int SubCategoryId { get; init; }
 
-	public SubCategory SubCategory { get; set; } = null!;
+	public SubCategory SubCategory { get; init; } = null!;
 
-	public IEnumerable<Item>? Items { get; set; }
+	public IEnumerable<Item>? Items { get; init; }
 }

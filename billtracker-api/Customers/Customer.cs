@@ -5,9 +5,9 @@ namespace billtracker_api.Customers;
 
 internal sealed class Customer
 {
-	public int Id { get; set; }
+	public int Id { get; init; }
 
-	public Guid Guid { get; set; } = Guid.NewGuid();
+	public Guid Guid { get; init; } = Guid.NewGuid();
 
 	public string Name { get; set; } = null!;
 
@@ -19,7 +19,7 @@ internal sealed class Customer
 
 	public int? CityId { get; set; }
 
-	public City? City { get; set; }
+	public City? City { get; init; }
 
-	public IEnumerable<Bill>? Bills { get; set; }
+	public IEnumerable<Bill>? Bills { get; init; }
 }

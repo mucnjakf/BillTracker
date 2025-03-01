@@ -9,19 +9,20 @@ namespace billtracker_api.Bills;
 internal sealed record GetBillTableRequest
 {
 	[RouteParam]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 
 	[QueryParam]
-	public int PageNumber { get; set; } = 1;
+	public int PageNumber { get; init; } = 1;
 
 	[QueryParam]
-	public int PageSize { get; set; } = 10;
+	public int PageSize { get; init; } = 10;
 
 	[QueryParam]
-	public string? SearchQuery { get; set; } = null;
+	public string? SearchQuery { get; init; } = null;
 }
 
-internal sealed class GetBillTableEndpoint(AppDbContext appDbContext) : Endpoint<GetBillTableRequest, Ok<PagedList<BillTableDto>>>
+internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetBillTableRequest, Ok<PagedList<BillTableDto>>>
 {
 	public override void Configure()
 	{

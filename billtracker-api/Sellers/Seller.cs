@@ -4,15 +4,15 @@ namespace billtracker_api.Sellers;
 
 internal sealed class Seller
 {
-	public int Id { get; set; }
+	public int Id { get; init; }
 
-	public Guid Guid { get; set; } = Guid.NewGuid();
+	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; set; } = null!;
+	public string Name { get; init; } = null!;
 
-	public string Surname { get; set; } = null!;
+	public string Surname { get; init; } = null!;
 
-	public bool PermanentEmployee { get; set; }
+	public bool PermanentEmployee { get; init; }
 
-	public IEnumerable<Bill>? Bills { get; set; }
+	public IEnumerable<Bill>? Bills { get; init; }
 }

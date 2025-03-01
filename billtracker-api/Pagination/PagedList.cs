@@ -29,7 +29,7 @@ internal sealed class PagedList<T>
 
 	public static async Task<PagedList<T>> ToPagedListAsync(IQueryable<T> source, int pageNumber, int pageSize)
 	{
-		var totalCount = source.Count();
+		var totalCount = await source.CountAsync();
 		var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 
 		return new(items, pageNumber, pageSize, totalCount);

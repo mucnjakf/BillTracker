@@ -8,10 +8,11 @@ namespace billtracker_api.Customers;
 internal sealed record GetCustomerRequest
 {
 	[RouteParam]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 }
 
-internal sealed class GetCustomerEndpoint(AppDbContext appDbContext) : Endpoint<GetCustomerRequest, Results<Ok<CustomerDto>, NotFound>>
+internal sealed class GetCustomerEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerRequest, Results<Ok<CustomerDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -20,7 +21,9 @@ internal sealed class GetCustomerEndpoint(AppDbContext appDbContext) : Endpoint<
 		Description(x => x.WithTags("Customers"));
 	}
 
-	public override async Task<Results<Ok<CustomerDto>, NotFound>> ExecuteAsync(GetCustomerRequest req, CancellationToken ct)
+	public override async Task<Results<Ok<CustomerDto>, NotFound>> ExecuteAsync(
+		GetCustomerRequest req,
+		CancellationToken ct)
 	{
 		var customer = await appDbContext.Customers
 			.AsNoTracking()

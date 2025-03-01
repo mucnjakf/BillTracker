@@ -5,15 +5,15 @@ namespace billtracker_api.SubCategories;
 
 internal sealed class SubCategory
 {
-	public int Id { get; set; }
+	public int Id { get; init; }
 
-	public Guid Guid { get; set; } = Guid.NewGuid();
+	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; set; } = null!;
+	public string Name { get; init; } = null!;
 
-	public int CategoryId { get; set; }
+	public int CategoryId { get; init; }
 
-	public Category Category { get; set; } = null!;
+	public Category Category { get; init; } = null!;
 
-	public IEnumerable<Product>? Products { get; set; }
+	public IEnumerable<Product>? Products { get; init; }
 }

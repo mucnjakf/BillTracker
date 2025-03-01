@@ -29,7 +29,9 @@ internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHas
 		Description(x => x.WithTags("Auth"));
 	}
 
-	public override async Task<Results<NoContent, BadRequest, NotFound>> ExecuteAsync(UpdateUserRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, BadRequest, NotFound>> ExecuteAsync(
+		UpdateUserRequest req,
+		CancellationToken ct)
 	{
 		var user = await appDbContext.Users.FindAsync([req.UserId], ct);
 

@@ -4,17 +4,17 @@ namespace billtracker_api.CreditCards;
 
 internal sealed class CreditCard
 {
-	public int Id { get; set; }
+	public int Id { get; init; }
 
-	public Guid Guid { get; set; } = Guid.NewGuid();
+	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Type { get; set; } = null!;
+	public string Type { get; init; } = null!;
 
-	public string CardNumber { get; set; } = null!;
+	public string CardNumber { get; init; } = null!;
 
-	public int ExpirationMonth { get; set; }
+	public int ExpirationMonth { get; init; }
 
-	public int ExpirationYear { get; set; }
+	public int ExpirationYear { get; init; }
 
-	public IEnumerable<Bill>? Bills { get; set; }
+	public IEnumerable<Bill>? Bills { get; init; }
 }

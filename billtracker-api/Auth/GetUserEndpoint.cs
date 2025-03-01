@@ -10,7 +10,8 @@ internal sealed record GetUserRequest
 	public int UserId { get; set; }
 }
 
-internal sealed class GetUserEndpoint(AppDbContext appDbContext) : Endpoint<GetUserRequest, Results<Ok<UserDto>, NotFound>>
+internal sealed class GetUserEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetUserRequest, Results<Ok<UserDto>, NotFound>>
 {
 	public override void Configure()
 	{

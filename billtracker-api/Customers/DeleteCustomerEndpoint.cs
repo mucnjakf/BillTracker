@@ -7,10 +7,11 @@ namespace billtracker_api.Customers;
 internal sealed record DeleteCustomerRequest
 {
 	[RouteParam]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 }
 
-internal sealed class DeleteCustomerEndpoint(AppDbContext appDbContext) : Endpoint<DeleteCustomerRequest, Results<NoContent, NotFound>>
+internal sealed class DeleteCustomerEndpoint(AppDbContext appDbContext)
+	: Endpoint<DeleteCustomerRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
@@ -19,7 +20,9 @@ internal sealed class DeleteCustomerEndpoint(AppDbContext appDbContext) : Endpoi
 		Description(x => x.WithTags("Customers"));
 	}
 
-	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteCustomerRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(
+		DeleteCustomerRequest req,
+		CancellationToken ct)
 	{
 		var customer = await appDbContext.Customers.FindAsync([req.CustomerId], ct);
 

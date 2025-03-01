@@ -8,13 +8,14 @@ namespace billtracker_api.Bills;
 internal sealed record DeleteBillRequest
 {
 	[RouteParam]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 
 	[RouteParam]
-	public int BillId { get; set; }
+	public int BillId { get; init; }
 }
 
-internal sealed class DeleteBillEndpoint(AppDbContext appDbContext) : Endpoint<DeleteBillRequest, Results<NoContent, NotFound>>
+internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
+	: Endpoint<DeleteBillRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
@@ -25,7 +26,8 @@ internal sealed class DeleteBillEndpoint(AppDbContext appDbContext) : Endpoint<D
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteBillRequest req, CancellationToken ct)
 	{
-		var bill = await appDbContext.Bills.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
+		var bill = await appDbContext.Bills
+			.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
 
 		if (bill is null)
 		{

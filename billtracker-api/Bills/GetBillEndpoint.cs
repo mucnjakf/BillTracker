@@ -8,13 +8,14 @@ namespace billtracker_api.Bills;
 internal sealed record GetBillRequest
 {
 	[RouteParam]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 
 	[RouteParam]
-	public int BillId { get; set; }
+	public int BillId { get; init; }
 }
 
-internal sealed class GetBillEndpoint(AppDbContext appDbContext) : Endpoint<GetBillRequest, Results<Ok<BillDto>, NotFound>>
+internal sealed class GetBillEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetBillRequest, Results<Ok<BillDto>, NotFound>>
 {
 	public override void Configure()
 	{

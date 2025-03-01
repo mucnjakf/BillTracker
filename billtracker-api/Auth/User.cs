@@ -2,9 +2,9 @@ namespace billtracker_api.Auth;
 
 internal sealed class User
 {
-	public int Id { get; set; }
+	public int Id { get; init; }
 
-	public Guid Guid { get; set; } = Guid.NewGuid();
+	public Guid Guid { get; init; } = Guid.NewGuid();
 
 	public string Name { get; set; } = null!;
 

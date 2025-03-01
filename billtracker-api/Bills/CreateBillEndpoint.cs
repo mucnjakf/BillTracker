@@ -7,20 +7,21 @@ namespace billtracker_api.Bills;
 internal sealed record CreateBillRequest
 {
 	[RouteParam]
-	public int CustomerId { get; set; }
+	public int CustomerId { get; init; }
 
-	public DateTimeOffset Date { get; set; }
+	public DateTimeOffset Date { get; init; }
 
-	public string BillNumber { get; set; } = null!;
+	public string BillNumber { get; init; } = null!;
 
-	public string Comment { get; set; } = null!;
+	public string Comment { get; init; } = null!;
 
-	public int? SellerId { get; set; }
+	public int? SellerId { get; init; }
 
-	public int? CreditCardId { get; set; } // TODO: doesent make sense to have credit card  here without customer
+	public int? CreditCardId { get; init; } // TODO: doesent make sense to have credit card  here without customer
 }
 
-internal sealed class CreateBillEndpoint(AppDbContext appDbContext) : Endpoint<CreateBillRequest, Results<Created<BillDto>, NotFound>>
+internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
+	: Endpoint<CreateBillRequest, Results<Created<BillDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -29,7 +30,9 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext) : Endpoint<C
 		Description(x => x.WithTags("Bills"));
 	}
 
-	public override async Task<Results<Created<BillDto>, NotFound>> ExecuteAsync(CreateBillRequest req, CancellationToken ct)
+	public override async Task<Results<Created<BillDto>, NotFound>> ExecuteAsync(
+		CreateBillRequest req,
+		CancellationToken ct)
 	{
 		var customer = await appDbContext.Customers.FindAsync([req.CustomerId], ct);
 

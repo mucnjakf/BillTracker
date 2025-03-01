@@ -9,19 +9,20 @@ namespace billtracker_api.Items;
 internal sealed record GetItemTableRequest
 {
 	[RouteParam]
-	public int BillId { get; set; }
+	public int BillId { get; init; }
 
 	[QueryParam]
-	public int PageNumber { get; set; } = 1;
+	public int PageNumber { get; init; } = 1;
 
 	[QueryParam]
-	public int PageSize { get; set; } = 10;
+	public int PageSize { get; init; } = 10;
 
 	[QueryParam]
-	public string? SearchQuery { get; set; } = null;
+	public string? SearchQuery { get; init; } = null;
 }
 
-internal sealed class GetItemTableEndpoint(AppDbContext appDbContext) : Endpoint<GetItemTableRequest, Ok<PagedList<ItemTableDto>>>
+internal sealed class GetItemTableEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetItemTableRequest, Ok<PagedList<ItemTableDto>>>
 {
 	public override void Configure()
 	{
@@ -46,7 +47,8 @@ internal sealed class GetItemTableEndpoint(AppDbContext appDbContext) : Endpoint
 
 		var items = query.Select(x => x.ToItemTableDto());
 
-		var itemsTable = await PagedList<ItemTableDto>.ToPagedListAsync(items, req.PageNumber, req.PageSize);
+		var itemsTable = await PagedList<ItemTableDto>
+			.ToPagedListAsync(items, req.PageNumber, req.PageSize);
 
 		return TypedResults.Ok(itemsTable);
 	}

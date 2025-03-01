@@ -8,14 +8,15 @@ namespace billtracker_api.Items;
 internal sealed record CreateItemRequest
 {
 	[RouteParam]
-	public int BillId { get; set; }
+	public int BillId { get; init; }
 
-	public int Quantity { get; set; }
+	public int Quantity { get; init; }
 
-	public int ProductId { get; set; }
+	public int ProductId { get; init; }
 }
 
-internal sealed class CreateItemEndpoint(AppDbContext appDbContext) : Endpoint<CreateItemRequest, Results<Created<ItemDto>, NotFound>>
+internal sealed class CreateItemEndpoint(AppDbContext appDbContext)
+	: Endpoint<CreateItemRequest, Results<Created<ItemDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -24,7 +25,9 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext) : Endpoint<C
 		Description(x => x.WithTags("Items"));
 	}
 
-	public override async Task<Results<Created<ItemDto>, NotFound>> ExecuteAsync(CreateItemRequest req, CancellationToken ct)
+	public override async Task<Results<Created<ItemDto>, NotFound>> ExecuteAsync(
+		CreateItemRequest req,
+		CancellationToken ct)
 	{
 		var bill = await appDbContext.Bills.FindAsync([req.BillId], ct);
 

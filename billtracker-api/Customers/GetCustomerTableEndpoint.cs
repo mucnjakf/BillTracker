@@ -9,16 +9,17 @@ namespace billtracker_api.Customers;
 internal sealed record GetCustomerTableRequest
 {
 	[QueryParam]
-	public int PageNumber { get; set; } = 1;
+	public int PageNumber { get; init; } = 1;
 
 	[QueryParam]
-	public int PageSize { get; set; } = 10;
+	public int PageSize { get; init; } = 10;
 
 	[QueryParam]
-	public string? SearchQuery { get; set; } = null;
+	public string? SearchQuery { get; init; } = null;
 }
 
-internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext) : Endpoint<GetCustomerTableRequest, Ok<PagedList<CustomerTableDto>>>
+internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerTableRequest, Ok<PagedList<CustomerTableDto>>>
 {
 	public override void Configure()
 	{
@@ -27,7 +28,9 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext) : Endp
 		Description(x => x.WithTags("Customers"));
 	}
 
-	public override async Task<Ok<PagedList<CustomerTableDto>>> ExecuteAsync(GetCustomerTableRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<CustomerTableDto>>> ExecuteAsync(
+		GetCustomerTableRequest req,
+		CancellationToken ct)
 	{
 		IQueryable<Customer> query = appDbContext.Customers
 			.AsNoTracking()
@@ -42,7 +45,8 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext) : Endp
 
 		var customers = query.Select(x => x.ToCustomerTableDto());
 
-		var customersTable = await PagedList<CustomerTableDto>.ToPagedListAsync(customers, req.PageNumber, req.PageSize);
+		var customersTable = await PagedList<CustomerTableDto>
+			.ToPagedListAsync(customers, req.PageNumber, req.PageSize);
 
 		return TypedResults.Ok(customersTable);
 	}
