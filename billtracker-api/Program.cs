@@ -15,6 +15,11 @@ public static class Program
 		{
 			builder.Services
 				.AddOpenApi()
+				.AddCors(options => options.AddPolicy("AllowAll",
+					configure => configure
+						.AllowAnyHeader()
+						.AllowAnyMethod()
+						.AllowAnyOrigin()))
 				.AddAuthenticationJwtBearer(options => options.SigningKey = builder.Configuration["Jwt:Secret"])
 				.AddAuthorization()
 				.AddFastEndpoints()
@@ -28,6 +33,7 @@ public static class Program
 			app.MapOpenApi();
 
 			app
+				.UseCors("AllowAll")
 				.UseHttpsRedirection()
 				.UseAuthentication()
 				.UseAuthorization()
