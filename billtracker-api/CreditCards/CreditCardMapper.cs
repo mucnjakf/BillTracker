@@ -10,6 +10,7 @@ internal static class CreditCardMapper
 			creditCard.Type,
 			creditCard.CardNumber,
 			creditCard.ExpirationMonth,
-			creditCard.ExpirationYear);
+			creditCard.ExpirationYear,
+			creditCard.CreatedUtc);
 	}
 }

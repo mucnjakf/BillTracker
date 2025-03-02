@@ -30,4 +30,6 @@ internal sealed class Bill
 	public CreditCard? CreditCard { get; init; }
 
 	public IEnumerable<Item>? Items { get; init; }
+	
+	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

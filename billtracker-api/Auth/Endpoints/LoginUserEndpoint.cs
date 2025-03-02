@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.JsonWebTokens;
 
-namespace billtracker_api.Auth;
+namespace billtracker_api.Auth.Endpoints;
 
 internal sealed record LoginUserRequest(string Email, string Password);
 

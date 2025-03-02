@@ -12,6 +12,7 @@ internal static class ProductMapper
 			product.Color,
 			product.Price,
 			product.SubCategory.Name,
-			product.SubCategory.Category.Name);
+			product.SubCategory.Category.Name,
+			product.CreatedUtc);
 	}
 }

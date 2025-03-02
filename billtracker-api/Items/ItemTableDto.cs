@@ -5,4 +5,5 @@ internal sealed record ItemTableDto(
 	string ProductName,
 	decimal ProductPrice,
 	int Quantity,
-	decimal TotalPrice);
+	decimal TotalPrice,
+	DateTimeOffset CreatedUtc);

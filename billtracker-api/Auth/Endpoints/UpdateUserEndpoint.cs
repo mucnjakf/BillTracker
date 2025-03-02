@@ -3,7 +3,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Auth;
+namespace billtracker_api.Auth.Endpoints;
 
 internal sealed record UpdateUserRequest
 {

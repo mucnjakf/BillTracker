@@ -11,4 +11,6 @@ internal sealed class City
 	public string Name { get; init; } = null!;
 
 	public IEnumerable<Customer>? Customers { get; init; }
+	
+	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

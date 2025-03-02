@@ -12,7 +12,8 @@ internal static class ItemMapper
 			item.Product.Name,
 			item.Product.Price,
 			item.Quantity,
-			item.TotalPrice);
+			item.TotalPrice,
+			item.CreatedUtc);
 	}
 
 	internal static ItemDto ToItemDto(this Item item)
@@ -23,6 +24,7 @@ internal static class ItemMapper
 			item.Quantity,
 			item.TotalPrice,
 			item.Bill.ToBillDto(),
-			item.Product.ToProductDto());
+			item.Product.ToProductDto(),
+			item.CreatedUtc);
 	}
 }

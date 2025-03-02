@@ -6,4 +6,5 @@ internal sealed record CreditCardDto(
 	string Type,
 	string CardNumber,
 	int ExpirationMonth,
-	int ExpirationYear);
+	int ExpirationYear,
+	DateTimeOffset CreatedUtc);

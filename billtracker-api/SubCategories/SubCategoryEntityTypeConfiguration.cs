@@ -17,5 +17,7 @@ internal sealed class SubCategoryEntityTypeConfiguration : IEntityTypeConfigurat
 			.HasOne(x => x.Category)
 			.WithMany(x => x.SubCategories)
 			.HasForeignKey(x => x.CategoryId);
+
+		builder.Property(x => x.CreatedUtc).HasDefaultValue(DateTimeOffset.UtcNow);
 	}
 }

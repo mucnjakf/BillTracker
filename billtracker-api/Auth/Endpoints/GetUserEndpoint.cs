@@ -2,7 +2,7 @@ using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace billtracker_api.Auth;
+namespace billtracker_api.Auth.Endpoints;
 
 internal sealed record GetUserRequest
 {

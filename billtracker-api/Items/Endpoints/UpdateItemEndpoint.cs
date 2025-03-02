@@ -3,30 +3,33 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Items;
+namespace billtracker_api.Items.Endpoints;
 
-internal sealed record DeleteItemRequest
+internal sealed record UpdateItemRequest
 {
 	[RouteParam]
 	public int BillId { get; init; }
 
 	[RouteParam]
 	public int ItemId { get; init; }
+
+	public int Quantity { get; init; }
 }
 
-internal sealed class DeleteItemEndpoint(AppDbContext appDbContext)
-	: Endpoint<DeleteItemRequest, Results<NoContent, NotFound>>
+internal sealed class UpdateItemEndpoint(AppDbContext appDbContext)
+	: Endpoint<UpdateItemRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
 		Roles("User");
-		Delete("/api/bills/{billId}/items/{itemId}");
+		Put("/api/bills/{billId}/items/{itemId}");
 		Description(x => x.WithTags("Items"));
 	}
 
-	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteItemRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateItemRequest req, CancellationToken ct)
 	{
 		var item = await appDbContext.Items
+			.Include(x => x.Product)
 			.SingleOrDefaultAsync(x => x.BillId == req.BillId && x.Id == req.ItemId, ct);
 
 		if (item is null)
@@ -34,7 +37,9 @@ internal sealed class DeleteItemEndpoint(AppDbContext appDbContext)
 			return TypedResults.NotFound();
 		}
 
-		appDbContext.Remove(item);
+		item.Quantity = req.Quantity;
+		item.TotalPrice = req.Quantity * item.Product.Price;
+
 		await appDbContext.SaveChangesAsync(ct);
 
 		return TypedResults.NoContent();

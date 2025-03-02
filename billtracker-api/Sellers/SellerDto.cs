@@ -5,4 +5,5 @@ internal sealed record SellerDto(
 	Guid Guid,
 	string Name,
 	string Surname,
-	bool PermanentEmployee);
+	bool PermanentEmployee, 
+	DateTimeOffset CreatedUtc);

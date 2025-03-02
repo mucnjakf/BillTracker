@@ -16,4 +16,6 @@ internal sealed class SubCategory
 	public Category Category { get; init; } = null!;
 
 	public IEnumerable<Product>? Products { get; init; }
+	
+	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

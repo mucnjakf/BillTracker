@@ -2,7 +2,7 @@ using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace billtracker_api.Customers;
+namespace billtracker_api.Customers.Endpoints;
 
 internal sealed record DeleteCustomerRequest
 {

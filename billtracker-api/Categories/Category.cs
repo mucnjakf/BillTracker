@@ -11,4 +11,6 @@ internal sealed class Category
 	public string Name { get; init; } = null!;
 
 	public IEnumerable<SubCategory>? SubCategories { get; init; }
+	
+	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

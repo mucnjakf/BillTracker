@@ -20,4 +20,6 @@ internal sealed class Item
 	public int ProductId { get; init; }
  
 	public Product Product { get; init; } = null!;
+
+	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

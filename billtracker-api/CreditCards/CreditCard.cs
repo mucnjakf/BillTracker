@@ -17,4 +17,6 @@ internal sealed class CreditCard
 	public int ExpirationYear { get; init; }
 
 	public IEnumerable<Bill>? Bills { get; init; }
+	
+	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

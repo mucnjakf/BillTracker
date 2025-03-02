@@ -55,7 +55,7 @@ function Customers() {
 
   return (
     <>
-      <h1 className="mb-3">Customers</h1>
+      <h3 className="mb-3">Customers</h3>
 
       <InputGroup className="mb-3 w-25">
         <InputGroup.Text>

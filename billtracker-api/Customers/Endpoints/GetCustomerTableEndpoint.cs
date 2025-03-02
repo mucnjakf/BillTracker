@@ -4,7 +4,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Customers;
+namespace billtracker_api.Customers.Endpoints;
 
 internal sealed record GetCustomerTableRequest
 {
@@ -16,6 +16,9 @@ internal sealed record GetCustomerTableRequest
 
 	[QueryParam]
 	public string? SearchQuery { get; init; } = null;
+
+	[QueryParam]
+	public string? SortBy { get; init; } = null;
 }
 
 internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
@@ -36,13 +39,8 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 			.AsNoTracking()
 			.Include(x => x.City);
 
-		if (!string.IsNullOrWhiteSpace(req.SearchQuery))
-		{
-			var capitalSearchQuery = req.SearchQuery.ToUpper();
-
-			query = query.Where(x =>
-				x.Name.ToUpper().Contains(capitalSearchQuery) || x.Surname.ToUpper().Contains(capitalSearchQuery));
-		}
+		query = Search(req.SearchQuery, query);
+		query = Sort(req.SortBy, query);
 
 		var customers = query.Select(x => x.ToCustomerTableDto());
 
@@ -50,5 +48,34 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 			.ToPagedListAsync(customers, req.PageNumber, req.PageSize);
 
 		return TypedResults.Ok(customersTable);
+	}
+
+	private static IQueryable<Customer> Search(string? searchQuery, IQueryable<Customer> query)
+	{
+		if (string.IsNullOrWhiteSpace(searchQuery))
+		{
+			return query;
+		}
+
+		var capitalSearchQuery = searchQuery.ToUpper();
+
+		query = query.Where(x =>
+			x.Name.ToUpper().Contains(capitalSearchQuery) || x.Surname.ToUpper().Contains(capitalSearchQuery));
+
+		return query;
+	}
+
+	private static IQueryable<Customer> Sort(string? sortBy, IQueryable<Customer> query)
+	{
+		return sortBy switch
+		{
+			"created-asc" => query.OrderBy(x => x.CreatedUtc),
+			"created-desc" => query.OrderByDescending(x => x.CreatedUtc),
+			"name-asc" => query.OrderBy(x => x.Name),
+			"name-desc" => query.OrderByDescending(x => x.Name),
+			"surname-asc" => query.OrderBy(x => x.Surname),
+			"surname-desc" => query.OrderByDescending(x => x.Surname),
+			_ => query.OrderBy(x => x.CreatedUtc)
+		};
 	}
 }

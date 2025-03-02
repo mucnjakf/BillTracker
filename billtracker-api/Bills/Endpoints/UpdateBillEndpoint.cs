@@ -3,7 +3,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Bills;
+namespace billtracker_api.Bills.Endpoints;
 
 internal sealed record UpdateBillRequest
 {

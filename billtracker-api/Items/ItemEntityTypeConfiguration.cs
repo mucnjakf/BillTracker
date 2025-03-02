@@ -22,5 +22,7 @@ internal sealed class ItemEntityTypeConfiguration : IEntityTypeConfiguration<Ite
 			.HasOne(x => x.Product)
 			.WithMany(x => x.Items)
 			.HasForeignKey(x => x.ProductId);
+		
+		builder.Property(x => x.CreatedUtc).HasDefaultValue(DateTimeOffset.UtcNow);
 	}
 }

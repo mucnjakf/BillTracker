@@ -8,4 +8,5 @@ internal sealed record ProductDto(
 	string Color,
 	decimal Price,
 	string SubCategoryName,
-	string CategoryName);
+	string CategoryName,
+	DateTimeOffset CreatedUtc);

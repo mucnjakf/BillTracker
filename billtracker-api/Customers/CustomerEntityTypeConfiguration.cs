@@ -17,5 +17,7 @@ internal sealed class CustomerEntityTypeConfiguration : IEntityTypeConfiguration
 			.HasOne(x => x.City)
 			.WithMany(x => x.Customers)
 			.HasForeignKey(x => x.CityId);
+		
+		builder.Property(x => x.CreatedUtc).HasDefaultValue(DateTimeOffset.UtcNow);
 	}
 }

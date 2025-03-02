@@ -12,5 +12,7 @@ internal sealed class UserEntityTypeConfiguration : IEntityTypeConfiguration<Use
 		builder.HasKey(x => x.Id);
 
 		builder.Property(x => x.Id).ValueGeneratedOnAdd();
+
+		builder.Property(x => x.CreatedUtc).HasDefaultValue(DateTimeOffset.UtcNow);
 	}
 }

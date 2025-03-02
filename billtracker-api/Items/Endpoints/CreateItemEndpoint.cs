@@ -3,7 +3,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace billtracker_api.Items;
+namespace billtracker_api.Items.Endpoints;
 
 internal sealed record CreateItemRequest
 {

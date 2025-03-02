@@ -9,6 +9,7 @@ internal static class SellerMapper
 			seller.Guid,
 			seller.Name,
 			seller.Surname,
-			seller.PermanentEmployee);
+			seller.PermanentEmployee,
+			seller.CreatedUtc);
 	}
 }

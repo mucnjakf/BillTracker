@@ -9,4 +9,5 @@ internal sealed record ItemDto(
 	int Quantity,
 	decimal TotalPrice,
 	BillDto Bill,
-	ProductDto Product);
+	ProductDto Product,
+	DateTimeOffset CreatedUtc);
