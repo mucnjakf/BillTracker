@@ -1,26 +1,16 @@
 import { useState, useEffect } from "react";
 import CustomerService from "../../services/CustomerService";
-import Table from "react-bootstrap/Table";
+import BtSearch from "../../components/BtSearch";
+import BtSort from "../../components/BtSort";
+import BtPagination from "../../components/BtPagination";
+import BtTable from "../../components/BtTable";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {
-  BsSearch,
-  BsCardText,
-  BsPen,
-  BsTrash,
-  BsArrowBarLeft,
-  BsArrowBarRight,
-  BsArrowLeft,
-  BsArrowRight,
-} from "react-icons/bs";
+import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
 function Customers() {
   const [pagedCustomers, setPagedCustomers] = useState({
     items: [],
-    totalPages: 1,
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,8 +18,49 @@ function Customers() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("created-asc");
 
+  const navigate = useNavigate();
+
+  const sortOptions = [
+    { value: "created-asc", label: "Created ASC" },
+    { value: "created-desc", label: "Created DESC" },
+    { value: "name-asc", label: "Name ASC" },
+    { value: "name-desc", label: "Name DESC" },
+    { value: "surname-asc", label: "Surname ASC" },
+    { value: "surname-desc", label: "Surname DESC" },
+  ];
+
+  const tableColumns = [
+    { key: "id", label: "ID" },
+    { key: "name", label: "Name" },
+    { key: "surname", label: "Surname" },
+    { key: "email", label: "Email" },
+    { key: "telephone", label: "Telephone" },
+    { key: "cityName", label: "City" },
+  ];
+
+  const tableActions = [
+    {
+      label: "View",
+      variant: "primary",
+      icon: <BsCardText />,
+      onClick: (customerId) => navigate(`/customers/${customerId}`),
+    },
+    {
+      label: "Edit",
+      variant: "secondary",
+      icon: <BsPen />,
+      onClick: (customerId) => navigate(`/customers/${customerId}/update`),
+    },
+    {
+      label: "Delete",
+      variant: "danger",
+      icon: <BsTrash />,
+      onClick: (customerId) => navigate(`/customers/${customerId}/delete`),
+    },
+  ];
+
   useEffect(() => {
-    const handler = setTimeout(() => {
+    const debounce = setTimeout(() => {
       const getCustomers = async () => {
         const data = await CustomerService.getTable(
           currentPage,
@@ -43,191 +74,49 @@ function Customers() {
       getCustomers();
     }, 500);
 
-    return () => clearTimeout(handler);
+    return () => clearTimeout(debounce);
   }, [currentPage, pageSize, searchQuery, sortBy]);
-
-  const generatePageNumbers = () => {
-    const totalPages = pagedCustomers.totalPages;
-    const pageNumbers = [];
-    let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, startPage + 4);
-
-    if (totalPages > 5 && endPage === totalPages) {
-      startPage = endPage - 4;
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
-    }
-
-    return pageNumbers;
-  };
 
   return (
     <>
       <h3 className="mb-3">Customers</h3>
 
       <div className="mb-3 d-flex">
-        <InputGroup className="me-3" style={{ width: "300px" }}>
-          <InputGroup.Text>
-            <BsSearch />
-          </InputGroup.Text>
-          <Form.Control
-            type="text"
-            placeholder="Search by name or surname"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setCurrentPage(1);
-            }}
-          />
-        </InputGroup>
+        <BtSearch
+          searchQuery={searchQuery}
+          onChange={setSearchQuery}
+          setCurrentPage={setCurrentPage}
+          placeholder="Search by name or surname"
+        />
 
-        <Form.Select
-          style={{ width: "200px" }}
-          value={sortBy}
-          onChange={(e) => {
-            setSortBy(e.target.value);
-            setCurrentPage(1);
-          }}
-        >
-          <option value="created-asc">Created ASC</option>
-          <option value="created-desc">Created DESC</option>
-          <option value="name-asc">Name ASC</option>
-          <option value="name-desc">Name DESC</option>
-          <option value="surname-asc">Surname ASC</option>
-          <option value="surname-desc">Surname DESC</option>
-        </Form.Select>
+        <BtSort
+          sortBy={sortBy}
+          options={sortOptions}
+          onChange={setSortBy}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
 
       <Card>
         <Card.Body>
-          <Table striped hover>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Email</th>
-                <th>Telephone</th>
-                <th>City</th>
-                <th style={{ width: "0px" }}></th>
-              </tr>
-            </thead>
-            <tbody>
-              {pagedCustomers.items.length ? (
-                pagedCustomers.items.map((customer) => (
-                  <tr key={customer.id}>
-                    <td>{customer.id}</td>
-                    <td>{customer.name}</td>
-                    <td>{customer.surname}</td>
-                    <td>{customer.email}</td>
-                    <td>{customer.telephone}</td>
-                    <td>{customer.cityName}</td>
-                    <td>
-                      <ButtonGroup>
-                        <Button
-                          variant="primary"
-                          href={`customers/${customer.id}`}
-                        >
-                          <BsCardText />
-                        </Button>
-                        <Button variant="secondary">
-                          <BsPen />
-                        </Button>
-                        <Button variant="danger">
-                          <BsTrash />
-                        </Button>
-                      </ButtonGroup>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="7" className="text-center">
-                    No customers found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
+          <BtTable
+            columns={tableColumns}
+            data={pagedCustomers.items}
+            actions={tableActions}
+          />
         </Card.Body>
       </Card>
 
       {pagedCustomers.items.length ? (
-        <div className="d-flex justify-content-between mt-3">
-          <p className="align-content-center m-0 border px-3 rounded">
-            Showing{" "}
-            <span className="fw-bold">{pagedCustomers.items.length}</span> of{" "}
-            <span className="fw-bold">{pagedCustomers.totalCount}</span> items
-          </p>
-
-          <div className="d-flex">
-            <div className="d-flex me-3">
-              <Form.Select
-                value={pageSize}
-                onChange={(e) => {
-                  setPageSize(Number(e.target.value));
-                }}
-              >
-                <option value="10">10 per page</option>
-                <option value="20">20 per page</option>
-                <option value="50">50 per page</option>
-              </Form.Select>
-            </div>
-
-            <div className="border p-2 rounded">
-              <Button
-                className="me-1"
-                variant="light"
-                onClick={() => setCurrentPage(1)}
-                disabled={currentPage === 1}
-              >
-                <BsArrowBarLeft />
-              </Button>
-
-              <Button
-                variant="secondary"
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-              >
-                <BsArrowLeft />
-              </Button>
-
-              {generatePageNumbers().map((page) => (
-                <Button
-                  key={page}
-                  variant={page === currentPage ? "primary" : "outline-primary"}
-                  className="mx-1"
-                  onClick={() => setCurrentPage(page)}
-                >
-                  {page}
-                </Button>
-              ))}
-
-              <Button
-                variant="secondary"
-                onClick={() =>
-                  setCurrentPage((prev) =>
-                    Math.min(prev + 1, pagedCustomers.totalPages)
-                  )
-                }
-                disabled={currentPage === pagedCustomers.totalPages}
-              >
-                <BsArrowRight />
-              </Button>
-
-              <Button
-                className="ms-1"
-                variant="light"
-                onClick={() => setCurrentPage(pagedCustomers.totalPages)}
-                disabled={currentPage === pagedCustomers.totalPages}
-              >
-                <BsArrowBarRight />
-              </Button>
-            </div>
-          </div>
-        </div>
+        <BtPagination
+          currentPage={currentPage}
+          totalPages={pagedCustomers.totalPages}
+          totalItems={pagedCustomers.items.length}
+          totalCount={pagedCustomers.totalCount}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          setCurrentPage={setCurrentPage}
+        />
       ) : (
         <></>
       )}
