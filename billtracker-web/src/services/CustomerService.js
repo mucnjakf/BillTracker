@@ -3,16 +3,18 @@ import axios from "axios";
 class CustomerService {
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:3000/customer",
+      baseURL: "http://localhost:5140/api/customers/",
       headers: {
         "Content-Type": "application/json",
       },
     });
   }
 
-  async getAll() {
+  async getTable(pageNumber = 1, pageSize = 10) {
     try {
-      const response = await this.api.get();
+      const response = await this.api.get(
+        `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+      );
       return response.data;
     } catch (error) {
       console.log(error);

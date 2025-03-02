@@ -8,7 +8,6 @@ function BtNavbar() {
   return (
     <Navbar className="d-flex justify-content-between">
       <Navbar.Brand href="/">
-        {/* TODO add icon + on other navs */}
         <Image
           src={BillTrackerLogo}
           className="me-2"
