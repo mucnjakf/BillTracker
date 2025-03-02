@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react";
-import CustomerService from "../services/CustomerService";
+import CustomerService from "../../services/CustomerService";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { BsSearch } from "react-icons/bs";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import {
+  BsSearch,
+  BsCardText,
+  BsPen,
+  BsTrash,
+  BsArrowBarLeft,
+  BsArrowBarRight,
+  BsArrowLeft,
+  BsArrowRight,
+} from "react-icons/bs";
 
 function Customers() {
   const [pagedCustomers, setPagedCustomers] = useState({
@@ -16,6 +26,7 @@ function Customers() {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("created-asc");
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -23,18 +34,17 @@ function Customers() {
         const data = await CustomerService.getTable(
           currentPage,
           pageSize,
-          searchQuery
+          searchQuery,
+          sortBy
         );
         setPagedCustomers(data);
-
-        console.log(data);
       };
 
       getCustomers();
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(handler);
-  }, [currentPage, pageSize, searchQuery]);
+  }, [currentPage, pageSize, searchQuery, sortBy]);
 
   const generatePageNumbers = () => {
     const totalPages = pagedCustomers.totalPages;
@@ -57,20 +67,38 @@ function Customers() {
     <>
       <h3 className="mb-3">Customers</h3>
 
-      <InputGroup className="mb-3 w-25">
-        <InputGroup.Text>
-          <BsSearch />
-        </InputGroup.Text>
-        <Form.Control
-          type="text"
-          placeholder="Search by name or surname"
-          value={searchQuery}
+      <div className="mb-3 d-flex">
+        <InputGroup className="me-3" style={{ width: "300px" }}>
+          <InputGroup.Text>
+            <BsSearch />
+          </InputGroup.Text>
+          <Form.Control
+            type="text"
+            placeholder="Search by name or surname"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+        </InputGroup>
+
+        <Form.Select
+          style={{ width: "200px" }}
+          value={sortBy}
           onChange={(e) => {
-            setSearchQuery(e.target.value);
+            setSortBy(e.target.value);
             setCurrentPage(1);
           }}
-        />
-      </InputGroup>
+        >
+          <option value="created-asc">Created ASC</option>
+          <option value="created-desc">Created DESC</option>
+          <option value="name-asc">Name ASC</option>
+          <option value="name-desc">Name DESC</option>
+          <option value="surname-asc">Surname ASC</option>
+          <option value="surname-desc">Surname DESC</option>
+        </Form.Select>
+      </div>
 
       <Card>
         <Card.Body>
@@ -83,6 +111,7 @@ function Customers() {
                 <th>Email</th>
                 <th>Telephone</th>
                 <th>City</th>
+                <th style={{ width: "0px" }}></th>
               </tr>
             </thead>
             <tbody>
@@ -95,11 +124,27 @@ function Customers() {
                     <td>{customer.email}</td>
                     <td>{customer.telephone}</td>
                     <td>{customer.cityName}</td>
+                    <td>
+                      <ButtonGroup>
+                        <Button
+                          variant="primary"
+                          href={`customers/${customer.id}`}
+                        >
+                          <BsCardText />
+                        </Button>
+                        <Button variant="secondary">
+                          <BsPen />
+                        </Button>
+                        <Button variant="danger">
+                          <BsTrash />
+                        </Button>
+                      </ButtonGroup>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="text-center">
+                  <td colSpan="7" className="text-center">
                     No customers found
                   </td>
                 </tr>
@@ -138,7 +183,7 @@ function Customers() {
                 onClick={() => setCurrentPage(1)}
                 disabled={currentPage === 1}
               >
-                First
+                <BsArrowBarLeft />
               </Button>
 
               <Button
@@ -146,7 +191,7 @@ function Customers() {
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
               >
-                Previous
+                <BsArrowLeft />
               </Button>
 
               {generatePageNumbers().map((page) => (
@@ -169,7 +214,7 @@ function Customers() {
                 }
                 disabled={currentPage === pagedCustomers.totalPages}
               >
-                Next
+                <BsArrowRight />
               </Button>
 
               <Button
@@ -178,7 +223,7 @@ function Customers() {
                 onClick={() => setCurrentPage(pagedCustomers.totalPages)}
                 disabled={currentPage === pagedCustomers.totalPages}
               >
-                Last
+                <BsArrowBarRight />
               </Button>
             </div>
           </div>
