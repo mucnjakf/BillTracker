@@ -15,32 +15,26 @@ function Customers() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-
-  const [searchQuery, setSearchQuery] = useState(""); // TODO: vidjet kako ovo sa samo jednim stateom napravit
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedSearchQuery(searchQuery);
+      const getCustomers = async () => {
+        const data = await CustomerService.getTable(
+          currentPage,
+          pageSize,
+          searchQuery
+        );
+        setPagedCustomers(data);
+
+        console.log(data);
+      };
+
+      getCustomers();
     }, 1000);
 
     return () => clearTimeout(handler);
-  }, [searchQuery]);
-
-  useEffect(() => {
-    const getCustomers = async () => {
-      const data = await CustomerService.getTable(
-        currentPage,
-        pageSize,
-        debouncedSearchQuery
-      );
-      setPagedCustomers(data);
-
-      console.log(data);
-    };
-
-    getCustomers();
-  }, [currentPage, pageSize, debouncedSearchQuery]);
+  }, [currentPage, pageSize, searchQuery]);
 
   const generatePageNumbers = () => {
     const totalPages = pagedCustomers.totalPages;
