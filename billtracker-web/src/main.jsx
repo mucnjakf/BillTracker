@@ -28,6 +28,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/bills" element={<Bills />} />
             <Route path="/items" element={<Items />} />
             <Route path="/products" element={<Products />} />
+            {/* TODO: add not found */}
           </Routes>
         </BrowserRouter>
       </Col>

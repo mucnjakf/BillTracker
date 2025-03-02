@@ -40,7 +40,8 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 		{
 			var capitalSearchQuery = req.SearchQuery.ToUpper();
 
-			query = query.Where(x => x.Name.ToUpper().Contains(capitalSearchQuery));
+			query = query.Where(x =>
+				x.Name.ToUpper().Contains(capitalSearchQuery) || x.Surname.ToUpper().Contains(capitalSearchQuery));
 		}
 
 		var customers = query.Select(x => x.ToCustomerTableDto());

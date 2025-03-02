@@ -10,11 +10,15 @@ class CustomerService {
     });
   }
 
-  async getTable(pageNumber = 1, pageSize = 10) {
+  async getTable(pageNumber = 1, pageSize = 10, searchQuery = "") {
     try {
-      const response = await this.api.get(
-        `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
-      );
+      let url = `table?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+
+      if (searchQuery !== "") {
+        url += `&searchQuery=${searchQuery}`;
+      }
+
+      const response = await this.api.get(url);
       return response.data;
     } catch (error) {
       console.log(error);
