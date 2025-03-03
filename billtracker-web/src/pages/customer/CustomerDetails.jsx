@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 
+// TODO: authorize
 function CustomerDetails() {
   const { customerId } = useParams();
 
