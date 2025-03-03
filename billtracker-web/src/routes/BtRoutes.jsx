@@ -6,21 +6,15 @@ import Login from "../pages/auth/Login";
 import Logout from "../pages/auth/Logout";
 import Customers from "../pages/customer/Customers";
 import BtNotFound from "../components/BtNotFound";
+import { useAuth } from "../components/BtAuthProvider";
 
 const BtRoutes = () => {
-  // TODO: moguce da ako si ulogiran mozes na ove rute, treba onaj drugi nac - da fixat to
+  const { accessToken } = useAuth();
+
   const routesForPublic = [
     {
       path: "/",
       element: <App />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
     },
     {
       path: "/customers",
@@ -29,6 +23,17 @@ const BtRoutes = () => {
     {
       path: "*",
       element: <BtNotFound />,
+    },
+  ];
+
+  const routesForUnauthenticated = [
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ];
 
@@ -70,6 +75,7 @@ const BtRoutes = () => {
 
   const router = createBrowserRouter([
     ...routesForPublic,
+    ...(!accessToken ? routesForUnauthenticated : []),
     ...routesForAuthenticated,
   ]);
 
