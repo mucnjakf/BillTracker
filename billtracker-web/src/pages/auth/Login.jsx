@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import AuthService from "../../services/AuthService";
 
-// TOdo: error message, form validation
+// TODO: error message, form validation
 function Login() {
   const { setAccessToken } = useAuth();
   const navigate = useNavigate();

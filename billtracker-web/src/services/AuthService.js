@@ -22,6 +22,19 @@ class AuthService {
       console.log(error);
     }
   }
+
+  async register(name, surname, email, password) {
+    try {
+      await this.api.post("register", {
+        name: name,
+        surname: surname,
+        email: email,
+        password: password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new AuthService();
