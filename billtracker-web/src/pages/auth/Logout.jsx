@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { useAuth } from "../../components/BtAuthProvider";
 
-function Logout() {
+const Logout = () => {
   const { setAccessToken } = useAuth();
   const navigate = useNavigate();
 
@@ -9,6 +9,6 @@ function Logout() {
   navigate("/login");
 
   return;
-}
+};
 
 export default Logout;

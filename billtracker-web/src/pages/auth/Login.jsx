@@ -9,7 +9,7 @@ import { useState } from "react";
 import AuthService from "../../services/AuthService";
 
 // TODO: error message, form validation
-function Login() {
+const Login = () => {
   const { setAccessToken } = useAuth();
   const navigate = useNavigate();
 
@@ -58,6 +58,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
 export default Login;

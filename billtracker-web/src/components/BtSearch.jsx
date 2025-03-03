@@ -1,7 +1,7 @@
 import { InputGroup, Form } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
 
-function BtSearch({ searchQuery, placeholder, onChange, setCurrentPage }) {
+const BtSearch = ({ searchQuery, placeholder, onChange, setCurrentPage }) => {
   return (
     <InputGroup className="me-3" style={{ width: "300px" }}>
       <InputGroup.Text>
@@ -18,6 +18,6 @@ function BtSearch({ searchQuery, placeholder, onChange, setCurrentPage }) {
       />
     </InputGroup>
   );
-}
+};
 
 export default BtSearch;

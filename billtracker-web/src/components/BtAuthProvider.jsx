@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const AuthContext = createContext();
 
-function BtAuthProvider({ children }) {
+const BtAuthProvider = ({ children }) => {
   const [accessToken, setAccessToken_] = useState(
     localStorage.getItem("accessToken")
   );
@@ -31,7 +31,7 @@ function BtAuthProvider({ children }) {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-}
+};
 
 export const useAuth = () => {
   return useContext(AuthContext);

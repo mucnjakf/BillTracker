@@ -7,8 +7,8 @@ import Logout from "../pages/auth/Logout";
 import Customers from "../pages/customer/Customers";
 import BtNotFound from "../components/BtNotFound";
 
-function BtRoutes() {
-  // TODO: moguce da ako si ulogiran mozes na ove rute, treba onaj drugi nacin
+const BtRoutes = () => {
+  // TODO: moguce da ako si ulogiran mozes na ove rute, treba onaj drugi nac - da fixat to
   const routesForPublic = [
     {
       path: "/",
@@ -37,8 +37,20 @@ function BtRoutes() {
       element: <ProtectedRotue />,
       children: [
         {
+          path: "/customers/create",
+          element: <div>Customer create</div>,
+        },
+        {
           path: "/customers/:customerId",
           element: <div>Customer details</div>,
+        },
+        {
+          path: "/customers/:customerId/update",
+          element: <div>Customer update</div>,
+        },
+        {
+          path: "/customers/:customerId/delete",
+          element: <div>Customer delete</div>,
         },
         {
           path: "/bills",
@@ -62,6 +74,6 @@ function BtRoutes() {
   ]);
 
   return <RouterProvider router={router} />;
-}
+};
 
 export default BtRoutes;

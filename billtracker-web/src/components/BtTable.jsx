@@ -2,7 +2,7 @@ import { Table, Button, ButtonGroup } from "react-bootstrap";
 import { useAuth } from "./BtAuthProvider";
 import { BsPlusCircle } from "react-icons/bs";
 
-function BtTable({ columns, data, actions }) {
+const BtTable = ({ columns, data, actions }) => {
   const { accessToken } = useAuth();
 
   return (
@@ -68,6 +68,6 @@ function BtTable({ columns, data, actions }) {
       </tbody>
     </Table>
   );
-}
+};
 
 export default BtTable;

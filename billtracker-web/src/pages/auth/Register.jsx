@@ -8,7 +8,7 @@ import { useState } from "react";
 import AuthService from "../../services/AuthService";
 
 // TODO: erorr messages, validation
-function Register() {
+const Register = () => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -83,6 +83,6 @@ function Register() {
       </div>
     </>
   );
-}
+};
 
 export default Register;

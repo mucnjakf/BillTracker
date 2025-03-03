@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-function BtSort({ sortBy, options, onChange, setCurrentPage }) {
+const BtSort = ({ sortBy, options, onChange, setCurrentPage }) => {
   return (
     <Form.Select
       style={{ width: "200px" }}
@@ -17,6 +17,6 @@ function BtSort({ sortBy, options, onChange, setCurrentPage }) {
       ))}
     </Form.Select>
   );
-}
+};
 
 export default BtSort;

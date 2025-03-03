@@ -6,7 +6,7 @@ import {
   BsArrowRight,
 } from "react-icons/bs";
 
-function BtPagination({
+const BtPagination = ({
   currentPage,
   totalPages,
   totalItems,
@@ -14,7 +14,7 @@ function BtPagination({
   pageSize,
   setPageSize,
   setCurrentPage,
-}) {
+}) => {
   const generatePageNumbers = () => {
     const pageNumbers = [];
     let startPage = Math.max(1, currentPage - 2);
@@ -104,6 +104,6 @@ function BtPagination({
       </div>
     </div>
   );
-}
+};
 
 export default BtPagination;

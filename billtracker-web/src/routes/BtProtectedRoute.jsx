@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 import { useAuth } from "../components/BtAuthProvider";
 
-function ProtectedRotue() {
+const ProtectedRotue = () => {
   const { accessToken } = useAuth();
 
   if (!accessToken) {
@@ -9,6 +9,6 @@ function ProtectedRotue() {
   }
 
   return <Outlet />;
-}
+};
 
 export default ProtectedRotue;

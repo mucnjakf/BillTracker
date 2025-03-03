@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
 
-function Customers() {
+const Customers = () => {
   const navigate = useNavigate();
 
   const [pagedCustomers, setPagedCustomers] = useState({
@@ -128,6 +128,6 @@ function Customers() {
       )}
     </>
   );
-}
+};
 
 export default Customers;

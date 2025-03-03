@@ -12,7 +12,7 @@ import {
 } from "react-icons/bs";
 import { useAuth } from "./BtAuthProvider";
 
-function BtNavbar() {
+const BtNavbar = () => {
   const { accessToken } = useAuth();
 
   return (
@@ -62,6 +62,6 @@ function BtNavbar() {
       </Nav>
     </Navbar>
   );
-}
+};
 
 export default BtNavbar;
