@@ -1,6 +1,10 @@
 import { Table, Button, ButtonGroup } from "react-bootstrap";
+import { useAuth } from "./BtAuthProvider";
+import { BsPlusCircle } from "react-icons/bs";
 
 function BtTable({ columns, data, actions }) {
+  const { accessToken } = useAuth();
+
   return (
     <Table striped hover>
       <thead>
@@ -8,7 +12,22 @@ function BtTable({ columns, data, actions }) {
           {columns.map((col) => (
             <th key={col.key}>{col.label}</th>
           ))}
-          <th style={{ width: "0px" }}></th>
+          <th style={{ width: "0px" }}>
+            {accessToken ? (
+              actions.slice(0, 1).map((action) => (
+                <Button
+                  key={action.label}
+                  variant={action.variant}
+                  className="w-100"
+                  onClick={action.onClick}
+                >
+                  <BsPlusCircle />
+                </Button>
+              ))
+            ) : (
+              <></>
+            )}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -20,17 +39,21 @@ function BtTable({ columns, data, actions }) {
               ))}
               {
                 <td>
-                  <ButtonGroup>
-                    {actions.map((action) => (
-                      <Button
-                        key={action.label}
-                        variant={action.variant}
-                        onClick={() => action.onClick(item.id)}
-                      >
-                        {action.icon}
-                      </Button>
-                    ))}
-                  </ButtonGroup>
+                  {accessToken ? (
+                    <ButtonGroup>
+                      {actions.slice(1).map((action) => (
+                        <Button
+                          key={action.label}
+                          variant={action.variant}
+                          onClick={() => action.onClick(item.id)}
+                        >
+                          {action.icon}
+                        </Button>
+                      ))}
+                    </ButtonGroup>
+                  ) : (
+                    <></>
+                  )}
                 </td>
               }
             </tr>

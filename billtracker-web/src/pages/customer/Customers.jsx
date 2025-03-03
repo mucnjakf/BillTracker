@@ -5,11 +5,9 @@ import BtSort from "../../components/BtSort";
 import BtPagination from "../../components/BtPagination";
 import BtTable from "../../components/BtTable";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { BsCardText, BsPen, BsTrash, BsPlusCircle } from "react-icons/bs";
+import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
 
-// TODO: anonymous
 function Customers() {
   const navigate = useNavigate();
 
@@ -40,8 +38,13 @@ function Customers() {
     { key: "cityName", label: "City" },
   ];
 
-  // TODO: authorize
   const tableActions = [
+    {
+      label: "Create",
+      variant: "success",
+      icon: <BsCardText />,
+      onClick: () => navigate(`/customers/create`),
+    },
     {
       label: "View",
       variant: "primary",
@@ -84,33 +87,20 @@ function Customers() {
     <>
       <h3 className="mb-3">Customers</h3>
 
-      <div className="mb-3 justify-content-between d-flex">
-        <div className="d-flex">
-          <BtSearch
-            searchQuery={searchQuery}
-            onChange={setSearchQuery}
-            setCurrentPage={setCurrentPage}
-            placeholder="Search by name or surname"
-          />
+      <div className="d-flex mb-3">
+        <BtSearch
+          searchQuery={searchQuery}
+          onChange={setSearchQuery}
+          setCurrentPage={setCurrentPage}
+          placeholder="Search by name or surname"
+        />
 
-          <BtSort
-            sortBy={sortBy}
-            options={sortOptions}
-            onChange={setSortBy}
-            setCurrentPage={setCurrentPage}
-          />
-        </div>
-
-        <div>
-          <Button
-            variant="success"
-            onClick={() => navigate(`/customers/create`)}
-          >
-            {/* TODO: authorize */}
-            <BsPlusCircle className="me-3" />
-            Create customer
-          </Button>
-        </div>
+        <BtSort
+          sortBy={sortBy}
+          options={sortOptions}
+          onChange={setSortBy}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
 
       <Card>

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import AuthService from "../../services/AuthService";
 
+// TODO: erorr messages, validation
 function Register() {
   const navigate = useNavigate();
 

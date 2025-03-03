@@ -10,8 +10,11 @@ import {
   BsBoxArrowInLeft,
   BsPersonPlus,
 } from "react-icons/bs";
+import { useAuth } from "./BtAuthProvider";
 
 function BtNavbar() {
+  const { accessToken } = useAuth();
+
   return (
     <Navbar className="d-flex justify-content-between">
       <Navbar.Brand href="/">
@@ -28,26 +31,34 @@ function BtNavbar() {
           <BsPerson className="me-2" />
           Customers
         </Nav.Link>
-        <Nav.Link href="/bills" className="me-3">
-          <BsCashStack className="me-2" />
-          Bills
-        </Nav.Link>
-        <Nav.Link href="/items" className="me-3">
-          <BsCart4 className="me-2" />
-          Items
-        </Nav.Link>
-        <Nav.Link href="/logout" className="me-3">
-          <BsBoxArrowRight className="me-2" />
-          Logout
-        </Nav.Link>
-        <Nav.Link href="/login" className="me-3">
-          <BsBoxArrowInLeft className="me-2" />
-          Login
-        </Nav.Link>
-        <Nav.Link href="/register" className="me-3">
-          <BsPersonPlus className="me-2" />
-          Register
-        </Nav.Link>
+
+        {accessToken ? (
+          <>
+            <Nav.Link href="/bills" className="me-3">
+              <BsCashStack className="me-2" />
+              Bills
+            </Nav.Link>
+            <Nav.Link href="/items" className="me-3">
+              <BsCart4 className="me-2" />
+              Items
+            </Nav.Link>
+            <Nav.Link href="/logout" className="me-3">
+              <BsBoxArrowRight className="me-2" />
+              Logout
+            </Nav.Link>
+          </>
+        ) : (
+          <>
+            <Nav.Link href="/login" className="me-3">
+              <BsBoxArrowInLeft className="me-2" />
+              Login
+            </Nav.Link>
+            <Nav.Link href="/register" className="me-3">
+              <BsPersonPlus className="me-2" />
+              Register
+            </Nav.Link>
+          </>
+        )}
       </Nav>
     </Navbar>
   );
