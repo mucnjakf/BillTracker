@@ -4,7 +4,8 @@ import App from "../pages/app/App";
 import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 import Logout from "../pages/auth/Logout";
-import MyAccount from "../pages/auth/MyAccount";
+import Account from "../pages/auth/Account";
+import AccountUpdate from "../pages/auth/AccountUpdate";
 import Customers from "../pages/customer/Customers";
 import BtNotFound from "../components/BtNotFound";
 import { useAuth } from "../components/BtAuthProvider";
@@ -67,8 +68,12 @@ const BtRoutes = () => {
           element: <div>Items</div>,
         },
         {
-          path: "/my-account",
-          element: <MyAccount />,
+          path: "/account",
+          element: <Account />,
+        },
+        {
+          path: "/account/update",
+          element: <AccountUpdate />,
         },
         {
           path: "/logout",

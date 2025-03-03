@@ -56,9 +56,9 @@ const BtNavbar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu style={{ width: "160px" }}>
-                <Dropdown.Item href="/my-account">
+                <Dropdown.Item href="/account">
                   <BsPersonCircle className="me-2" />
-                  My account
+                  Account
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="/logout">

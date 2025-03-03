@@ -46,6 +46,19 @@ class AuthService {
       console.log(error);
     }
   }
+
+  async updateUser(userId, name, surname, email, password) {
+    try {
+      await this.api.put(`users/${userId}`, {
+        name: name,
+        surname: surname,
+        email: email,
+        password: password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new AuthService();

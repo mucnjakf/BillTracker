@@ -5,8 +5,13 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { BsPen } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-const MyAccount = () => {
+const Account = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState({});
 
@@ -14,8 +19,6 @@ const MyAccount = () => {
     const getUser = async () => {
       const data = await AuthService.getUser(user.id);
       setCurrentUser(data);
-
-      console.log(data);
     };
 
     getUser();
@@ -23,9 +26,14 @@ const MyAccount = () => {
 
   return (
     <>
-      <h2 className="mb-3">My account</h2>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item active>Account</Breadcrumb.Item>
+      </Breadcrumb>
 
-      <Card className="w-50">
+      <h2 className="mb-3">Account</h2>
+
+      <Card className="w-50 mb-3">
         <Card.Body>
           <Container>
             <Row className="mb-4">
@@ -61,8 +69,13 @@ const MyAccount = () => {
           </Container>
         </Card.Body>
       </Card>
+
+      <Button variant="secondary" onClick={() => navigate(`update`)}>
+        <BsPen className="me-2" />
+        Update account
+      </Button>
     </>
   );
 };
 
-export default MyAccount;
+export default Account;

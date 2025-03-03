@@ -8,15 +8,15 @@ namespace billtracker_api.Auth.Endpoints;
 internal sealed record UpdateUserRequest
 {
 	[RouteParam]
-	public int UserId { get; set; }
+	public int UserId { get; init; }
 
-	public string Name { get; set; } = null!;
+	public string Name { get; init; } = null!;
 
-	public string Surname { get; set; } = null!;
+	public string Surname { get; init; } = null!;
 
-	public string Email { get; set; } = null!;
+	public string Email { get; init; } = null!;
 
-	public string Password { get; set; } = null!;
+	public string? Password { get; init; }
 }
 
 internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHasher passwordHasher)
@@ -53,11 +53,14 @@ internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHas
 		user.Surname = req.Surname;
 		user.Email = req.Email;
 
-		var verified = passwordHasher.Verify(req.Password, user.Password);
-
-		if (!verified)
+		if (!string.IsNullOrEmpty(req.Password))
 		{
-			user.Password = passwordHasher.Hash(req.Password);
+			var verified = passwordHasher.Verify(req.Password, user.Password);
+
+			if (!verified)
+			{
+				user.Password = passwordHasher.Hash(req.Password);
+			}
 		}
 
 		await appDbContext.SaveChangesAsync(ct);
