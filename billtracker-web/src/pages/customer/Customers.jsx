@@ -9,6 +9,8 @@ import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
 
 function Customers() {
+  const navigate = useNavigate();
+
   const [pagedCustomers, setPagedCustomers] = useState({
     items: [],
   });
@@ -17,8 +19,6 @@ function Customers() {
   const [pageSize, setPageSize] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("created-asc");
-
-  const navigate = useNavigate();
 
   const sortOptions = [
     { value: "created-asc", label: "Created ASC" },
