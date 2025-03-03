@@ -13,7 +13,7 @@ const BtTable = ({ columns, data, actions }) => {
             <th key={col.key}>{col.label}</th>
           ))}
           <th style={{ width: "0px" }}>
-            {accessToken ? (
+            {accessToken &&
               actions.slice(0, 1).map((action) => (
                 <Button
                   key={action.label}
@@ -23,10 +23,7 @@ const BtTable = ({ columns, data, actions }) => {
                 >
                   <BsPlusCircle />
                 </Button>
-              ))
-            ) : (
-              <></>
-            )}
+              ))}
           </th>
         </tr>
       </thead>
@@ -39,7 +36,7 @@ const BtTable = ({ columns, data, actions }) => {
               ))}
               {
                 <td>
-                  {accessToken ? (
+                  {accessToken && (
                     <ButtonGroup>
                       {actions.slice(1).map((action) => (
                         <Button
@@ -51,8 +48,6 @@ const BtTable = ({ columns, data, actions }) => {
                         </Button>
                       ))}
                     </ButtonGroup>
-                  ) : (
-                    <></>
                   )}
                 </td>
               }

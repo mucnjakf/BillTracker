@@ -10,11 +10,7 @@ import { useNavigate } from "react-router";
 
 const Customers = () => {
   const navigate = useNavigate();
-
-  const [pagedCustomers, setPagedCustomers] = useState({
-    items: [],
-  });
-
+  const [pagedCustomers, setPagedCustomers] = useState({ items: [] });
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
@@ -113,7 +109,7 @@ const Customers = () => {
         </Card.Body>
       </Card>
 
-      {pagedCustomers.items.length ? (
+      {pagedCustomers.items.length > 0 && (
         <BtPagination
           currentPage={currentPage}
           totalPages={pagedCustomers.totalPages}
@@ -123,8 +119,6 @@ const Customers = () => {
           setPageSize={setPageSize}
           setCurrentPage={setCurrentPage}
         />
-      ) : (
-        <></>
       )}
     </>
   );
