@@ -1,5 +1,6 @@
 import { InputGroup, Form } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const BtSearch = ({ searchQuery, placeholder, onChange, setCurrentPage }) => {
   return (
@@ -7,15 +8,18 @@ const BtSearch = ({ searchQuery, placeholder, onChange, setCurrentPage }) => {
       <InputGroup.Text>
         <BsSearch />
       </InputGroup.Text>
-      <Form.Control
-        type="text"
-        placeholder={placeholder}
-        value={searchQuery}
-        onChange={(e) => {
-          onChange(e.target.value);
-          setCurrentPage(1);
-        }}
-      />
+
+      <FloatingLabel controlId="txtSearchQuery" label={placeholder}>
+        <Form.Control
+          type="text"
+          placeholder={placeholder}
+          value={searchQuery}
+          onChange={(e) => {
+            onChange(e.target.value);
+            setCurrentPage(1);
+          }}
+        />
+      </FloatingLabel>
     </InputGroup>
   );
 };

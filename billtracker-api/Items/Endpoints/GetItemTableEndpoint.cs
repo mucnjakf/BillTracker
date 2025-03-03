@@ -77,7 +77,7 @@ internal sealed class GetItemTableEndpoint(AppDbContext appDbContext)
 			"quantity-desc" => query.OrderByDescending(x => x.Quantity),
 			"total-price-asc" => query.OrderBy(x => x.TotalPrice),
 			"total-price-desc" => query.OrderByDescending(x => x.TotalPrice),
-			_ => query.OrderBy(x => x.CreatedUtc)
+			_ => query.OrderByDescending(x => x.CreatedUtc)
 		};
 	}
 }

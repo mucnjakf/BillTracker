@@ -75,7 +75,7 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 			"name-desc" => query.OrderByDescending(x => x.Name),
 			"surname-asc" => query.OrderBy(x => x.Surname),
 			"surname-desc" => query.OrderByDescending(x => x.Surname),
-			_ => query.OrderBy(x => x.CreatedUtc)
+			_ => query.OrderByDescending(x => x.CreatedUtc)
 		};
 	}
 }

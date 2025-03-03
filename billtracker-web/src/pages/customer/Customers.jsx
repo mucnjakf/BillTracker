@@ -18,11 +18,11 @@ const Customers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("created-asc");
+  const [sortBy, setSortBy] = useState("created-desc");
 
   const sortOptions = [
-    { value: "created-asc", label: "Created ASC" },
     { value: "created-desc", label: "Created DESC" },
+    { value: "created-asc", label: "Created ASC" },
     { value: "name-asc", label: "Name ASC" },
     { value: "name-desc", label: "Name DESC" },
     { value: "surname-asc", label: "Surname ASC" },

@@ -73,7 +73,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 			"date-desc" => query.OrderByDescending(x => x.Date),
 			"number-asc" => query.OrderBy(x => x.BillNumber),
 			"number-desc" => query.OrderByDescending(x => x.BillNumber),
-			_ => query.OrderBy(x => x.Date)
+			_ => query.OrderByDescending(x => x.Date)
 		};
 	}
 }
