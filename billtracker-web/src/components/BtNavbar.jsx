@@ -2,6 +2,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 import BillTrackerLogo from "../assets/billtracker.svg";
+import Dropdown from "react-bootstrap/Dropdown";
+import { useAuth } from "./BtAuthProvider";
 import {
   BsPerson,
   BsCashStack,
@@ -9,22 +11,24 @@ import {
   BsBoxArrowRight,
   BsBoxArrowInLeft,
   BsPersonPlus,
+  BsPersonCircle,
 } from "react-icons/bs";
-import { useAuth } from "./BtAuthProvider";
 
 const BtNavbar = () => {
-  const { accessToken } = useAuth();
+  const { accessToken, user } = useAuth();
 
   return (
     <Navbar className="d-flex justify-content-between">
-      <Navbar.Brand href="/">
-        <Image
-          src={BillTrackerLogo}
-          className="me-3"
-          style={{ width: "30px", height: "30px" }}
-        />
-        BillTracker
-      </Navbar.Brand>
+      <div>
+        <Navbar.Brand href="/">
+          <Image
+            src={BillTrackerLogo}
+            className="me-3"
+            style={{ width: "30px", height: "30px" }}
+          />
+          BillTracker
+        </Navbar.Brand>
+      </div>
 
       <Nav>
         <Nav.Link href="/customers" className="me-3">
@@ -42,10 +46,27 @@ const BtNavbar = () => {
               <BsCart4 className="me-2" />
               Items
             </Nav.Link>
-            <Nav.Link href="/logout" className="me-3">
-              <BsBoxArrowRight className="me-2" />
-              Logout
-            </Nav.Link>
+
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="outline-dark"
+                style={{ width: "160px" }}
+              >
+                {user.email}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "160px" }}>
+                <Dropdown.Item href="/my-account">
+                  <BsPersonCircle className="me-2" />
+                  My account
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="/logout">
+                  <BsBoxArrowRight className="me-2" />
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </>
         ) : (
           <>

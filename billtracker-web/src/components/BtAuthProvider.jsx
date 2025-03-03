@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
@@ -8,14 +8,32 @@ const BtAuthProvider = ({ children }) => {
     localStorage.getItem("accessToken")
   );
 
-  const setAccessToken = (newAccessToken) => setAccessToken_(newAccessToken);
+  const [user, setUser] = useState(() => {
+    const userData = localStorage.getItem("user");
+    return userData ? JSON.parse(userData) : null;
+  });
+
+  const setAccessToken = (newAccessToken) => {
+    setAccessToken_(newAccessToken);
+
+    if (newAccessToken) {
+      const decoded = jwtDecode(newAccessToken);
+      const userData = {
+        id: decoded.sub,
+        email: decoded.email,
+      };
+
+      setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+    } else {
+      localStorage.removeItem("user");
+    }
+  };
 
   useEffect(() => {
     if (accessToken) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
       localStorage.setItem("accessToken", accessToken);
     } else {
-      delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem("accessToken");
     }
   }, [accessToken]);
@@ -24,8 +42,9 @@ const BtAuthProvider = ({ children }) => {
     () => ({
       accessToken,
       setAccessToken,
+      user,
     }),
-    [accessToken]
+    [accessToken, user]
   );
 
   return (

@@ -6,6 +6,7 @@ class AuthService {
       baseURL: "http://localhost:5140/api/auth/",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     });
   }
@@ -31,6 +32,16 @@ class AuthService {
         email: email,
         password: password,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getUser(userId) {
+    try {
+      const response = await this.api.get(`users/${userId}`);
+
+      return response.data;
     } catch (error) {
       console.log(error);
     }

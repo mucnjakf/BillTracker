@@ -6,6 +6,7 @@ class CustomerService {
       baseURL: "http://localhost:5140/api/customers/",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     });
   }
