@@ -1,4 +1,5 @@
 import { Button, Form } from "react-bootstrap";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 import {
   BsArrowBarLeft,
   BsArrowBarRight,
@@ -40,23 +41,28 @@ const BtPagination = ({
 
       <div className="d-flex">
         <div className="d-flex me-3">
-          <Form.Select
+          <FloatingLabel
+            controlId="selectPageSize"
+            label="Rows per page"
+            style={{ width: "150px" }}
             value={pageSize}
             onChange={(e) => {
               setPageSize(e.target.value);
               setCurrentPage(1);
             }}
           >
-            <option value="10">10 per page</option>
-            <option value="20">20 per page</option>
-            <option value="50">50 per page</option>
-          </Form.Select>
+            <Form.Select>
+              <option value="10">10 rows</option>
+              <option value="20">20 rows</option>
+              <option value="50">50 rows</option>
+            </Form.Select>
+          </FloatingLabel>
         </div>
 
         <div className="border p-2 rounded">
           <Button
             className="me-1"
-            variant="light"
+            variant="secondary"
             onClick={() => setCurrentPage(1)}
             disabled={currentPage === 1}
           >
@@ -64,7 +70,7 @@ const BtPagination = ({
           </Button>
 
           <Button
-            variant="secondary"
+            variant="primary"
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
@@ -83,7 +89,7 @@ const BtPagination = ({
           ))}
 
           <Button
-            variant="secondary"
+            variant="primary"
             onClick={() =>
               setCurrentPage((prev) => Math.min(prev + 1, totalPages))
             }
@@ -94,7 +100,7 @@ const BtPagination = ({
 
           <Button
             className="ms-1"
-            variant="light"
+            variant="secondary"
             onClick={() => setCurrentPage(totalPages)}
             disabled={currentPage === totalPages}
           >

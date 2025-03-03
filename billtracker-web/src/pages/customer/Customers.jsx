@@ -81,23 +81,25 @@ const Customers = () => {
 
   return (
     <>
-      <h3 className="mb-3">Customers</h3>
+      <h2 className="mb-3">Customers</h2>
 
-      <div className="d-flex mb-3">
-        <BtSearch
-          searchQuery={searchQuery}
-          onChange={setSearchQuery}
-          setCurrentPage={setCurrentPage}
-          placeholder="Search by name or surname"
-        />
+      {pagedCustomers.items.length > 0 && (
+        <div className="d-flex mb-3">
+          <BtSearch
+            searchQuery={searchQuery}
+            onChange={setSearchQuery}
+            setCurrentPage={setCurrentPage}
+            placeholder="Search by name or surname"
+          />
 
-        <BtSort
-          sortBy={sortBy}
-          options={sortOptions}
-          onChange={setSortBy}
-          setCurrentPage={setCurrentPage}
-        />
-      </div>
+          <BtSort
+            sortBy={sortBy}
+            options={sortOptions}
+            onChange={setSortBy}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
+      )}
 
       <Card>
         <Card.Body>

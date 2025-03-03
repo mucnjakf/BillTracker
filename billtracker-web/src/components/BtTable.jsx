@@ -12,7 +12,7 @@ const BtTable = ({ columns, data, actions }) => {
           {columns.map((col) => (
             <th key={col.key}>{col.label}</th>
           ))}
-          <th style={{ width: "0px" }}>
+          <th style={{ width: "130px" }}>
             {accessToken &&
               actions.slice(0, 1).map((action) => (
                 <Button
