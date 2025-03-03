@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router";
 import ProtectedRotue from "./BtProtectedRoute";
-import App from "../pages/app/App";
+import Home from "../pages/app/Home";
 import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 import Logout from "../pages/auth/Logout";
@@ -16,7 +16,7 @@ const BtRoutes = () => {
   const routesForPublic = [
     {
       path: "/",
-      element: <App />,
+      element: <Home />,
     },
     {
       path: "/customers",

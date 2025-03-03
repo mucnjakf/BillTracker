@@ -7,6 +7,7 @@ import BtTable from "../../components/BtTable";
 import Card from "react-bootstrap/Card";
 import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 const Customers = () => {
   const navigate = useNavigate();
@@ -81,6 +82,11 @@ const Customers = () => {
 
   return (
     <>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item active>Customers</Breadcrumb.Item>
+      </Breadcrumb>
+
       <h2 className="mb-3">Customers</h2>
 
       {pagedCustomers.items.length > 0 && (

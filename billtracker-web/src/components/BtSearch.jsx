@@ -1,4 +1,5 @@
-import { InputGroup, Form } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
 import { BsSearch } from "react-icons/bs";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 

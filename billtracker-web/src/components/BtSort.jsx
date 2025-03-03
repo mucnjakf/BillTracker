@@ -1,4 +1,4 @@
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const BtSort = ({ sortBy, options, onChange, setCurrentPage }) => {
