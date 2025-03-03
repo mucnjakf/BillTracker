@@ -26,6 +26,7 @@ const Register = () => {
   return (
     <>
       <h2 className="text-center mt-5 mb-3">Register</h2>
+
       <div className="d-flex justify-content-center">
         <Card className="w-25">
           <Card.Body>

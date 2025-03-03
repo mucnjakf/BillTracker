@@ -7,6 +7,7 @@ import Logout from "../pages/auth/Logout";
 import Account from "../pages/auth/Account";
 import AccountUpdate from "../pages/auth/AccountUpdate";
 import Customers from "../pages/customer/Customers";
+import CustomerCreate from "../pages/customer/CustomerCreate";
 import BtNotFound from "../components/BtNotFound";
 import { useAuth } from "../components/BtAuthProvider";
 
@@ -45,7 +46,7 @@ const BtRoutes = () => {
       children: [
         {
           path: "/customers/create",
-          element: <div>Customer create</div>,
+          element: <CustomerCreate />,
         },
         {
           path: "/customers/:customerId",
