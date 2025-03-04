@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, useLocation } from "react-router";
 import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
@@ -13,14 +13,17 @@ import { BsPen, BsXCircle } from "react-icons/bs";
 // TODO: errors, validation
 const CustomerUpdate = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { customerId } = useParams();
   const [cities, setCities] = useState([]);
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
   const [cityId, setCityId] = useState("");
+
+  const returnUrl =
+    new URLSearchParams(location.search).get("returnUrl") || "/customers";
 
   useEffect(() => {
     const getCustomer = async () => {
@@ -56,7 +59,7 @@ const CustomerUpdate = () => {
       telephone,
       cityId
     );
-    navigate("/customers");
+    navigate(returnUrl);
   };
 
   return (
@@ -64,6 +67,13 @@ const CustomerUpdate = () => {
       <Breadcrumb>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/customers">Customers</Breadcrumb.Item>
+        {returnUrl.startsWith("/customers/") ? (
+          <Breadcrumb.Item href={`/customers/${customerId}`}>
+            Details
+          </Breadcrumb.Item>
+        ) : (
+          <></>
+        )}
         <Breadcrumb.Item active>Update</Breadcrumb.Item>
       </Breadcrumb>
 
@@ -147,7 +157,7 @@ const CustomerUpdate = () => {
             <Button
               variant="secondary"
               className="rounded-start"
-              onClick={() => navigate("/customers")}
+              onClick={() => navigate(returnUrl)}
             >
               <BsXCircle className="me-2" />
               Cancel

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, useLocation } from "react-router";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
@@ -9,8 +9,12 @@ import { BsTrash, BsXCircle } from "react-icons/bs";
 
 const CustomerDelete = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { customerId } = useParams();
   const [customer, setCustomer] = useState({});
+
+  const returnUrl =
+    new URLSearchParams(location.search).get("returnUrl") || "/customers";
 
   useEffect(() => {
     const getCustomer = async () => {
@@ -33,6 +37,13 @@ const CustomerDelete = () => {
       <Breadcrumb>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/customers">Customers</Breadcrumb.Item>
+        {returnUrl.startsWith("/customers/") ? (
+          <Breadcrumb.Item href={`/customers/${customerId}`}>
+            Details
+          </Breadcrumb.Item>
+        ) : (
+          <></>
+        )}
         <Breadcrumb.Item active>Delete</Breadcrumb.Item>
       </Breadcrumb>
 
@@ -67,7 +78,7 @@ const CustomerDelete = () => {
             <Button
               variant="secondary"
               className="rounded-start"
-              onClick={() => navigate("/customers")}
+              onClick={() => navigate(returnUrl)}
             >
               <BsXCircle className="me-2" />
               Cancel

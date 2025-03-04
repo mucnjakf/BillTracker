@@ -6,6 +6,8 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+import { BsTrash, BsPen } from "react-icons/bs";
 
 const CustomerDetails = () => {
   const navigate = useNavigate();
@@ -80,6 +82,26 @@ const CustomerDetails = () => {
           </Container>
         </Card.Body>
       </Card>
+
+      <div className="d-flex">
+        <Button
+          variant="secondary"
+          onClick={() => navigate(`update?returnUrl=/customers/${customerId}`)}
+          className="me-3"
+        >
+          <BsPen className="me-2" />
+          Update customer
+        </Button>
+
+        <Button
+          variant="danger"
+          onClick={() => navigate(`delete?returnUrl=/customers/${customerId}`)}
+          className="me-3"
+        >
+          <BsTrash className="me-2" />
+          Delete customer
+        </Button>
+      </div>
     </>
   );
 };

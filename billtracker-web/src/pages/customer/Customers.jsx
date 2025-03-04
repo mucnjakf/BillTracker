@@ -52,13 +52,15 @@ const Customers = () => {
       label: "Edit",
       variant: "secondary",
       icon: <BsPen />,
-      onClick: (customerId) => navigate(`/customers/${customerId}/update`),
+      onClick: (customerId) =>
+        navigate(`/customers/${customerId}/update?returnUrl=/customers`),
     },
     {
       label: "Delete",
       variant: "danger",
       icon: <BsTrash />,
-      onClick: (customerId) => navigate(`/customers/${customerId}/delete`),
+      onClick: (customerId) =>
+        navigate(`/customers/${customerId}/delete?returnUrl=/customers`),
     },
   ];
 
