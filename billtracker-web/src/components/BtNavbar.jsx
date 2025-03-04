@@ -76,7 +76,7 @@ const BtNavbar = () => {
               Login
             </Nav.Link>
 
-            <Nav.Link href="/register" className="me-3">
+            <Nav.Link href="/register">
               <BsPersonPlus className="me-2" />
               Register
             </Nav.Link>

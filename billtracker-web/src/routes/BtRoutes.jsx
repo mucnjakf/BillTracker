@@ -11,6 +11,8 @@ import CustomerCreate from "../pages/customer/CustomerCreate";
 import CustomerDetails from "../pages/customer/CustomerDetails";
 import CustomerUpdate from "../pages/customer/CustomerUpdate";
 import CustomerDelete from "../pages/customer/CustomerDelete";
+import Bills from "../pages/bill/Bills";
+import Items from "../pages/item/Items";
 import BtNotFound from "../components/BtNotFound";
 import { useAuth } from "../components/BtAuthProvider";
 
@@ -65,11 +67,11 @@ const BtRoutes = () => {
         },
         {
           path: "/bills",
-          element: <div>Bills</div>,
+          element: <Bills />,
         },
         {
           path: "/items",
-          element: <div>Items</div>,
+          element: <Items />,
         },
         {
           path: "/account",

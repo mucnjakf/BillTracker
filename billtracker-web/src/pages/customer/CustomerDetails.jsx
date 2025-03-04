@@ -4,10 +4,9 @@ import CustomerService from "../../services/CustomerService";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { BsTrash, BsPen } from "react-icons/bs";
+import BtRowCol from "../../components/BtRowCol";
 
 const CustomerDetails = () => {
   const navigate = useNavigate();
@@ -38,49 +37,42 @@ const CustomerDetails = () => {
       <Card className="mb-3" style={{ width: "1000px" }}>
         <Card.Body>
           <Container>
-            <Row className="mb-4">
-              <Col className="col-12">
-                <label className="text-muted small">GUID</label>
-                <h5>{customer.guid}</h5>
-              </Col>
-            </Row>
+            <BtRowCol
+              columns={[
+                { size: "col-12", label: "GUID", value: customer.guid },
+              ]}
+            />
 
-            <Row className="mb-4">
-              <Col className="col-4">
-                <label className="text-muted small">ID</label>
-                <h5>{customer.id}</h5>
-              </Col>
-              <Col className="col-8">
-                <label className="text-muted small">Created</label>
-                <h5>{new Date(customer.createdUtc).toLocaleString()}</h5>
-              </Col>
-            </Row>
+            <BtRowCol
+              columns={[
+                { size: "col-4", label: "ID", value: customer.id },
+                {
+                  size: "col-8",
+                  label: "Created",
+                  value: new Date(customer.createdUtc).toLocaleString(),
+                },
+              ]}
+            />
 
-            <Row className="mb-4">
-              <Col className="col-4">
-                <label className="text-muted small">Name</label>
-                <h5>{customer.name}</h5>
-              </Col>
-              <Col className="col-8">
-                <label className="text-muted small">Surname</label>
-                <h5>{customer.surname}</h5>
-              </Col>
-            </Row>
+            <BtRowCol
+              columns={[
+                { size: "col-4", label: "Name", value: customer.name },
+                { size: "col-8", label: "Surname", value: customer.surname },
+              ]}
+            />
 
-            <Row>
-              <Col className="col-4">
-                <label className="text-muted small">Email</label>
-                <h5>{customer.email}</h5>
-              </Col>
-              <Col className="col-4">
-                <label className="text-muted small">Telephone</label>
-                <h5>{customer.telephone}</h5>
-              </Col>
-              <Col className="col-4">
-                <label className="text-muted small">City</label>
-                <h5>{customer.cityName}</h5>
-              </Col>
-            </Row>
+            <BtRowCol
+              isLastRow={true}
+              columns={[
+                { size: "col-4", label: "Email", value: customer.email },
+                {
+                  size: "col-4",
+                  label: "Telephone",
+                  value: customer.telephone,
+                },
+                { size: "col-4", label: "City", value: customer.cityName },
+              ]}
+            />
           </Container>
         </Card.Body>
       </Card>

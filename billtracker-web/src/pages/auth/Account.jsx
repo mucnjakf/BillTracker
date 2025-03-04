@@ -3,8 +3,7 @@ import { useAuth } from "../../components/BtAuthProvider";
 import AuthService from "../../services/AuthService";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import BtRowCol from "../../components/BtRowCol";
 import { BsPen } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
@@ -35,36 +34,31 @@ const Account = () => {
       <Card className="mb-3" style={{ width: "1000px" }}>
         <Card.Body>
           <Container>
-            <Row className="mb-4">
-              <Col>
-                <label className="text-muted small">GUID</label>
-                <h5>{currentUser.guid}</h5>
-              </Col>
-            </Row>
-            <Row className="mb-4">
-              <Col className="col-4">
-                <label className="text-muted small">ID</label>
-                <h5>{currentUser.id}</h5>
-              </Col>
-              <Col>
-                <label className="text-muted small">Created</label>
-                <h5>{new Date(currentUser.createdUtc).toLocaleString()}</h5>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <label className="text-muted small">Email</label>
-                <h5>{currentUser.email}</h5>
-              </Col>
-              <Col>
-                <label className="text-muted small">Name</label>
-                <h5>{currentUser.name}</h5>
-              </Col>
-              <Col>
-                <label className="text-muted small">Surname</label>
-                <h5>{currentUser.surname}</h5>
-              </Col>
-            </Row>
+            <BtRowCol
+              columns={[
+                { size: "col-12", label: "GUID", value: currentUser.guid },
+              ]}
+            />
+
+            <BtRowCol
+              columns={[
+                { size: "col-4", label: "ID", value: currentUser.id },
+                {
+                  size: "col-8",
+                  label: "Created",
+                  value: new Date(currentUser.createdUtc).toLocaleString(),
+                },
+              ]}
+            />
+
+            <BtRowCol
+              isLastRow={true}
+              columns={[
+                { size: "col-4", label: "Email", value: currentUser.email },
+                { size: "col-4", label: "Name", value: currentUser.name },
+                { size: "col-4", label: "Surname", value: currentUser.surname },
+              ]}
+            />
           </Container>
         </Card.Body>
       </Card>
