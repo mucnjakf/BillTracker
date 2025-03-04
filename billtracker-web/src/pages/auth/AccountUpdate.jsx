@@ -50,12 +50,12 @@ const AccountUpdate = () => {
 
       <h3 className="mb-3">Update account</h3>
 
-      <Alert variant="warning" className="w-25">
-        After updating account, you will be logged out!
-      </Alert>
-
-      <Card className="w-25">
+      <Card style={{ width: "500px" }}>
         <Card.Body>
+          <Alert variant="warning">
+            After updating account, you will be logged out!
+          </Alert>
+
           <FloatingLabel controlId="txtName" label="Name" className="mb-3">
             <Form.Control
               type="text"

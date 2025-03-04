@@ -33,7 +33,7 @@ const Account = () => {
 
       <h2 className="mb-3">Account</h2>
 
-      <Card className="w-50 mb-3">
+      <Card className="mb-3" style={{ width: "1000px" }}>
         <Card.Body>
           <Container>
             <Row className="mb-4">

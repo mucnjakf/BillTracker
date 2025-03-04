@@ -13,7 +13,7 @@ const BtSort = ({ sortBy, options, onChange, setCurrentPage }) => {
         setCurrentPage(1);
       }}
     >
-      <Form.Select>
+      <Form.Select style={{ width: "200px" }}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

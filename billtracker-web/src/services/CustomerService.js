@@ -30,6 +30,15 @@ class CustomerService {
     }
   }
 
+  async get(customerId) {
+    try {
+      const response = await this.api.get(customerId);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async create(name, surname, email, telephone, cityId) {
     try {
       await this.api.post("", {
