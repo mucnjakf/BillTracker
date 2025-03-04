@@ -66,6 +66,14 @@ class CustomerService {
       console.log(error);
     }
   }
+
+  async delete(customerId) {
+    try {
+      await this.api.delete(customerId);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new CustomerService();
