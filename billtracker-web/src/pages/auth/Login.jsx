@@ -50,6 +50,7 @@ const Login = () => {
               />
             </FloatingLabel>
           </Card.Body>
+
           <Card.Footer>
             <BtIconButton
               variant="primary"

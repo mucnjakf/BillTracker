@@ -63,6 +63,7 @@ const CustomerDelete = () => {
             <h5>{customer.email}</h5>
           </div>
         </Card.Body>
+
         <Card.Footer>
           <ButtonGroup className="w-100">
             <BtIconButton
