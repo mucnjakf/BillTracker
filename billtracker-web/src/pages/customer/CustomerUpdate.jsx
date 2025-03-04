@@ -3,7 +3,7 @@ import { useNavigate, useParams, useLocation } from "react-router";
 import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import BtIconButton from "../../components/BtIconButton";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
@@ -143,23 +143,21 @@ const CustomerUpdate = () => {
         </Card.Body>
         <Card.Footer>
           <ButtonGroup className="w-100">
-            <Button
+            <BtIconButton
               variant="primary"
               onClick={handleUpdate}
               className="me-2 rounded-end"
-            >
-              <BsPen className="me-2" />
-              Confirm
-            </Button>
+              icon={BsPen}
+              label="Confirm"
+            />
 
-            <Button
+            <BtIconButton
               variant="secondary"
-              className="rounded-start"
               onClick={() => navigate(returnUrl)}
-            >
-              <BsXCircle className="me-2" />
-              Cancel
-            </Button>
+              className="rounded-start"
+              icon={BsXCircle}
+              label="Cancel"
+            />
           </ButtonGroup>
         </Card.Footer>
       </Card>

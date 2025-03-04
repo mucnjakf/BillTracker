@@ -5,9 +5,9 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import BtRowCol from "../../components/BtRowCol";
 import { BsPen } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
+import BtIconButton from "../../components/BtIconButton";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -63,10 +63,12 @@ const Account = () => {
         </Card.Body>
       </Card>
 
-      <Button variant="secondary" onClick={() => navigate(`update`)}>
-        <BsPen className="me-2" />
-        Update account
-      </Button>
+      <BtIconButton
+        variant="secondary"
+        onClick={() => navigate("update")}
+        icon={BsPen}
+        label="Update account"
+      />
     </>
   );
 };

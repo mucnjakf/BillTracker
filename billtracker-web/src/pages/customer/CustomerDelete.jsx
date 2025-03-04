@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import BtIconButton from "../../components/BtIconButton";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CustomerService from "../../services/CustomerService";
@@ -64,23 +64,21 @@ const CustomerDelete = () => {
         </Card.Body>
         <Card.Footer>
           <ButtonGroup className="w-100">
-            <Button
+            <BtIconButton
               variant="danger"
               onClick={handleDelete}
               className="me-2 rounded-end"
-            >
-              <BsTrash className="me-2" />
-              Confirm
-            </Button>
+              icon={BsTrash}
+              label="Confirm"
+            />
 
-            <Button
+            <BtIconButton
               variant="secondary"
-              className="rounded-start"
               onClick={() => navigate(returnUrl)}
-            >
-              <BsXCircle className="me-2" />
-              Cancel
-            </Button>
+              className="rounded-start"
+              icon={BsXCircle}
+              label="Cancel"
+            />
           </ButtonGroup>
         </Card.Footer>
       </Card>

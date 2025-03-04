@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import BtIconButton from "../../components/BtIconButton";
 import { BsPersonPlus } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import { useState } from "react";
@@ -71,14 +71,13 @@ const Register = () => {
             </FloatingLabel>
           </Card.Body>
           <Card.Footer>
-            <Button
+            <BtIconButton
               variant="primary"
-              className="w-100"
               onClick={handleRegister}
-            >
-              <BsPersonPlus className="me-2" />
-              Register
-            </Button>
+              icon={BsPersonPlus}
+              label="Register"
+              className="w-100"
+            />
           </Card.Footer>
         </Card>
       </div>

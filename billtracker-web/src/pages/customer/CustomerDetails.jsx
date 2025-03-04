@@ -4,7 +4,7 @@ import CustomerService from "../../services/CustomerService";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
+import BtIconButton from "../../components/BtIconButton";
 import { BsTrash, BsPen } from "react-icons/bs";
 import BtRowCol from "../../components/BtRowCol";
 
@@ -78,23 +78,20 @@ const CustomerDetails = () => {
       </Card>
 
       <div className="d-flex">
-        <Button
+        <BtIconButton
           variant="secondary"
           onClick={() => navigate(`update?returnUrl=/customers/${customerId}`)}
+          icon={BsPen}
+          label="Update customer"
           className="me-3"
-        >
-          <BsPen className="me-2" />
-          Update customer
-        </Button>
+        />
 
-        <Button
+        <BtIconButton
           variant="danger"
           onClick={() => navigate(`delete?returnUrl=/customers/${customerId}`)}
-          className="me-3"
-        >
-          <BsTrash className="me-2" />
-          Delete customer
-        </Button>
+          icon={BsTrash}
+          label="Delete customer"
+        />
       </div>
     </>
   );

@@ -5,11 +5,11 @@ import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { BsPen, BsXCircle } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useNavigate } from "react-router";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Alert from "react-bootstrap/Alert";
+import BtIconButton from "../../components/BtIconButton";
 
 // TODO: errors, validation
 const AccountUpdate = () => {
@@ -100,23 +100,21 @@ const AccountUpdate = () => {
         </Card.Body>
         <Card.Footer>
           <ButtonGroup className="w-100">
-            <Button
+            <BtIconButton
               variant="primary"
               onClick={handleUpdate}
               className="me-2 rounded-end"
-            >
-              <BsPen className="me-2" />
-              Confirm
-            </Button>
+              icon={BsPen}
+              label="Confirm"
+            />
 
-            <Button
+            <BtIconButton
               variant="secondary"
-              className="rounded-start"
               onClick={() => navigate("/account")}
-            >
-              <BsXCircle className="me-2" />
-              Cancel
-            </Button>
+              className="rounded-start"
+              icon={BsXCircle}
+              label="Cancel"
+            />
           </ButtonGroup>
         </Card.Footer>
       </Card>

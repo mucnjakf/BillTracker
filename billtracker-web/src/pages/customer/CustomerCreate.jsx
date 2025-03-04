@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import BtIconButton from "../../components/BtIconButton";
 import { BsPersonAdd, BsXCircle } from "react-icons/bs";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -118,23 +118,21 @@ const CustomerCreate = () => {
         </Card.Body>
         <Card.Footer>
           <ButtonGroup className="w-100">
-            <Button
+            <BtIconButton
               variant="primary"
               onClick={handleCreate}
               className="me-2 rounded-end"
-            >
-              <BsPersonAdd className="me-2" />
-              Confirm
-            </Button>
+              icon={BsPersonAdd}
+              label="Confirm"
+            />
 
-            <Button
+            <BtIconButton
               variant="secondary"
-              className="rounded-start"
               onClick={() => navigate("/customers")}
-            >
-              <BsXCircle className="me-2" />
-              Cancel
-            </Button>
+              className="rounded-start"
+              icon={BsXCircle}
+              label="Cancel"
+            />
           </ButtonGroup>
         </Card.Footer>
       </Card>
