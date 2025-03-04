@@ -16,7 +16,6 @@ const CustomerDetails = () => {
     const getCustomer = async () => {
       const data = await CustomerService.get(customerId);
       setCustomer(data);
-      console.log(data);
     };
 
     getCustomer();

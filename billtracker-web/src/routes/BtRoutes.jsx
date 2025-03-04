@@ -9,6 +9,7 @@ import AccountUpdate from "../pages/auth/AccountUpdate";
 import Customers from "../pages/customer/Customers";
 import CustomerCreate from "../pages/customer/CustomerCreate";
 import CustomerDetails from "../pages/customer/CustomerDetails";
+import CustomerUpdate from "../pages/customer/CustomerUpdate";
 import BtNotFound from "../components/BtNotFound";
 import { useAuth } from "../components/BtAuthProvider";
 
@@ -55,7 +56,7 @@ const BtRoutes = () => {
         },
         {
           path: "/customers/:customerId/update",
-          element: <div>Customer update</div>,
+          element: <CustomerUpdate />,
         },
         {
           path: "/customers/:customerId/delete",

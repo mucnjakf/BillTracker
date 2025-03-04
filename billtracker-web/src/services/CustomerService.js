@@ -52,6 +52,20 @@ class CustomerService {
       console.log(error);
     }
   }
+
+  async update(customerId, name, surname, email, telephone, cityId) {
+    try {
+      await this.api.put(customerId, {
+        name: name,
+        surname: surname,
+        email: email,
+        telephone: telephone,
+        cityId: cityId,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new CustomerService();

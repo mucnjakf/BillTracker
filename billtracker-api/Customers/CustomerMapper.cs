@@ -23,6 +23,7 @@ internal static class CustomerMapper
 			customer.Surname,
 			customer.Email,
 			customer.Telephone,
+			customer.CityId ?? 0,
 			customer.City?.Name ?? "-",
 			customer.CreatedUtc);
 	}
