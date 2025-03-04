@@ -29,6 +29,20 @@ class CustomerService {
       console.log(error);
     }
   }
+
+  async create(name, surname, email, telephone, cityId) {
+    try {
+      await this.api.post("", {
+        name: name,
+        surname: surname,
+        email: email,
+        telephone: telephone,
+        cityId: cityId,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new CustomerService();

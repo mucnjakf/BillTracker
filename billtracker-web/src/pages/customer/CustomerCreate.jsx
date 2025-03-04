@@ -8,6 +8,7 @@ import { BsPersonAdd, BsXCircle } from "react-icons/bs";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
+import CustomerService from "../../services/CustomerService";
 
 // TODO: erorr messages, validation
 const CustomerCreate = () => {
@@ -33,11 +34,8 @@ const CustomerCreate = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
 
-    console.log(name);
-    console.log(surname);
-    console.log(email);
-    console.log(telephone);
-    console.log(cityId);
+    await CustomerService.create(name, surname, email, telephone, cityId);
+    navigate("/customers");
   };
 
   return (
@@ -50,7 +48,7 @@ const CustomerCreate = () => {
 
       <h2 className="mb-3">Create customer</h2>
 
-      <Card className="w-25">
+      <Card style={{ width: "500px" }}>
         <Card.Body>
           <FloatingLabel controlId="txtName" label="Name" className="mb-3">
             <Form.Control
