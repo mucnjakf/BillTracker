@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import { BsPen } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import BtBreadcrumb from "../../components/BtBreadcrumb";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -26,10 +26,9 @@ const Account = () => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item active>Account</Breadcrumb.Item>
-      </Breadcrumb>
+      <BtBreadcrumb
+        paths={[{ label: "Home", href: "/" }, { label: "Account" }]}
+      />
 
       <h2 className="mb-3">Account</h2>
 

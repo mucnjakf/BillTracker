@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import CustomerService from "../../services/CustomerService";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -25,11 +25,13 @@ const CustomerDetails = () => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/customers">Customers</Breadcrumb.Item>
-        <Breadcrumb.Item active>Details</Breadcrumb.Item>
-      </Breadcrumb>
+      <BtBreadcrumb
+        paths={[
+          { label: "Home", href: "/" },
+          { label: "Customers", href: "/customers" },
+          { label: "Details" },
+        ]}
+      />
 
       <h2 className="mb-3">Customer details</h2>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CustomerService from "../../services/CustomerService";
 import { BsTrash, BsXCircle } from "react-icons/bs";
@@ -34,18 +34,16 @@ const CustomerDelete = () => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/customers">Customers</Breadcrumb.Item>
-        {returnUrl.startsWith("/customers/") ? (
-          <Breadcrumb.Item href={`/customers/${customerId}`}>
-            Details
-          </Breadcrumb.Item>
-        ) : (
-          <></>
-        )}
-        <Breadcrumb.Item active>Delete</Breadcrumb.Item>
-      </Breadcrumb>
+      <BtBreadcrumb
+        paths={[
+          { label: "Home", href: "/" },
+          { label: "Customers", href: "/customers" },
+          returnUrl.startsWith("/customers/")
+            ? { label: "Details", href: `/customers/${customerId}` }
+            : null,
+          { label: "Delete" },
+        ].filter(Boolean)}
+      />
 
       <h2 className="mb-3">Delete customer</h2>
 

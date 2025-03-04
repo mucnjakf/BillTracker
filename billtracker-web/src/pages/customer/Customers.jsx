@@ -4,10 +4,10 @@ import BtSearch from "../../components/BtSearch";
 import BtSort from "../../components/BtSort";
 import BtPagination from "../../components/BtPagination";
 import BtTable from "../../components/BtTable";
+import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Card from "react-bootstrap/Card";
 import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 const Customers = () => {
   const navigate = useNavigate();
@@ -84,10 +84,9 @@ const Customers = () => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item active>Customers</Breadcrumb.Item>
-      </Breadcrumb>
+      <BtBreadcrumb
+        paths={[{ label: "Home", href: "/" }, { label: "Customers" }]}
+      />
 
       <h2 className="mb-3">Customers</h2>
 

@@ -42,6 +42,7 @@ const BtNavbar = () => {
               <BsCashStack className="me-2" />
               Bills
             </Nav.Link>
+
             <Nav.Link href="/items" className="me-3">
               <BsCart4 className="me-2" />
               Items
@@ -74,6 +75,7 @@ const BtNavbar = () => {
               <BsBoxArrowInLeft className="me-2" />
               Login
             </Nav.Link>
+
             <Nav.Link href="/register" className="me-3">
               <BsPersonPlus className="me-2" />
               Register

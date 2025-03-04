@@ -8,7 +8,7 @@ import { BsPen, BsXCircle } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useNavigate } from "react-router";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Alert from "react-bootstrap/Alert";
 
 // TODO: errors, validation
@@ -42,11 +42,13 @@ const AccountUpdate = () => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/account">Account</Breadcrumb.Item>
-        <Breadcrumb.Item active>Update</Breadcrumb.Item>
-      </Breadcrumb>
+      <BtBreadcrumb
+        paths={[
+          { label: "Home", href: "/" },
+          { label: "Account", href: "/account" },
+          { label: "Update" },
+        ]}
+      />
 
       <h3 className="mb-3">Update account</h3>
 

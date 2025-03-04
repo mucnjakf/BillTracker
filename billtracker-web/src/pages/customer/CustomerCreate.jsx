@@ -5,7 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { BsPersonAdd, BsXCircle } from "react-icons/bs";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
@@ -40,11 +40,13 @@ const CustomerCreate = () => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/customers">Customers</Breadcrumb.Item>
-        <Breadcrumb.Item active>Create</Breadcrumb.Item>
-      </Breadcrumb>
+      <BtBreadcrumb
+        paths={[
+          { label: "Home", href: "/" },
+          { label: "Customers", href: "/customers" },
+          { label: "Create" },
+        ]}
+      />
 
       <h2 className="mb-3">Create customer</h2>
 
