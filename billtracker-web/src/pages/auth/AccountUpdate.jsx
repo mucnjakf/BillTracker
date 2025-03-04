@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Alert from "react-bootstrap/Alert";
 import BtIconButton from "../../components/BtIconButton";
+import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: errors, validation
 const AccountUpdate = () => {
@@ -50,7 +51,7 @@ const AccountUpdate = () => {
         ]}
       />
 
-      <h3 className="mb-3">Update account</h3>
+      <BtPageTitle text="Account update" />
 
       <Card style={{ width: "500px" }}>
         <Card.Body>

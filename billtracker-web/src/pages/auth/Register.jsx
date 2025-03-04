@@ -6,6 +6,7 @@ import { BsPersonPlus } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import AuthService from "../../services/AuthService";
+import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: erorr messages, validation
 const Register = () => {
@@ -25,7 +26,7 @@ const Register = () => {
 
   return (
     <>
-      <h2 className="text-center mt-5 mb-3">Register</h2>
+      <BtPageTitle text="Register" className="text-center mt-5" />
 
       <div className="d-flex justify-content-center">
         <Card className="w-25">

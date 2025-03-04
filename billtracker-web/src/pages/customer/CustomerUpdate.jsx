@@ -9,6 +9,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
 import { BsPen, BsXCircle } from "react-icons/bs";
+import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: errors, validation
 const CustomerUpdate = () => {
@@ -75,7 +76,7 @@ const CustomerUpdate = () => {
         ].filter(Boolean)}
       />
 
-      <h2 className="mb-3">Update customer</h2>
+      <BtPageTitle text="Customer update" />
 
       <Card style={{ width: "500px" }}>
         <Card.Body>

@@ -6,6 +6,7 @@ import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CustomerService from "../../services/CustomerService";
 import { BsTrash, BsXCircle } from "react-icons/bs";
+import BtPageTitle from "../../components/BtPageTitle";
 
 const CustomerDelete = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const CustomerDelete = () => {
         ].filter(Boolean)}
       />
 
-      <h2 className="mb-3">Delete customer</h2>
+      <BtPageTitle text="Customer delete" />
 
       <Card style={{ width: "500px" }}>
         <Card.Body>

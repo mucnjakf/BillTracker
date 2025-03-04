@@ -8,6 +8,7 @@ import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Card from "react-bootstrap/Card";
 import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import BtPageTitle from "../../components/BtPageTitle";
 
 const Customers = () => {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const Customers = () => {
         paths={[{ label: "Home", href: "/" }, { label: "Customers" }]}
       />
 
-      <h2 className="mb-3">Customers</h2>
+      <BtPageTitle text="Customers" />
 
       {pagedCustomers.items.length > 0 && (
         <div className="d-flex mb-3">

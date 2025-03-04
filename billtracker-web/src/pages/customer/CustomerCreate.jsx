@@ -9,6 +9,7 @@ import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
+import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: erorr messages, validation
 const CustomerCreate = () => {
@@ -48,7 +49,7 @@ const CustomerCreate = () => {
         ]}
       />
 
-      <h2 className="mb-3">Create customer</h2>
+      <BtPageTitle text="Customer create" />
 
       <Card style={{ width: "500px" }}>
         <Card.Body>

@@ -8,6 +8,7 @@ import { BsPen } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import BtIconButton from "../../components/BtIconButton";
+import BtPageTitle from "../../components/BtPageTitle";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Account = () => {
         paths={[{ label: "Home", href: "/" }, { label: "Account" }]}
       />
 
-      <h2 className="mb-3">Account</h2>
+      <BtPageTitle text="Account" />
 
       <Card className="mb-3" style={{ width: "1000px" }}>
         <Card.Body>

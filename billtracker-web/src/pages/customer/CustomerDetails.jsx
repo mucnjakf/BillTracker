@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import BtIconButton from "../../components/BtIconButton";
 import { BsTrash, BsPen } from "react-icons/bs";
 import BtRowCol from "../../components/BtRowCol";
+import BtPageTitle from "../../components/BtPageTitle";
 
 const CustomerDetails = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const CustomerDetails = () => {
         ]}
       />
 
-      <h2 className="mb-3">Customer details</h2>
+      <BtPageTitle text="Customer details" />
 
       <Card className="mb-3" style={{ width: "1000px" }}>
         <Card.Body>

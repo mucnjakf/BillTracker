@@ -7,6 +7,7 @@ import { useAuth } from "../../components/BtAuthProvider";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import AuthService from "../../services/AuthService";
+import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: error message, form validation
 const Login = () => {
@@ -26,7 +27,7 @@ const Login = () => {
 
   return (
     <>
-      <h2 className="text-center mt-5 mb-3">Login</h2>
+      <BtPageTitle text="Login" className="text-center mt-5" />
 
       <div className="d-flex justify-content-center">
         <Card className="w-25">
