@@ -1,4 +1,3 @@
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CustomerService from "../../services/CustomerService";
 import BtCard from "../../components/BtCard";
 import BtIconButton from "../../components/BtIconButton";
@@ -65,11 +64,11 @@ const CustomerDelete = () => {
         </BtCard.Body>
 
         <BtCard.Footer>
-          <ButtonGroup className="w-100">
+          <div className="d-flex w-100">
             <BtIconButton
               variant="danger"
               onClick={handleDelete}
-              className="me-2 rounded-end"
+              className="me-2 w-100"
               icon={BsTrash}
               label="Confirm"
             />
@@ -77,11 +76,11 @@ const CustomerDelete = () => {
             <BtIconButton
               variant="secondary"
               onClick={() => navigate(returnUrl)}
-              className="rounded-start"
+              className="w-100"
               icon={BsXCircle}
               label="Cancel"
             />
-          </ButtonGroup>
+          </div>
         </BtCard.Footer>
       </BtCard>
     </>

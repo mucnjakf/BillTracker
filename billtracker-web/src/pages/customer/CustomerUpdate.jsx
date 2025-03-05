@@ -1,4 +1,3 @@
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
 import BtFloatingTextInput from "../../components/BtFloatingTextInput";
@@ -131,11 +130,11 @@ const CustomerUpdate = () => {
         </BtCard.Body>
 
         <BtCard.Footer>
-          <ButtonGroup className="w-100">
+          <div className="d-flex w-100">
             <BtIconButton
               variant="primary"
               onClick={handleUpdate}
-              className="me-2 rounded-end"
+              className="me-2 w-100"
               icon={BsPen}
               label="Confirm"
             />
@@ -143,11 +142,11 @@ const CustomerUpdate = () => {
             <BtIconButton
               variant="secondary"
               onClick={() => navigate(returnUrl)}
-              className="rounded-start"
+              className="w-100"
               icon={BsXCircle}
               label="Cancel"
             />
-          </ButtonGroup>
+          </div>
         </BtCard.Footer>
       </BtCard>
     </>

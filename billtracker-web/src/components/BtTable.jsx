@@ -57,7 +57,7 @@ const BtTable = ({ columns, data, actions }) => {
           ))
         ) : (
           <tr>
-            <td colSpan={columns.length + 1} className="text-center">
+            <td colSpan={columns.length + 1} className="text-center p-4">
               No records found
             </td>
           </tr>

@@ -1,4 +1,3 @@
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import AuthService from "../../services/AuthService";
 import BtCard from "../../components/BtCard";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
@@ -100,11 +99,11 @@ const AccountUpdate = () => {
         </BtCard.Body>
 
         <BtCard.Footer>
-          <ButtonGroup className="w-100">
+          <div className="d-flex w-100">
             <BtIconButton
               variant="primary"
               onClick={handleUpdate}
-              className="me-2 rounded-end"
+              className="me-2 w-100"
               icon={BsPen}
               label="Confirm"
             />
@@ -112,11 +111,11 @@ const AccountUpdate = () => {
             <BtIconButton
               variant="secondary"
               onClick={() => navigate("/account")}
-              className="rounded-start"
+              className="w-100"
               icon={BsXCircle}
               label="Cancel"
             />
-          </ButtonGroup>
+          </div>
         </BtCard.Footer>
       </BtCard>
     </>
