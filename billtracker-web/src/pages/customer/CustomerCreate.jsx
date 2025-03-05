@@ -1,5 +1,3 @@
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
@@ -8,6 +6,7 @@ import BtCard from "../../components/BtCard";
 import BtIconButton from "../../components/BtIconButton";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import BtPageTitle from "../../components/BtPageTitle";
+import BtFloatingSelect from "../../components/BtFloatingSelect";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { BsPersonAdd, BsXCircle } from "react-icons/bs";
@@ -22,7 +21,7 @@ const CustomerCreate = () => {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [cityId, setCityId] = useState("");
+  const [cityId, setCityId] = useState(null);
 
   useEffect(() => {
     const getCities = async () => {
@@ -94,25 +93,14 @@ const CustomerCreate = () => {
             onChange={setTelephone}
           />
 
-          <FloatingLabel
+          <BtFloatingSelect
             controlId="selectCities"
             label="City"
             value={cityId}
-            onChange={(e) => {
-              setCityId(e.target.value);
-            }}
-          >
-            <Form.Select>
-              <option selected disabled>
-                Select city
-              </option>
-              {cities.map((city) => (
-                <option key={city.id} value={city.id}>
-                  {city.name}
-                </option>
-              ))}
-            </Form.Select>
-          </FloatingLabel>
+            onChange={setCityId}
+            placeholder="Select city"
+            items={cities}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>
