@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
 import CustomerService from "../../services/CustomerService";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
 import Container from "react-bootstrap/Container";
 import BtIconButton from "../../components/BtIconButton";
-import { BsTrash, BsPen } from "react-icons/bs";
 import BtRowCol from "../../components/BtRowCol";
 import BtPageTitle from "../../components/BtPageTitle";
+import { BsTrash, BsPen } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 
 const CustomerDetails = () => {
   const navigate = useNavigate();
@@ -35,8 +35,8 @@ const CustomerDetails = () => {
 
       <BtPageTitle text="Customer details" />
 
-      <Card className="mb-3" style={{ width: "1000px" }}>
-        <Card.Body>
+      <BtCard className="mb-3" width="1000px">
+        <BtCard.Body>
           <Container>
             <BtRowCol
               columns={[
@@ -75,8 +75,8 @@ const CustomerDetails = () => {
               ]}
             />
           </Container>
-        </Card.Body>
-      </Card>
+        </BtCard.Body>
+      </BtCard>
 
       <div className="d-flex">
         <BtIconButton

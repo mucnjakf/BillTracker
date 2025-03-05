@@ -1,13 +1,13 @@
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import BtIconButton from "../../components/BtIconButton";
+import AuthService from "../../services/AuthService";
+import BtPageTitle from "../../components/BtPageTitle";
 import { BsBoxArrowInLeft } from "react-icons/bs";
 import { useAuth } from "../../components/BtAuthProvider";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import AuthService from "../../services/AuthService";
-import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: error message, form validation
 const Login = () => {
@@ -30,8 +30,8 @@ const Login = () => {
       <BtPageTitle text="Login" className="text-center mt-5" />
 
       <div className="d-flex justify-content-center">
-        <Card className="w-25">
-          <Card.Body>
+        <BtCard width="500px">
+          <BtCard.Body>
             <FloatingLabel controlId="txtEmail" label="Email" className="mb-3">
               <Form.Control
                 type="email"
@@ -49,9 +49,9 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FloatingLabel>
-          </Card.Body>
+          </BtCard.Body>
 
-          <Card.Footer>
+          <BtCard.Footer>
             <BtIconButton
               variant="primary"
               onClick={handleLogin}
@@ -59,8 +59,8 @@ const Login = () => {
               icon={BsBoxArrowInLeft}
               label="Login"
             />
-          </Card.Footer>
-        </Card>
+          </BtCard.Footer>
+        </BtCard>
       </div>
     </>
   );

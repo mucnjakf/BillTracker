@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router";
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
 import BtIconButton from "../../components/BtIconButton";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CustomerService from "../../services/CustomerService";
-import { BsTrash, BsXCircle } from "react-icons/bs";
 import BtPageTitle from "../../components/BtPageTitle";
+import { BsTrash, BsXCircle } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams, useLocation } from "react-router";
 
 const CustomerDelete = () => {
   const navigate = useNavigate();
@@ -48,8 +48,8 @@ const CustomerDelete = () => {
 
       <BtPageTitle text="Customer delete" />
 
-      <Card style={{ width: "500px" }}>
-        <Card.Body>
+      <BtCard width="500px">
+        <BtCard.Body>
           <p>Are you sure you want to permanently delete customer?</p>
 
           <div>
@@ -62,9 +62,9 @@ const CustomerDelete = () => {
             <label className="mt-3 text-muted small">Email</label>
             <h5>{customer.email}</h5>
           </div>
-        </Card.Body>
+        </BtCard.Body>
 
-        <Card.Footer>
+        <BtCard.Footer>
           <ButtonGroup className="w-100">
             <BtIconButton
               variant="danger"
@@ -82,8 +82,8 @@ const CustomerDelete = () => {
               label="Cancel"
             />
           </ButtonGroup>
-        </Card.Footer>
-      </Card>
+        </BtCard.Footer>
+      </BtCard>
     </>
   );
 };

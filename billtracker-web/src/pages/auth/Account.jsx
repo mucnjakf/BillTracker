@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { useAuth } from "../../components/BtAuthProvider";
 import AuthService from "../../services/AuthService";
-import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import BtRowCol from "../../components/BtRowCol";
-import { BsPen } from "react-icons/bs";
-import { useNavigate } from "react-router";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import BtIconButton from "../../components/BtIconButton";
 import BtPageTitle from "../../components/BtPageTitle";
+import BtCard from "../../components/BtCard";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../components/BtAuthProvider";
+import { BsPen } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -32,8 +32,8 @@ const Account = () => {
 
       <BtPageTitle text="Account" />
 
-      <Card className="mb-3" style={{ width: "1000px" }}>
-        <Card.Body>
+      <BtCard width="1000px" className="mb-3">
+        <BtCard.Body>
           <Container>
             <BtRowCol
               columns={[
@@ -61,8 +61,8 @@ const Account = () => {
               ]}
             />
           </Container>
-        </Card.Body>
-      </Card>
+        </BtCard.Body>
+      </BtCard>
 
       <BtIconButton
         variant="secondary"

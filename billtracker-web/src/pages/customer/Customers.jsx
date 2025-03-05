@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
 import CustomerService from "../../services/CustomerService";
 import BtSearch from "../../components/BtSearch";
 import BtSort from "../../components/BtSort";
 import BtPagination from "../../components/BtPagination";
 import BtTable from "../../components/BtTable";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
+import BtPageTitle from "../../components/BtPageTitle";
 import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router";
-import BtPageTitle from "../../components/BtPageTitle";
+import { useState, useEffect } from "react";
 
 const Customers = () => {
   const navigate = useNavigate();
@@ -109,15 +109,15 @@ const Customers = () => {
         </div>
       )}
 
-      <Card>
-        <Card.Body>
+      <BtCard>
+        <BtCard.Body>
           <BtTable
             columns={tableColumns}
             data={pagedCustomers.items}
             actions={tableActions}
           />
-        </Card.Body>
-      </Card>
+        </BtCard.Body>
+      </BtCard>
 
       {pagedCustomers.items.length > 0 && (
         <BtPagination

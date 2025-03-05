@@ -1,12 +1,12 @@
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import BtIconButton from "../../components/BtIconButton";
+import AuthService from "../../services/AuthService";
+import BtPageTitle from "../../components/BtPageTitle";
 import { BsPersonPlus } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import AuthService from "../../services/AuthService";
-import BtPageTitle from "../../components/BtPageTitle";
 
 // TODO: erorr messages, validation
 const Register = () => {
@@ -29,8 +29,8 @@ const Register = () => {
       <BtPageTitle text="Register" className="text-center mt-5" />
 
       <div className="d-flex justify-content-center">
-        <Card className="w-25">
-          <Card.Body>
+        <BtCard width="500px">
+          <BtCard.Body>
             <FloatingLabel controlId="txtName" label="Name" className="mb-3">
               <Form.Control
                 type="text"
@@ -70,8 +70,9 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FloatingLabel>
-          </Card.Body>
-          <Card.Footer>
+          </BtCard.Body>
+
+          <BtCard.Footer>
             <BtIconButton
               variant="primary"
               onClick={handleRegister}
@@ -79,8 +80,8 @@ const Register = () => {
               label="Register"
               className="w-100"
             />
-          </Card.Footer>
-        </Card>
+          </BtCard.Footer>
+        </BtCard>
       </div>
     </>
   );

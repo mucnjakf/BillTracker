@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import BtIconButton from "../../components/BtIconButton";
-import { BsPersonAdd, BsXCircle } from "react-icons/bs";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
 import BtPageTitle from "../../components/BtPageTitle";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { BsPersonAdd, BsXCircle } from "react-icons/bs";
 
 // TODO: erorr messages, validation
 const CustomerCreate = () => {
@@ -51,8 +51,8 @@ const CustomerCreate = () => {
 
       <BtPageTitle text="Customer create" />
 
-      <Card style={{ width: "500px" }}>
-        <Card.Body>
+      <BtCard width="500px">
+        <BtCard.Body>
           <FloatingLabel controlId="txtName" label="Name" className="mb-3">
             <Form.Control
               type="text"
@@ -116,9 +116,9 @@ const CustomerCreate = () => {
               ))}
             </Form.Select>
           </FloatingLabel>
-        </Card.Body>
+        </BtCard.Body>
 
-        <Card.Footer>
+        <BtCard.Footer>
           <ButtonGroup className="w-100">
             <BtIconButton
               variant="primary"
@@ -136,8 +136,8 @@ const CustomerCreate = () => {
               label="Cancel"
             />
           </ButtonGroup>
-        </Card.Footer>
-      </Card>
+        </BtCard.Footer>
+      </BtCard>
     </>
   );
 };

@@ -1,16 +1,16 @@
-import { useAuth } from "../../components/BtAuthProvider";
-import { useState, useEffect } from "react";
 import AuthService from "../../services/AuthService";
-import Card from "react-bootstrap/Card";
+import BtCard from "../../components/BtCard";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import { BsPen, BsXCircle } from "react-icons/bs";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { useNavigate } from "react-router";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import Alert from "react-bootstrap/Alert";
 import BtIconButton from "../../components/BtIconButton";
 import BtPageTitle from "../../components/BtPageTitle";
+import { useAuth } from "../../components/BtAuthProvider";
+import { useState, useEffect } from "react";
+import { BsPen, BsXCircle } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
 // TODO: errors, validation
 const AccountUpdate = () => {
@@ -53,8 +53,8 @@ const AccountUpdate = () => {
 
       <BtPageTitle text="Account update" />
 
-      <Card style={{ width: "500px" }}>
-        <Card.Body>
+      <BtCard width="500px">
+        <BtCard.Body>
           <Alert variant="warning">
             After updating account, you will be logged out!
           </Alert>
@@ -98,8 +98,9 @@ const AccountUpdate = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FloatingLabel>
-        </Card.Body>
-        <Card.Footer>
+        </BtCard.Body>
+
+        <BtCard.Footer>
           <ButtonGroup className="w-100">
             <BtIconButton
               variant="primary"
@@ -117,8 +118,8 @@ const AccountUpdate = () => {
               label="Cancel"
             />
           </ButtonGroup>
-        </Card.Footer>
-      </Card>
+        </BtCard.Footer>
+      </BtCard>
     </>
   );
 };
