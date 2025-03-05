@@ -11,7 +11,7 @@ const BtCard = ({ width, className, children }) => {
 
   return (
     <Card style={{ width: width }} className={className}>
-      <Card.Body>{body}</Card.Body>
+      <Card.Body className="mx-1">{body}</Card.Body>
       {footer && <Card.Footer>{footer}</Card.Footer>}
     </Card>
   );

@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router";
 import { useAuth } from "../../components/BtAuthProvider";
+import { useNavigate } from "react-router";
 
 const Logout = () => {
   const { setAccessToken } = useAuth();

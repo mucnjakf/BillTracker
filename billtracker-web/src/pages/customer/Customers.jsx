@@ -6,9 +6,9 @@ import BtTable from "../../components/BtTable";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
 import BtCard from "../../components/BtCard";
 import BtPageTitle from "../../components/BtPageTitle";
-import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
-import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 
 const Customers = () => {
   const navigate = useNavigate();

@@ -1,11 +1,11 @@
+import AuthService from "../../services/AuthService";
 import BtFloatingTextInput from "../../components/BtFloatingTextInput";
 import BtCard from "../../components/BtCard";
 import BtIconButton from "../../components/BtIconButton";
-import AuthService from "../../services/AuthService";
 import BtPageTitle from "../../components/BtPageTitle";
-import { BsPersonPlus } from "react-icons/bs";
-import { useNavigate } from "react-router";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { BsPersonPlus } from "react-icons/bs";
 
 // TODO: erorr messages, validation
 const Register = () => {
