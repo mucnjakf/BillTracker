@@ -1,7 +1,7 @@
+import BillTrackerLogo from "../assets/billtracker.svg";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
-import BillTrackerLogo from "../assets/billtracker.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useAuth } from "./BtAuthProvider";
 import {

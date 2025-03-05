@@ -1,7 +1,7 @@
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
-import { BsSearch } from "react-icons/bs";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { BsSearch } from "react-icons/bs";
 
 const BtSearch = ({ searchQuery, placeholder, onChange, setCurrentPage }) => {
   return (

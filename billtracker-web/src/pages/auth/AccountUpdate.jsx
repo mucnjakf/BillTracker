@@ -1,4 +1,3 @@
-import Alert from "react-bootstrap/Alert";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import AuthService from "../../services/AuthService";
 import BtCard from "../../components/BtCard";
@@ -6,6 +5,7 @@ import BtBreadcrumb from "../../components/BtBreadcrumb";
 import BtIconButton from "../../components/BtIconButton";
 import BtPageTitle from "../../components/BtPageTitle";
 import BtFloatingTextInput from "../../components/BtFloatingTextInput";
+import BtAlert from "../../components/BtAlert";
 import { useAuth } from "../../components/BtAuthProvider";
 import { useState, useEffect } from "react";
 import { BsPen, BsXCircle } from "react-icons/bs";
@@ -54,9 +54,10 @@ const AccountUpdate = () => {
 
       <BtCard width="500px">
         <BtCard.Body>
-          <Alert variant="warning">
-            After updating account, you will be logged out!
-          </Alert>
+          <BtAlert
+            variant="warning"
+            text="After updating account, you will be logged out!"
+          />
 
           <BtFloatingTextInput
             controlId="txtName"
