@@ -1,9 +1,10 @@
-import BtCard from "../../components/BtCard";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import BtFloatingTextInput from "../../components/BtFloatingTextInput";
+import BtCard from "../../components/BtCard";
 import BtIconButton from "../../components/BtIconButton";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
 import BtPageTitle from "../../components/BtPageTitle";
@@ -53,49 +54,45 @@ const CustomerCreate = () => {
 
       <BtCard width="500px">
         <BtCard.Body>
-          <FloatingLabel controlId="txtName" label="Name" className="mb-3">
-            <Form.Control
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </FloatingLabel>
+          <BtFloatingTextInput
+            controlId="txtName"
+            label="Name"
+            className="mb-3"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={setName}
+          />
 
-          <FloatingLabel
+          <BtFloatingTextInput
             controlId="txtSurname"
             label="Surname"
             className="mb-3"
-          >
-            <Form.Control
-              type="text"
-              placeholder="Surname"
-              value={surname}
-              onChange={(e) => setSurname(e.target.value)}
-            />
-          </FloatingLabel>
+            type="text"
+            placeholder="Surname"
+            value={surname}
+            onChange={setSurname}
+          />
 
-          <FloatingLabel controlId="txtEmail" label="Email" className="mb-3">
-            <Form.Control
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FloatingLabel>
+          <BtFloatingTextInput
+            controlId="txtEmail"
+            label="Email"
+            className="mb-3"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={setEmail}
+          />
 
-          <FloatingLabel
+          <BtFloatingTextInput
             controlId="txtTelephone"
             label="Telephone"
             className="mb-3"
-          >
-            <Form.Control
-              type="text"
-              placeholder="Telephone"
-              value={telephone}
-              onChange={(e) => setTelephone(e.target.value)}
-            />
-          </FloatingLabel>
+            type="text"
+            placeholder="Telephone"
+            value={telephone}
+            onChange={setTelephone}
+          />
 
           <FloatingLabel
             controlId="selectCities"

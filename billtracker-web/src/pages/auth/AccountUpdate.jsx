@@ -1,12 +1,11 @@
+import Alert from "react-bootstrap/Alert";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import AuthService from "../../services/AuthService";
 import BtCard from "../../components/BtCard";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
-import Alert from "react-bootstrap/Alert";
 import BtIconButton from "../../components/BtIconButton";
 import BtPageTitle from "../../components/BtPageTitle";
+import BtFloatingTextInput from "../../components/BtFloatingTextInput";
 import { useAuth } from "../../components/BtAuthProvider";
 import { useState, useEffect } from "react";
 import { BsPen, BsXCircle } from "react-icons/bs";
@@ -59,45 +58,44 @@ const AccountUpdate = () => {
             After updating account, you will be logged out!
           </Alert>
 
-          <FloatingLabel controlId="txtName" label="Name" className="mb-3">
-            <Form.Control
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </FloatingLabel>
+          <BtFloatingTextInput
+            controlId="txtName"
+            label="Name"
+            className="mb-3"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={setName}
+          />
 
-          <FloatingLabel
+          <BtFloatingTextInput
             controlId="txtSurname"
             label="Surname"
             className="mb-3"
-          >
-            <Form.Control
-              type="text"
-              placeholder="Surname"
-              value={surname}
-              onChange={(e) => setSurname(e.target.value)}
-            />
-          </FloatingLabel>
+            type="text"
+            placeholder="Surname"
+            value={surname}
+            onChange={setSurname}
+          />
 
-          <FloatingLabel controlId="txtEmail" label="Email" className="mb-3">
-            <Form.Control
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FloatingLabel>
+          <BtFloatingTextInput
+            controlId="txtEmail"
+            label="Email"
+            className="mb-3"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={setEmail}
+          />
 
-          <FloatingLabel controlId="txtPassword" label="Password">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FloatingLabel>
+          <BtFloatingTextInput
+            controlId="txtPassword"
+            label="Password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={setPassword}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>

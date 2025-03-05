@@ -1,7 +1,7 @@
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import BtCard from "../../components/BtCard";
 import BtIconButton from "../../components/BtIconButton";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CustomerService from "../../services/CustomerService";
 import BtPageTitle from "../../components/BtPageTitle";
 import { BsTrash, BsXCircle } from "react-icons/bs";

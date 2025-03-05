@@ -1,6 +1,5 @@
+import BtFloatingTextInput from "../../components/BtFloatingTextInput";
 import BtCard from "../../components/BtCard";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
 import BtIconButton from "../../components/BtIconButton";
 import AuthService from "../../services/AuthService";
 import BtPageTitle from "../../components/BtPageTitle";
@@ -31,45 +30,44 @@ const Register = () => {
       <div className="d-flex justify-content-center">
         <BtCard width="500px">
           <BtCard.Body>
-            <FloatingLabel controlId="txtName" label="Name" className="mb-3">
-              <Form.Control
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </FloatingLabel>
+            <BtFloatingTextInput
+              controlId="txtName"
+              label="Name"
+              className="mb-3"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={setName}
+            />
 
-            <FloatingLabel
+            <BtFloatingTextInput
               controlId="txtSurname"
               label="Surname"
               className="mb-3"
-            >
-              <Form.Control
-                type="text"
-                placeholder="Surname"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-              />
-            </FloatingLabel>
+              type="text"
+              placeholder="Surname"
+              value={surname}
+              onChange={setSurname}
+            />
 
-            <FloatingLabel controlId="txtEmail" label="Email" className="mb-3">
-              <Form.Control
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FloatingLabel>
+            <BtFloatingTextInput
+              controlId="txtEmail"
+              label="Email"
+              className="mb-3"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={setEmail}
+            />
 
-            <FloatingLabel controlId="txtPassword" label="Password">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FloatingLabel>
+            <BtFloatingTextInput
+              controlId="txtPassword"
+              label="Password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={setPassword}
+            />
           </BtCard.Body>
 
           <BtCard.Footer>

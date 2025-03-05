@@ -1,6 +1,5 @@
+import BtFloatingTextInput from "../../components/BtFloatingTextInput";
 import BtCard from "../../components/BtCard";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
 import BtIconButton from "../../components/BtIconButton";
 import AuthService from "../../services/AuthService";
 import BtPageTitle from "../../components/BtPageTitle";
@@ -32,23 +31,24 @@ const Login = () => {
       <div className="d-flex justify-content-center">
         <BtCard width="500px">
           <BtCard.Body>
-            <FloatingLabel controlId="txtEmail" label="Email" className="mb-3">
-              <Form.Control
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FloatingLabel>
+            <BtFloatingTextInput
+              controlId="txtEmail"
+              label="Email"
+              className="mb-3"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={setEmail}
+            />
 
-            <FloatingLabel controlId="txtPassword" label="Password">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FloatingLabel>
+            <BtFloatingTextInput
+              controlId="txtPassword"
+              label="Password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={setPassword}
+            />
           </BtCard.Body>
 
           <BtCard.Footer>
