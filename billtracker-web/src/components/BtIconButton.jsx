@@ -1,8 +1,16 @@
 import Button from "react-bootstrap/Button";
 
-const BtIconButton = ({ variant, onClick, icon: Icon, label, className }) => {
+const BtIconButton = ({
+  variant,
+  onClick,
+  icon: Icon,
+  label,
+  className,
+  type = "button",
+}) => {
   return (
     <Button
+      type={type}
       variant={variant}
       onClick={onClick}
       className={`${className} py-2 px-3`}

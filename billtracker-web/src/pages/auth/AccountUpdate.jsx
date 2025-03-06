@@ -1,3 +1,4 @@
+import Form from "react-bootstrap/Form";
 import AuthService from "../../services/AuthService";
 import BtCard from "../../components/BtCard";
 import BtBreadcrumb from "../../components/BtBreadcrumb";
@@ -51,73 +52,76 @@ const AccountUpdate = () => {
 
       <BtPageTitle text="Account update" />
 
-      <BtCard width="500px">
-        <BtCard.Body>
-          <BtAlert
-            variant="warning"
-            text="After updating account, you will be logged out!"
-          />
-
-          <BtFloatingTextInput
-            controlId="txtName"
-            label="Name"
-            className="mb-3"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={setName}
-          />
-
-          <BtFloatingTextInput
-            controlId="txtSurname"
-            label="Surname"
-            className="mb-3"
-            type="text"
-            placeholder="Surname"
-            value={surname}
-            onChange={setSurname}
-          />
-
-          <BtFloatingTextInput
-            controlId="txtEmail"
-            label="Email"
-            className="mb-3"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={setEmail}
-          />
-
-          <BtFloatingTextInput
-            controlId="txtPassword"
-            label="Password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={setPassword}
-          />
-        </BtCard.Body>
-
-        <BtCard.Footer>
-          <div className="d-flex w-100">
-            <BtIconButton
-              variant="primary"
-              onClick={handleUpdate}
-              className="me-2 w-100"
-              icon={BsPen}
-              label="Confirm"
+      <Form>
+        <BtCard width="500px">
+          <BtCard.Body>
+            <BtAlert
+              variant="warning"
+              text="After updating account, you will be logged out!"
             />
 
-            <BtIconButton
-              variant="secondary"
-              onClick={() => navigate("/account")}
-              className="w-100"
-              icon={BsXCircle}
-              label="Cancel"
+            <BtFloatingTextInput
+              controlId="txtName"
+              label="Name"
+              className="mb-3"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={setName}
             />
-          </div>
-        </BtCard.Footer>
-      </BtCard>
+
+            <BtFloatingTextInput
+              controlId="txtSurname"
+              label="Surname"
+              className="mb-3"
+              type="text"
+              placeholder="Surname"
+              value={surname}
+              onChange={setSurname}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtEmail"
+              label="Email"
+              className="mb-3"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={setEmail}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtPassword"
+              label="Password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={setPassword}
+            />
+          </BtCard.Body>
+
+          <BtCard.Footer>
+            <div className="d-flex w-100">
+              <BtIconButton
+                type="submit"
+                variant="primary"
+                onClick={handleUpdate}
+                className="me-2 w-100"
+                icon={BsPen}
+                label="Confirm"
+              />
+
+              <BtIconButton
+                variant="secondary"
+                onClick={() => navigate("/account")}
+                className="w-100"
+                icon={BsXCircle}
+                label="Cancel"
+              />
+            </div>
+          </BtCard.Footer>
+        </BtCard>
+      </Form>
     </>
   );
 };

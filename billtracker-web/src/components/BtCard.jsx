@@ -21,8 +21,8 @@ BtCard.Body = function BtCardBody({ children }) {
   return <>{children}</>;
 };
 
-BtCard.Footer = function BtCardFooter({ children }) {
-  return <>{children}</>;
+BtCard.Footer = function BtCardFooter({ children, className }) {
+  return <div className={className}>{children}</div>;
 };
 
 export default BtCard;

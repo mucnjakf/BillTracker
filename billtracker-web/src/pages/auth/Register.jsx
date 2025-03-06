@@ -1,3 +1,4 @@
+import Form from "react-bootstrap/Form";
 import AuthService from "../../services/AuthService";
 import BtFloatingTextInput from "../../components/BtFloatingTextInput";
 import BtCard from "../../components/BtCard";
@@ -27,7 +28,7 @@ const Register = () => {
     <>
       <BtPageTitle text="Register" className="text-center mt-5" />
 
-      <div className="d-flex justify-content-center">
+      <Form className="d-flex justify-content-center">
         <BtCard width="500px">
           <BtCard.Body>
             <BtFloatingTextInput
@@ -72,6 +73,7 @@ const Register = () => {
 
           <BtCard.Footer>
             <BtIconButton
+              type="submit"
               variant="primary"
               onClick={handleRegister}
               icon={BsPersonPlus}
@@ -80,7 +82,7 @@ const Register = () => {
             />
           </BtCard.Footer>
         </BtCard>
-      </div>
+      </Form>
     </>
   );
 };

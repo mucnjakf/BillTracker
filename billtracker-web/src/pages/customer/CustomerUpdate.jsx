@@ -1,3 +1,4 @@
+import Form from "react-bootstrap/Form";
 import CityService from "../../services/CityService";
 import CustomerService from "../../services/CustomerService";
 import BtFloatingTextInput from "../../components/BtFloatingTextInput";
@@ -77,61 +78,62 @@ const CustomerUpdate = () => {
 
       <BtPageTitle text="Customer update" />
 
-      <BtCard width="500px">
-        <BtCard.Body>
-          <BtFloatingTextInput
-            controlId="txtName"
-            label="Name"
-            className="mb-3"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={setName}
-          />
+      <Form>
+        <BtCard width="500px">
+          <BtCard.Body>
+            <BtFloatingTextInput
+              controlId="txtName"
+              label="Name"
+              className="mb-3"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={setName}
+            />
 
-          <BtFloatingTextInput
-            controlId="txtSurname"
-            label="Surname"
-            className="mb-3"
-            type="text"
-            placeholder="Surname"
-            value={surname}
-            onChange={setSurname}
-          />
+            <BtFloatingTextInput
+              controlId="txtSurname"
+              label="Surname"
+              className="mb-3"
+              type="text"
+              placeholder="Surname"
+              value={surname}
+              onChange={setSurname}
+            />
 
-          <BtFloatingTextInput
-            controlId="txtEmail"
-            label="Email"
-            className="mb-3"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={setEmail}
-          />
+            <BtFloatingTextInput
+              controlId="txtEmail"
+              label="Email"
+              className="mb-3"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={setEmail}
+            />
 
-          <BtFloatingTextInput
-            controlId="txtTelephone"
-            label="Telephone"
-            className="mb-3"
-            type="text"
-            placeholder="Telephone"
-            value={telephone}
-            onChange={setTelephone}
-          />
+            <BtFloatingTextInput
+              controlId="txtTelephone"
+              label="Telephone"
+              className="mb-3"
+              type="text"
+              placeholder="Telephone"
+              value={telephone}
+              onChange={setTelephone}
+            />
 
-          <BtFloatingSelect
-            controlId="selectCities"
-            label="City"
-            value={cityId}
-            onChange={setCityId}
-            placeholder="Select city"
-            items={cities}
-          />
-        </BtCard.Body>
+            <BtFloatingSelect
+              controlId="selectCities"
+              label="City"
+              value={cityId}
+              onChange={setCityId}
+              placeholder="Select city"
+              items={cities}
+            />
+          </BtCard.Body>
 
-        <BtCard.Footer>
-          <div className="d-flex w-100">
+          <BtCard.Footer className="d-flex w-100">
             <BtIconButton
+              type="submit"
               variant="primary"
               onClick={handleUpdate}
               className="me-2 w-100"
@@ -146,9 +148,9 @@ const CustomerUpdate = () => {
               icon={BsXCircle}
               label="Cancel"
             />
-          </div>
-        </BtCard.Footer>
-      </BtCard>
+          </BtCard.Footer>
+        </BtCard>
+      </Form>
     </>
   );
 };
