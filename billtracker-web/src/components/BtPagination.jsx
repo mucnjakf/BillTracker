@@ -62,7 +62,7 @@ const BtPagination = ({
 
         <div className="border p-2 rounded">
           <Button
-            className="me-1"
+            className="me-1 pb-2 btn-sm"
             variant="secondary"
             onClick={() => setCurrentPage(1)}
             disabled={currentPage === 1}
@@ -72,6 +72,7 @@ const BtPagination = ({
 
           <Button
             variant="primary"
+            className="pb-2"
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
@@ -80,9 +81,10 @@ const BtPagination = ({
 
           {generatePageNumbers().map((page) => (
             <Button
+              style={{ width: "52px" }}
               key={page}
               variant={page === currentPage ? "primary" : "outline-primary"}
-              className="mx-1"
+              className="mx-1 pb-2"
               onClick={() => setCurrentPage(page)}
             >
               {page}
@@ -91,6 +93,7 @@ const BtPagination = ({
 
           <Button
             variant="primary"
+            className="pb-2"
             onClick={() =>
               setCurrentPage((prev) => Math.min(prev + 1, totalPages))
             }
@@ -100,7 +103,7 @@ const BtPagination = ({
           </Button>
 
           <Button
-            className="ms-1"
+            className="ms-1 pb-2 btn-sm"
             variant="secondary"
             onClick={() => setCurrentPage(totalPages)}
             disabled={currentPage === totalPages}

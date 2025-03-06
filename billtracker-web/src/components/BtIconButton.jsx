@@ -2,7 +2,11 @@ import Button from "react-bootstrap/Button";
 
 const BtIconButton = ({ variant, onClick, icon: Icon, label, className }) => {
   return (
-    <Button variant={variant} onClick={onClick} className={className}>
+    <Button
+      variant={variant}
+      onClick={onClick}
+      className={`${className} py-2 px-3`}
+    >
       {Icon && <Icon className="me-2" />}
       {label}
     </Button>

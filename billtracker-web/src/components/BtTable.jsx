@@ -20,7 +20,7 @@ const BtTable = ({ columns, data, actions }) => {
                 <Button
                   key={action.label}
                   variant={action.variant}
-                  className="w-100"
+                  className="w-100 pb-2"
                   onClick={action.onClick}
                 >
                   <BsPlusCircle />
@@ -42,6 +42,7 @@ const BtTable = ({ columns, data, actions }) => {
                     <ButtonGroup>
                       {actions.slice(1).map((action) => (
                         <Button
+                          className="pb-2"
                           key={action.label}
                           variant={action.variant}
                           onClick={() => action.onClick(item.id)}
