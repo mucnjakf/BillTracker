@@ -10,7 +10,9 @@ import { BsTrash, BsXCircle } from "react-icons/bs";
 const CustomerDelete = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
   const { customerId } = useParams();
+
   const [customer, setCustomer] = useState({});
 
   const returnUrl =

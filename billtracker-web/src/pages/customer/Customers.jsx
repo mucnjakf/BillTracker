@@ -12,6 +12,7 @@ import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
 
 const Customers = () => {
   const navigate = useNavigate();
+  
   const [pagedCustomers, setPagedCustomers] = useState({ items: [] });
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);

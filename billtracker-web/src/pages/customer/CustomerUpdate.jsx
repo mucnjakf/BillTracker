@@ -13,10 +13,13 @@ import { BsPen, BsXCircle } from "react-icons/bs";
 
 // TODO: errors, validation
 const CustomerUpdate = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const location = useLocation();
+  
   const { customerId } = useParams();
+  
   const [cities, setCities] = useState([]);
+  
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");

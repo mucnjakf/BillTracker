@@ -1,20 +1,20 @@
-import { RouterProvider, createBrowserRouter } from "react-router";
 import ProtectedRotue from "./BtProtectedRoute";
 import Home from "../pages/app/Home";
-import Register from "../pages/auth/Register";
-import Login from "../pages/auth/Login";
-import Logout from "../pages/auth/Logout";
 import Account from "../pages/auth/Account";
 import AccountUpdate from "../pages/auth/AccountUpdate";
-import Customers from "../pages/customer/Customers";
-import CustomerCreate from "../pages/customer/CustomerCreate";
-import CustomerDetails from "../pages/customer/CustomerDetails";
-import CustomerUpdate from "../pages/customer/CustomerUpdate";
-import CustomerDelete from "../pages/customer/CustomerDelete";
+import Login from "../pages/auth/Login";
+import Logout from "../pages/auth/Logout";
+import Register from "../pages/auth/Register";
 import Bills from "../pages/bill/Bills";
+import CustomerCreate from "../pages/customer/CustomerCreate";
+import CustomerDelete from "../pages/customer/CustomerDelete";
+import CustomerDetails from "../pages/customer/CustomerDetails";
+import Customers from "../pages/customer/Customers";
+import CustomerUpdate from "../pages/customer/CustomerUpdate";
 import Items from "../pages/item/Items";
 import BtNotFound from "../components/BtNotFound";
 import { useAuth } from "../components/BtAuthProvider";
+import { RouterProvider, createBrowserRouter } from "react-router";
 
 const BtRoutes = () => {
   const { accessToken } = useAuth();

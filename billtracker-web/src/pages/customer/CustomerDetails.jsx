@@ -10,7 +10,9 @@ import { BsTrash, BsPen } from "react-icons/bs";
 
 const CustomerDetails = () => {
   const navigate = useNavigate();
+  
   const { customerId } = useParams();
+  
   const [customer, setCustomer] = useState({});
 
   useEffect(() => {
