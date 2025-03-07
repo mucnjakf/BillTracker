@@ -26,8 +26,8 @@ const Login = () => {
   }
 
   return (
-    <Form className="d-flex flex-column align-items-center">
-      <BtPageTitle text="Login" className="mt-5"/>
+    <Form>
+      <BtPageTitle text="Login"/>
 
       <BtCard width="500px">
         <BtCard.Body>

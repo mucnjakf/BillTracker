@@ -25,8 +25,8 @@ const Register = () => {
   }
 
   return (
-    <Form className="d-flex flex-column align-items-center">
-      <BtPageTitle text="Register" className="mt-5"/>
+    <Form>
+      <BtPageTitle text="Register"/>
 
       <BtCard width="500px">
         <BtCard.Body>
