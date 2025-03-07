@@ -25,65 +25,63 @@ const Register = () => {
   }
 
   return (
-    <>
-      <BtPageTitle text="Register" className="text-center mt-5"/>
+    <Form className="d-flex flex-column align-items-center">
+      <BtPageTitle text="Register" className="mt-5"/>
 
-      <Form className="d-flex justify-content-center">
-        <BtCard width="500px">
-          <BtCard.Body>
-            <BtFloatingTextInput
-              controlId="txtName"
-              label="Name"
-              className="mb-3"
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={setName}
-            />
+      <BtCard width="500px">
+        <BtCard.Body>
+          <BtFloatingTextInput
+            controlId="txtName"
+            label="Name"
+            className="mb-3"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={setName}
+          />
 
-            <BtFloatingTextInput
-              controlId="txtSurname"
-              label="Surname"
-              className="mb-3"
-              type="text"
-              placeholder="Surname"
-              value={surname}
-              onChange={setSurname}
-            />
+          <BtFloatingTextInput
+            controlId="txtSurname"
+            label="Surname"
+            className="mb-3"
+            type="text"
+            placeholder="Surname"
+            value={surname}
+            onChange={setSurname}
+          />
 
-            <BtFloatingTextInput
-              controlId="txtEmail"
-              label="Email"
-              className="mb-3"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={setEmail}
-            />
+          <BtFloatingTextInput
+            controlId="txtEmail"
+            label="Email"
+            className="mb-3"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={setEmail}
+          />
 
-            <BtFloatingTextInput
-              controlId="txtPassword"
-              label="Password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={setPassword}
-            />
-          </BtCard.Body>
+          <BtFloatingTextInput
+            controlId="txtPassword"
+            label="Password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={setPassword}
+          />
+        </BtCard.Body>
 
-          <BtCard.Footer>
-            <BtIconButton
-              type="submit"
-              variant="primary"
-              onClick={handleRegister}
-              icon={BsPersonPlus}
-              label="Register"
-              className="w-100"
-            />
-          </BtCard.Footer>
-        </BtCard>
-      </Form>
-    </>
+        <BtCard.Footer>
+          <BtIconButton
+            type="submit"
+            variant="primary"
+            onClick={handleRegister}
+            icon={BsPersonPlus}
+            label="Register"
+            className="w-100"
+          />
+        </BtCard.Footer>
+      </BtCard>
+    </Form>
   )
 }
 

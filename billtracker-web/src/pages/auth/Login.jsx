@@ -26,45 +26,43 @@ const Login = () => {
   }
 
   return (
-    <>
-      <BtPageTitle text="Login" className="text-center mt-5"/>
+    <Form className="d-flex flex-column align-items-center">
+      <BtPageTitle text="Login" className="mt-5"/>
 
-      <Form className="d-flex justify-content-center">
-        <BtCard width="500px">
-          <BtCard.Body>
-            <BtFloatingTextInput
-              controlId="txtEmail"
-              label="Email"
-              className="mb-3"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={setEmail}
-            />
+      <BtCard width="500px">
+        <BtCard.Body>
+          <BtFloatingTextInput
+            controlId="txtEmail"
+            label="Email"
+            className="mb-3"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={setEmail}
+          />
 
-            <BtFloatingTextInput
-              controlId="txtPassword"
-              label="Password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={setPassword}
-            />
-          </BtCard.Body>
+          <BtFloatingTextInput
+            controlId="txtPassword"
+            label="Password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={setPassword}
+          />
+        </BtCard.Body>
 
-          <BtCard.Footer>
-            <BtIconButton
-              type="submit"
-              variant="primary"
-              onClick={handleLogin}
-              className="w-100"
-              icon={BsBoxArrowInLeft}
-              label="Login"
-            />
-          </BtCard.Footer>
-        </BtCard>
-      </Form>
-    </>
+        <BtCard.Footer>
+          <BtIconButton
+            type="submit"
+            variant="primary"
+            onClick={handleLogin}
+            className="w-100"
+            icon={BsBoxArrowInLeft}
+            label="Login"
+          />
+        </BtCard.Footer>
+      </BtCard>
+    </Form>
   )
 }
 
