@@ -1,14 +1,14 @@
-import { useAuth } from "../../components/BtAuthProvider";
-import { useNavigate } from "react-router";
+import { useAuth } from '../../components/BtAuthProvider'
+import { useNavigate } from 'react-router'
 
 const Logout = () => {
-  const { setAccessToken } = useAuth();
-  const navigate = useNavigate();
+  const { setAccessToken } = useAuth()
+  const navigate = useNavigate()
 
-  setAccessToken(null);
-  navigate("/login");
+  setAccessToken(null)
+  navigate('/login')
 
-  return;
-};
+  return
+}
 
-export default Logout;
+export default Logout

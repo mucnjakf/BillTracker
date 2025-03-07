@@ -1,70 +1,70 @@
-import CustomerService from "../../services/CustomerService";
-import BtSearch from "../../components/BtSearch";
-import BtSort from "../../components/BtSort";
-import BtPagination from "../../components/BtPagination";
-import BtTable from "../../components/BtTable";
-import BtBreadcrumb from "../../components/BtBreadcrumb";
-import BtCard from "../../components/BtCard";
-import BtPageTitle from "../../components/BtPageTitle";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import { BsCardText, BsPen, BsTrash } from "react-icons/bs";
+import CustomerService from '../../services/CustomerService'
+import BtSearch from '../../components/BtSearch'
+import BtSort from '../../components/BtSort'
+import BtPagination from '../../components/BtPagination'
+import BtTable from '../../components/BtTable'
+import BtBreadcrumb from '../../components/BtBreadcrumb'
+import BtCard from '../../components/BtCard'
+import BtPageTitle from '../../components/BtPageTitle'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import { BsCardText, BsPen, BsTrash } from 'react-icons/bs'
 
 const Customers = () => {
-  const navigate = useNavigate();
-  
-  const [pagedCustomers, setPagedCustomers] = useState({ items: [] });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("created-desc");
+  const navigate = useNavigate()
+
+  const [pagedCustomers, setPagedCustomers] = useState({ items: [] })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortBy, setSortBy] = useState('created-desc')
 
   const sortOptions = [
-    { value: "created-desc", label: "Created DESC" },
-    { value: "created-asc", label: "Created ASC" },
-    { value: "name-asc", label: "Name ASC" },
-    { value: "name-desc", label: "Name DESC" },
-    { value: "surname-asc", label: "Surname ASC" },
-    { value: "surname-desc", label: "Surname DESC" },
-  ];
+    { value: 'created-desc', label: 'Created DESC' },
+    { value: 'created-asc', label: 'Created ASC' },
+    { value: 'name-asc', label: 'Name ASC' },
+    { value: 'name-desc', label: 'Name DESC' },
+    { value: 'surname-asc', label: 'Surname ASC' },
+    { value: 'surname-desc', label: 'Surname DESC' },
+  ]
 
   const tableColumns = [
-    { key: "id", label: "ID" },
-    { key: "name", label: "Name" },
-    { key: "surname", label: "Surname" },
-    { key: "email", label: "Email" },
-    { key: "telephone", label: "Telephone" },
-    { key: "cityName", label: "City" },
-  ];
+    { key: 'id', label: 'ID' },
+    { key: 'name', label: 'Name' },
+    { key: 'surname', label: 'Surname' },
+    { key: 'email', label: 'Email' },
+    { key: 'telephone', label: 'Telephone' },
+    { key: 'cityName', label: 'City' },
+  ]
 
   const tableActions = [
     {
-      label: "Create",
-      variant: "success",
-      icon: <BsCardText />,
+      label: 'Create',
+      variant: 'success',
+      icon: <BsCardText/>,
       onClick: () => navigate(`/customers/create`),
     },
     {
-      label: "View",
-      variant: "primary",
-      icon: <BsCardText />,
+      label: 'View',
+      variant: 'primary',
+      icon: <BsCardText/>,
       onClick: (customerId) => navigate(`/customers/${customerId}`),
     },
     {
-      label: "Edit",
-      variant: "secondary",
-      icon: <BsPen />,
+      label: 'Edit',
+      variant: 'secondary',
+      icon: <BsPen/>,
       onClick: (customerId) =>
         navigate(`/customers/${customerId}/update?returnUrl=/customers`),
     },
     {
-      label: "Delete",
-      variant: "danger",
-      icon: <BsTrash />,
+      label: 'Delete',
+      variant: 'danger',
+      icon: <BsTrash/>,
       onClick: (customerId) =>
         navigate(`/customers/${customerId}/delete?returnUrl=/customers`),
     },
-  ];
+  ]
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -73,24 +73,24 @@ const Customers = () => {
           currentPage,
           pageSize,
           searchQuery,
-          sortBy
-        );
-        setPagedCustomers(data);
-      };
+          sortBy,
+        )
+        setPagedCustomers(data)
+      }
 
-      getCustomers();
-    }, 500);
+      getCustomers()
+    }, 500)
 
-    return () => clearTimeout(debounce);
-  }, [currentPage, pageSize, searchQuery, sortBy]);
+    return () => clearTimeout(debounce)
+  }, [currentPage, pageSize, searchQuery, sortBy])
 
   return (
     <>
       <BtBreadcrumb
-        paths={[{ label: "Home", href: "/" }, { label: "Customers" }]}
+        paths={[{ label: 'Home', href: '/' }, { label: 'Customers' }]}
       />
 
-      <BtPageTitle text="Customers" />
+      <BtPageTitle text="Customers"/>
 
       {pagedCustomers.items.length > 0 && (
         <div className="d-flex mb-3">
@@ -132,7 +132,7 @@ const Customers = () => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default Customers;
+export default Customers

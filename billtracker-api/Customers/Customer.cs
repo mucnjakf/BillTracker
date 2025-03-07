@@ -22,6 +22,6 @@ internal sealed class Customer
 	public City? City { get; init; }
 
 	public IEnumerable<Bill>? Bills { get; init; }
-	
+
 	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

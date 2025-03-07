@@ -1,14 +1,14 @@
-import { Navigate, Outlet } from "react-router";
-import { useAuth } from "../components/BtAuthProvider";
+import { Navigate, Outlet } from 'react-router'
+import { useAuth } from '../components/BtAuthProvider'
 
 const ProtectedRotue = () => {
-  const { accessToken } = useAuth();
+  const { accessToken } = useAuth()
 
   if (!accessToken) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login"/>
   }
 
-  return <Outlet />;
-};
+  return <Outlet/>
+}
 
-export default ProtectedRotue;
+export default ProtectedRotue

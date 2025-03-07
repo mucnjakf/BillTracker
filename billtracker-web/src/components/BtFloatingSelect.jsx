@@ -1,5 +1,5 @@
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Form from 'react-bootstrap/Form'
 
 const BtFloatingSelect = ({
   controlId,
@@ -22,7 +22,7 @@ const BtFloatingSelect = ({
         ))}
       </Form.Select>
     </FloatingLabel>
-  );
-};
+  )
+}
 
-export default BtFloatingSelect;
+export default BtFloatingSelect

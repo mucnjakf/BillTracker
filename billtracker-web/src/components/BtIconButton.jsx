@@ -1,4 +1,4 @@
-import Button from "react-bootstrap/Button";
+import Button from 'react-bootstrap/Button'
 
 const BtIconButton = ({
   variant,
@@ -6,7 +6,7 @@ const BtIconButton = ({
   icon: Icon,
   label,
   className,
-  type = "button",
+  type = 'button',
 }) => {
   return (
     <Button
@@ -15,10 +15,10 @@ const BtIconButton = ({
       onClick={onClick}
       className={`${className} py-2 px-3`}
     >
-      {Icon && <Icon className="me-2" />}
+      {Icon && <Icon className="me-2"/>}
       {label}
     </Button>
-  );
-};
+  )
+}
 
-export default BtIconButton;
+export default BtIconButton

@@ -1,7 +1,7 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .dropdown-toggle::after {
-  display: none;
+    display: none;
 }

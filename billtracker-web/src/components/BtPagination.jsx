@@ -1,12 +1,12 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import {
   BsArrowBarLeft,
   BsArrowBarRight,
   BsArrowLeft,
   BsArrowRight,
-} from "react-icons/bs";
+} from 'react-icons/bs'
 
 const BtPagination = ({
   currentPage,
@@ -18,25 +18,25 @@ const BtPagination = ({
   setCurrentPage,
 }) => {
   const generatePageNumbers = () => {
-    const pageNumbers = [];
-    let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, startPage + 4);
+    const pageNumbers = []
+    let startPage = Math.max(1, currentPage - 2)
+    let endPage = Math.min(totalPages, startPage + 4)
 
     if (totalPages > 5 && endPage === totalPages) {
-      startPage = endPage - 4;
+      startPage = endPage - 4
     }
 
     for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
+      pageNumbers.push(i)
     }
 
-    return pageNumbers;
-  };
+    return pageNumbers
+  }
 
   return (
     <div className="d-flex justify-content-between mt-3">
       <p className="align-content-center m-0 border px-3 rounded">
-        Showing <span className="fw-bold">{totalItems}</span> of{" "}
+        Showing <span className="fw-bold">{totalItems}</span> of{' '}
         <span className="fw-bold">{totalCount}</span> items
       </p>
 
@@ -45,11 +45,11 @@ const BtPagination = ({
           <FloatingLabel
             controlId="selectPageSize"
             label="Rows per page"
-            style={{ width: "150px" }}
+            style={{ width: '150px' }}
             value={pageSize}
             onChange={(e) => {
-              setPageSize(e.target.value);
-              setCurrentPage(1);
+              setPageSize(e.target.value)
+              setCurrentPage(1)
             }}
           >
             <Form.Select>
@@ -67,7 +67,7 @@ const BtPagination = ({
             onClick={() => setCurrentPage(1)}
             disabled={currentPage === 1}
           >
-            <BsArrowBarLeft />
+            <BsArrowBarLeft/>
           </Button>
 
           <Button
@@ -76,14 +76,14 @@ const BtPagination = ({
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
-            <BsArrowLeft />
+            <BsArrowLeft/>
           </Button>
 
           {generatePageNumbers().map((page) => (
             <Button
-              style={{ width: "52px" }}
+              style={{ width: '52px' }}
               key={page}
-              variant={page === currentPage ? "primary" : "outline-primary"}
+              variant={page === currentPage ? 'primary' : 'outline-primary'}
               className="mx-1 pb-2"
               onClick={() => setCurrentPage(page)}
             >
@@ -99,7 +99,7 @@ const BtPagination = ({
             }
             disabled={currentPage === totalPages}
           >
-            <BsArrowRight />
+            <BsArrowRight/>
           </Button>
 
           <Button
@@ -108,12 +108,12 @@ const BtPagination = ({
             onClick={() => setCurrentPage(totalPages)}
             disabled={currentPage === totalPages}
           >
-            <BsArrowBarRight />
+            <BsArrowBarRight/>
           </Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BtPagination;
+export default BtPagination

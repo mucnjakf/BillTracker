@@ -1,56 +1,56 @@
-import Form from "react-bootstrap/Form";
-import AuthService from "../../services/AuthService";
-import BtCard from "../../components/BtCard";
-import BtBreadcrumb from "../../components/BtBreadcrumb";
-import BtIconButton from "../../components/BtIconButton";
-import BtPageTitle from "../../components/BtPageTitle";
-import BtFloatingTextInput from "../../components/BtFloatingTextInput";
-import BtAlert from "../../components/BtAlert";
-import { useAuth } from "../../components/BtAuthProvider";
-import { useState, useEffect } from "react";
-import { BsPen, BsXCircle } from "react-icons/bs";
-import { useNavigate } from "react-router";
+import Form from 'react-bootstrap/Form'
+import AuthService from '../../services/AuthService'
+import BtCard from '../../components/BtCard'
+import BtBreadcrumb from '../../components/BtBreadcrumb'
+import BtIconButton from '../../components/BtIconButton'
+import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingTextInput from '../../components/BtFloatingTextInput'
+import BtAlert from '../../components/BtAlert'
+import { useAuth } from '../../components/BtAuthProvider'
+import { useState, useEffect } from 'react'
+import { BsPen, BsXCircle } from 'react-icons/bs'
+import { useNavigate } from 'react-router'
 
 // TODO: errors, validation
 const AccountUpdate = () => {
-  const { user } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   useEffect(() => {
     const getUser = async () => {
-      const data = await AuthService.getUser(user.id);
+      const data = await AuthService.getUser(user.id)
 
-      setName(data.name);
-      setSurname(data.surname);
-      setEmail(data.email);
-    };
+      setName(data.name)
+      setSurname(data.surname)
+      setEmail(data.email)
+    }
 
-    getUser();
-  }, [user.id]);
+    getUser()
+  }, [user.id])
 
   const handleUpdate = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    await AuthService.updateUser(user.id, name, surname, email, password);
-    navigate("/logout");
-  };
+    await AuthService.updateUser(user.id, name, surname, email, password)
+    navigate('/logout')
+  }
 
   return (
     <>
       <BtBreadcrumb
         paths={[
-          { label: "Home", href: "/" },
-          { label: "Account", href: "/account" },
-          { label: "Update" },
+          { label: 'Home', href: '/' },
+          { label: 'Account', href: '/account' },
+          { label: 'Update' },
         ]}
       />
 
-      <BtPageTitle text="Account update" />
+      <BtPageTitle text="Account update"/>
 
       <Form>
         <BtCard width="500px">
@@ -113,7 +113,7 @@ const AccountUpdate = () => {
 
               <BtIconButton
                 variant="secondary"
-                onClick={() => navigate("/account")}
+                onClick={() => navigate('/account')}
                 className="w-100"
                 icon={BsXCircle}
                 label="Cancel"
@@ -123,7 +123,7 @@ const AccountUpdate = () => {
         </BtCard>
       </Form>
     </>
-  );
-};
+  )
+}
 
-export default AccountUpdate;
+export default AccountUpdate

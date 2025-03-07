@@ -1,19 +1,19 @@
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from 'react-bootstrap/Form'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
 
 const BtSort = ({ sortBy, options, onChange, setCurrentPage }) => {
   return (
     <FloatingLabel
       controlId="selectSortBy"
       label="Sort by"
-      style={{ width: "200px" }}
+      style={{ width: '200px' }}
       value={sortBy}
       onChange={(e) => {
-        onChange(e.target.value);
-        setCurrentPage(1);
+        onChange(e.target.value)
+        setCurrentPage(1)
       }}
     >
-      <Form.Select style={{ width: "200px" }}>
+      <Form.Select style={{ width: '200px' }}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -21,7 +21,7 @@ const BtSort = ({ sortBy, options, onChange, setCurrentPage }) => {
         ))}
       </Form.Select>
     </FloatingLabel>
-  );
-};
+  )
+}
 
-export default BtSort;
+export default BtSort

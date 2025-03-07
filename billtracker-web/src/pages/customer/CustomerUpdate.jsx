@@ -1,59 +1,59 @@
-import Form from "react-bootstrap/Form";
-import CityService from "../../services/CityService";
-import CustomerService from "../../services/CustomerService";
-import BtFloatingTextInput from "../../components/BtFloatingTextInput";
-import BtCard from "../../components/BtCard";
-import BtIconButton from "../../components/BtIconButton";
-import BtBreadcrumb from "../../components/BtBreadcrumb";
-import BtPageTitle from "../../components/BtPageTitle";
-import BtFloatingSelect from "../../components/BtFloatingSelect";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router";
-import { BsPen, BsXCircle } from "react-icons/bs";
+import Form from 'react-bootstrap/Form'
+import CityService from '../../services/CityService'
+import CustomerService from '../../services/CustomerService'
+import BtFloatingTextInput from '../../components/BtFloatingTextInput'
+import BtCard from '../../components/BtCard'
+import BtIconButton from '../../components/BtIconButton'
+import BtBreadcrumb from '../../components/BtBreadcrumb'
+import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingSelect from '../../components/BtFloatingSelect'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams, useLocation } from 'react-router'
+import { BsPen, BsXCircle } from 'react-icons/bs'
 
 // TODO: errors, validation
 const CustomerUpdate = () => {
-  const navigate = useNavigate();  
-  const location = useLocation();
-  
-  const { customerId } = useParams();
-  
-  const [cities, setCities] = useState([]);
-  
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [cityId, setCityId] = useState("");
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const { customerId } = useParams()
+
+  const [cities, setCities] = useState([])
+
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [email, setEmail] = useState('')
+  const [telephone, setTelephone] = useState('')
+  const [cityId, setCityId] = useState('')
 
   const returnUrl =
-    new URLSearchParams(location.search).get("returnUrl") || "/customers";
+    new URLSearchParams(location.search).get('returnUrl') || '/customers'
 
   useEffect(() => {
     const getCustomer = async () => {
-      const data = await CustomerService.get(customerId);
+      const data = await CustomerService.get(customerId)
 
-      setName(data.name);
-      setSurname(data.surname);
-      setEmail(data.email);
-      setTelephone(data.telephone);
-      setCityId(data.cityId === 0 ? null : data.cityId);
-    };
+      setName(data.name)
+      setSurname(data.surname)
+      setEmail(data.email)
+      setTelephone(data.telephone)
+      setCityId(data.cityId === 0 ? null : data.cityId)
+    }
 
-    getCustomer();
-  }, [customerId]);
+    getCustomer()
+  }, [customerId])
 
   useEffect(() => {
     const getCities = async () => {
-      const data = await CityService.getAll();
-      setCities(data);
-    };
+      const data = await CityService.getAll()
+      setCities(data)
+    }
 
-    getCities();
-  }, []);
+    getCities()
+  }, [])
 
   const handleUpdate = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     await CustomerService.update(
       customerId,
@@ -61,25 +61,25 @@ const CustomerUpdate = () => {
       surname,
       email,
       telephone,
-      cityId
-    );
-    navigate(returnUrl);
-  };
+      cityId,
+    )
+    navigate(returnUrl)
+  }
 
   return (
     <>
       <BtBreadcrumb
         paths={[
-          { label: "Home", href: "/" },
-          { label: "Customers", href: "/customers" },
-          returnUrl.startsWith("/customers/")
-            ? { label: "Details", href: `/customers/${customerId}` }
+          { label: 'Home', href: '/' },
+          { label: 'Customers', href: '/customers' },
+          returnUrl.startsWith('/customers/')
+            ? { label: 'Details', href: `/customers/${customerId}` }
             : null,
-          { label: "Update" },
+          { label: 'Update' },
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Customer update" />
+      <BtPageTitle text="Customer update"/>
 
       <Form>
         <BtCard width="500px">
@@ -155,7 +155,7 @@ const CustomerUpdate = () => {
         </BtCard>
       </Form>
     </>
-  );
-};
+  )
+}
 
-export default CustomerUpdate;
+export default CustomerUpdate

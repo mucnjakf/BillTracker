@@ -1,55 +1,55 @@
-import Form from "react-bootstrap/Form";
-import CityService from "../../services/CityService";
-import CustomerService from "../../services/CustomerService";
-import BtFloatingTextInput from "../../components/BtFloatingTextInput";
-import BtCard from "../../components/BtCard";
-import BtIconButton from "../../components/BtIconButton";
-import BtBreadcrumb from "../../components/BtBreadcrumb";
-import BtPageTitle from "../../components/BtPageTitle";
-import BtFloatingSelect from "../../components/BtFloatingSelect";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { BsPersonAdd, BsXCircle } from "react-icons/bs";
+import Form from 'react-bootstrap/Form'
+import CityService from '../../services/CityService'
+import CustomerService from '../../services/CustomerService'
+import BtFloatingTextInput from '../../components/BtFloatingTextInput'
+import BtCard from '../../components/BtCard'
+import BtIconButton from '../../components/BtIconButton'
+import BtBreadcrumb from '../../components/BtBreadcrumb'
+import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingSelect from '../../components/BtFloatingSelect'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
+import { BsPersonAdd, BsXCircle } from 'react-icons/bs'
 
 // TODO: erorr messages, validation
 const CustomerCreate = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState([])
 
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [cityId, setCityId] = useState(null);
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [email, setEmail] = useState('')
+  const [telephone, setTelephone] = useState('')
+  const [cityId, setCityId] = useState(null)
 
   useEffect(() => {
     const getCities = async () => {
-      const data = await CityService.getAll();
-      setCities(data);
-    };
+      const data = await CityService.getAll()
+      setCities(data)
+    }
 
-    getCities();
-  }, []);
+    getCities()
+  }, [])
 
   const handleCreate = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    await CustomerService.create(name, surname, email, telephone, cityId);
-    navigate("/customers");
-  };
+    await CustomerService.create(name, surname, email, telephone, cityId)
+    navigate('/customers')
+  }
 
   return (
     <>
       <BtBreadcrumb
         paths={[
-          { label: "Home", href: "/" },
-          { label: "Customers", href: "/customers" },
-          { label: "Create" },
+          { label: 'Home', href: '/' },
+          { label: 'Customers', href: '/customers' },
+          { label: 'Create' },
         ]}
       />
 
-      <BtPageTitle text="Customer create" />
+      <BtPageTitle text="Customer create"/>
 
       <Form>
         <BtCard width="500px">
@@ -116,7 +116,7 @@ const CustomerCreate = () => {
 
             <BtIconButton
               variant="secondary"
-              onClick={() => navigate("/customers")}
+              onClick={() => navigate('/customers')}
               className="w-100"
               icon={BsXCircle}
               label="Cancel"
@@ -125,7 +125,7 @@ const CustomerCreate = () => {
         </BtCard>
       </Form>
     </>
-  );
-};
+  )
+}
 
-export default CustomerCreate;
+export default CustomerCreate

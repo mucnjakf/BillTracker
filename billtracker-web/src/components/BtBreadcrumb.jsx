@@ -1,4 +1,4 @@
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 const BtBreadcrumb = ({ paths }) => {
   return (
@@ -9,17 +9,17 @@ const BtBreadcrumb = ({ paths }) => {
             <Breadcrumb.Item active key={index}>
               {path.label}
             </Breadcrumb.Item>
-          );
+          )
         }
 
         return (
           <Breadcrumb.Item href={path.href} key={index}>
             {path.label}
           </Breadcrumb.Item>
-        );
+        )
       })}
     </Breadcrumb>
-  );
-};
+  )
+}
 
-export default BtBreadcrumb;
+export default BtBreadcrumb

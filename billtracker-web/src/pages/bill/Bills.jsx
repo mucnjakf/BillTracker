@@ -1,5 +1,5 @@
 const Bills = () => {
-  return <h1>Bills</h1>;
-};
+  return <h1>Bills</h1>
+}
 
-export default Bills;
+export default Bills

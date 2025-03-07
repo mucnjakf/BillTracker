@@ -1,5 +1,5 @@
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Form from 'react-bootstrap/Form'
 
 const BtFloatingTextInput = ({
   controlId,
@@ -19,7 +19,7 @@ const BtFloatingTextInput = ({
         onChange={(e) => onChange(e.target.value)}
       />
     </FloatingLabel>
-  );
-};
+  )
+}
 
-export default BtFloatingTextInput;
+export default BtFloatingTextInput

@@ -1,53 +1,53 @@
-import CustomerService from "../../services/CustomerService";
-import BtCard from "../../components/BtCard";
-import BtIconButton from "../../components/BtIconButton";
-import BtBreadcrumb from "../../components/BtBreadcrumb";
-import BtPageTitle from "../../components/BtPageTitle";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router";
-import { BsTrash, BsXCircle } from "react-icons/bs";
+import CustomerService from '../../services/CustomerService'
+import BtCard from '../../components/BtCard'
+import BtIconButton from '../../components/BtIconButton'
+import BtBreadcrumb from '../../components/BtBreadcrumb'
+import BtPageTitle from '../../components/BtPageTitle'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams, useLocation } from 'react-router'
+import { BsTrash, BsXCircle } from 'react-icons/bs'
 
 const CustomerDelete = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  
-  const { customerId } = useParams();
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const [customer, setCustomer] = useState({});
+  const { customerId } = useParams()
+
+  const [customer, setCustomer] = useState({})
 
   const returnUrl =
-    new URLSearchParams(location.search).get("returnUrl") || "/customers";
+    new URLSearchParams(location.search).get('returnUrl') || '/customers'
 
   useEffect(() => {
     const getCustomer = async () => {
-      const data = await CustomerService.get(customerId);
-      setCustomer(data);
-    };
+      const data = await CustomerService.get(customerId)
+      setCustomer(data)
+    }
 
-    getCustomer();
-  }, [customerId]);
+    getCustomer()
+  }, [customerId])
 
   const handleDelete = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    await CustomerService.delete(customerId);
-    navigate("/customers");
-  };
+    await CustomerService.delete(customerId)
+    navigate('/customers')
+  }
 
   return (
     <>
       <BtBreadcrumb
         paths={[
-          { label: "Home", href: "/" },
-          { label: "Customers", href: "/customers" },
-          returnUrl.startsWith("/customers/")
-            ? { label: "Details", href: `/customers/${customerId}` }
+          { label: 'Home', href: '/' },
+          { label: 'Customers', href: '/customers' },
+          returnUrl.startsWith('/customers/')
+            ? { label: 'Details', href: `/customers/${customerId}` }
             : null,
-          { label: "Delete" },
+          { label: 'Delete' },
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Customer delete" />
+      <BtPageTitle text="Customer delete"/>
 
       <BtCard width="500px">
         <BtCard.Body>
@@ -86,7 +86,7 @@ const CustomerDelete = () => {
         </BtCard.Footer>
       </BtCard>
     </>
-  );
-};
+  )
+}
 
-export default CustomerDelete;
+export default CustomerDelete

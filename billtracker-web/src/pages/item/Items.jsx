@@ -1,5 +1,5 @@
 const Items = () => {
-  return <h1>Items</h1>;
-};
+  return <h1>Items</h1>
+}
 
-export default Items;
+export default Items

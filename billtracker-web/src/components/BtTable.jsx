@@ -1,11 +1,11 @@
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { useAuth } from "./BtAuthProvider";
-import { BsPlusCircle } from "react-icons/bs";
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import { useAuth } from './BtAuthProvider'
+import { BsPlusCircle } from 'react-icons/bs'
 
 const BtTable = ({ columns, data, actions }) => {
-  const { accessToken } = useAuth();
+  const { accessToken } = useAuth()
 
   return (
     <Table striped hover>
@@ -14,7 +14,7 @@ const BtTable = ({ columns, data, actions }) => {
           {columns.map((col) => (
             <th key={col.key}>{col.label}</th>
           ))}
-          <th style={{ width: "130px" }}>
+          <th style={{ width: '130px' }}>
             {accessToken &&
               actions.slice(0, 1).map((action) => (
                 <Button
@@ -23,7 +23,7 @@ const BtTable = ({ columns, data, actions }) => {
                   className="w-100 pb-2"
                   onClick={action.onClick}
                 >
-                  <BsPlusCircle />
+                  <BsPlusCircle/>
                 </Button>
               ))}
           </th>
@@ -65,7 +65,7 @@ const BtTable = ({ columns, data, actions }) => {
         )}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default BtTable;
+export default BtTable
