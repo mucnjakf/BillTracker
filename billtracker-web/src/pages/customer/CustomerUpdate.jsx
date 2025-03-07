@@ -46,6 +46,7 @@ const CustomerUpdate = () => {
   useEffect(() => {
     const getCities = async () => {
       const data = await CityService.getAll()
+      data.unshift({ id: 0, name: '-' })
       setCities(data)
     }
 
@@ -61,7 +62,7 @@ const CustomerUpdate = () => {
       surname,
       email,
       telephone,
-      cityId,
+      cityId === 0 ? null : cityId,
     )
     navigate(returnUrl)
   }

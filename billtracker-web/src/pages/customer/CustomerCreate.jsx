@@ -26,6 +26,7 @@ const CustomerCreate = () => {
   useEffect(() => {
     const getCities = async () => {
       const data = await CityService.getAll()
+      data.unshift({ id: 0, name: '-' })
       setCities(data)
     }
 
@@ -35,7 +36,7 @@ const CustomerCreate = () => {
   const handleCreate = async (e) => {
     e.preventDefault()
 
-    await CustomerService.create(name, surname, email, telephone, cityId)
+    await CustomerService.create(name, surname, email, telephone, cityId === 0 ? null : cityId)
     navigate('/customers')
   }
 
@@ -99,7 +100,6 @@ const CustomerCreate = () => {
               label="City"
               value={cityId}
               onChange={setCityId}
-              placeholder="Select city"
               items={cities}
             />
           </BtCard.Body>
