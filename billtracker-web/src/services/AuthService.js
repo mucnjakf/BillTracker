@@ -18,9 +18,14 @@ class AuthService {
         password: password,
       })
 
-      return response.data
+      return { data: response.data, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 404:
+          return { data: null, error: 'Invalid credentials.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 
@@ -32,8 +37,15 @@ class AuthService {
         email: email,
         password: password,
       })
+
+      return { data: null, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 400:
+          return { data: null, error: 'Email is already taken.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 
@@ -41,9 +53,18 @@ class AuthService {
     try {
       const response = await this.api.get(`users/${userId}`)
 
-      return response.data
+      return { data: response.data, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'User not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 
@@ -55,8 +76,21 @@ class AuthService {
         email: email,
         password: password,
       })
+
+      return { data: null, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 400:
+          return { data: null, error: 'Email is already taken.' }
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'User not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 }

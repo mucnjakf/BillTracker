@@ -6,6 +6,7 @@ import BtPageTitle from '../../components/BtPageTitle'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsTrash, BsXCircle } from 'react-icons/bs'
+import BtAlert from '../../components/BtAlert.jsx'
 
 const CustomerDelete = () => {
   const navigate = useNavigate()
@@ -14,13 +15,20 @@ const CustomerDelete = () => {
   const { customerId } = useParams()
 
   const [customer, setCustomer] = useState({})
+  const [error, setError] = useState(null)
 
   const returnUrl =
     new URLSearchParams(location.search).get('returnUrl') || '/customers'
 
   useEffect(() => {
     const getCustomer = async () => {
-      const data = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.get(customerId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       setCustomer(data)
     }
 
@@ -29,8 +37,15 @@ const CustomerDelete = () => {
 
   const handleDelete = async (e) => {
     e.preventDefault()
+    setError(null)
 
-    await CustomerService.delete(customerId)
+    const { error } = await CustomerService.delete(customerId)
+
+    if (error) {
+      setError(error)
+      return
+    }
+
     navigate('/customers')
   }
 
@@ -51,6 +66,8 @@ const CustomerDelete = () => {
 
       <BtCard width="500px">
         <BtCard.Body>
+          {error && <BtAlert variant="danger" text={error}/>}
+
           <p>Are you sure you want to permanently delete customer?</p>
 
           <div>

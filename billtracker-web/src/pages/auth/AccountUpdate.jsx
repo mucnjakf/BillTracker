@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { BsPen, BsXCircle } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
 
-// TODO: errors, validation
+// TODO: validation
 const AccountUpdate = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
@@ -20,10 +20,16 @@ const AccountUpdate = () => {
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const getUser = async () => {
-      const data = await AuthService.getUser(user.id)
+      const { data, error } = await AuthService.getUser(user.id)
+
+      if (error) {
+        setError(error)
+        return
+      }
 
       setName(data.name)
       setSurname(data.surname)
@@ -35,8 +41,15 @@ const AccountUpdate = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault()
+    setError(null)
 
-    await AuthService.updateUser(user.id, name, surname, email, password)
+    const { error } = await AuthService.updateUser(user.id, name, surname, email, password)
+
+    if (error) {
+      setError(error)
+      return
+    }
+
     navigate('/logout')
   }
 
@@ -55,6 +68,8 @@ const AccountUpdate = () => {
       <Form>
         <BtCard width="500px">
           <BtCard.Body>
+            {error && <BtAlert variant="danger" text={error}/>}
+
             <BtAlert
               variant="warning"
               text="After updating account, you will be logged out!"

@@ -10,8 +10,9 @@ import BtFloatingSelect from '../../components/BtFloatingSelect'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsPen, BsXCircle } from 'react-icons/bs'
+import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: errors, validation
+// TODO: validation
 const CustomerUpdate = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -25,13 +26,19 @@ const CustomerUpdate = () => {
   const [email, setEmail] = useState('')
   const [telephone, setTelephone] = useState('')
   const [cityId, setCityId] = useState('')
+  const [error, setError] = useState(null)
 
   const returnUrl =
     new URLSearchParams(location.search).get('returnUrl') || '/customers'
 
   useEffect(() => {
     const getCustomer = async () => {
-      const data = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.get(customerId)
+
+      if (error) {
+        setError(error)
+        return
+      }
 
       setName(data.name)
       setSurname(data.surname)
@@ -45,7 +52,13 @@ const CustomerUpdate = () => {
 
   useEffect(() => {
     const getCities = async () => {
-      const data = await CityService.getAll()
+      const { data, error } = await CityService.getAll()
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       data.unshift({ id: 0, name: '-' })
       setCities(data)
     }
@@ -55,8 +68,9 @@ const CustomerUpdate = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault()
+    setError(null)
 
-    await CustomerService.update(
+    const { error } = await CustomerService.update(
       customerId,
       name,
       surname,
@@ -64,6 +78,12 @@ const CustomerUpdate = () => {
       telephone,
       cityId === 0 ? null : cityId,
     )
+
+    if (error) {
+      setError(error)
+      return
+    }
+
     navigate(returnUrl)
   }
 
@@ -84,6 +104,8 @@ const CustomerUpdate = () => {
 
       <Form>
         <BtCard width="500px">
+          {error && <BtAlert variant="danger" text={error}/>}
+
           <BtCard.Body>
             <BtFloatingTextInput
               controlId="txtName"

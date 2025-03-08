@@ -24,18 +24,27 @@ class CustomerService {
       }
 
       const response = await this.api.get(url)
-      return response.data
-    } catch (error) {
-      console.log(error)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
     }
   }
 
   async get (customerId) {
     try {
       const response = await this.api.get(customerId)
-      return response.data
+      return { data: response.data, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Customer not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 
@@ -48,8 +57,17 @@ class CustomerService {
         telephone: telephone,
         cityId: cityId,
       })
+
+      return { data: null, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 
@@ -62,16 +80,37 @@ class CustomerService {
         telephone: telephone,
         cityId: cityId,
       })
+
+      return { data: null, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Customer not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 
   async delete (customerId) {
     try {
       await this.api.delete(customerId)
+      return { data: null, error: null }
     } catch (error) {
-      console.log(error)
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Customer not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
     }
   }
 }

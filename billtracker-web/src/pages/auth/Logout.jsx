@@ -7,8 +7,6 @@ const Logout = () => {
 
   setAccessToken(null)
   navigate('/login')
-
-  return
 }
 
 export default Logout

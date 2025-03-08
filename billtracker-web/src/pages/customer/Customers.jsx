@@ -9,6 +9,7 @@ import BtPageTitle from '../../components/BtPageTitle'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { BsCardText, BsPen, BsTrash } from 'react-icons/bs'
+import BtAlert from '../../components/BtAlert.jsx'
 
 const Customers = () => {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ const Customers = () => {
   const [pageSize, setPageSize] = useState(10)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('created-desc')
+  const [error, setError] = useState(null)
 
   const sortOptions = [
     { value: 'created-desc', label: 'Created DESC' },
@@ -69,12 +71,18 @@ const Customers = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       const getCustomers = async () => {
-        const data = await CustomerService.getTable(
+        const { data, error } = await CustomerService.getTable(
           currentPage,
           pageSize,
           searchQuery,
           sortBy,
         )
+
+        if (error) {
+          setError(error)
+          return
+        }
+
         setPagedCustomers(data)
       }
 
@@ -112,6 +120,8 @@ const Customers = () => {
 
       <BtCard>
         <BtCard.Body>
+          {error && <BtAlert variant="danger" text={error}/>}
+
           <BtTable
             columns={tableColumns}
             data={pagedCustomers.items}

@@ -10,8 +10,9 @@ import BtFloatingSelect from '../../components/BtFloatingSelect'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BsPersonAdd, BsXCircle } from 'react-icons/bs'
+import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: erorr messages, validation
+// TODO: validation
 const CustomerCreate = () => {
   const navigate = useNavigate()
 
@@ -22,10 +23,17 @@ const CustomerCreate = () => {
   const [email, setEmail] = useState('')
   const [telephone, setTelephone] = useState('')
   const [cityId, setCityId] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const getCities = async () => {
-      const data = await CityService.getAll()
+      const { data, error } = await CityService.getAll()
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       data.unshift({ id: 0, name: '-' })
       setCities(data)
     }
@@ -35,8 +43,15 @@ const CustomerCreate = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault()
+    setError(null)
 
-    await CustomerService.create(name, surname, email, telephone, cityId === 0 ? null : cityId)
+    const { error } = await CustomerService.create(name, surname, email, telephone, cityId === 0 ? null : cityId)
+
+    if (error) {
+      setError(error)
+      return
+    }
+
     navigate('/customers')
   }
 
@@ -54,6 +69,8 @@ const CustomerCreate = () => {
 
       <Form>
         <BtCard width="500px">
+          {error && <BtAlert variant="danger" text={error}/>}
+
           <BtCard.Body>
             <BtFloatingTextInput
               controlId="txtName"

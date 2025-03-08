@@ -7,8 +7,9 @@ import BtPageTitle from '../../components/BtPageTitle'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BsPersonPlus } from 'react-icons/bs'
+import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: erorr messages, validation
+// TODO: validation
 const Register = () => {
   const navigate = useNavigate()
 
@@ -16,11 +17,19 @@ const Register = () => {
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
 
   const handleRegister = async (e) => {
     e.preventDefault()
+    setError(null)
 
-    await AuthService.register(name, surname, email, password)
+    const { error } = await AuthService.register(name, surname, email, password)
+
+    if (error) {
+      setError(error)
+      return
+    }
+
     navigate('/login')
   }
 
@@ -30,6 +39,8 @@ const Register = () => {
 
       <BtCard width="500px">
         <BtCard.Body>
+          {error && <BtAlert variant="danger" text={error}/>}
+
           <BtFloatingTextInput
             controlId="txtName"
             label="Name"

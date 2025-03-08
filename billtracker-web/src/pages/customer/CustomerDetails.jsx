@@ -7,6 +7,7 @@ import BtPageTitle from '../../components/BtPageTitle'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { BsTrash, BsPen } from 'react-icons/bs'
+import BtAlert from '../../components/BtAlert.jsx'
 
 const CustomerDetails = () => {
   const navigate = useNavigate()
@@ -14,10 +15,17 @@ const CustomerDetails = () => {
   const { customerId } = useParams()
 
   const [customer, setCustomer] = useState({})
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const getCustomer = async () => {
-      const data = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.get(customerId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       setCustomer(data)
     }
 
@@ -38,6 +46,8 @@ const CustomerDetails = () => {
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>
+          {error && <BtAlert variant="danger" text={error}/>}
+
           <BtRowCol
             columns={[{ size: 'col-12', label: 'GUID', value: customer.guid }]}
           />
