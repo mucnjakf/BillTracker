@@ -12,7 +12,6 @@ import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsPen, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: validation
 const CustomerUpdate = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -27,6 +26,7 @@ const CustomerUpdate = () => {
   const [telephone, setTelephone] = useState('')
   const [cityId, setCityId] = useState('')
   const [error, setError] = useState(null)
+  const [validated, setValidated] = useState(false)
 
   const returnUrl =
     new URLSearchParams(location.search).get('returnUrl') || '/customers'
@@ -68,6 +68,14 @@ const CustomerUpdate = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault()
+
+    if (e.currentTarget.checkValidity() === false) {
+      e.stopPropagation()
+      setValidated(true)
+      return
+    }
+
+    setValidated(true)
     setError(null)
 
     const { error } = await CustomerService.update(
@@ -102,7 +110,7 @@ const CustomerUpdate = () => {
 
       <BtPageTitle text="Customer update"/>
 
-      <Form>
+      <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">
           {error && <BtAlert variant="danger" text={error}/>}
 
@@ -115,6 +123,7 @@ const CustomerUpdate = () => {
               placeholder="Name"
               value={name}
               onChange={setName}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -125,16 +134,18 @@ const CustomerUpdate = () => {
               placeholder="Surname"
               value={surname}
               onChange={setSurname}
+              required={true}
             />
 
             <BtFloatingTextInput
               controlId="txtEmail"
               label="Email"
               className="mb-3"
-              type="text"
+              type="email"
               placeholder="Email"
               value={email}
               onChange={setEmail}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -145,6 +156,7 @@ const CustomerUpdate = () => {
               placeholder="Telephone"
               value={telephone}
               onChange={setTelephone}
+              required={true}
             />
 
             <BtFloatingSelect
@@ -154,6 +166,7 @@ const CustomerUpdate = () => {
               onChange={setCityId}
               placeholder="Select city"
               items={cities}
+              required={true}
             />
           </BtCard.Body>
 
@@ -161,7 +174,6 @@ const CustomerUpdate = () => {
             <BtIconButton
               type="submit"
               variant="primary"
-              onClick={handleUpdate}
               className="me-2 w-100"
               icon={BsPen}
               label="Confirm"

@@ -11,7 +11,6 @@ import { useState, useEffect } from 'react'
 import { BsPen, BsXCircle } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
 
-// TODO: validation
 const AccountUpdate = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
@@ -21,6 +20,7 @@ const AccountUpdate = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const [validated, setValidated] = useState(false)
 
   useEffect(() => {
     const getUser = async () => {
@@ -41,6 +41,14 @@ const AccountUpdate = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault()
+
+    if (e.currentTarget.checkValidity() === false) {
+      e.stopPropagation()
+      setValidated(true)
+      return
+    }
+
+    setValidated(true)
     setError(null)
 
     const { error } = await AuthService.updateUser(user.id, name, surname, email, password)
@@ -65,7 +73,7 @@ const AccountUpdate = () => {
 
       <BtPageTitle text="Account update"/>
 
-      <Form>
+      <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">
           <BtCard.Body>
             {error && <BtAlert variant="danger" text={error}/>}
@@ -83,6 +91,7 @@ const AccountUpdate = () => {
               placeholder="Name"
               value={name}
               onChange={setName}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -93,6 +102,7 @@ const AccountUpdate = () => {
               placeholder="Surname"
               value={surname}
               onChange={setSurname}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -103,6 +113,7 @@ const AccountUpdate = () => {
               placeholder="Email"
               value={email}
               onChange={setEmail}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -120,7 +131,6 @@ const AccountUpdate = () => {
               <BtIconButton
                 type="submit"
                 variant="primary"
-                onClick={handleUpdate}
                 className="me-2 w-100"
                 icon={BsPen}
                 label="Confirm"

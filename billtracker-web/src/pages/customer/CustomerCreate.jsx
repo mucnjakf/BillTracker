@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router'
 import { BsPersonAdd, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: validation
 const CustomerCreate = () => {
   const navigate = useNavigate()
 
@@ -24,6 +23,7 @@ const CustomerCreate = () => {
   const [telephone, setTelephone] = useState('')
   const [cityId, setCityId] = useState(null)
   const [error, setError] = useState(null)
+  const [validated, setValidated] = useState(false)
 
   useEffect(() => {
     const getCities = async () => {
@@ -43,6 +43,14 @@ const CustomerCreate = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault()
+
+    if (e.currentTarget.checkValidity() === false) {
+      e.stopPropagation()
+      setValidated(true)
+      return
+    }
+
+    setValidated(true)
     setError(null)
 
     const { error } = await CustomerService.create(name, surname, email, telephone, cityId === 0 ? null : cityId)
@@ -67,7 +75,7 @@ const CustomerCreate = () => {
 
       <BtPageTitle text="Customer create"/>
 
-      <Form>
+      <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">
           {error && <BtAlert variant="danger" text={error}/>}
 
@@ -80,6 +88,7 @@ const CustomerCreate = () => {
               placeholder="Name"
               value={name}
               onChange={setName}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -90,16 +99,18 @@ const CustomerCreate = () => {
               placeholder="Surname"
               value={surname}
               onChange={setSurname}
+              required={true}
             />
 
             <BtFloatingTextInput
               controlId="txtEmail"
               label="Email"
               className="mb-3"
-              type="text"
+              type="email"
               placeholder="Email"
               value={email}
               onChange={setEmail}
+              required={true}
             />
 
             <BtFloatingTextInput
@@ -110,6 +121,7 @@ const CustomerCreate = () => {
               placeholder="Telephone"
               value={telephone}
               onChange={setTelephone}
+              required={true}
             />
 
             <BtFloatingSelect
@@ -118,6 +130,7 @@ const CustomerCreate = () => {
               value={cityId}
               onChange={setCityId}
               items={cities}
+              required={true}
             />
           </BtCard.Body>
 
@@ -125,7 +138,6 @@ const CustomerCreate = () => {
             <BtIconButton
               type="submit"
               variant="primary"
-              onClick={handleCreate}
               className="me-2 w-100"
               icon={BsPersonAdd}
               label="Confirm"

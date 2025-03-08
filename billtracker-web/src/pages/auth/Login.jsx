@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router'
 import { BsBoxArrowInLeft } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: validation
 const Login = () => {
   const { setAccessToken } = useAuth()
   const navigate = useNavigate()
@@ -18,9 +17,18 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const [validated, setValidated] = useState(false)
 
   const handleLogin = async (e) => {
     e.preventDefault()
+
+    if (e.currentTarget.checkValidity() === false) {
+      e.stopPropagation()
+      setValidated(true)
+      return
+    }
+
+    setValidated(true)
     setError(null)
 
     const { data, error } = await AuthService.login(email, password)
@@ -35,7 +43,7 @@ const Login = () => {
   }
 
   return (
-    <Form>
+    <Form noValidate validated={validated} onSubmit={handleLogin}>
       <BtPageTitle text="Login"/>
       <BtCard width="500px">
         <BtCard.Body>
@@ -49,6 +57,7 @@ const Login = () => {
             placeholder="Email"
             value={email}
             onChange={setEmail}
+            required={true}
           />
 
           <BtFloatingTextInput
@@ -58,6 +67,7 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={setPassword}
+            required={true}
           />
         </BtCard.Body>
 
@@ -65,7 +75,6 @@ const Login = () => {
           <BtIconButton
             type="submit"
             variant="primary"
-            onClick={handleLogin}
             className="w-100"
             icon={BsBoxArrowInLeft}
             label="Login"

@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router'
 import { BsPersonPlus } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
-// TODO: validation
 const Register = () => {
   const navigate = useNavigate()
 
@@ -18,9 +17,18 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const [validated, setValidated] = useState(false)
 
   const handleRegister = async (e) => {
     e.preventDefault()
+
+    if (e.currentTarget.checkValidity() === false) {
+      e.stopPropagation()
+      setValidated(true)
+      return
+    }
+
+    setValidated(true)
     setError(null)
 
     const { error } = await AuthService.register(name, surname, email, password)
@@ -34,7 +42,7 @@ const Register = () => {
   }
 
   return (
-    <Form>
+    <Form noValidate validated={validated} onSubmit={handleRegister}>
       <BtPageTitle text="Register"/>
 
       <BtCard width="500px">
@@ -49,6 +57,7 @@ const Register = () => {
             placeholder="Name"
             value={name}
             onChange={setName}
+            required={true}
           />
 
           <BtFloatingTextInput
@@ -59,16 +68,18 @@ const Register = () => {
             placeholder="Surname"
             value={surname}
             onChange={setSurname}
+            required={true}
           />
 
           <BtFloatingTextInput
             controlId="txtEmail"
             label="Email"
             className="mb-3"
-            type="text"
+            type="email"
             placeholder="Email"
             value={email}
             onChange={setEmail}
+            required={true}
           />
 
           <BtFloatingTextInput
@@ -78,6 +89,7 @@ const Register = () => {
             placeholder="Password"
             value={password}
             onChange={setPassword}
+            required={true}
           />
         </BtCard.Body>
 
@@ -85,7 +97,6 @@ const Register = () => {
           <BtIconButton
             type="submit"
             variant="primary"
-            onClick={handleRegister}
             icon={BsPersonPlus}
             label="Register"
             className="w-100"
