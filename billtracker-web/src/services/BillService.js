@@ -29,6 +29,30 @@ class BillService {
       return { data: null, error: 'Unknown error occurred.' }
     }
   }
+
+  async create (customerId, date, billNumber, comment, sellerId) {
+    try {
+      await this.api.post(`${customerId}/bills`, {
+        date: new Date(date),
+        billNumber: billNumber,
+        comment: comment,
+        sellerId: sellerId,
+      })
+
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Customer not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
 }
 
 export default new BillService()

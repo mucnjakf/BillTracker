@@ -16,7 +16,7 @@ const BtSideBar = () => {
         </Nav.Link>
 
         <Nav.Link href="/customers"
-                  className={`mb-2 px-3 rounded w-100 ${location.pathname === '/customers' ? 'bg-dark text-white' : ''}`}>
+                  className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/customers') ? 'bg-dark text-white' : ''}`}>
           <BsPerson className="me-3"/>
           Customers
         </Nav.Link>

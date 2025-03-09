@@ -11,7 +11,7 @@ import CustomerDelete from '../pages/customer/CustomerDelete'
 import CustomerDetails from '../pages/customer/CustomerDetails'
 import Customers from '../pages/customer/Customers'
 import CustomerUpdate from '../pages/customer/CustomerUpdate'
-import Items from '../pages/item/Items'
+import CustomerBillCreate from '../pages/bill/CustomerBillCreate.jsx'
 import BtNotFound from '../components/BtNotFound'
 import { useAuth } from '../components/BtAuthProvider'
 import { RouterProvider, createBrowserRouter } from 'react-router'
@@ -68,6 +68,10 @@ const BtRoutes = () => {
         {
           path: '/customers/:customerId/bills',
           element: <CustomerBills/>,
+        },
+        {
+          path: '/customers/:customerId/bills/create',
+          element: <CustomerBillCreate/>,
         },
         // {
         //   path: '/bills',

@@ -86,7 +86,7 @@ const CustomerBills = () => {
       label: 'Create',
       variant: 'success',
       icon: <BsCardText/>,
-      onClick: () => navigate(``),
+      onClick: () => navigate(`create`),
     },
     {
       label: 'View',

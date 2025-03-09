@@ -12,4 +12,9 @@ internal static class SellerMapper
 			seller.PermanentEmployee,
 			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
+
+	internal static SellerListDto ToSellerListDto(this Seller seller)
+	{
+		return new(seller.Id, $"{seller.Name} {seller.Surname}");
+	}
 }

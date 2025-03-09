@@ -45,27 +45,27 @@ const Customers = () => {
       label: 'Create',
       variant: 'success',
       icon: <BsCardText/>,
-      onClick: () => navigate(`/customers/create`),
+      onClick: () => navigate(`create`),
     },
     {
       label: 'View',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (customerId) => navigate(`/customers/${customerId}`),
+      onClick: (customerId) => navigate(`${customerId}`),
     },
     {
       label: 'Edit',
       variant: 'secondary',
       icon: <BsPen/>,
       onClick: (customerId) =>
-        navigate(`/customers/${customerId}/update?returnUrl=/customers`),
+        navigate(`${customerId}/update?returnUrl=/customers`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
       onClick: (customerId) =>
-        navigate(`/customers/${customerId}/delete?returnUrl=/customers`),
+        navigate(`${customerId}/delete?returnUrl=/customers`),
     },
   ]
 

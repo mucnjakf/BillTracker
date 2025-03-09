@@ -17,7 +17,7 @@ internal sealed record CreateBillRequest
 
 	public int? SellerId { get; init; }
 
-	public int? CreditCardId { get; init; } // TODO: doesent make sense to have credit card  here without customer
+	public int? CreditCardId { get; init; } // TODO: doesent make sense to have credit card  here without customer i na fe
 }
 
 internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
@@ -43,7 +43,7 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 
 		var seller = await appDbContext.Sellers.FindAsync([req.SellerId], ct);
 
-		var creditCard = await appDbContext.CreditCards.FindAsync([req.SellerId], ct);
+		var creditCard = await appDbContext.CreditCards.FindAsync([req.CreditCardId], ct);
 
 		var bill = new Bill
 		{

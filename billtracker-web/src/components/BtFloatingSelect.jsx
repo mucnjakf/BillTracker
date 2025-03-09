@@ -8,9 +8,10 @@ const BtFloatingSelect = ({
   onChange,
   items,
   required,
+  className,
 }) => {
   return (
-    <FloatingLabel controlId={controlId} label={label}>
+    <FloatingLabel controlId={controlId} label={label} className={className}>
       <Form.Select value={value} onChange={(e) => onChange(e.target.value)} required={required}>
         {items.map((item) => (
           <option key={item.id} value={item.id}>
