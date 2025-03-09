@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Cities.Endpoints;
 
-internal sealed class GetCitiesEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CityDto>>>
+internal sealed class GetCitiesEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CityListDto>>>
 {
 	public override void Configure()
 	{
@@ -14,11 +14,11 @@ internal sealed class GetCitiesEndpoint(AppDbContext appDbContext) : EndpointWit
 		Description(x => x.WithTags("Cities"));
 	}
 
-	public override async Task<Ok<IEnumerable<CityDto>>> ExecuteAsync(CancellationToken ct)
+	public override async Task<Ok<IEnumerable<CityListDto>>> ExecuteAsync(CancellationToken ct)
 	{
 		var cities = await appDbContext.Cities.ToListAsync(ct);
 
-		var citiesDto = cities.Select(x => x.ToCityDto());
+		var citiesDto = cities.Select(x => x.ToCityListDto());
 
 		return TypedResults.Ok(citiesDto);
 	}
