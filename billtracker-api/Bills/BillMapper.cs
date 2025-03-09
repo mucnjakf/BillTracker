@@ -8,7 +8,12 @@ internal static class BillMapper
 {
 	internal static BillTableDto ToBillTableDto(this Bill bill)
 	{
-		return new(bill.Id, bill.Date, bill.BillNumber, bill.Items?.Sum(x => x.TotalPrice) ?? 0);
+		return new(
+			bill.Id,
+			bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
+			bill.BillNumber,
+			bill.Items?.Count() ?? 0,
+			bill.Items?.Sum(x => x.TotalPrice) ?? 0);
 	}
 
 	internal static BillDto ToBillDto(this Bill bill)
@@ -16,7 +21,7 @@ internal static class BillMapper
 		return new(
 			bill.Id,
 			bill.Guid,
-			bill.Date,
+			bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
 			bill.BillNumber,
 			bill.Comment,
 			bill.Items?.Sum(x => x.TotalPrice) ?? 0,

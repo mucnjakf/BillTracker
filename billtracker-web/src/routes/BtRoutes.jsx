@@ -5,7 +5,7 @@ import AccountUpdate from '../pages/auth/AccountUpdate'
 import Login from '../pages/auth/Login'
 import Logout from '../pages/auth/Logout'
 import Register from '../pages/auth/Register'
-import Bills from '../pages/bill/Bills'
+import CustomerBills from '../pages/bill/CustomerBills.jsx'
 import CustomerCreate from '../pages/customer/CustomerCreate'
 import CustomerDelete from '../pages/customer/CustomerDelete'
 import CustomerDetails from '../pages/customer/CustomerDetails'
@@ -66,13 +66,17 @@ const BtRoutes = () => {
           element: <CustomerDelete/>,
         },
         {
-          path: '/bills',
-          element: <Bills/>,
+          path: '/customers/:customerId/bills',
+          element: <CustomerBills/>,
         },
-        {
-          path: '/items',
-          element: <Items/>,
-        },
+        // {
+        //   path: '/bills',
+        //   element: <CustomerBills/>,
+        // },
+        // {
+        //   path: '/items',
+        //   element: <Items/>,
+        // },
         {
           path: '/account',
           element: <Account/>,

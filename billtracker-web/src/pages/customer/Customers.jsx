@@ -37,6 +37,7 @@ const Customers = () => {
     { key: 'email', label: 'Email' },
     { key: 'telephone', label: 'Telephone' },
     { key: 'cityName', label: 'City' },
+    { key: 'createdUtc', label: 'Created' },
   ]
 
   const tableActions = [
@@ -100,23 +101,21 @@ const Customers = () => {
 
       <BtPageTitle text="Customers"/>
 
-      {pagedCustomers.items.length > 0 && (
-        <div className="d-flex mb-3">
-          <BtSearch
-            searchQuery={searchQuery}
-            onChange={setSearchQuery}
-            setCurrentPage={setCurrentPage}
-            placeholder="Search by name or surname"
-          />
+      <div className="d-flex mb-3">
+        <BtSearch
+          searchQuery={searchQuery}
+          onChange={setSearchQuery}
+          setCurrentPage={setCurrentPage}
+          placeholder="Search by name or surname"
+        />
 
-          <BtSort
-            sortBy={sortBy}
-            options={sortOptions}
-            onChange={setSortBy}
-            setCurrentPage={setCurrentPage}
-          />
-        </div>
-      )}
+        <BtSort
+          sortBy={sortBy}
+          options={sortOptions}
+          onChange={setSortBy}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
 
       <BtCard>
         <BtCard.Body>

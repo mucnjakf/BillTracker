@@ -6,7 +6,7 @@ import BtRowCol from '../../components/BtRowCol'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
-import { BsTrash, BsPen } from 'react-icons/bs'
+import { BsTrash, BsPen, BsCash } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
 const CustomerDetails = () => {
@@ -42,7 +42,7 @@ const CustomerDetails = () => {
         ]}
       />
 
-      <BtPageTitle text="Customer details"/>
+      <BtPageTitle text={`${customer.name} ${customer.surname} details`}/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>
@@ -58,7 +58,7 @@ const CustomerDetails = () => {
               {
                 size: 'col-8',
                 label: 'Created',
-                value: new Date(customer.createdUtc).toLocaleString(),
+                value: customer.createdUtc,
               },
             ]}
           />
@@ -87,10 +87,18 @@ const CustomerDetails = () => {
 
       <div className="d-flex">
         <BtIconButton
+          variant="primary"
+          onClick={() => navigate(`bills`)}
+          icon={BsCash}
+          label="Bills"
+          className="me-3"
+        />
+
+        <BtIconButton
           variant="secondary"
           onClick={() => navigate(`update?returnUrl=/customers/${customerId}`)}
           icon={BsPen}
-          label="Update customer"
+          label="Update"
           className="me-3"
         />
 
@@ -98,7 +106,7 @@ const CustomerDetails = () => {
           variant="danger"
           onClick={() => navigate(`delete?returnUrl=/customers/${customerId}`)}
           icon={BsTrash}
-          label="Delete customer"
+          label="Delete"
         />
       </div>
     </>

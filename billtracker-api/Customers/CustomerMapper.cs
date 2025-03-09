@@ -11,7 +11,7 @@ internal static class CustomerMapper
 			customer.Email,
 			customer.Telephone,
 			customer.City?.Name ?? "-",
-			customer.CreatedUtc);
+			customer.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 
 	internal static CustomerDto ToCustomerDto(this Customer customer)
@@ -25,6 +25,6 @@ internal static class CustomerMapper
 			customer.Telephone,
 			customer.CityId ?? 0,
 			customer.City?.Name ?? "-",
-			customer.CreatedUtc);
+			customer.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 }

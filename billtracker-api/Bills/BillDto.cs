@@ -7,7 +7,7 @@ namespace billtracker_api.Bills;
 internal sealed record BillDto(
 	int Id,
 	Guid Guid,
-	DateTimeOffset Date,
+	string Date,
 	string BillNumber,
 	string Comment,
 	decimal Total,

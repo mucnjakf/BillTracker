@@ -6,4 +6,4 @@ internal sealed record ItemTableDto(
 	decimal ProductPrice,
 	int Quantity,
 	decimal TotalPrice,
-	DateTimeOffset CreatedUtc);
+	string CreatedUtc);

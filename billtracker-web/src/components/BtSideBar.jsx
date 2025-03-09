@@ -23,17 +23,17 @@ const BtSideBar = () => {
 
         {accessToken ? (
           <>
-            <Nav.Link href="/bills"
-                      className={`mb-2 px-3 rounded w-100 ${location.pathname === '/bills' ? 'bg-dark text-white' : ''}`}>
-              <BsCashStack className="me-3"/>
-              Bills
-            </Nav.Link>
+            {/*<Nav.Link href="/bills"*/}
+            {/*          className={`mb-2 px-3 rounded w-100 ${location.pathname === '/bills' ? 'bg-dark text-white' : ''}`}>*/}
+            {/*  <BsCashStack className="me-3"/>*/}
+            {/*  CustomerBills*/}
+            {/*</Nav.Link>*/}
 
-            <Nav.Link href="/items"
-                      className={`px-3 rounded w-100 ${location.pathname === '/items' ? 'bg-dark text-white' : ''}`}>
-              <BsCart4 className="me-3"/>
-              Items
-            </Nav.Link>
+            {/*<Nav.Link href="/items"*/}
+            {/*          className={`px-3 rounded w-100 ${location.pathname === '/items' ? 'bg-dark text-white' : ''}`}>*/}
+            {/*  <BsCart4 className="me-3"/>*/}
+            {/*  Items*/}
+            {/*</Nav.Link>*/}
           </>
         ) : <></>}
       </Nav>

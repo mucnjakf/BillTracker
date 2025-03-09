@@ -10,6 +10,6 @@ internal static class SellerMapper
 			seller.Name,
 			seller.Surname,
 			seller.PermanentEmployee,
-			seller.CreatedUtc);
+			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 }

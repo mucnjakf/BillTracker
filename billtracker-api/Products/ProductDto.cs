@@ -9,4 +9,4 @@ internal sealed record ProductDto(
 	decimal Price,
 	string SubCategoryName,
 	string CategoryName,
-	DateTimeOffset CreatedUtc);
+	string CreatedUtc);

@@ -56,7 +56,7 @@ const Account = () => {
               {
                 size: 'col-8',
                 label: 'Created',
-                value: new Date(currentUser.createdUtc).toLocaleString(),
+                value: currentUser.createdUtc,
               },
             ]}
           />

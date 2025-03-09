@@ -13,6 +13,6 @@ internal static class ProductMapper
 			product.Price,
 			product.SubCategory.Name,
 			product.SubCategory.Category.Name,
-			product.CreatedUtc);
+			product.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 }

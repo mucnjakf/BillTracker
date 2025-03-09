@@ -7,4 +7,4 @@ internal sealed record CustomerTableDto(
 	string Email,
 	string Telephone,
 	string CityName,
-	DateTimeOffset CreatedUtc);
+	string CreatedUtc);

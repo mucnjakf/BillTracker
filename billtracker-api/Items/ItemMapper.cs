@@ -13,7 +13,7 @@ internal static class ItemMapper
 			item.Product.Price,
 			item.Quantity,
 			item.TotalPrice,
-			item.CreatedUtc);
+			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 
 	internal static ItemDto ToItemDto(this Item item)
@@ -25,6 +25,6 @@ internal static class ItemMapper
 			item.TotalPrice,
 			item.Bill.ToBillDto(),
 			item.Product.ToProductDto(),
-			item.CreatedUtc);
+			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 }

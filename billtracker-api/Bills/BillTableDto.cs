@@ -2,6 +2,7 @@ namespace billtracker_api.Bills;
 
 internal sealed record BillTableDto(
 	int Id,
-	DateTimeOffset Date,
+	string Date,
 	string BillNumber,
+	int ItemCount,
 	decimal Total);

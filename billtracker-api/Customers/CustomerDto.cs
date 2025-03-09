@@ -9,4 +9,4 @@ internal sealed record CustomerDto(
 	string Telephone,
 	int CityId,
 	string CityName,
-	DateTimeOffset CreatedUtc);
+	string CreatedUtc);
