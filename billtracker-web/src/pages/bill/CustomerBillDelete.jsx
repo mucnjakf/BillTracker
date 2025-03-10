@@ -1,52 +1,52 @@
-import CustomerService from '../../services/CustomerService'
-import BtCard from '../../components/BtCard'
-import BtIconButton from '../../components/BtIconButton'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtPageTitle from '../../components/BtPageTitle'
-import {useEffect, useState} from 'react'
-import {useNavigate, useParams, useLocation} from 'react-router'
-import {BsTrash, BsXCircle} from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import {useLocation, useNavigate, useParams} from "react-router";
+import {useEffect, useState} from "react";
+import BillService from "../../services/BillService.js";
+import BtBreadcrumb from "../../components/BtBreadcrumb.jsx";
+import BtPageTitle from "../../components/BtPageTitle.jsx";
+import BtCard from "../../components/BtCard.jsx";
+import BtAlert from "../../components/BtAlert.jsx";
+import BtIconButton from "../../components/BtIconButton.jsx";
+import {BsTrash, BsXCircle} from "react-icons/bs";
 
-const CustomerDelete = () => {
+const CustomerBillDelete = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const {customerId} = useParams()
+    const {customerId, billId} = useParams()
 
-    const [customer, setCustomer] = useState({})
+    const [bill, setBill] = useState({})
     const [error, setError] = useState(null)
 
     const returnUrl =
-        new URLSearchParams(location.search).get('returnUrl') || '/customers'
+        new URLSearchParams(location.search).get('returnUrl') || `/customers/${customerId}/bills`
 
     useEffect(() => {
-        const getCustomer = async () => {
-            const {data, error} = await CustomerService.get(customerId)
+        const getBill = async () => {
+            const {data, error} = await BillService.get(customerId, billId)
 
             if (error) {
                 setError(error)
                 return
             }
 
-            setCustomer(data)
+            console.log(data)
+            setBill(data)
         }
-
-        getCustomer()
-    }, [customerId])
+        getBill()
+    }, [customerId, billId])
 
     const handleDelete = async (e) => {
         e.preventDefault()
         setError(null)
 
-        const {error} = await CustomerService.delete(customerId)
+        const {error} = await BillService.delete(customerId, billId)
 
         if (error) {
             setError(error)
             return
         }
 
-        navigate('/customers')
+        navigate(`/customers/${customerId}/bills`)
     }
 
     return (
@@ -62,23 +62,17 @@ const CustomerDelete = () => {
                 ].filter(Boolean)}
             />
 
-            <BtPageTitle text={`${customer.name} ${customer.surname} delete`}/>
+            <BtPageTitle text={`${bill.billNumber} bill delete`}/>
 
             <BtCard width="500px">
                 <BtCard.Body>
                     {error && <BtAlert variant="danger" text={error}/>}
 
-                    <p>Are you sure you want to permanently delete customer?</p>
+                    <p>Are you sure you want to permanently delete bill?</p>
 
                     <div>
-                        <label className="text-muted small">Name</label>
-                        <h5>{customer.name}</h5>
-
-                        <label className="mt-3 text-muted small">Surname</label>
-                        <h5>{customer.surname}</h5>
-
-                        <label className="mt-3 text-muted small">Email</label>
-                        <h5>{customer.email}</h5>
+                        <label className="text-muted small">Customer name</label>
+                        <h5>{bill.customer.name} {bill.customer.surname}</h5>
                     </div>
                 </BtCard.Body>
 
@@ -102,8 +96,7 @@ const CustomerDelete = () => {
                     </div>
                 </BtCard.Footer>
             </BtCard>
-        </>
-    )
+        </>)
 }
 
-export default CustomerDelete
+export default CustomerBillDelete

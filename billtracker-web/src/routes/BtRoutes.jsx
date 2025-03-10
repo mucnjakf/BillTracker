@@ -13,97 +13,102 @@ import Customers from '../pages/customer/Customers'
 import CustomerUpdate from '../pages/customer/CustomerUpdate'
 import CustomerBillCreate from '../pages/bill/CustomerBillCreate.jsx'
 import BtNotFound from '../components/BtNotFound'
-import { useAuth } from '../components/BtAuthProvider'
-import { RouterProvider, createBrowserRouter } from 'react-router'
+import {useAuth} from '../components/BtAuthProvider'
+import {RouterProvider, createBrowserRouter} from 'react-router'
+import CustomerBillDelete from "../pages/bill/CustomerBillDelete.jsx";
 
 const BtRoutes = () => {
-  const { accessToken } = useAuth()
+    const {accessToken} = useAuth()
 
-  const routesForPublic = [
-    {
-      path: '/',
-      element: <Home/>,
-    },
-    {
-      path: '/customers',
-      element: <Customers/>,
-    },
-    {
-      path: '*',
-      element: <BtNotFound/>,
-    },
-  ]
+    const routesForPublic = [
+        {
+            path: '/',
+            element: <Home/>,
+        },
+        {
+            path: '/customers',
+            element: <Customers/>,
+        },
+        {
+            path: '*',
+            element: <BtNotFound/>,
+        },
+    ]
 
-  const routesForUnauthenticated = [
-    {
-      path: '/register',
-      element: <Register/>,
-    },
-    {
-      path: '/login',
-      element: <Login/>,
-    },
-  ]
+    const routesForUnauthenticated = [
+        {
+            path: '/register',
+            element: <Register/>,
+        },
+        {
+            path: '/login',
+            element: <Login/>,
+        },
+    ]
 
-  const routesForAuthenticated = [
-    {
-      element: <ProtectedRotue/>,
-      children: [
+    const routesForAuthenticated = [
         {
-          path: '/customers/create',
-          element: <CustomerCreate/>,
+            element: <ProtectedRotue/>,
+            children: [
+                {
+                    path: '/customers/create',
+                    element: <CustomerCreate/>,
+                },
+                {
+                    path: '/customers/:customerId',
+                    element: <CustomerDetails/>,
+                },
+                {
+                    path: '/customers/:customerId/update',
+                    element: <CustomerUpdate/>,
+                },
+                {
+                    path: '/customers/:customerId/delete',
+                    element: <CustomerDelete/>,
+                },
+                {
+                    path: '/customers/:customerId/bills',
+                    element: <CustomerBills/>,
+                },
+                {
+                    path: '/customers/:customerId/bills/create',
+                    element: <CustomerBillCreate/>,
+                },
+                {
+                    path: '/customers/:customerId/bills/:billId/delete',
+                    element: <CustomerBillDelete/>,
+                },
+                // {
+                //   path: '/bills',
+                //   element: <CustomerBills/>,
+                // },
+                // {
+                //   path: '/items',
+                //   element: <Items/>,
+                // },
+                {
+                    path: '/account',
+                    element: <Account/>,
+                },
+                {
+                    path: '/account/update',
+                    element: <AccountUpdate/>,
+                },
+                {
+                    path: '/logout',
+                    element: <Logout/>,
+                },
+            ],
         },
-        {
-          path: '/customers/:customerId',
-          element: <CustomerDetails/>,
-        },
-        {
-          path: '/customers/:customerId/update',
-          element: <CustomerUpdate/>,
-        },
-        {
-          path: '/customers/:customerId/delete',
-          element: <CustomerDelete/>,
-        },
-        {
-          path: '/customers/:customerId/bills',
-          element: <CustomerBills/>,
-        },
-        {
-          path: '/customers/:customerId/bills/create',
-          element: <CustomerBillCreate/>,
-        },
-        // {
-        //   path: '/bills',
-        //   element: <CustomerBills/>,
-        // },
-        // {
-        //   path: '/items',
-        //   element: <Items/>,
-        // },
-        {
-          path: '/account',
-          element: <Account/>,
-        },
-        {
-          path: '/account/update',
-          element: <AccountUpdate/>,
-        },
-        {
-          path: '/logout',
-          element: <Logout/>,
-        },
-      ],
-    },
-  ]
+    ]
 
-  const router = createBrowserRouter([
-    ...routesForPublic,
-    ...(!accessToken ? routesForUnauthenticated : []),
-    ...routesForAuthenticated,
-  ])
+    const router = createBrowserRouter([
+        ...routesForPublic,
+        ...(!accessToken ? routesForUnauthenticated : []),
+        ...routesForAuthenticated,
+    ])
 
-  return <RouterProvider router={router}/>
+    return <RouterProvider router={router}/>
 }
 
 export default BtRoutes
