@@ -98,7 +98,7 @@ const CustomerBills = () => {
       label: 'Edit',
       variant: 'secondary',
       icon: <BsPen/>,
-      onClick: (billId) => navigate(``),
+      onClick: (billId) => navigate(`${billId}/update?returnUrl=/customers/${customerId}/bills`),
     },
     {
       label: 'Delete',

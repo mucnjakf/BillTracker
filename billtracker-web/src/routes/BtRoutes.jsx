@@ -1,4 +1,4 @@
-import ProtectedRotue from './BtProtectedRoute'
+import BtProtectedRoute from './BtProtectedRoute'
 import Home from '../pages/app/Home'
 import Account from '../pages/auth/Account'
 import AccountUpdate from '../pages/auth/AccountUpdate'
@@ -16,6 +16,7 @@ import BtNotFound from '../components/BtNotFound'
 import { useAuth } from '../components/BtAuthProvider'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 import CustomerBillDelete from '../pages/bill/CustomerBillDelete.jsx'
+import CustomerBillUpdate from '../pages/bill/CustomerBillUpdate.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -48,7 +49,7 @@ const BtRoutes = () => {
 
   const routesForAuthenticated = [
     {
-      element: <ProtectedRotue/>,
+      element: <BtProtectedRoute/>,
       children: [
         {
           path: '/customers/create',
@@ -75,17 +76,13 @@ const BtRoutes = () => {
           element: <CustomerBillCreate/>,
         },
         {
+          path: '/customers/:customerId/bills/:billId/update',
+          element: <CustomerBillUpdate/>,
+        },
+        {
           path: '/customers/:customerId/bills/:billId/delete',
           element: <CustomerBillDelete/>,
         },
-        // {
-        //   path: '/bills',
-        //   element: <CustomerBills/>,
-        // },
-        // {
-        //   path: '/items',
-        //   element: <Items/>,
-        // },
         {
           path: '/account',
           element: <Account/>,

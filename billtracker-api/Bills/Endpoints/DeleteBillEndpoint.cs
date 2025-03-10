@@ -15,7 +15,7 @@ internal sealed record DeleteBillRequest
 }
 
 internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
-	: Endpoint<DeleteBillRequest, Results<NoContent, NotFound>>
+	: Endpoint<DeleteBillRequest, Results<NoContent, NotFound, BadRequest>>
 {
 	public override void Configure()
 	{
@@ -24,14 +24,20 @@ internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Bills"));
 	}
 
-	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(DeleteBillRequest req, CancellationToken ct)
+	public override async Task<Results<NoContent, NotFound, BadRequest>> ExecuteAsync(DeleteBillRequest req, CancellationToken ct)
 	{
 		var bill = await appDbContext.Bills
+			.Include(x => x.Items)
 			.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
 
 		if (bill is null)
 		{
 			return TypedResults.NotFound();
+		}
+
+		if (bill.Items is not null && bill.Items.Any())
+		{
+			return TypedResults.BadRequest();
 		}
 
 		appDbContext.Bills.Remove(bill);
