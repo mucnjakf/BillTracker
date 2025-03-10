@@ -92,7 +92,7 @@ const CustomerBills = () => {
       label: 'View',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (billId) => navigate(``),
+      onClick: (billId) => navigate(`${billId}`),
     },
     {
       label: 'Edit',

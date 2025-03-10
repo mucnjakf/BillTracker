@@ -17,6 +17,7 @@ import { useAuth } from '../components/BtAuthProvider'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 import CustomerBillDelete from '../pages/bill/CustomerBillDelete.jsx'
 import CustomerBillUpdate from '../pages/bill/CustomerBillUpdate.jsx'
+import CustomerBillDetails from '../pages/bill/CustomerBillDetails.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -74,6 +75,10 @@ const BtRoutes = () => {
         {
           path: '/customers/:customerId/bills/create',
           element: <CustomerBillCreate/>,
+        },
+        {
+          path: '/customers/:customerId/bills/:billId',
+          element: <CustomerBillDetails/>,
         },
         {
           path: '/customers/:customerId/bills/:billId/update',

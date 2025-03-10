@@ -82,6 +82,9 @@ const CustomerBillUpdate = () => {
           { label: 'Customers', href: '/customers' },
           { label: 'Details', href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
+          returnUrl.startsWith(`/customers/${customerId}/bills/${billId}`)
+            ? { label: 'Details', href: `/customers/${customerId}` }
+            : null,
           { label: 'Update' },
         ]}
       />

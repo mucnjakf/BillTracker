@@ -85,6 +85,8 @@ const CustomerDetails = () => {
         </BtCard.Body>
       </BtCard>
 
+      {/*TODO: add list of bills*/}
+
       <div className="d-flex">
         <BtIconButton
           variant="primary"

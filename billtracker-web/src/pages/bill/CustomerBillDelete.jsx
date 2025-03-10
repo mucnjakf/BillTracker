@@ -54,7 +54,9 @@ const CustomerBillDelete = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          returnUrl.startsWith('/customers/')
+          { label: 'Details', href: `/customers/${customerId}` },
+          { label: 'Bills', href: `/customers/${customerId}/bills` },
+          returnUrl.startsWith(`/customers/${customerId}/bills/${billId}`)
             ? { label: 'Details', href: `/customers/${customerId}` }
             : null,
           { label: 'Delete' },
