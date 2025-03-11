@@ -94,7 +94,7 @@ const CustomerBillCreate = () => {
         ]}
       />
 
-      <BtPageTitle text={`${customer.name} ${customer.surname} bill create`}/>
+      <BtPageTitle text={`${customer.name} ${customer.surname} - bill create`}/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

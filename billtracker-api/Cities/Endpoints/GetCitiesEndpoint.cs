@@ -16,7 +16,9 @@ internal sealed class GetCitiesEndpoint(AppDbContext appDbContext) : EndpointWit
 
 	public override async Task<Ok<IEnumerable<CityListDto>>> ExecuteAsync(CancellationToken ct)
 	{
-		var cities = await appDbContext.Cities.ToListAsync(ct);
+		var cities = await appDbContext.Cities
+			.AsNoTracking()
+			.ToListAsync(ct);
 
 		var citiesDto = cities.Select(x => x.ToCityListDto());
 

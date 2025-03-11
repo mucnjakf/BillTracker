@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-class ItemService {
+class CategoryService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/bills',
+      baseURL: 'http://localhost:5140/api/categories',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -11,31 +11,16 @@ class ItemService {
     })
   }
 
-  async getList (billId) {
+  async getAll () {
     try {
-      const response = await this.api.get(`${billId}/items/list`)
+      const response = await this.api.get()
       return { data: response.data, error: null }
-    } catch {
-      return { data: null, error: 'Unknown error occurred.' }
-    }
-  }
-
-  async create (billId, quantity, productId) {
-    try {
-      await this.api.post(`${billId}/items`, {
-        quantity: quantity,
-        productId: productId,
-      })
-
-      return { data: null, error: null }
     } catch (error) {
       switch (error.status) {
         case 401:
           return { data: null, error: 'You are not authenticated.' }
         case 403:
           return { data: null, error: 'You are not authorized.' }
-        case 404:
-          return { data: null, error: 'Bill or product not found.' }
         default:
           return { data: null, error: 'Unknown error occurred.' }
       }
@@ -43,4 +28,4 @@ class ItemService {
   }
 }
 
-export default new ItemService()
+export default new CategoryService()
