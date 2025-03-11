@@ -56,32 +56,56 @@ const BillItemCreate = () => {
       }
 
       setCategories(data)
+
+      if (data.length > 0) {
+        setCategoryId(data[0].id)
+      }
     }
 
     getCategories()
-  }, [categoryId, subCategoryId])
+  }, [])
 
-  const getSubCategories = async (categoryId) => {
-    const { data, error } = await SubCategoryService.getAll(categoryId)
+  useEffect(() => {
+    if (!categoryId) return
 
-    if (error) {
-      setError(error)
-      return
+    const getSubCategories = async () => {
+      const { data, error } = await SubCategoryService.getAll(categoryId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
+      setSubCategories(data)
+
+      if (data.length > 0) {
+        setSubCategoryId(data[0].id)
+      }
     }
 
-    setSubCategories(data)
-  }
+    getSubCategories()
+  }, [categoryId])
 
-  const getProducts = async (subCategoryId) => {
-    const { data, error } = await ProductService.getAll(subCategoryId)
+  useEffect(() => {
+    if (!subCategoryId) return
 
-    if (error) {
-      setError(error)
-      return
+    const getProducts = async () => {
+      const { data, error } = await ProductService.getAll(subCategoryId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
+      setProducts(data)
+
+      if (data.length > 0) {
+        setProductId(data[0].id)
+      }
     }
 
-    setProducts(data)
-  }
+    getProducts()
+  }, [subCategoryId])
 
   const handleCreate = async (e) => {
     e.preventDefault()
@@ -129,47 +153,37 @@ const BillItemCreate = () => {
               controlId="selectCategories"
               label="Category"
               value={categoryId}
-              onChange={(id) => {
-                setCategoryId(id)
-                getSubCategories(id)
-              }}
+              onChange={setCategoryId}
               items={categories}
               required={true}
               className="mb-3"
             />
 
-            {categoryId != null ? (
+            {categoryId && (
               <BtFloatingSelect
                 controlId="selectSubCategories"
                 label="Sub-category"
                 value={subCategoryId}
-                onChange={(id) => {
-                  setSubCategoryId(id)
-                  getProducts(id)
-                }}
+                onChange={setSubCategoryId}
                 items={subCategories}
                 required={true}
                 className="mb-3"
               />
-            ) : (<></>)}
+            )}
 
-            {subCategoryId != null ? (
+            {subCategoryId && (
               <BtFloatingSelect
                 controlId="selectProducts"
                 label="Product"
                 value={productId}
-                onChange={(id) => {
-                  setProductId(id)
-                }}
+                onChange={setProductId}
                 items={products}
                 required={true}
                 className="mb-3"
               />
-            ) : (<></>)}
+            )}
 
-
-            { /*TODO add min 1 */}
-            {productId != null ? (
+            {productId && (
               <BtFloatingTextInput
                 controlId="txtQuantity"
                 label="Quantity"
@@ -178,12 +192,13 @@ const BillItemCreate = () => {
                 value={quantity}
                 onChange={setQuantity}
                 required={true}
+                min={1}
               />
-            ) : (<></>)}
+            )}
           </BtCard.Body>
 
           <BtCard.Footer className="d-flex w-100">
-            {productId != null ? (
+            {productId && (
               <BtIconButton
                 type="submit"
                 variant="primary"
@@ -191,7 +206,7 @@ const BillItemCreate = () => {
                 icon={BsCart}
                 label="Confirm"
               />
-            ) : (<></>)}
+            )}
 
             <BtIconButton
               variant="secondary"

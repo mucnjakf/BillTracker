@@ -10,6 +10,7 @@ const BtFloatingTextInput = ({
   value,
   onChange,
   required,
+  min,
 }) => {
   return (
     <FloatingLabel controlId={controlId} label={label} className={className}>
@@ -18,6 +19,7 @@ const BtFloatingTextInput = ({
         type={type}
         placeholder={placeholder}
         value={value}
+        min={min}
         onChange={(e) => onChange(e.target.value)}
       />
       <Form.Control.Feedback type="invalid">{placeholder} is required</Form.Control.Feedback>
