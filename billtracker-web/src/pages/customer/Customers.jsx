@@ -96,7 +96,9 @@ const Customers = () => {
   return (
     <>
       <BtBreadcrumb
-        paths={[{ label: 'Home', href: '/' }, { label: 'Customers' }]}
+        paths={[
+          { label: 'Home', href: '/' },
+          { label: 'Customers' }]}
       />
 
       <BtPageTitle text="Customers"/>

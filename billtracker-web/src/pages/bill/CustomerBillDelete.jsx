@@ -56,8 +56,8 @@ const CustomerBillDelete = () => {
           { label: 'Customers', href: '/customers' },
           { label: 'Details', href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
-          returnUrl.startsWith(`/customers/${customerId}/bills/${billId}`)
-            ? { label: 'Details', href: `/customers/${customerId}` }
+          returnUrl.startsWith(`/customers/${customerId}/bills/`)
+            ? { label: 'Details', href: `/customers/${customerId}/bills/${billId}` }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}
