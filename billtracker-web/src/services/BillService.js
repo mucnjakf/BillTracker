@@ -30,6 +30,15 @@ class BillService {
     }
   }
 
+  async getListLatest (customerId) {
+    try {
+      const response = await this.api.get(`${customerId}/bills/list/latest`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async get (customerId, billId) {
     try {
       const response = await this.api.get(`${customerId}/bills/${billId}`)

@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { BsTrash, BsPen, BsCash } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
+import ListGroup from 'react-bootstrap/ListGroup'
+import BillService from '../../services/BillService.js'
 
 const CustomerDetails = () => {
   const navigate = useNavigate()
@@ -15,6 +17,7 @@ const CustomerDetails = () => {
   const { customerId } = useParams()
 
   const [customer, setCustomer] = useState({})
+  const [customerBills, setCustomerBills] = useState([])
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -30,6 +33,21 @@ const CustomerDetails = () => {
     }
 
     getCustomer()
+  }, [customerId])
+
+  useEffect(() => {
+    const getCustomerBills = async () => {
+      const { data, error } = await BillService.getListLatest(customerId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
+      setCustomerBills(data)
+    }
+
+    getCustomerBills()
   }, [customerId])
 
   return (
@@ -85,17 +103,7 @@ const CustomerDetails = () => {
         </BtCard.Body>
       </BtCard>
 
-      {/*TODO: add list of bills*/}
-
-      <div className="d-flex">
-        <BtIconButton
-          variant="primary"
-          onClick={() => navigate(`bills`)}
-          icon={BsCash}
-          label="Bills"
-          className="me-3"
-        />
-
+      <div className="d-flex mb-5">
         <BtIconButton
           variant="secondary"
           onClick={() => navigate(`update?returnUrl=/customers/${customerId}`)}
@@ -110,6 +118,38 @@ const CustomerDetails = () => {
           icon={BsTrash}
           label="Delete"
         />
+      </div>
+
+      <div style={{ width: '1000px' }}>
+        <div className="d-flex justify-content-between mb-3 align-items-center">
+          <h3 className="mb-0">Latest bills</h3>
+
+          <BtIconButton
+            variant="outline-primary"
+            onClick={() => navigate(`bills`)}
+            icon={BsCash}
+            label="See all"
+          />
+        </div>
+
+        <ListGroup>
+          {customerBills.length ? (
+            customerBills.map((bill) => (
+              <ListGroup.Item key={bill.id} className="d-flex justify-content-between fs-5">
+                <div>
+                  <span className="text-muted">{bill.date}:</span> <span className="fw-bold">{bill.billNumber}</span>
+                </div>
+                <div>
+                  Total: <span className="fw-bold">{bill.total}</span>
+                </div>
+              </ListGroup.Item>
+            ))
+          ) : (
+            <ListGroup.Item className="text-center p-4">
+              No records found
+            </ListGroup.Item>
+          )}
+        </ListGroup>
       </div>
     </>
   )
