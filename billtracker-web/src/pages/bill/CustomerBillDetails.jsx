@@ -60,7 +60,7 @@ const CustomerBillDetails = () => {
           { label: 'Customers', href: '/customers' },
           { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
-          { label: 'Details' },
+          { label: `${bill.billNumber}` },
         ]}
       />
 
