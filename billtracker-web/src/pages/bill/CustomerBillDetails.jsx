@@ -8,6 +8,8 @@ import BtAlert from '../../components/BtAlert.jsx'
 import BtRowCol from '../../components/BtRowCol.jsx'
 import BtIconButton from '../../components/BtIconButton.jsx'
 import { BsBasket, BsPen, BsTrash } from 'react-icons/bs'
+import ItemService from '../../services/ItemService.js'
+import BtListGroup from '../../components/BtListGroup.jsx'
 
 const CustomerBillDetails = () => {
   const navigate = useNavigate()
@@ -15,6 +17,7 @@ const CustomerBillDetails = () => {
   const { customerId, billId } = useParams()
 
   const [bill, setBill] = useState({})
+  const [billItems, setBillItems] = useState([])
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -31,6 +34,22 @@ const CustomerBillDetails = () => {
 
     getBill()
   }, [customerId, billId])
+
+  useEffect(() => {
+    const getBillItems = async () => {
+      const { data, error } = await ItemService.getList(billId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
+      console.log(data)
+      setBillItems(data)
+    }
+
+    getBillItems()
+  }, [billId])
 
   return (
     <>
@@ -85,17 +104,7 @@ const CustomerBillDetails = () => {
         </BtCard.Body>
       </BtCard>
 
-      {/*TODO: add list of items*/}
-
-      <div className="d-flex">
-        <BtIconButton
-          variant="primary"
-          onClick={() => navigate(`items`)}
-          icon={BsBasket}
-          label="Items"
-          className="me-3"
-        />
-
+      <div className="d-flex mb-5">
         <BtIconButton
           variant="secondary"
           onClick={() => navigate(`update?returnUrl=/customers/${customerId}/bills/${bill.id}`)}
@@ -110,6 +119,34 @@ const CustomerBillDetails = () => {
           icon={BsTrash}
           label="Delete"
         />
+      </div>
+
+      <div style={{ width: '1000px' }}>
+        <div className="d-flex justify-content-between mb-3 align-items-center">
+          <h3 className="mb-0">Items</h3>
+
+          <BtIconButton
+            variant="outline-primary"
+            onClick={() => navigate(`items`)}
+            icon={BsBasket}
+            label="See all"
+          />
+        </div>
+
+        <BtListGroup
+          items={billItems}
+          onClick={(itemId) => navigate(`bills/${billId}/items/${itemId}`)}
+          renderListItem={(item) => (
+            <>
+              <div className="fw-bold">
+                {item.productName}
+              </div>
+              <div>
+                <span className="small text-muted">{item.productPrice} x {item.quantity} = </span>
+                <span className="fw-bold">{item.totalPrice}</span>
+              </div>
+            </>
+          )}/>
       </div>
     </>)
 }

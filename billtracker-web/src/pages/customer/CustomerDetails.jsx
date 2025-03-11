@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { BsTrash, BsPen, BsCash } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
-import ListGroup from 'react-bootstrap/ListGroup'
 import BillService from '../../services/BillService.js'
+import BtListGroup from '../../components/BtListGroup.jsx'
 
 const CustomerDetails = () => {
   const navigate = useNavigate()
@@ -132,24 +132,20 @@ const CustomerDetails = () => {
           />
         </div>
 
-        <ListGroup>
-          {customerBills.length ? (
-            customerBills.map((bill) => (
-              <ListGroup.Item key={bill.id} className="d-flex justify-content-between fs-5">
-                <div>
-                  <span className="text-muted">{bill.date}:</span> <span className="fw-bold">{bill.billNumber}</span>
-                </div>
-                <div>
-                  Total: <span className="fw-bold">{bill.total}</span>
-                </div>
-              </ListGroup.Item>
-            ))
-          ) : (
-            <ListGroup.Item className="text-center p-4">
-              No records found
-            </ListGroup.Item>
-          )}
-        </ListGroup>
+        <BtListGroup
+          items={customerBills}
+          onClick={(billId) => navigate(`bills/${billId}`)}
+          renderListItem={(bill) => (
+            <>
+              <div>
+                <span className="small text-muted">{bill.date}:</span> <span
+                className="fw-bold">{bill.billNumber}</span>
+              </div>
+              <div>
+                <span className="small text-muted">Total:</span> <span className="fw-bold">{bill.total}</span>
+              </div>
+            </>
+          )}/>
       </div>
     </>
   )

@@ -27,4 +27,14 @@ internal static class ItemMapper
 			item.Product.ToProductDto(),
 			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
+
+	internal static ItemListDto ToItemListDto(this Item item)
+	{
+		return new(
+			item.Id,
+			item.Product.Name,
+			item.Product.Price,
+			item.Quantity,
+			item.TotalPrice);
+	}
 }

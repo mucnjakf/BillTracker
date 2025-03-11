@@ -29,4 +29,13 @@ internal static class BillMapper
 			bill.Seller?.ToSellerDto(),
 			bill.CreditCard?.ToCreditCardDto());
 	}
+
+	internal static BillListDto ToBillListDto(this Bill bill)
+	{
+		return new(
+			bill.Id,
+			bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
+			bill.BillNumber,
+			bill.Items?.Sum(x => x.TotalPrice) ?? 0);
+	}
 }
