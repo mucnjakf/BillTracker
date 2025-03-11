@@ -7,6 +7,7 @@ import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
+import BtRowCol from '../../components/BtRowCol.jsx'
 
 const CustomerBillDelete = () => {
   const navigate = useNavigate()
@@ -71,24 +72,42 @@ const CustomerBillDelete = () => {
 
           <p>Are you sure you want to permanently delete bill?</p>
 
+          <hr/>
+
           <div>
-            <label className="text-muted small mt-3">Bill number</label>
-            <h5>{bill.billNumber}</h5>
+            <BtRowCol
+              columns={[
+                { size: 'col-3', label: 'ID', value: bill.id },
+                { size: 'col-9', label: 'Date', value: bill.date },
+              ]}
+            />
 
-            <label className="text-muted small mt-3">Date</label>
-            <h5>{bill.date}</h5>
+            <BtRowCol
+              columns={[
+                {
+                  size: 'col-6',
+                  label: 'Bill number',
+                  value: bill.billNumber,
+                },
+                { size: 'col-6', label: 'Total', value: bill.total },
+              ]}
+            />
 
-            <label className="text-muted small mt-3">Total</label>
-            <h5>{bill.total}</h5>
-
-            <label className="text-muted small mt-3">Comment</label>
-            <h5>{bill.comment}</h5>
-
-            <label className="text-muted small mt-3">Seller</label>
-            <h5>{bill.seller === null ? '-' : `${bill.seller?.name} ${bill.seller?.surname}`}</h5>
-
-            <label className="text-muted small mt-3">Customer</label>
-            <h5>{bill.customer?.name} {bill.customer?.surname}</h5>
+            <BtRowCol
+              isLastRow={true}
+              columns={[
+                {
+                  size: 'col-6',
+                  label: 'Customer',
+                  value: `${bill.customer?.name} ${bill.customer?.surname}`,
+                },
+                {
+                  size: 'col-6',
+                  label: 'Seller',
+                  value: bill.seller === null ? '-' : `${bill.seller?.name} ${bill.seller?.surname}`,
+                },
+              ]}
+            />
           </div>
         </BtCard.Body>
 

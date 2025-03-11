@@ -7,6 +7,7 @@ import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
+import BtRowCol from '../../components/BtRowCol.jsx'
 
 const BillItemDelete = () => {
   const navigate = useNavigate()
@@ -25,6 +26,7 @@ const BillItemDelete = () => {
         return
       }
 
+      console.log(data)
       setItem(data)
     }
 
@@ -66,27 +68,47 @@ const BillItemDelete = () => {
 
           <p>Are you sure you want to permanently delete item?</p>
 
+          <hr/>
+
           <div>
-            <label className="text-muted small">Customer name</label>
-            <h5>{item.bill?.customer?.name} {item.bill?.customer?.surname}</h5>
+            <BtRowCol
+              columns={[
+                { size: 'col-3', label: 'ID', value: item.id },
+                { size: 'col-9', label: 'Bill', value: item.bill?.billNumber },
+              ]}
+            />
 
-            <label className="text-muted small mt-3">Bill number</label>
-            <h5>{item.bill?.billNumber}</h5>
+            <BtRowCol
+              columns={[
+                {
+                  size: 'col-6',
+                  label: 'Customer',
+                  value: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+                },
+                { size: 'col-6', label: 'Product', value: item.product?.name },
+              ]}
+            />
 
-            <label className="text-muted small mt-3">Bill date</label>
-            <h5>{item.bill?.date}</h5>
-
-            <label className="text-muted small mt-3">Product name</label>
-            <h5>{item.product?.name}</h5>
-
-            <label className="text-muted small mt-3">Product price</label>
-            <h5>{item.product?.price}</h5>
-
-            <label className="text-muted small mt-3">Quantity</label>
-            <h5>{item.quantity}</h5>
-
-            <label className="text-muted small mt-3">Total price</label>
-            <h5>{item.totalPrice}</h5>
+            <BtRowCol
+              isLastRow={true}
+              columns={[
+                {
+                  size: 'col-4',
+                  label: 'Price',
+                  value: item.product?.price,
+                },
+                {
+                  size: 'col-4',
+                  label: 'Quantity',
+                  value: item.quantity,
+                },
+                {
+                  size: 'col-4',
+                  label: 'Total price',
+                  value: item.totalPrice,
+                },
+              ]}
+            />
           </div>
         </BtCard.Body>
 

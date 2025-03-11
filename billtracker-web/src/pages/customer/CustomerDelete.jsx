@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
+import BtRowCol from '../../components/BtRowCol.jsx'
 
 const CustomerDelete = () => {
   const navigate = useNavigate()
@@ -70,15 +71,23 @@ const CustomerDelete = () => {
 
           <p>Are you sure you want to permanently delete customer?</p>
 
+          <hr/>
+
           <div>
-            <label className="text-muted small">Name</label>
-            <h5>{customer.name}</h5>
+            <BtRowCol
+              columns={[
+                { size: 'col-6', label: 'ID', value: customer.id },
+                { size: 'col-6', label: 'Email', value: customer.email },
+              ]}
+            />
 
-            <label className="mt-3 text-muted small">Surname</label>
-            <h5>{customer.surname}</h5>
-
-            <label className="mt-3 text-muted small">Email</label>
-            <h5>{customer.email}</h5>
+            <BtRowCol
+              isLastRow={true}
+              columns={[
+                { size: 'col-6', label: 'Name', value: customer.name },
+                { size: 'col-6', label: 'Surname', value: customer.surname },
+              ]}
+            />
           </div>
         </BtCard.Body>
 
