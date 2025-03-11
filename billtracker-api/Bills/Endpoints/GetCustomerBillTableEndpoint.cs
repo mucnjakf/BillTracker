@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
-internal sealed record GetBillTableRequest
+internal sealed record GetCustomerBillTableRequest
 {
 	[RouteParam]
 	public int CustomerId { get; init; }
@@ -24,8 +24,8 @@ internal sealed record GetBillTableRequest
 	public string? SortBy { get; init; } = null;
 }
 
-internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetBillTableRequest, Ok<PagedList<BillTableDto>>>
+internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerBillTableRequest, Ok<PagedList<BillTableDto>>>
 {
 	public override void Configure()
 	{
@@ -34,7 +34,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Bills"));
 	}
 
-	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetBillTableRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetCustomerBillTableRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.Bills
 			.AsNoTracking()

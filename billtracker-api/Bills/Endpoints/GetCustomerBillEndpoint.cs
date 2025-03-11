@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
-internal sealed record GetBillRequest
+internal sealed record GetCustomerBillRequest
 {
 	[RouteParam]
 	public int CustomerId { get; init; }
@@ -14,8 +14,8 @@ internal sealed record GetBillRequest
 	public int BillId { get; init; }
 }
 
-internal sealed class GetBillEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetBillRequest, Results<Ok<BillDto>, NotFound>>
+internal sealed class GetCustomerBillEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerBillRequest, Results<Ok<BillDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -24,7 +24,7 @@ internal sealed class GetBillEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Bills"));
 	}
 
-	public override async Task<Results<Ok<BillDto>, NotFound>> ExecuteAsync(GetBillRequest req, CancellationToken ct)
+	public override async Task<Results<Ok<BillDto>, NotFound>> ExecuteAsync(GetCustomerBillRequest req, CancellationToken ct)
 	{
 		var bill = await appDbContext.Bills
 			.AsNoTracking()

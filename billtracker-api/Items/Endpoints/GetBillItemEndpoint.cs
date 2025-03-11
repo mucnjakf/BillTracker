@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Items.Endpoints;
 
-internal sealed record GetItemRequest
+internal sealed record GetBillItemRequest
 {
 	[RouteParam]
 	public int BillId { get; init; }
@@ -14,8 +14,8 @@ internal sealed record GetItemRequest
 	public int ItemId { get; init; }
 }
 
-internal sealed class GetItemEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetItemRequest, Results<Ok<ItemDto>, NotFound>>
+internal sealed class GetBillItemEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetBillItemRequest, Results<Ok<ItemDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -24,7 +24,7 @@ internal sealed class GetItemEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Items"));
 	}
 
-	public override async Task<Results<Ok<ItemDto>, NotFound>> ExecuteAsync(GetItemRequest req, CancellationToken ct)
+	public override async Task<Results<Ok<ItemDto>, NotFound>> ExecuteAsync(GetBillItemRequest req, CancellationToken ct)
 	{
 		var item = await appDbContext.Items
 			.AsNoTracking()
