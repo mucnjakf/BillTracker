@@ -64,7 +64,7 @@ const CustomerBillDetails = () => {
         ]}
       />
 
-      <BtPageTitle text={`${bill.customer?.name} ${bill.customer?.surname} - ${bill.billNumber} bill details`}/>
+      <BtPageTitle text="Customer bill details"/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router'
 import BtPageTitle from '../../components/BtPageTitle.jsx'
 import Form from 'react-bootstrap/Form'
 import { useEffect, useState } from 'react'
-import BillService from '../../services/BillService.js'
 import ItemService from '../../services/ItemService.js'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtCard from '../../components/BtCard.jsx'
@@ -21,7 +20,6 @@ const BillItemCreate = () => {
 
   const { customerId, billId } = useParams()
 
-  const [bill, setBill] = useState({})
   const [categories, setCategories] = useState([])
   const [subCategories, setSubCategories] = useState([])
   const [products, setProducts] = useState([])
@@ -32,21 +30,6 @@ const BillItemCreate = () => {
   const [quantity, setQuantity] = useState(1)
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
-
-  useEffect(() => {
-    const getBill = async () => {
-      const { data, error } = await BillService.get(customerId, billId)
-
-      if (error) {
-        setError(error)
-        return
-      }
-
-      setBill(data)
-    }
-
-    getBill()
-  }, [customerId, billId])
 
   useEffect(() => {
     const getCategories = async () => {
@@ -151,7 +134,7 @@ const BillItemCreate = () => {
         ]}
       />
 
-      <BtPageTitle text={`${bill.customer?.name} ${bill.customer?.surname} - ${bill.billNumber} bill - item create`}/>
+      <BtPageTitle text="Bill item create"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

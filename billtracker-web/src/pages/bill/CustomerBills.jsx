@@ -10,14 +10,11 @@ import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtTable from '../../components/BtTable.jsx'
 import BtPagination from '../../components/BtPagination.jsx'
-import CustomerService from '../../services/CustomerService.js'
 
 const CustomerBills = () => {
   const navigate = useNavigate()
 
   const { customerId } = useParams()
-
-  const [customer, setCustomer] = useState({})
 
   const [pagedBills, setPagedBills] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
@@ -25,21 +22,6 @@ const CustomerBills = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('created-desc')
   const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const getCustomer = async () => {
-      const { data, error } = await CustomerService.get(customerId)
-
-      if (error) {
-        setError(error)
-        return
-      }
-
-      setCustomer(data)
-    }
-
-    getCustomer()
-  }, [customerId])
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -118,7 +100,7 @@ const CustomerBills = () => {
       ]}
     />
 
-    <BtPageTitle text={`${customer.name} ${customer.surname} bills`}/>
+    <BtPageTitle text="Customer bills"/>
 
     <div className="d-flex mb-3">
       <BtSearch

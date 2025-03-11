@@ -8,7 +8,6 @@ import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import CustomerService from '../../services/CustomerService.js'
 import BillService from '../../services/BillService.js'
 import BtFloatingTextArea from '../../components/BtFloatingTextArea.jsx'
 import BtFloatingDateTimePicker from '../../components/BtFloatingDateTimePicker.jsx'
@@ -20,7 +19,6 @@ const CustomerBillCreate = () => {
 
   const { customerId } = useParams()
 
-  const [customer, setCustomer] = useState({})
   const [sellers, setSellers] = useState([])
   const [date, setDate] = useState('')
   const [billNumber, setBillNumber] = useState('')
@@ -28,21 +26,6 @@ const CustomerBillCreate = () => {
   const [comment, setComment] = useState('')
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
-
-  useEffect(() => {
-    const getCustomer = async () => {
-      const { data, error } = await CustomerService.get(customerId)
-
-      if (error) {
-        setError(error)
-        return
-      }
-
-      setCustomer(data)
-    }
-
-    getCustomer()
-  }, [customerId])
 
   useEffect(() => {
     const getSellers = async () => {
@@ -94,7 +77,7 @@ const CustomerBillCreate = () => {
         ]}
       />
 
-      <BtPageTitle text={`${customer.name} ${customer.surname} - bill create`}/>
+      <BtPageTitle text="Customer bill create"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

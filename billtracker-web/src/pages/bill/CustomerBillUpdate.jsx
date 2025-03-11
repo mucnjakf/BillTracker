@@ -18,9 +18,6 @@ const CustomerBillUpdate = () => {
 
   const { customerId, billId } = useParams()
 
-  const [customerName, setCustomerName] = useState('')
-  const [customerSurname, setCustomerSurname] = useState('')
-  const [billNumber, setBillNumber] = useState('')
   const [date, setDate] = useState('')
   const [comment, setComment] = useState('')
   const [error, setError] = useState(null)
@@ -38,9 +35,6 @@ const CustomerBillUpdate = () => {
         return
       }
 
-      setCustomerName(data.customer.name)
-      setCustomerSurname(data.customer.surname)
-      setBillNumber(data.billNumber)
       setDate(DateTimeUtilities.formatDateForInput(data.date))
       setComment(data.comment)
     }
@@ -89,7 +83,7 @@ const CustomerBillUpdate = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text={`${customerName} ${customerSurname} - ${billNumber} bill update`}/>
+      <BtPageTitle text="Customer bill update"/>
 
       <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">

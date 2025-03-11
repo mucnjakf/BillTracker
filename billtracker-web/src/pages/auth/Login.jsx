@@ -45,6 +45,7 @@ const Login = () => {
   return (
     <Form noValidate validated={validated} onSubmit={handleLogin}>
       <BtPageTitle text="Login"/>
+
       <BtCard width="500px">
         <BtCard.Body>
           {error && <BtAlert variant="danger" text={error}/>}

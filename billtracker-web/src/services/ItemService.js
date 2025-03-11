@@ -20,6 +20,24 @@ class ItemService {
     }
   }
 
+  async get (billId, itemId) {
+    try {
+      const response = await this.api.get(`${billId}/items/${itemId}`)
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Item not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async create (billId, quantity, productId) {
     try {
       await this.api.post(`${billId}/items`, {
@@ -36,6 +54,24 @@ class ItemService {
           return { data: null, error: 'You are not authorized.' }
         case 404:
           return { data: null, error: 'Bill or product not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
+  async delete (billId, itemId) {
+    try {
+      await this.api.delete(`${billId}/items/${itemId}`)
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Item not found.' }
         default:
           return { data: null, error: 'Unknown error occurred.' }
       }

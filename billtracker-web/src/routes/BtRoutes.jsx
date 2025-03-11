@@ -19,6 +19,7 @@ import CustomerBillDelete from '../pages/bill/CustomerBillDelete.jsx'
 import CustomerBillUpdate from '../pages/bill/CustomerBillUpdate.jsx'
 import CustomerBillDetails from '../pages/bill/CustomerBillDetails.jsx'
 import BillItemCreate from '../pages/item/BillItemCreate.jsx'
+import BillItemDelete from '../pages/item/BillItemDelete.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -92,6 +93,10 @@ const BtRoutes = () => {
         {
           path: '/customers/:customerId/bills/:billId/items/create',
           element: <BillItemCreate/>,
+        },
+        {
+          path: '/customers/:customerId/bills/:billId/items/:itemId/delete',
+          element: <BillItemDelete/>,
         },
         {
           path: '/account',
