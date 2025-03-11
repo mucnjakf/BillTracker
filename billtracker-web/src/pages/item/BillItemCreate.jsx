@@ -14,6 +14,7 @@ import BtFloatingSelect from '../../components/BtFloatingSelect.jsx'
 import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
+import BtRowCol from '../../components/BtRowCol.jsx'
 
 const BillItemCreate = () => {
   const navigate = useNavigate()
@@ -27,6 +28,7 @@ const BillItemCreate = () => {
   const [categoryId, setCategoryId] = useState(null)
   const [subCategoryId, setSubCategoryId] = useState(null)
   const [productId, setProductId] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState(null)
   const [quantity, setQuantity] = useState(1)
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
@@ -107,6 +109,13 @@ const BillItemCreate = () => {
     getProducts()
   }, [subCategoryId])
 
+  useEffect(() => {
+    if (productId && products.length > 0) {
+      const product = products.find(x => x.id === productId) || null
+      setSelectedProduct(product)
+    }
+  }, [productId, products])
+
   const handleCreate = async (e) => {
     e.preventDefault()
 
@@ -149,6 +158,7 @@ const BillItemCreate = () => {
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtCard.Body>
+
             <BtFloatingSelect
               controlId="selectCategories"
               label="Category"
@@ -176,7 +186,7 @@ const BillItemCreate = () => {
                 controlId="selectProducts"
                 label="Product"
                 value={productId}
-                onChange={setProductId}
+                onChange={(id) => setProductId(Number(id))}
                 items={products}
                 required={true}
                 className="mb-3"
@@ -193,7 +203,33 @@ const BillItemCreate = () => {
                 onChange={setQuantity}
                 required={true}
                 min={1}
+                className="mb-3"
               />
+            )}
+
+            {selectedProduct && (
+              <div className="px-2">
+                <BtRowCol
+                  isLastRow={true}
+                  columns={[
+                    {
+                      size: 'col-4',
+                      label: 'Product number',
+                      value: selectedProduct.productNumber,
+                    },
+                    {
+                      size: 'col-4',
+                      label: 'Price',
+                      value: selectedProduct.price,
+                    },
+                    {
+                      size: 'col-4',
+                      label: 'Total price',
+                      value: selectedProduct.price * quantity,
+                    },
+                  ]}
+                />
+              </div>
             )}
           </BtCard.Body>
 
