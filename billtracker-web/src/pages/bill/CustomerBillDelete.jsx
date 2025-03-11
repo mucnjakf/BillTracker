@@ -85,7 +85,7 @@ const CustomerBillDelete = () => {
             <h5>{bill.comment}</h5>
 
             <label className="text-muted small mt-3">Seller</label>
-            <h5>{bill.seller?.name} {bill.seller?.surname}</h5>
+            <h5>{bill.seller === null ? '-' : `${bill.seller?.name} ${bill.seller?.surname}`}</h5>
 
             <label className="text-muted small mt-3">Customer</label>
             <h5>{bill.customer?.name} {bill.customer?.surname}</h5>
