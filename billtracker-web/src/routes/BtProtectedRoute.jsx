@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 import { useAuth } from '../components/BtAuthProvider'
 
-const ProtectedRotue = () => {
+const ProtectedRoute = () => {
   const { accessToken } = useAuth()
 
   if (!accessToken) {
@@ -11,4 +11,4 @@ const ProtectedRotue = () => {
   return <Outlet/>
 }
 
-export default ProtectedRotue
+export default ProtectedRoute

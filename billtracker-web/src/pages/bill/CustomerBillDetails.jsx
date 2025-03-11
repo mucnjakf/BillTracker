@@ -6,8 +6,8 @@ import BtPageTitle from '../../components/BtPageTitle.jsx'
 import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtRowCol from '../../components/BtRowCol.jsx'
-import BtIconButton from '../../components/BtIconButton.jsx'
-import { BsBasket, BsBoxArrowRight, BsPen, BsPlusCircle, BsTrash } from 'react-icons/bs'
+import BtButton from '../../components/BtButton.jsx'
+import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
 import ItemService from '../../services/ItemService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
@@ -109,15 +109,15 @@ const CustomerBillDetails = () => {
       </BtCard>
 
       <div className="d-flex mb-5">
-        <BtIconButton
+        <BtButton
           variant="secondary"
           onClick={() => navigate(`update?returnUrl=/customers/${customerId}/bills/${bill.id}`)}
-          icon={BsPen}
+          icon={BsPencilSquare}
           label="Update"
           className="me-3"
         />
 
-        <BtIconButton
+        <BtButton
           variant="danger"
           onClick={() => navigate(`delete?returnUrl=/customers/${customerId}/bills/${bill.id}`)}
           icon={BsTrash}
@@ -161,7 +161,7 @@ const CustomerBillDetails = () => {
                   variant="primary"
                   onClick={() => navigate(`items/${bill.id}`)}
                 >
-                  <BsBoxArrowRight/>
+                  <BsCardText/>
                 </Button>
 
                 <Button
@@ -169,7 +169,7 @@ const CustomerBillDetails = () => {
                   variant="secondary"
                   onClick={() => navigate(`items/${item.id}/update`)}
                 >
-                  <BsPen/>
+                  <BsPencilSquare/>
                 </Button>
 
                 <Button

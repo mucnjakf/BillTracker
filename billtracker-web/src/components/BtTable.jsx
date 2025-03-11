@@ -23,7 +23,7 @@ const BtTable = ({ columns, data, actions }) => {
                   className="w-100 pb-2"
                   onClick={action.onClick}
                 >
-                  <BsPlusCircle/>
+                  {action.icon}
                 </Button>
               ))}
           </th>

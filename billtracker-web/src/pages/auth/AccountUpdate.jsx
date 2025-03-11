@@ -2,13 +2,13 @@ import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
 import BtCard from '../../components/BtCard'
 import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtIconButton from '../../components/BtIconButton'
+import BtButton from '../../components/BtButton.jsx'
 import BtPageTitle from '../../components/BtPageTitle'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput'
 import BtAlert from '../../components/BtAlert'
 import { useAuth } from '../../components/BtAuthProvider'
 import { useState, useEffect } from 'react'
-import { BsPen, BsXCircle } from 'react-icons/bs'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
 
 const AccountUpdate = () => {
@@ -128,15 +128,15 @@ const AccountUpdate = () => {
 
           <BtCard.Footer>
             <div className="d-flex w-100">
-              <BtIconButton
+              <BtButton
                 type="submit"
                 variant="primary"
                 className="me-2 w-100"
-                icon={BsPen}
+                icon={BsCheckCircle}
                 label="Confirm"
               />
 
-              <BtIconButton
+              <BtButton
                 variant="secondary"
                 onClick={() => navigate('/account')}
                 className="w-100"

@@ -5,8 +5,8 @@ import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/BtPageTitle.jsx'
 import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
-import BtIconButton from '../../components/BtIconButton.jsx'
-import { BsTrash, BsXCircle } from 'react-icons/bs'
+import BtButton from '../../components/BtButton.jsx'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 
 const CustomerBillDelete = () => {
   const navigate = useNavigate()
@@ -94,15 +94,15 @@ const CustomerBillDelete = () => {
 
         <BtCard.Footer>
           <div className="d-flex w-100">
-            <BtIconButton
+            <BtButton
               variant="danger"
               onClick={handleDelete}
               className="me-2 w-100"
-              icon={BsTrash}
+              icon={BsCheckCircle}
               label="Confirm"
             />
 
-            <BtIconButton
+            <BtButton
               variant="secondary"
               onClick={() => navigate(returnUrl)}
               className="w-100"

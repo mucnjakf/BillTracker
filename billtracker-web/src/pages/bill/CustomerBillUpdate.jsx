@@ -5,8 +5,8 @@ import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtFloatingDateTimePicker from '../../components/BtFloatingDateTimePicker.jsx'
 import BtFloatingTextArea from '../../components/BtFloatingTextArea.jsx'
-import BtIconButton from '../../components/BtIconButton.jsx'
-import { BsCashCoin, BsXCircle } from 'react-icons/bs'
+import BtButton from '../../components/BtButton.jsx'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
@@ -114,15 +114,15 @@ const CustomerBillUpdate = () => {
           </BtCard.Body>
 
           <BtCard.Footer className="d-flex w-100">
-            <BtIconButton
+            <BtButton
               type="submit"
               variant="primary"
               className="me-2 w-100"
-              icon={BsCashCoin}
+              icon={BsCheckCircle}
               label="Confirm"
             />
 
-            <BtIconButton
+            <BtButton
               variant="secondary"
               onClick={() => navigate(returnUrl)}
               className="w-100"

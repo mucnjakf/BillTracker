@@ -1,12 +1,12 @@
 import CustomerService from '../../services/CustomerService'
 import BtBreadcrumb from '../../components/BtBreadcrumb'
 import BtCard from '../../components/BtCard'
-import BtIconButton from '../../components/BtIconButton'
+import BtButton from '../../components/BtButton.jsx'
 import BtRowCol from '../../components/BtRowCol'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
-import { BsTrash, BsPen, BsCash, BsBoxArrowRight } from 'react-icons/bs'
+import { BsTrash, BsPencilSquare, BsCashCoin, BsCardText } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 import BillService from '../../services/BillService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
@@ -102,15 +102,15 @@ const CustomerDetails = () => {
       </BtCard>
 
       <div className="d-flex mb-5">
-        <BtIconButton
+        <BtButton
           variant="secondary"
           onClick={() => navigate(`update?returnUrl=/customers/${customerId}`)}
-          icon={BsPen}
+          icon={BsPencilSquare}
           label="Update"
           className="me-3"
         />
 
-        <BtIconButton
+        <BtButton
           variant="danger"
           onClick={() => navigate(`delete?returnUrl=/customers/${customerId}`)}
           icon={BsTrash}
@@ -122,10 +122,10 @@ const CustomerDetails = () => {
         <div className="d-flex justify-content-between mb-3 align-items-center">
           <h3 className="mb-0">Latest bills</h3>
 
-          <BtIconButton
+          <BtButton
             variant="primary"
             onClick={() => navigate(`bills`)}
-            icon={BsCash}
+            icon={BsCashCoin}
             label="See all"
           />
         </div>
@@ -149,7 +149,7 @@ const CustomerDetails = () => {
                 variant="primary"
                 onClick={() => navigate(`bills/${bill.id}`)}
               >
-                <BsBoxArrowRight/>
+                <BsCardText/>
               </Button>
             </>
           )}/>

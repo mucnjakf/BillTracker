@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button'
 
-const BtIconButton = ({
+const BtButton = ({
   variant,
   onClick,
   icon: Icon,
@@ -21,4 +21,4 @@ const BtIconButton = ({
   )
 }
 
-export default BtIconButton
+export default BtButton

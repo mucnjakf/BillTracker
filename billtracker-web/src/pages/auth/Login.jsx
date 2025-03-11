@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput'
 import BtCard from '../../components/BtCard'
-import BtIconButton from '../../components/BtIconButton'
+import BtButton from '../../components/BtButton.jsx'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useAuth } from '../../components/BtAuthProvider'
 import { useState } from 'react'
@@ -72,7 +72,7 @@ const Login = () => {
         </BtCard.Body>
 
         <BtCard.Footer>
-          <BtIconButton
+          <BtButton
             type="submit"
             variant="primary"
             className="w-100"

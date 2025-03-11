@@ -4,8 +4,8 @@ import Form from 'react-bootstrap/Form'
 import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtIconButton from '../../components/BtIconButton.jsx'
-import { BsCashCoin, BsXCircle } from 'react-icons/bs'
+import BtButton from '../../components/BtButton.jsx'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import CustomerService from '../../services/CustomerService.js'
@@ -140,15 +140,15 @@ const CustomerBillCreate = () => {
           </BtCard.Body>
 
           <BtCard.Footer className="d-flex w-100">
-            <BtIconButton
+            <BtButton
               type="submit"
               variant="primary"
               className="me-2 w-100"
-              icon={BsCashCoin}
+              icon={BsCheckCircle}
               label="Confirm"
             />
 
-            <BtIconButton
+            <BtButton
               variant="secondary"
               onClick={() => navigate(`/customers/${customerId}/bills`)}
               className="w-100"

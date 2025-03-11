@@ -10,7 +10,7 @@ const BtFloatingDateTimePicker = ({ controlId, className, required, value, onCha
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />
-    <Form.Control.Feedback type="invalid">Date is required</Form.Control.Feedback>
+    <Form.Control.Feedback type="invalid">Date and time is required</Form.Control.Feedback>
   </FloatingLabel>)
 }
 

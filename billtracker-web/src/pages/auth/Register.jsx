@@ -2,11 +2,11 @@ import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput'
 import BtCard from '../../components/BtCard'
-import BtIconButton from '../../components/BtIconButton'
+import BtButton from '../../components/BtButton.jsx'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { BsPersonPlus } from 'react-icons/bs'
+import { BsPersonCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
 const Register = () => {
@@ -94,10 +94,10 @@ const Register = () => {
         </BtCard.Body>
 
         <BtCard.Footer>
-          <BtIconButton
+          <BtButton
             type="submit"
             variant="primary"
-            icon={BsPersonPlus}
+            icon={BsPersonCircle}
             label="Register"
             className="w-100"
           />

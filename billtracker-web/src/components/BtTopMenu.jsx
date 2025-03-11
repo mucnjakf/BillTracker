@@ -7,11 +7,10 @@ import { useAuth } from './BtAuthProvider'
 import {
   BsBoxArrowRight,
   BsBoxArrowInLeft,
-  BsPersonPlus,
   BsPersonCircle,
 } from 'react-icons/bs'
 
-const BtTopBar = () => {
+const BtTopMenu = () => {
   const { accessToken, user } = useAuth()
 
   return (
@@ -59,7 +58,7 @@ const BtTopBar = () => {
 
             <Nav.Link href="/register"
                       className={`px-4 rounded ${location.pathname === '/register' ? 'bg-dark text-white' : ''}`}>
-              <BsPersonPlus className="me-2"/>
+              <BsPersonCircle className="me-2"/>
               Register
             </Nav.Link>
           </>
@@ -69,4 +68,4 @@ const BtTopBar = () => {
   )
 }
 
-export default BtTopBar
+export default BtTopMenu

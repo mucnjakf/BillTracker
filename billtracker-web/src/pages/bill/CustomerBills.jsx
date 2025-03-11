@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
-import { BsCardText, BsPen, BsTrash } from 'react-icons/bs'
+import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
 import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/BtPageTitle.jsx'
 import BtSearch from '../../components/BtSearch.jsx'
@@ -85,19 +85,19 @@ const CustomerBills = () => {
     {
       label: 'Create',
       variant: 'success',
-      icon: <BsCardText/>,
+      icon: <BsPlusCircle/>,
       onClick: () => navigate(`create`),
     },
     {
-      label: 'View',
+      label: 'Details',
       variant: 'primary',
       icon: <BsCardText/>,
       onClick: (billId) => navigate(`${billId}`),
     },
     {
-      label: 'Edit',
+      label: 'Update',
       variant: 'secondary',
-      icon: <BsPen/>,
+      icon: <BsPencilSquare/>,
       onClick: (billId) => navigate(`${billId}/update?returnUrl=/customers/${customerId}/bills`),
     },
     {

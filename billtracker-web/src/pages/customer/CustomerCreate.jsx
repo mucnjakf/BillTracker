@@ -3,13 +3,13 @@ import CityService from '../../services/CityService'
 import CustomerService from '../../services/CustomerService'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput'
 import BtCard from '../../components/BtCard'
-import BtIconButton from '../../components/BtIconButton'
+import BtButton from '../../components/BtButton.jsx'
 import BtBreadcrumb from '../../components/BtBreadcrumb'
 import BtPageTitle from '../../components/BtPageTitle'
 import BtFloatingSelect from '../../components/BtFloatingSelect'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { BsPersonAdd, BsXCircle } from 'react-icons/bs'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
 const CustomerCreate = () => {
@@ -135,15 +135,15 @@ const CustomerCreate = () => {
           </BtCard.Body>
 
           <BtCard.Footer className="d-flex w-100">
-            <BtIconButton
+            <BtButton
               type="submit"
               variant="primary"
               className="me-2 w-100"
-              icon={BsPersonAdd}
+              icon={BsCheckCircle}
               label="Confirm"
             />
 
-            <BtIconButton
+            <BtButton
               variant="secondary"
               onClick={() => navigate('/customers')}
               className="w-100"

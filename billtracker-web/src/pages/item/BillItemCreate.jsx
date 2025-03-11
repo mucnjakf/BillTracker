@@ -8,8 +8,8 @@ import ItemService from '../../services/ItemService.js'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtCard from '../../components/BtCard.jsx'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtIconButton from '../../components/BtIconButton.jsx'
-import { BsCart, BsXCircle } from 'react-icons/bs'
+import BtButton from '../../components/BtButton.jsx'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtFloatingSelect from '../../components/BtFloatingSelect.jsx'
 import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
@@ -158,7 +158,6 @@ const BillItemCreate = () => {
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtCard.Body>
-
             <BtFloatingSelect
               controlId="selectCategories"
               label="Category"
@@ -235,16 +234,16 @@ const BillItemCreate = () => {
 
           <BtCard.Footer className="d-flex w-100">
             {productId && (
-              <BtIconButton
+              <BtButton
                 type="submit"
                 variant="primary"
                 className="me-2 w-100"
-                icon={BsCart}
+                icon={BsCheckCircle}
                 label="Confirm"
               />
             )}
 
-            <BtIconButton
+            <BtButton
               variant="secondary"
               onClick={() => navigate(`/customers/${customerId}/bills/${billId}`)}
               className="w-100"

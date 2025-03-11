@@ -1,9 +1,9 @@
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useAuth } from './BtAuthProvider.jsx'
-import { BsCart4, BsCashStack, BsHouse, BsPerson } from 'react-icons/bs'
+import { BsHouse, BsPerson } from 'react-icons/bs'
 
-const BtSideBar = () => {
+const BtSideMenu = () => {
   const { accessToken } = useAuth()
 
   return (
@@ -23,17 +23,7 @@ const BtSideBar = () => {
 
         {accessToken ? (
           <>
-            {/*<Nav.Link href="/bills"*/}
-            {/*          className={`mb-2 px-3 rounded w-100 ${location.pathname === '/bills' ? 'bg-dark text-white' : ''}`}>*/}
-            {/*  <BsCashStack className="me-3"/>*/}
-            {/*  CustomerBills*/}
-            {/*</Nav.Link>*/}
 
-            {/*<Nav.Link href="/items"*/}
-            {/*          className={`px-3 rounded w-100 ${location.pathname === '/items' ? 'bg-dark text-white' : ''}`}>*/}
-            {/*  <BsCart4 className="me-3"/>*/}
-            {/*  Items*/}
-            {/*</Nav.Link>*/}
           </>
         ) : <></>}
       </Nav>
@@ -41,4 +31,4 @@ const BtSideBar = () => {
   )
 }
 
-export default BtSideBar
+export default BtSideMenu

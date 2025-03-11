@@ -8,7 +8,7 @@ import BtCard from '../../components/BtCard'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { BsCardText, BsPen, BsTrash } from 'react-icons/bs'
+import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
 const Customers = () => {
@@ -44,7 +44,7 @@ const Customers = () => {
     {
       label: 'Create',
       variant: 'success',
-      icon: <BsCardText/>,
+      icon: <BsPlusCircle/>,
       onClick: () => navigate(`create`),
     },
     {
@@ -56,7 +56,7 @@ const Customers = () => {
     {
       label: 'Edit',
       variant: 'secondary',
-      icon: <BsPen/>,
+      icon: <BsPencilSquare/>,
       onClick: (customerId) =>
         navigate(`${customerId}/update?returnUrl=/customers`),
     },

@@ -1,13 +1,13 @@
 import AuthService from '../../services/AuthService'
 import BtRowCol from '../../components/BtRowCol'
 import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtIconButton from '../../components/BtIconButton'
+import BtButton from '../../components/BtButton.jsx'
 import BtPageTitle from '../../components/BtPageTitle'
 import BtCard from '../../components/BtCard'
 import { useAuth } from '../../components/BtAuthProvider'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { BsPen } from 'react-icons/bs'
+import { BsPencilSquare } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
 const Account = () => {
@@ -38,7 +38,6 @@ const Account = () => {
       />
 
       <BtPageTitle text="Account"/>
-
 
       <BtCard width="1000px" className="mb-3">
         <BtCard.Body>
@@ -72,11 +71,11 @@ const Account = () => {
         </BtCard.Body>
       </BtCard>
 
-      <BtIconButton
+      <BtButton
         variant="secondary"
         onClick={() => navigate('update')}
-        icon={BsPen}
-        label="Update account"
+        icon={BsPencilSquare}
+        label="Update"
       />
     </>
   )
