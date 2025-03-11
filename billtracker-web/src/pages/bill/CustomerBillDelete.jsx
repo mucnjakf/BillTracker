@@ -55,10 +55,10 @@ const CustomerBillDelete = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          { label: 'Details', href: `/customers/${customerId}` },
+          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
           returnUrl.startsWith(`/customers/${customerId}/bills/`)
-            ? { label: 'Details', href: `/customers/${customerId}/bills/${billId}` }
+            ? { label: `${bill.billNumber}`, href: `/customers/${customerId}/bills/${billId}` }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}

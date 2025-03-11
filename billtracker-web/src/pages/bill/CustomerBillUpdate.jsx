@@ -18,6 +18,8 @@ const CustomerBillUpdate = () => {
 
   const { customerId, billId } = useParams()
 
+  const [customerName, setCustomerName] = useState('')
+  const [billNumber, setBillNumber] = useState('')
   const [date, setDate] = useState('')
   const [comment, setComment] = useState('')
   const [error, setError] = useState(null)
@@ -35,6 +37,8 @@ const CustomerBillUpdate = () => {
         return
       }
 
+      setCustomerName(`${data.customer.name} ${data.customer.surname}`)
+      setBillNumber(data.billNumber)
       setDate(DateTimeUtilities.formatDateForInput(data.date))
       setComment(data.comment)
     }
@@ -74,10 +78,10 @@ const CustomerBillUpdate = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          { label: 'Details', href: `/customers/${customerId}` },
+          { label: `${customerName}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
           returnUrl.startsWith(`/customers/${customerId}/bills/`)
-            ? { label: 'Details', href: `/customers/${customerId}/bills/${billId}` }
+            ? { label: `${billNumber}`, href: `/customers/${customerId}/bills/${billId}` }
             : null,
           { label: 'Update' },
         ].filter(Boolean)}

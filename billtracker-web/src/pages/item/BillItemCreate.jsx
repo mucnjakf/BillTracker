@@ -14,12 +14,14 @@ import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
 import BtRowCol from '../../components/BtRowCol.jsx'
+import BillService from '../../services/BillService.js'
 
 const BillItemCreate = () => {
   const navigate = useNavigate()
 
   const { customerId, billId } = useParams()
 
+  const [bill, setBill] = useState({})
   const [categories, setCategories] = useState([])
   const [subCategories, setSubCategories] = useState([])
   const [products, setProducts] = useState([])
@@ -30,6 +32,20 @@ const BillItemCreate = () => {
   const [quantity, setQuantity] = useState(1)
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
+
+  useEffect(() => {
+    const getBill = async () => {
+      const { data, error } = await BillService.get(customerId, billId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
+      setBill(data)
+    }
+    getBill()
+  }, [customerId, billId])
 
   useEffect(() => {
     const getCategories = async () => {
@@ -127,9 +143,9 @@ const BillItemCreate = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          { label: 'Details', href: `/customers/${customerId}` },
+          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
-          { label: 'Details', href: `/customers/${customerId}/bills/${billId}` },
+          { label: `${bill.billNumber}`, href: `/customers/${customerId}/bills/${billId}` },
           { label: 'Items / Create' },
         ]}
       />

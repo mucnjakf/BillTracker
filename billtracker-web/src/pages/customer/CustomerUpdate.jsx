@@ -102,7 +102,7 @@ const CustomerUpdate = () => {
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
           returnUrl.startsWith('/customers/')
-            ? { label: 'Details', href: `/customers/${customerId}` }
+            ? { label: `${name} ${surname}`, href: `/customers/${customerId}` }
             : null,
           { label: 'Update' },
         ].filter(Boolean)}

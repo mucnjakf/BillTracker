@@ -57,7 +57,7 @@ const CustomerDelete = () => {
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
           returnUrl.startsWith('/customers/')
-            ? { label: 'Details', href: `/customers/${customerId}` }
+            ? { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}` }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}

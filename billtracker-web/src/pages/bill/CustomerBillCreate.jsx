@@ -13,12 +13,14 @@ import BtFloatingTextArea from '../../components/BtFloatingTextArea.jsx'
 import BtFloatingDateTimePicker from '../../components/BtFloatingDateTimePicker.jsx'
 import SellerService from '../../services/SellerService.js'
 import BtFloatingSelect from '../../components/BtFloatingSelect.jsx'
+import CustomerService from '../../services/CustomerService.js'
 
 const CustomerBillCreate = () => {
   const navigate = useNavigate()
 
   const { customerId } = useParams()
 
+  const [customer, setCustomer] = useState({})
   const [sellers, setSellers] = useState([])
   const [date, setDate] = useState('')
   const [billNumber, setBillNumber] = useState('')
@@ -26,6 +28,21 @@ const CustomerBillCreate = () => {
   const [comment, setComment] = useState('')
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
+
+  useEffect(() => {
+    const getCustomer = async () => {
+      const { data, error } = await CustomerService.get(customerId)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
+      setCustomer(data)
+    }
+
+    getCustomer()
+  }, [customerId])
 
   useEffect(() => {
     const getSellers = async () => {
@@ -71,7 +88,7 @@ const CustomerBillCreate = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          { label: 'Details', href: `/customers/${customerId}` },
+          { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
           { label: 'Create' },
         ]}

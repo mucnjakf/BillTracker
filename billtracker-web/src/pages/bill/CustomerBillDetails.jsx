@@ -58,7 +58,7 @@ const CustomerBillDetails = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          { label: 'Details', href: `/customers/${customerId}` },
+          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
           { label: 'Details' },
         ]}

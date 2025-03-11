@@ -26,7 +26,6 @@ const BillItemDelete = () => {
         return
       }
 
-      console.log(data)
       setItem(data)
     }
 
@@ -53,9 +52,9 @@ const BillItemDelete = () => {
         paths={[
           { label: 'Home', href: '/' },
           { label: 'Customers', href: '/customers' },
-          { label: 'Details', href: `/customers/${customerId}` },
+          { label: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`, href: `/customers/${customerId}` },
           { label: 'Bills', href: `/customers/${customerId}/bills` },
-          { label: 'Details', href: `/customers/${customerId}/bills/${billId}` },
+          { label: `${item.bill?.billNumber}`, href: `/customers/${customerId}/bills/${billId}` },
           { label: 'Items / Delete' },
         ].filter(Boolean)}
       />
