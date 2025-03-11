@@ -1,12 +1,11 @@
 import ListGroup from 'react-bootstrap/ListGroup'
 
-const BtListGroup = ({ items, renderListItem, onClick }) => {
+const BtListGroup = ({ items, renderListItem }) => {
   return (
     <ListGroup>
       {items.length ? (
         items.map((item) => (
-          <ListGroup.Item key={item.id} className="d-flex justify-content-between fs-5" action
-                          onClick={() => onClick(item.id)}>
+          <ListGroup.Item key={item.id} className="d-flex justify-content-between fs-5 list-group-item-action">
             {renderListItem(item)}
           </ListGroup.Item>
         ))

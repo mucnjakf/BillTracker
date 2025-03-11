@@ -6,10 +6,11 @@ import BtRowCol from '../../components/BtRowCol'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
-import { BsTrash, BsPen, BsCash } from 'react-icons/bs'
+import { BsTrash, BsPen, BsCash, BsDoorOpen, BsBoxArrowRight } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 import BillService from '../../services/BillService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
+import Button from 'react-bootstrap/Button'
 
 const CustomerDetails = () => {
   const navigate = useNavigate()
@@ -67,24 +68,21 @@ const CustomerDetails = () => {
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtRowCol
-            columns={[{ size: 'col-12', label: 'GUID', value: customer.guid }]}
-          />
-
-          <BtRowCol
             columns={[
-              { size: 'col-4', label: 'ID', value: customer.id },
-              {
-                size: 'col-8',
-                label: 'Created',
-                value: customer.createdUtc,
-              },
+              { size: 'col-2', label: 'ID', value: customer.id },
+              { size: 'col-10', label: 'GUID', value: customer.guid },
             ]}
           />
 
           <BtRowCol
             columns={[
+              {
+                size: 'col-4',
+                label: 'Created',
+                value: customer.createdUtc,
+              },
               { size: 'col-4', label: 'Name', value: customer.name },
-              { size: 'col-8', label: 'Surname', value: customer.surname },
+              { size: 'col-4', label: 'Surname', value: customer.surname },
             ]}
           />
 
@@ -125,7 +123,7 @@ const CustomerDetails = () => {
           <h3 className="mb-0">Latest bills</h3>
 
           <BtIconButton
-            variant="outline-primary"
+            variant="primary"
             onClick={() => navigate(`bills`)}
             icon={BsCash}
             label="See all"
@@ -134,16 +132,25 @@ const CustomerDetails = () => {
 
         <BtListGroup
           items={customerBills}
-          onClick={(billId) => navigate(`bills/${billId}`)}
           renderListItem={(bill) => (
             <>
-              <div>
-                <span className="small text-muted">{bill.date}:</span> <span
-                className="fw-bold">{bill.billNumber}</span>
+              <div className="d-flex justify-content-between w-100 me-4 align-items-center">
+                <div>
+                  <span className="small text-muted">{bill.date}:</span> <span
+                  className="fw-bold">{bill.billNumber}</span>
+                </div>
+                <div>
+                  <span className="small text-muted">Total:</span> <span className="fw-bold">{bill.total}</span>
+                </div>
               </div>
-              <div>
-                <span className="small text-muted">Total:</span> <span className="fw-bold">{bill.total}</span>
-              </div>
+
+              <Button
+                className="pb-2"
+                variant="primary"
+                onClick={() => navigate(`bills/${bill.id}`)}
+              >
+                <BsBoxArrowRight/>
+              </Button>
             </>
           )}/>
       </div>

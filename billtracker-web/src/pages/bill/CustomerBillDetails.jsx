@@ -7,9 +7,11 @@ import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtRowCol from '../../components/BtRowCol.jsx'
 import BtIconButton from '../../components/BtIconButton.jsx'
-import { BsBasket, BsPen, BsTrash } from 'react-icons/bs'
+import { BsBasket, BsBoxArrowRight, BsPen, BsPlusCircle, BsTrash } from 'react-icons/bs'
 import ItemService from '../../services/ItemService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 const CustomerBillDetails = () => {
   const navigate = useNavigate()
@@ -44,7 +46,6 @@ const CustomerBillDetails = () => {
         return
       }
 
-      console.log(data)
       setBillItems(data)
     }
 
@@ -70,7 +71,10 @@ const CustomerBillDetails = () => {
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtRowCol
-            columns={[{ size: 'col-12', label: 'GUID', value: bill.guid }]}
+            columns={[
+              { size: 'col-2', label: 'ID', value: bill.id },
+              { size: 'col-10', label: 'GUID', value: bill.guid },
+            ]}
           />
 
           <BtRowCol
@@ -125,12 +129,15 @@ const CustomerBillDetails = () => {
         <div className="d-flex justify-content-between mb-3 align-items-center">
           <h3 className="mb-0">Items</h3>
 
-          <BtIconButton
-            variant="outline-primary"
-            onClick={() => navigate(`items`)}
-            icon={BsBasket}
-            label="See all"
-          />
+          <Button
+            style={{ width: '125px' }}
+            className="pb-2 me-3"
+            variant="success"
+            onClick={() => navigate(`items/create`)}
+          >
+            <BsPlusCircle/>
+          </Button>
+
         </div>
 
         <BtListGroup
@@ -138,13 +145,41 @@ const CustomerBillDetails = () => {
           onClick={(itemId) => navigate(`bills/${billId}/items/${itemId}`)}
           renderListItem={(item) => (
             <>
-              <div className="fw-bold">
-                {item.productName}
+              <div className="d-flex justify-content-between w-100 me-4 align-items-center">
+                <div className="fw-bold">
+                  {item.productName}
+                </div>
+                <div>
+                  <span className="small text-muted">{item.productPrice} x {item.quantity} = </span>
+                  <span className="fw-bold">{item.totalPrice}</span>
+                </div>
               </div>
-              <div>
-                <span className="small text-muted">{item.productPrice} x {item.quantity} = </span>
-                <span className="fw-bold">{item.totalPrice}</span>
-              </div>
+
+              <ButtonGroup>
+                <Button
+                  className="pb-2"
+                  variant="primary"
+                  onClick={() => navigate(`items/${bill.id}`)}
+                >
+                  <BsBoxArrowRight/>
+                </Button>
+
+                <Button
+                  className="pb-2"
+                  variant="secondary"
+                  onClick={() => navigate(`items/${item.id}/update`)}
+                >
+                  <BsPen/>
+                </Button>
+
+                <Button
+                  className="pb-2"
+                  variant="danger"
+                  onClick={() => navigate(`items/${item.id}/delete`)}
+                >
+                  <BsTrash/>
+                </Button>
+              </ButtonGroup>
             </>
           )}/>
       </div>
