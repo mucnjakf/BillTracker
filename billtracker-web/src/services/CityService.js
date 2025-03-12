@@ -64,6 +64,15 @@ class CityService {
     }
   }
 
+  async getCityCustomersList (cityId) {
+    try {
+      const response = await this.api.get(`${cityId}/customers/list`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async createCity (name) {
     try {
       await this.api.post('', {
