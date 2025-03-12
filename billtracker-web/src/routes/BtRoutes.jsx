@@ -109,6 +109,34 @@ const BtRoutes = () => {
           element: <BillItemDelete/>,
         },
         {
+          path: '/bills',
+          element: <h1>Bills</h1>,
+        },
+        {
+          path: '/items',
+          element: <h1>Items</h1>,
+        },
+        {
+          path: '/cities',
+          element: <h1>Cities</h1>,
+        },
+        {
+          path: '/Sellers',
+          element: <h1>Sellers</h1>,
+        },
+        {
+          path: '/categories',
+          element: <h1>Categories</h1>,
+        },
+        {
+          path: '/sub-categories',
+          element: <h1>Sub-categories</h1>,
+        },
+        {
+          path: '/products',
+          element: <h1>Products</h1>,
+        },
+        {
           path: '/account',
           element: <Account/>,
         },
