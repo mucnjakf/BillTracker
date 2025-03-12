@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Cities\Endpoints\" />
       <Folder Include="Database\Migrations\" />
     </ItemGroup>
 
