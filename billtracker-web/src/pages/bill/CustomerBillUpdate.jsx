@@ -93,9 +93,9 @@ const CustomerBillUpdate = () => {
 
       <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">
-          {error && <BtAlert variant="danger" text={error}/>}
-
           <BtCard.Body>
+            {error && <BtAlert variant="danger" text={error}/>}
+
             <BtFloatingDateTimePicker
               controlId="txtDate"
               className="mb-3"

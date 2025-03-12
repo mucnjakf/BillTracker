@@ -77,9 +77,9 @@ const CustomerCreate = () => {
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">
-          {error && <BtAlert variant="danger" text={error}/>}
-
           <BtCard.Body>
+            {error && <BtAlert variant="danger" text={error}/>}
+
             <BtFloatingTextInput
               controlId="txtName"
               label="Name"

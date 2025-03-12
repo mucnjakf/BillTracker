@@ -25,6 +25,7 @@ import BillItemUpdate from '../pages/item/BillItemUpdate.jsx'
 import Bills from '../pages/bill/Bills.jsx'
 import Items from '../pages/item/Items.jsx'
 import Cities from '../pages/city/Cities.jsx'
+import CityCreate from '../pages/city/CityCreate.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -122,6 +123,10 @@ const BtRoutes = () => {
         {
           path: '/cities',
           element: <Cities/>,
+        },
+        {
+          path: '/cities/create',
+          element: <CityCreate/>,
         },
         {
           path: '/Sellers',

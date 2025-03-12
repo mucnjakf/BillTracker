@@ -45,6 +45,27 @@ class CityService {
       }
     }
   }
+
+  async createCity (name) {
+    try {
+      await this.api.post('', {
+        name: name,
+      })
+
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 400:
+          return { data: null, error: 'City already exists.' }
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
 }
 
 export default new CityService()

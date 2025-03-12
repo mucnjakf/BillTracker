@@ -6,4 +6,13 @@ internal static class CityMapper
 	{
 		return new(city.Id, city.Name);
 	}
+
+	internal static CityTableDto ToCityTableDto(this City city)
+	{
+		return new(
+			city.Id,
+			city.Name,
+			city.Customers?.Count() ?? 0,
+			city.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
+	}
 }
