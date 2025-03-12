@@ -38,15 +38,15 @@ const BtSideMenu = () => {
               <BsCashCoin className="me-3"/>
               Bills
             </Nav.Link>
-            <Nav.Link href="/products"
-                      className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/products') ? 'bg-dark text-white' : ''}`}>
-              <BsBoxSeam className="me-3"/>
-              Products
-            </Nav.Link>
             <Nav.Link href="/items"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/items') ? 'bg-dark text-white' : ''}`}>
               <BsBasket className="me-3"/>
               Items
+            </Nav.Link>
+            <Nav.Link href="/products"
+                      className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/products') ? 'bg-dark text-white' : ''}`}>
+              <BsBoxSeam className="me-3"/>
+              Products
             </Nav.Link>
             <Nav.Link href="/categories"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/categories') ? 'bg-dark text-white' : ''}`}>
