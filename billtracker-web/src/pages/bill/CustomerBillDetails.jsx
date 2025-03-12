@@ -106,7 +106,7 @@ const CustomerBillDetails = () => {
               {
                 size: 'col-3',
                 label: 'Seller',
-                value: bill.seller === null ? '-' : `${bill.seller?.name} ${bill.seller?.surname}`,
+                value: bill.seller === null ? '-' : `${bill.seller?.name}`,
               },
             ]}
           />

@@ -3,7 +3,7 @@ import axios from 'axios'
 class BillService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/customers/',
+      baseURL: 'http://localhost:5140/api/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -11,9 +11,28 @@ class BillService {
     })
   }
 
+  async getBillTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
+    try {
+      let url = `bills/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+
+      if (searchQuery !== '') {
+        url += `&searchQuery=${searchQuery}`
+      }
+
+      if (sortBy !== '') {
+        url += `&sortBy=${sortBy}`
+      }
+
+      const response = await this.api.get(url)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getCustomerBillTable (customerId, pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
-      let url = `${customerId}/bills/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+      let url = `customers/${customerId}/bills/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
 
       if (searchQuery !== '') {
         url += `&searchQuery=${searchQuery}`
@@ -32,7 +51,7 @@ class BillService {
 
   async getCustomerBillsListLatest (customerId) {
     try {
-      const response = await this.api.get(`${customerId}/bills/list/latest`)
+      const response = await this.api.get(`customers/${customerId}/bills/list/latest`)
       return { data: response.data, error: null }
     } catch {
       return { data: null, error: 'Unknown error occurred.' }
@@ -41,7 +60,7 @@ class BillService {
 
   async getCustomerBill (customerId, billId) {
     try {
-      const response = await this.api.get(`${customerId}/bills/${billId}`)
+      const response = await this.api.get(`customers/${customerId}/bills/${billId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
@@ -59,7 +78,7 @@ class BillService {
 
   async createBill (customerId, date, billNumber, comment, sellerId) {
     try {
-      await this.api.post(`${customerId}/bills`, {
+      await this.api.post(`customers/${customerId}/bills`, {
         date: new Date(date),
         billNumber: billNumber,
         comment: comment,
@@ -83,7 +102,7 @@ class BillService {
 
   async updateBill (customerId, billId, date, comment) {
     try {
-      await this.api.put(`${customerId}/bills/${billId}`, {
+      await this.api.put(`customers/${customerId}/bills/${billId}`, {
         date: new Date(date),
         comment: comment,
       })
@@ -105,7 +124,7 @@ class BillService {
 
   async deleteBill (customerId, billId) {
     try {
-      await this.api.delete(`${customerId}/bills/${billId}`)
+      await this.api.delete(`customers/${customerId}/bills/${billId}`)
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {

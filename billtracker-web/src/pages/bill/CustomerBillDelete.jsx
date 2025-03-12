@@ -57,7 +57,11 @@ const CustomerBillDelete = () => {
         paths={[
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
-          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}`, isActive: true },
+          {
+            label: `${bill.customer?.name} ${bill.customer?.surname}`,
+            href: `/customers/${customerId}`,
+            isActive: true,
+          },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
           returnUrl.startsWith(`/customers/${customerId}/bills/`)
             ? { label: `${bill.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true }
@@ -106,7 +110,7 @@ const CustomerBillDelete = () => {
                 {
                   size: 'col-6',
                   label: 'Seller',
-                  value: bill.seller === null ? '-' : `${bill.seller?.name} ${bill.seller?.surname}`,
+                  value: bill.seller === null ? '-' : `${bill.seller?.name}`,
                 },
               ]}
             />

@@ -115,7 +115,7 @@ const BillItemUpdate = () => {
                 columns={[
                   {
                     size: 'col-7',
-                    label: 'Product name',
+                    label: 'Product',
                     value: item.product?.name,
                   },
                   {

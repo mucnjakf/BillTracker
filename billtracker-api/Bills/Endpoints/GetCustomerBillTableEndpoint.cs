@@ -25,7 +25,7 @@ internal sealed record GetCustomerBillTableRequest
 }
 
 internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCustomerBillTableRequest, Ok<PagedList<BillTableDto>>>
+	: Endpoint<GetCustomerBillTableRequest, Ok<PagedList<CustomerBillTableDto>>>
 {
 	public override void Configure()
 	{
@@ -34,7 +34,7 @@ internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Bills"));
 	}
 
-	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetCustomerBillTableRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<CustomerBillTableDto>>> ExecuteAsync(GetCustomerBillTableRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.Bills
 			.AsNoTracking()
@@ -44,9 +44,9 @@ internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext)
 		query = Search(req.SearchQuery, query);
 		query = Sort(req.SortBy, query);
 
-		var bills = query.Select(x => x.ToBillTableDto());
+		var bills = query.Select(x => x.ToCustomerBillTableDto());
 
-		var billsTable = await PagedList<BillTableDto>.ToPagedListAsync(bills, req.PageNumber, req.PageSize);
+		var billsTable = await PagedList<CustomerBillTableDto>.ToPagedListAsync(bills, req.PageNumber, req.PageSize);
 
 		return TypedResults.Ok(billsTable);
 	}
