@@ -23,6 +23,7 @@ import BillItemDelete from '../pages/item/BillItemDelete.jsx'
 import BillItemDetails from '../pages/item/BillItemDetails.jsx'
 import BillItemUpdate from '../pages/item/BillItemUpdate.jsx'
 import Bills from '../pages/bill/Bills.jsx'
+import Items from '../pages/item/Items.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -115,7 +116,7 @@ const BtRoutes = () => {
         },
         {
           path: '/items',
-          element: <h1>Items</h1>,
+          element: <Items />,
         },
         {
           path: '/cities',

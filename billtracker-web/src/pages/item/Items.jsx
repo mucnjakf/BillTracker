@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import BillService from '../../services/BillService.js'
 import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/BtPageTitle.jsx'
 import BtSearch from '../../components/BtSearch.jsx'
@@ -8,38 +7,41 @@ import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtTable from '../../components/BtTable.jsx'
 import BtPagination from '../../components/BtPagination.jsx'
+import ItemService from '../../services/ItemService.js'
 
-const Bills = () => {
-  const [pagedBills, setPagedBills] = useState({ items: [] })
+const Items = () => {
+  const [pagedItems, setPagedItems] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortBy, setSortBy] = useState('date-desc')
+  const [sortBy, setSortBy] = useState('created-desc')
 
   const [error, setError] = useState(null)
 
   const sortOptions = [
-    { value: 'date-desc', label: 'Date DESC' },
-    { value: 'date-asc', label: 'Date ASC' },
-    { value: 'billNumber-asc', label: 'Bill number ASC' },
-    { value: 'billNumber-desc', label: 'Bill number DESC' },
-    { value: 'itemsCount-asc', label: 'Items ASC' },
-    { value: 'itemsCount-desc', label: 'Items DESC' },
+    { value: 'created-desc', label: 'Created DESC' },
+    { value: 'created-asc', label: 'Created ASC' },
+    { value: 'quantity-asc', label: 'Quantity ASC' },
+    { value: 'quantity-desc', label: 'Quantity DESC' },
+    { value: 'totalPrice-asc', label: 'Total price ASC' },
+    { value: 'totalPrice-desc', label: 'Total price DESC' },
   ]
 
   const tableColumns = [
     { key: 'id', label: 'ID' },
-    { key: 'date', label: 'Date' },
+    { key: 'productName', label: 'Product' },
+    { key: 'productPrice', label: 'Product price' },
+    { key: 'quantity', label: 'Quantity' },
+    { key: 'totalPrice', label: 'Total price' },
     { key: 'billNumber', label: 'Bill number' },
     { key: 'customerName', label: 'Customer' },
-    { key: 'sellerName', label: 'Seller' },
-    { key: 'itemsCount', label: 'Items' },
+    { key: 'createdUtc', label: 'Created' },
   ]
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      const getBills = async () => {
-        const { data, error } = await BillService.getBillTable(
+      const getItems = async () => {
+        const { data, error } = await ItemService.getItemTable(
           currentPage,
           pageSize,
           searchQuery,
@@ -51,10 +53,10 @@ const Bills = () => {
           return
         }
 
-        setPagedBills(data)
+        setPagedItems(data)
       }
 
-      getBills()
+      getItems()
     }, 500)
 
     return () => clearTimeout(debounce)
@@ -65,17 +67,17 @@ const Bills = () => {
       <BtBreadcrumb
         paths={[
           { label: 'Home', href: '/', isActive: true },
-          { label: 'Bills' }]}
+          { label: 'Items' }]}
       />
 
-      <BtPageTitle text="Bills"/>
+      <BtPageTitle text="Items"/>
 
       <div className="d-flex mb-3">
         <BtSearch
           searchQuery={searchQuery}
           onChange={setSearchQuery}
           setCurrentPage={setCurrentPage}
-          placeholder="Search by bill number or customer"
+          placeholder="Search by product or bill number"
         />
 
         <BtSort
@@ -92,18 +94,18 @@ const Bills = () => {
 
           <BtTable
             columns={tableColumns}
-            data={pagedBills.items}
+            data={pagedItems.items}
             actions={[]}
           />
         </BtCard.Body>
       </BtCard>
 
-      {pagedBills.items.length > 0 && (
+      {pagedItems.items.length > 0 && (
         <BtPagination
           currentPage={currentPage}
-          totalPages={pagedBills.totalPages}
-          totalItems={pagedBills.items.length}
-          totalCount={pagedBills.totalCount}
+          totalPages={pagedItems.totalPages}
+          totalItems={pagedItems.items.length}
+          totalCount={pagedItems.totalCount}
           pageSize={pageSize}
           setPageSize={setPageSize}
           setCurrentPage={setCurrentPage}
@@ -113,4 +115,4 @@ const Bills = () => {
   )
 }
 
-export default Bills
+export default Items

@@ -3,7 +3,7 @@ import axios from 'axios'
 class CategoryService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/categories',
+      baseURL: 'http://localhost:5140/api/categories/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

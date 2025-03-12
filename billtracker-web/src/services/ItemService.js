@@ -3,7 +3,7 @@ import axios from 'axios'
 class ItemService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/bills',
+      baseURL: 'http://localhost:5140/api/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -11,9 +11,28 @@ class ItemService {
     })
   }
 
+  async getItemTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
+    try {
+      let url = `items/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+
+      if (searchQuery !== '') {
+        url += `&searchQuery=${searchQuery}`
+      }
+
+      if (sortBy !== '') {
+        url += `&sortBy=${sortBy}`
+      }
+
+      const response = await this.api.get(url)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getBillItemList (billId) {
     try {
-      const response = await this.api.get(`${billId}/items/list`)
+      const response = await this.api.get(`bills/${billId}/items/list`)
       return { data: response.data, error: null }
     } catch {
       return { data: null, error: 'Unknown error occurred.' }
@@ -22,7 +41,7 @@ class ItemService {
 
   async getBillItem (billId, itemId) {
     try {
-      const response = await this.api.get(`${billId}/items/${itemId}`)
+      const response = await this.api.get(`bills/${billId}/items/${itemId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
@@ -40,7 +59,7 @@ class ItemService {
 
   async createItem (billId, quantity, productId) {
     try {
-      await this.api.post(`${billId}/items`, {
+      await this.api.post(`bills/${billId}/items`, {
         quantity: quantity,
         productId: productId,
       })
@@ -62,7 +81,7 @@ class ItemService {
 
   async updateItem (billId, itemId, quantity) {
     try {
-      await this.api.put(`${billId}/items/${itemId}`, {
+      await this.api.put(`bills/${billId}/items/${itemId}`, {
         quantity: quantity,
       })
 
@@ -83,7 +102,7 @@ class ItemService {
 
   async deleteItem (billId, itemId) {
     try {
-      await this.api.delete(`${billId}/items/${itemId}`)
+      await this.api.delete(`bills/${billId}/items/${itemId}`)
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {
