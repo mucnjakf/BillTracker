@@ -14,17 +14,18 @@ import BtAlert from '../../components/BtAlert.jsx'
 
 const CustomerUpdate = () => {
   const navigate = useNavigate()
+
   const location = useLocation()
 
   const { customerId } = useParams()
 
   const [cities, setCities] = useState([])
-
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [telephone, setTelephone] = useState('')
   const [cityId, setCityId] = useState('')
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

@@ -5,8 +5,6 @@ import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/BtPageTitle.jsx'
 import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
-import BtFloatingDateTimePicker from '../../components/BtFloatingDateTimePicker.jsx'
-import BtFloatingTextArea from '../../components/BtFloatingTextArea.jsx'
 import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import Form from 'react-bootstrap/Form'
@@ -15,12 +13,14 @@ import BtRowCol from '../../components/BtRowCol.jsx'
 
 const BillItemUpdate = () => {
   const navigate = useNavigate()
+
   const location = useLocation()
 
   const { customerId, billId, itemId } = useParams()
 
   const [item, setItem] = useState({})
   const [quantity, setQuantity] = useState(0)
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

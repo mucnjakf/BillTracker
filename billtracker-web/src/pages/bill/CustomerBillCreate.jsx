@@ -26,6 +26,7 @@ const CustomerBillCreate = () => {
   const [billNumber, setBillNumber] = useState('')
   const [sellerId, setSellerId] = useState(null)
   const [comment, setComment] = useState('')
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

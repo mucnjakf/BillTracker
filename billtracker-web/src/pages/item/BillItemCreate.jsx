@@ -30,6 +30,7 @@ const BillItemCreate = () => {
   const [productId, setProductId] = useState(null)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [quantity, setQuantity] = useState(1)
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

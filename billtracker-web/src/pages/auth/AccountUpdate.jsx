@@ -1,3 +1,7 @@
+import { useAuth } from '../../components/BtAuthProvider'
+import { useState, useEffect } from 'react'
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
+import { useNavigate } from 'react-router'
 import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
 import BtCard from '../../components/BtCard'
@@ -6,19 +10,17 @@ import BtButton from '../../components/BtButton.jsx'
 import BtPageTitle from '../../components/BtPageTitle'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput'
 import BtAlert from '../../components/BtAlert'
-import { useAuth } from '../../components/BtAuthProvider'
-import { useState, useEffect } from 'react'
-import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import { useNavigate } from 'react-router'
 
 const AccountUpdate = () => {
-  const { user } = useAuth()
   const navigate = useNavigate()
+
+  const { user } = useAuth()
 
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

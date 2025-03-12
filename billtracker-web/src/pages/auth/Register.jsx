@@ -16,6 +16,7 @@ const Register = () => {
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

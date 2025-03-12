@@ -19,6 +19,7 @@ const CustomerDetails = () => {
 
   const [customer, setCustomer] = useState({})
   const [customerBills, setCustomerBills] = useState([])
+
   const [error, setError] = useState(null)
 
   useEffect(() => {

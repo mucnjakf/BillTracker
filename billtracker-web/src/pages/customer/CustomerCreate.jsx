@@ -16,12 +16,12 @@ const CustomerCreate = () => {
   const navigate = useNavigate()
 
   const [cities, setCities] = useState([])
-
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [telephone, setTelephone] = useState('')
   const [cityId, setCityId] = useState(null)
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

@@ -11,11 +11,13 @@ import { BsBoxArrowInLeft } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 
 const Login = () => {
-  const { setAccessToken } = useAuth()
   const navigate = useNavigate()
+
+  const { setAccessToken } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

@@ -11,11 +11,13 @@ import BtRowCol from '../../components/BtRowCol.jsx'
 
 const CustomerBillDelete = () => {
   const navigate = useNavigate()
+
   const location = useLocation()
 
   const { customerId, billId } = useParams()
 
   const [bill, setBill] = useState({})
+
   const [error, setError] = useState(null)
 
   const returnUrl =

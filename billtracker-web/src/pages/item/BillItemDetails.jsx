@@ -15,6 +15,7 @@ const BillItemDetails = () => {
   const { customerId, billId, itemId } = useParams()
 
   const [item, setItem] = useState({})
+
   const [error, setError] = useState(null)
 
   useEffect(() => {

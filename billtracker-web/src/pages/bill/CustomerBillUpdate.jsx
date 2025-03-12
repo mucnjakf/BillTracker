@@ -14,6 +14,7 @@ import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const CustomerBillUpdate = () => {
   const navigate = useNavigate()
+
   const location = useLocation()
 
   const { customerId, billId } = useParams()
@@ -22,6 +23,7 @@ const CustomerBillUpdate = () => {
   const [billNumber, setBillNumber] = useState('')
   const [date, setDate] = useState('')
   const [comment, setComment] = useState('')
+
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 

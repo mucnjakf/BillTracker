@@ -19,6 +19,7 @@ const Customers = () => {
   const [pageSize, setPageSize] = useState(10)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('created-desc')
+
   const [error, setError] = useState(null)
 
   const sortOptions = [
