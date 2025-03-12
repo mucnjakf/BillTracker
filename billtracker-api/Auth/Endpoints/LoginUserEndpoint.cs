@@ -13,7 +13,7 @@ internal sealed class LoginUserEndpoint(
 	AppDbContext appDbContext,
 	IPasswordHasher passwordHasher,
 	IConfiguration configuration)
-	: Endpoint<LoginUserRequest, Results<Ok<AuthDto>, NotFound, UnauthorizedHttpResult>>
+	: Endpoint<LoginUserRequest, Results<Ok<AuthDto>, UnauthorizedHttpResult>>
 {
 	public override void Configure()
 	{
@@ -22,7 +22,7 @@ internal sealed class LoginUserEndpoint(
 		Description(x => x.WithTags("Auth"));
 	}
 
-	public override async Task<Results<Ok<AuthDto>, NotFound, UnauthorizedHttpResult>> ExecuteAsync(
+	public override async Task<Results<Ok<AuthDto>, UnauthorizedHttpResult>> ExecuteAsync(
 		LoginUserRequest req,
 		CancellationToken ct)
 	{
@@ -30,7 +30,7 @@ internal sealed class LoginUserEndpoint(
 
 		if (user is null)
 		{
-			return TypedResults.NotFound();
+			return TypedResults.Unauthorized();
 		}
 
 		var verified = passwordHasher.Verify(req.Password, user.Password);

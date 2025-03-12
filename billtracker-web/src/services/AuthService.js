@@ -21,7 +21,7 @@ class AuthService {
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
-        case 404:
+        case 401:
           return { data: null, error: 'Invalid credentials.' }
         default:
           return { data: null, error: 'Unknown error occurred.' }
