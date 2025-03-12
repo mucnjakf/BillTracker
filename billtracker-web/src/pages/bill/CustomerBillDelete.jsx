@@ -23,7 +23,7 @@ const CustomerBillDelete = () => {
 
   useEffect(() => {
     const getBill = async () => {
-      const { data, error } = await BillService.get(customerId, billId)
+      const { data, error } = await BillService.getCustomerBill(customerId, billId)
 
       if (error) {
         setError(error)
@@ -39,7 +39,7 @@ const CustomerBillDelete = () => {
     e.preventDefault()
     setError(null)
 
-    const { error } = await BillService.delete(customerId, billId)
+    const { error } = await BillService.deleteBill(customerId, billId)
 
     if (error) {
       setError(error)

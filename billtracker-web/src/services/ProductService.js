@@ -11,7 +11,7 @@ class ProductService {
     })
   }
 
-  async getAll (subCategoryId) {
+  async getSubCategoryProducts (subCategoryId) {
     try {
       const response = await this.api.get(`${subCategoryId}/products`)
       return { data: response.data, error: null }

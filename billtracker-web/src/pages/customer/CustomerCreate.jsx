@@ -27,7 +27,7 @@ const CustomerCreate = () => {
 
   useEffect(() => {
     const getCities = async () => {
-      const { data, error } = await CityService.getAll()
+      const { data, error } = await CityService.getCities()
 
       if (error) {
         setError(error)
@@ -53,7 +53,7 @@ const CustomerCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await CustomerService.create(name, surname, email, telephone, cityId === 0 ? null : cityId)
+    const { error } = await CustomerService.createCustomer(name, surname, email, telephone, cityId === 0 ? null : cityId)
 
     if (error) {
       setError(error)

@@ -7,14 +7,8 @@ internal static class SellerMapper
 		return new(
 			seller.Id,
 			seller.Guid,
-			seller.Name,
-			seller.Surname,
+			$"{seller.Name} {seller.Surname}",
 			seller.PermanentEmployee,
 			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
-	}
-
-	internal static SellerListDto ToSellerListDto(this Seller seller)
-	{
-		return new(seller.Id, $"{seller.Name} {seller.Surname}");
 	}
 }

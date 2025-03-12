@@ -5,17 +5,6 @@ namespace billtracker_api.Items;
 
 internal static class ItemMapper
 {
-	internal static ItemTableDto ToItemTableDto(this Item item)
-	{
-		return new(
-			item.Id,
-			item.Product.Name,
-			item.Product.Price,
-			item.Quantity,
-			item.TotalPrice,
-			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
-	}
-
 	internal static ItemDto ToItemDto(this Item item)
 	{
 		return new(

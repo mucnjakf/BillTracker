@@ -4,6 +4,5 @@ internal sealed record SellerDto(
 	int Id,
 	Guid Guid,
 	string Name,
-	string Surname,
 	bool PermanentEmployee, 
 	string CreatedUtc);

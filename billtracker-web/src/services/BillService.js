@@ -11,7 +11,7 @@ class BillService {
     })
   }
 
-  async getTable (customerId, pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
+  async getCustomerBillTable (customerId, pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
       let url = `${customerId}/bills/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
 
@@ -30,7 +30,7 @@ class BillService {
     }
   }
 
-  async getListLatest (customerId) {
+  async getCustomerBillsListLatest (customerId) {
     try {
       const response = await this.api.get(`${customerId}/bills/list/latest`)
       return { data: response.data, error: null }
@@ -39,7 +39,7 @@ class BillService {
     }
   }
 
-  async get (customerId, billId) {
+  async getCustomerBill (customerId, billId) {
     try {
       const response = await this.api.get(`${customerId}/bills/${billId}`)
       return { data: response.data, error: null }
@@ -57,7 +57,7 @@ class BillService {
     }
   }
 
-  async create (customerId, date, billNumber, comment, sellerId) {
+  async createBill (customerId, date, billNumber, comment, sellerId) {
     try {
       await this.api.post(`${customerId}/bills`, {
         date: new Date(date),
@@ -81,7 +81,7 @@ class BillService {
     }
   }
 
-  async update (customerId, billId, date, comment) {
+  async updateBill (customerId, billId, date, comment) {
     try {
       await this.api.put(`${customerId}/bills/${billId}`, {
         date: new Date(date),
@@ -103,7 +103,7 @@ class BillService {
     }
   }
 
-  async delete (customerId, billId) {
+  async deleteBill (customerId, billId) {
     try {
       await this.api.delete(`${customerId}/bills/${billId}`)
       return { data: null, error: null }

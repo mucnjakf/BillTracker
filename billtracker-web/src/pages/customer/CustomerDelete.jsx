@@ -23,7 +23,7 @@ const CustomerDelete = () => {
 
   useEffect(() => {
     const getCustomer = async () => {
-      const { data, error } = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.getCustomer(customerId)
 
       if (error) {
         setError(error)
@@ -40,7 +40,7 @@ const CustomerDelete = () => {
     e.preventDefault()
     setError(null)
 
-    const { error } = await CustomerService.delete(customerId)
+    const { error } = await CustomerService.deleteCustomer(customerId)
 
     if (error) {
       setError(error)

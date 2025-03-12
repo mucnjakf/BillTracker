@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Items.Endpoints;
 
-internal sealed record GetBillItemsListRequest
+internal sealed record GetBillItemListRequest
 {
 	[RouteParam]
 	public int BillId { get; init; }
 }
 
-internal sealed class GetBillItemsListEndpoint(AppDbContext appDbContext)
+internal sealed class GetBillItemListEndpoint(AppDbContext appDbContext)
 	: Endpoint<GetBillItemRequest, Ok<IEnumerable<ItemListDto>>>
 {
 	public override void Configure()

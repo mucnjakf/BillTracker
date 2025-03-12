@@ -19,7 +19,7 @@ const BillItemDetails = () => {
 
   useEffect(() => {
     const getItem = async () => {
-      const { data, error } = await ItemService.get(billId, itemId)
+      const { data, error } = await ItemService.getBillItem(billId, itemId)
 
       if (error) {
         setError(error)

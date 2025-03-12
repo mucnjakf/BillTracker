@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
-internal sealed record GetCustomerBillsListLatestRequest
+internal sealed record GetCustomerBillListLatestRequest
 {
 	[RouteParam]
 	public int CustomerId { get; init; }
 }
 
-internal sealed class GetCustomerBillsListLatestEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCustomerBillsListLatestRequest, Ok<IEnumerable<BillListDto>>>
+internal sealed class GetCustomerBillListLatestEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerBillListLatestRequest, Ok<IEnumerable<BillListDto>>>
 {
 	public override void Configure()
 	{
@@ -21,7 +21,7 @@ internal sealed class GetCustomerBillsListLatestEndpoint(AppDbContext appDbConte
 		Description(x => x.WithTags("Bills"));
 	}
 
-	public override async Task<Ok<IEnumerable<BillListDto>>> ExecuteAsync(GetCustomerBillsListLatestRequest req, CancellationToken ct)
+	public override async Task<Ok<IEnumerable<BillListDto>>> ExecuteAsync(GetCustomerBillListLatestRequest req, CancellationToken ct)
 	{
 		var query = await appDbContext.Bills
 			.AsNoTracking()

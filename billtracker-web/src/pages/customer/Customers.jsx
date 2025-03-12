@@ -72,7 +72,7 @@ const Customers = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       const getCustomers = async () => {
-        const { data, error } = await CustomerService.getTable(
+        const { data, error } = await CustomerService.getCustomerTable(
           currentPage,
           pageSize,
           searchQuery,

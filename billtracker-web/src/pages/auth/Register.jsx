@@ -31,7 +31,7 @@ const Register = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await AuthService.register(name, surname, email, password)
+    const { error } = await AuthService.registerUser(name, surname, email, password)
 
     if (error) {
       setError(error)

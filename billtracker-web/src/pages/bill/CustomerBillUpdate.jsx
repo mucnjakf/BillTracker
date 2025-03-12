@@ -30,7 +30,7 @@ const CustomerBillUpdate = () => {
 
   useEffect(() => {
     const getBill = async () => {
-      const { data, error } = await BillService.get(customerId, billId)
+      const { data, error } = await BillService.getCustomerBill(customerId, billId)
 
       if (error) {
         setError(error)
@@ -57,7 +57,7 @@ const CustomerBillUpdate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await BillService.update(
+    const { error } = await BillService.updateBill(
       customerId,
       billId,
       date,

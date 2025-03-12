@@ -24,7 +24,7 @@ const CustomerBillDetails = () => {
 
   useEffect(() => {
     const getBill = async () => {
-      const { data, error } = await BillService.get(customerId, billId)
+      const { data, error } = await BillService.getCustomerBill(customerId, billId)
 
       if (error) {
         setError(error)
@@ -39,7 +39,7 @@ const CustomerBillDetails = () => {
 
   useEffect(() => {
     const getBillItems = async () => {
-      const { data, error } = await ItemService.getList(billId)
+      const { data, error } = await ItemService.getBillItemList(billId)
 
       if (error) {
         setError(error)

@@ -35,7 +35,7 @@ const BillItemCreate = () => {
 
   useEffect(() => {
     const getBill = async () => {
-      const { data, error } = await BillService.get(customerId, billId)
+      const { data, error } = await BillService.getCustomerBill(customerId, billId)
 
       if (error) {
         setError(error)
@@ -49,7 +49,7 @@ const BillItemCreate = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const { data, error } = await CategoryService.getAll()
+      const { data, error } = await CategoryService.getCategories()
 
       if (error) {
         setError(error)
@@ -70,7 +70,7 @@ const BillItemCreate = () => {
     if (!categoryId) return
 
     const getSubCategories = async () => {
-      const { data, error } = await SubCategoryService.getAll(categoryId)
+      const { data, error } = await SubCategoryService.getCategorySubCategories(categoryId)
 
       if (error) {
         setError(error)
@@ -91,7 +91,7 @@ const BillItemCreate = () => {
     if (!subCategoryId) return
 
     const getProducts = async () => {
-      const { data, error } = await ProductService.getAll(subCategoryId)
+      const { data, error } = await ProductService.getSubCategoryProducts(subCategoryId)
 
       if (error) {
         setError(error)
@@ -127,7 +127,7 @@ const BillItemCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await ItemService.create(billId, quantity, productId)
+    const { error } = await ItemService.createItem(billId, quantity, productId)
 
     if (error) {
       setError(error)

@@ -27,7 +27,7 @@ const CustomerBills = () => {
 
   useEffect(() => {
     const getCustomer = async () => {
-      const { data, error } = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.getCustomer(customerId)
 
       if (error) {
         setError(error)
@@ -43,7 +43,7 @@ const CustomerBills = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       const getBills = async () => {
-        const { data, error } = await BillService.getTable(
+        const { data, error } = await BillService.getCustomerBillTable(
           customerId,
           currentPage,
           pageSize,

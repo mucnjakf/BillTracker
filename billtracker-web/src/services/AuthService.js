@@ -11,7 +11,7 @@ class AuthService {
     })
   }
 
-  async login (email, password) {
+  async loginUser (email, password) {
     try {
       const response = await this.api.post('login', {
         email: email,
@@ -29,7 +29,7 @@ class AuthService {
     }
   }
 
-  async register (name, surname, email, password) {
+  async registerUser (name, surname, email, password) {
     try {
       await this.api.post('register', {
         name: name,

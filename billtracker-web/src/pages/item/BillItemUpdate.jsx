@@ -29,7 +29,7 @@ const BillItemUpdate = () => {
 
   useEffect(() => {
     const getItem = async () => {
-      const { data, error } = await ItemService.get(billId, itemId)
+      const { data, error } = await ItemService.getBillItem(billId, itemId)
 
       if (error) {
         setError(error)
@@ -55,7 +55,7 @@ const BillItemUpdate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await ItemService.update(billId, itemId, quantity)
+    const { error } = await ItemService.updateItem(billId, itemId, quantity)
 
     if (error) {
       setError(error)

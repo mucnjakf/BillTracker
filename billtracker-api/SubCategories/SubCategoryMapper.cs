@@ -4,7 +4,7 @@ namespace billtracker_api.SubCategories;
 
 internal static class SubCategoryMapper
 {
-	internal static SubCategoryListDto ToSubCategoryListDto(this SubCategory subCategory)
+	internal static SubCategoryDto ToSubCategoryDto(this SubCategory subCategory)
 	{
 		return new(
 			subCategory.Id,

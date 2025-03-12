@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Sellers.Endpoints;
 
-internal sealed class GetSellersEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<SellerListDto>>>
+internal sealed class GetSellersEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<SellerDto>>>
 {
 	public override void Configure()
 	{
@@ -14,13 +14,13 @@ internal sealed class GetSellersEndpoint(AppDbContext appDbContext) : EndpointWi
 		Description(x => x.WithTags("Sellers"));
 	}
 
-	public override async Task<Ok<IEnumerable<SellerListDto>>> ExecuteAsync(CancellationToken ct)
+	public override async Task<Ok<IEnumerable<SellerDto>>> ExecuteAsync(CancellationToken ct)
 	{
 		var sellers = await appDbContext.Sellers
 			.AsNoTracking()
 			.ToListAsync(ct);
 
-		var sellersDto = sellers.Select(x => x.ToSellerListDto());
+		var sellersDto = sellers.Select(x => x.ToSellerDto());
 
 		return TypedResults.Ok(sellersDto);
 	}

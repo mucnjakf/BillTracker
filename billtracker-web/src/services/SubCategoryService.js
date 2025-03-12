@@ -11,7 +11,7 @@ class SubCategoryService {
     })
   }
 
-  async getAll (categoryId) {
+  async getCategorySubCategories (categoryId) {
     try {
       const response = await this.api.get(`${categoryId}/subcategories`)
       return { data: response.data, error: null }

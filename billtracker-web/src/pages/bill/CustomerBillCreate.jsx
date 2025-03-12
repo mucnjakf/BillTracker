@@ -31,7 +31,7 @@ const CustomerBillCreate = () => {
 
   useEffect(() => {
     const getCustomer = async () => {
-      const { data, error } = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.getCustomer(customerId)
 
       if (error) {
         setError(error)
@@ -46,7 +46,7 @@ const CustomerBillCreate = () => {
 
   useEffect(() => {
     const getSellers = async () => {
-      const { data, error } = await SellerService.getAll()
+      const { data, error } = await SellerService.getSellers()
 
       if (error) {
         setError(error)
@@ -72,7 +72,7 @@ const CustomerBillCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await BillService.create(customerId, date, billNumber, comment, sellerId === 0 ? null : sellerId)
+    const { error } = await BillService.createBill(customerId, date, billNumber, comment, sellerId === 0 ? null : sellerId)
 
     if (error) {
       setError(error)

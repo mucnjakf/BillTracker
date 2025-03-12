@@ -12,7 +12,7 @@ internal sealed record GetSubCategoryProductsRequest
 }
 
 internal sealed class GetSubCategoryProductsEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetSubCategoryProductsRequest, Ok<IEnumerable<ProductListDto>>>
+	: Endpoint<GetSubCategoryProductsRequest, Ok<IEnumerable<ProductDto>>>
 {
 	public override void Configure()
 	{
@@ -21,14 +21,16 @@ internal sealed class GetSubCategoryProductsEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Products"));
 	}
 
-	public override async Task<Ok<IEnumerable<ProductListDto>>> ExecuteAsync(GetSubCategoryProductsRequest req, CancellationToken ct)
+	public override async Task<Ok<IEnumerable<ProductDto>>> ExecuteAsync(GetSubCategoryProductsRequest req, CancellationToken ct)
 	{
 		var products = await appDbContext.Products
 			.AsNoTracking()
+			.Include(x => x.SubCategory)
+			.ThenInclude(x => x.Category)
 			.Where(x => x.SubCategoryId == req.SubCategoryId)
 			.ToListAsync(ct);
 
-		var productsDto = products.Select(x => x.ToProductListDto());
+		var productsDto = products.Select(x => x.ToProductDto());
 
 		return TypedResults.Ok(productsDto);
 	}

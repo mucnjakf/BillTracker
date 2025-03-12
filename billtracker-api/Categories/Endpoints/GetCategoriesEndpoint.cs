@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Categories.Endpoints;
 
-internal sealed class GetCategoriesEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CategoryListDto>>>
+internal sealed class GetCategoriesEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CategoryDto>>>
 {
 	public override void Configure()
 	{
@@ -14,13 +14,13 @@ internal sealed class GetCategoriesEndpoint(AppDbContext appDbContext) : Endpoin
 		Description(x => x.WithTags("Categories"));
 	}
 
-	public override async Task<Ok<IEnumerable<CategoryListDto>>> ExecuteAsync(CancellationToken ct)
+	public override async Task<Ok<IEnumerable<CategoryDto>>> ExecuteAsync(CancellationToken ct)
 	{
 		var categories = await appDbContext.Categories
 			.AsNoTracking()
 			.ToListAsync(ct);
 
-		var categoriesDto = categories.Select(x => x.ToCategoryListDto());
+		var categoriesDto = categories.Select(x => x.ToCategoryDto());
 
 		return TypedResults.Ok(categoriesDto);
 	}

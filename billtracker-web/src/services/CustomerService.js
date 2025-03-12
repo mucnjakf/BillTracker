@@ -11,7 +11,7 @@ class CustomerService {
     })
   }
 
-  async getTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
+  async getCustomerTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
       let url = `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
 
@@ -30,7 +30,7 @@ class CustomerService {
     }
   }
 
-  async get (customerId) {
+  async getCustomer (customerId) {
     try {
       const response = await this.api.get(customerId)
       return { data: response.data, error: null }
@@ -48,7 +48,7 @@ class CustomerService {
     }
   }
 
-  async create (name, surname, email, telephone, cityId) {
+  async createCustomer (name, surname, email, telephone, cityId) {
     try {
       await this.api.post('', {
         name: name,
@@ -71,7 +71,7 @@ class CustomerService {
     }
   }
 
-  async update (customerId, name, surname, email, telephone, cityId) {
+  async updateCustomer (customerId, name, surname, email, telephone, cityId) {
     try {
       await this.api.put(customerId, {
         name: name,
@@ -96,7 +96,7 @@ class CustomerService {
     }
   }
 
-  async delete (customerId) {
+  async deleteCustomer (customerId) {
     try {
       await this.api.delete(customerId)
       return { data: null, error: null }

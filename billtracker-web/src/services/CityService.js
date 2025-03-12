@@ -11,7 +11,7 @@ class CityService {
     })
   }
 
-  async getAll () {
+  async getCities () {
     try {
       const response = await this.api.get()
       return { data: response.data, error: null }

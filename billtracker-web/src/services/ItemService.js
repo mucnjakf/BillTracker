@@ -11,7 +11,7 @@ class ItemService {
     })
   }
 
-  async getList (billId) {
+  async getBillItemList (billId) {
     try {
       const response = await this.api.get(`${billId}/items/list`)
       return { data: response.data, error: null }
@@ -20,7 +20,7 @@ class ItemService {
     }
   }
 
-  async get (billId, itemId) {
+  async getBillItem (billId, itemId) {
     try {
       const response = await this.api.get(`${billId}/items/${itemId}`)
       return { data: response.data, error: null }
@@ -38,7 +38,7 @@ class ItemService {
     }
   }
 
-  async create (billId, quantity, productId) {
+  async createItem (billId, quantity, productId) {
     try {
       await this.api.post(`${billId}/items`, {
         quantity: quantity,
@@ -60,7 +60,7 @@ class ItemService {
     }
   }
 
-  async update (billId, itemId, quantity) {
+  async updateItem (billId, itemId, quantity) {
     try {
       await this.api.put(`${billId}/items/${itemId}`, {
         quantity: quantity,
@@ -81,7 +81,7 @@ class ItemService {
     }
   }
 
-  async delete (billId, itemId) {
+  async deleteItem (billId, itemId) {
     try {
       await this.api.delete(`${billId}/items/${itemId}`)
       return { data: null, error: null }

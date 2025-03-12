@@ -31,7 +31,7 @@ const Login = () => {
     setValidated(true)
     setError(null)
 
-    const { data, error } = await AuthService.login(email, password)
+    const { data, error } = await AuthService.loginUser(email, password)
 
     if (error) {
       setError(error)

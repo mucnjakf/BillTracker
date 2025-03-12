@@ -33,7 +33,7 @@ const CustomerUpdate = () => {
 
   useEffect(() => {
     const getCustomer = async () => {
-      const { data, error } = await CustomerService.get(customerId)
+      const { data, error } = await CustomerService.getCustomer(customerId)
 
       if (error) {
         setError(error)
@@ -52,7 +52,7 @@ const CustomerUpdate = () => {
 
   useEffect(() => {
     const getCities = async () => {
-      const { data, error } = await CityService.getAll()
+      const { data, error } = await CityService.getCities()
 
       if (error) {
         setError(error)
@@ -78,7 +78,7 @@ const CustomerUpdate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await CustomerService.update(
+    const { error } = await CustomerService.updateCustomer(
       customerId,
       name,
       surname,
