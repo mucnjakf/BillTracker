@@ -21,6 +21,7 @@ import CustomerBillDetails from '../pages/bill/CustomerBillDetails.jsx'
 import BillItemCreate from '../pages/item/BillItemCreate.jsx'
 import BillItemDelete from '../pages/item/BillItemDelete.jsx'
 import BillItemDetails from '../pages/item/BillItemDetails.jsx'
+import BillItemUpdate from '../pages/item/BillItemUpdate.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -101,7 +102,7 @@ const BtRoutes = () => {
         },
         {
           path: '/customers/:customerId/bills/:billId/items/:itemId/update',
-          element: <h1>Bill item update</h1>,
+          element: <BillItemUpdate/>,
         },
         {
           path: '/customers/:customerId/bills/:billId/items/:itemId/delete',

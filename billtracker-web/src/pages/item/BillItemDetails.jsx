@@ -102,7 +102,7 @@ const BillItemDetails = () => {
       <div className="d-flex mb-5">
         <BtButton
           variant="secondary"
-          onClick={() => navigate(`update`)}
+          onClick={() => navigate(`update?returnUrl=/customers/${customerId}/bills/${billId}/items/${itemId}`)}
           icon={BsPencilSquare}
           label="Update"
           className="me-3"
