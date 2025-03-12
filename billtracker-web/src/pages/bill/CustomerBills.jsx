@@ -110,9 +110,9 @@ const CustomerBills = () => {
   return (<>
     <BtBreadcrumb
       paths={[
-        { label: 'Home', href: '/' },
-        { label: 'Customers', href: '/customers' },
-        { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}` },
+        { label: 'Home', href: '/', isActive: true },
+        { label: 'Customers', href: '/customers', isActive: true },
+        { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}`, isActive: true },
         { label: 'Bills' },
       ]}
     />

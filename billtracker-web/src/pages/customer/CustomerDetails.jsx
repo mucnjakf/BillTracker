@@ -55,8 +55,8 @@ const CustomerDetails = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
           { label: `${customer.name} ${customer.surname}` },
         ]}
       />

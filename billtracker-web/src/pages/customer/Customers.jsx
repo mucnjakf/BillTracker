@@ -97,7 +97,7 @@ const Customers = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
+          { label: 'Home', href: '/', isActive: true },
           { label: 'Customers' }]}
       />
 

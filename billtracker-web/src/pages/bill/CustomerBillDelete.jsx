@@ -53,12 +53,12 @@ const CustomerBillDelete = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
-          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}` },
-          { label: 'Bills', href: `/customers/${customerId}/bills` },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
+          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}`, isActive: true },
+          { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
           returnUrl.startsWith(`/customers/${customerId}/bills/`)
-            ? { label: `${bill.billNumber}`, href: `/customers/${customerId}/bills/${billId}` }
+            ? { label: `${bill.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}

@@ -17,6 +17,9 @@ const BillItemDelete = () => {
   const [item, setItem] = useState({})
   const [error, setError] = useState(null)
 
+  const returnUrl =
+    new URLSearchParams(location.search).get('returnUrl') || `/customers/${customerId}/bills/${billId}`
+
   useEffect(() => {
     const getItem = async () => {
       const { data, error } = await ItemService.get(billId, itemId)
@@ -50,12 +53,25 @@ const BillItemDelete = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
-          { label: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`, href: `/customers/${customerId}` },
-          { label: 'Bills', href: `/customers/${customerId}/bills` },
-          { label: `${item.bill?.billNumber}`, href: `/customers/${customerId}/bills/${billId}` },
-          { label: 'Items / Delete' },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
+          {
+            label: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+            href: `/customers/${customerId}`,
+            isActive: true,
+          },
+          { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
+          { label: `${item.bill?.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
+          { label: 'Items' },
+          returnUrl.startsWith(`/customers/${customerId}/bills/${billId}/items/`)
+            ?
+            {
+              label: `${item.product?.name}`,
+              href: `/customers/${customerId}/bills/${billId}/items/${itemId}`,
+              isActive: true,
+            }
+            : (''),
+          { label: 'Delete' },
         ].filter(Boolean)}
       />
 
@@ -123,7 +139,7 @@ const BillItemDelete = () => {
 
             <BtButton
               variant="secondary"
-              onClick={() => navigate(`/customers/${customerId}/bills/${billId}`)}
+              onClick={() => navigate(returnUrl)}
               className="w-100"
               icon={BsXCircle}
               label="Cancel"

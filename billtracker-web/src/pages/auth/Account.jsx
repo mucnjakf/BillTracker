@@ -34,7 +34,7 @@ const Account = () => {
   return (
     <>
       <BtBreadcrumb
-        paths={[{ label: 'Home', href: '/' }, { label: 'Account' }]}
+        paths={[{ label: 'Home', href: '/', isActive: true }, { label: 'Account' }]}
       />
 
       <BtPageTitle text="Account"/>

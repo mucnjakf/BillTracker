@@ -54,10 +54,10 @@ const CustomerDelete = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
           returnUrl.startsWith('/customers/')
-            ? { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}` }
+            ? { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}`, isActive: true }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}

@@ -86,10 +86,10 @@ const CustomerBillCreate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
-          { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}` },
-          { label: 'Bills', href: `/customers/${customerId}/bills` },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
+          { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}`, isActive: true },
+          { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
           { label: 'Create' },
         ]}
       />

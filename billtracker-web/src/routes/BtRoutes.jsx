@@ -1,3 +1,5 @@
+import { useAuth } from '../components/BtAuthProvider'
+import { RouterProvider, createBrowserRouter } from 'react-router'
 import BtProtectedRoute from './BtProtectedRoute'
 import Home from '../pages/app/Home'
 import Account from '../pages/auth/Account'
@@ -13,13 +15,12 @@ import Customers from '../pages/customer/Customers'
 import CustomerUpdate from '../pages/customer/CustomerUpdate'
 import CustomerBillCreate from '../pages/bill/CustomerBillCreate.jsx'
 import BtNotFound from '../components/BtNotFound'
-import { useAuth } from '../components/BtAuthProvider'
-import { RouterProvider, createBrowserRouter } from 'react-router'
 import CustomerBillDelete from '../pages/bill/CustomerBillDelete.jsx'
 import CustomerBillUpdate from '../pages/bill/CustomerBillUpdate.jsx'
 import CustomerBillDetails from '../pages/bill/CustomerBillDetails.jsx'
 import BillItemCreate from '../pages/item/BillItemCreate.jsx'
 import BillItemDelete from '../pages/item/BillItemDelete.jsx'
+import BillItemDetails from '../pages/item/BillItemDetails.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -93,6 +94,14 @@ const BtRoutes = () => {
         {
           path: '/customers/:customerId/bills/:billId/items/create',
           element: <BillItemCreate/>,
+        },
+        {
+          path: '/customers/:customerId/bills/:billId/items/:itemId',
+          element: <BillItemDetails/>,
+        },
+        {
+          path: '/customers/:customerId/bills/:billId/items/:itemId/update',
+          element: <h1>Bill item update</h1>,
         },
         {
           path: '/customers/:customerId/bills/:billId/items/:itemId/delete',

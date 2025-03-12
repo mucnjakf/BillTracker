@@ -56,10 +56,14 @@ const CustomerBillDetails = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
-          { label: `${bill.customer?.name} ${bill.customer?.surname}`, href: `/customers/${customerId}` },
-          { label: 'Bills', href: `/customers/${customerId}/bills` },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
+          {
+            label: `${bill.customer?.name} ${bill.customer?.surname}`,
+            href: `/customers/${customerId}`,
+            isActive: true,
+          },
+          { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
           { label: `${bill.billNumber}` },
         ]}
       />
@@ -159,7 +163,7 @@ const CustomerBillDetails = () => {
                 <Button
                   className="pb-2"
                   variant="primary"
-                  onClick={() => navigate(`items/${bill.id}`)}
+                  onClick={() => navigate(`items/${item.id}`)}
                 >
                   <BsCardText/>
                 </Button>

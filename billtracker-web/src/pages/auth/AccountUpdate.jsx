@@ -65,8 +65,8 @@ const AccountUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Account', href: '/account' },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Account', href: '/account', isActive: true },
           { label: 'Update' },
         ]}
       />

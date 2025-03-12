@@ -99,10 +99,10 @@ const CustomerUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Customers', href: '/customers' },
+          { label: 'Home', href: '/', isActive: true },
+          { label: 'Customers', href: '/customers', isActive: true },
           returnUrl.startsWith('/customers/')
-            ? { label: `${name} ${surname}`, href: `/customers/${customerId}` }
+            ? { label: `${name} ${surname}`, href: `/customers/${customerId}`, isActive: true }
             : null,
           { label: 'Update' },
         ].filter(Boolean)}
