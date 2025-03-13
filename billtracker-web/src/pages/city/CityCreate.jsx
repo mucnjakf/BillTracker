@@ -60,7 +60,6 @@ const CityCreate = () => {
             <BtFloatingTextInput
               controlId="txtName"
               label="Name"
-              className="mb-3"
               type="text"
               placeholder="Name"
               value={name}

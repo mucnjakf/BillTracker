@@ -8,6 +8,8 @@ internal static class SellerMapper
 			seller.Id,
 			seller.Guid,
 			$"{seller.Name} {seller.Surname}",
+			seller.Name,
+			seller.Surname,
 			seller.PermanentEmployee,
 			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
