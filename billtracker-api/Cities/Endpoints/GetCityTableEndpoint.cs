@@ -26,7 +26,7 @@ internal sealed class GetCityTableEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		AllowAnonymous();
+		Roles("User");
 		Get("/api/cities/table");
 		Description(x => x.WithTags("Cities"));
 	}

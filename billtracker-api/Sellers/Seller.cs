@@ -8,11 +8,11 @@ internal sealed class Seller
 
 	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; init; } = null!;
+	public string Name { get; set; } = null!;
 
-	public string Surname { get; init; } = null!;
+	public string Surname { get; set; } = null!;
 
-	public bool PermanentEmployee { get; init; }
+	public bool PermanentEmployee { get; set; }
 
 	public IEnumerable<Bill>? Bills { get; init; }
 	
