@@ -6,5 +6,5 @@ internal sealed record SellerDto(
 	string Name,
 	string FirstName,
 	string LastName,
-	bool PermanentEmployee, 
+	string PermanentEmployee, 
 	string CreatedUtc);

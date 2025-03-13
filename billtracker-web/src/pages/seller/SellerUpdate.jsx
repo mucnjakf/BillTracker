@@ -1,5 +1,4 @@
 import Form from 'react-bootstrap/Form'
-import CityService from '../../services/CityService'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput'
 import BtCard from '../../components/BtCard'
 import BtButton from '../../components/BtButton.jsx'

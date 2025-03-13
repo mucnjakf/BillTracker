@@ -10,7 +10,7 @@ internal static class SellerMapper
 			$"{seller.Name} {seller.Surname}",
 			seller.Name,
 			seller.Surname,
-			seller.PermanentEmployee,
+			seller.PermanentEmployee ? "Yes" : "No",
 			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 

@@ -32,6 +32,7 @@ import CityDetails from '../pages/city/CityDetails.jsx'
 import Sellers from '../pages/seller/Sellers.jsx'
 import SellerCreate from '../pages/seller/SellerCreate.jsx'
 import SellerUpdate from '../pages/seller/SellerUpdate.jsx'
+import SellerDelete from '../pages/seller/SellerDelete.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -164,7 +165,7 @@ const BtRoutes = () => {
         },
         {
           path: '/sellers/:sellerId/delete',
-          element: <h1>Seller delete</h1>,
+          element: <SellerDelete/>,
         },
         {
           path: '/categories',
