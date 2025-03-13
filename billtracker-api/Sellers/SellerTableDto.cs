@@ -4,6 +4,6 @@ internal sealed record SellerTableDto(
 	int Id,
 	string Name,
 	string Surname,
-	bool PermanentEmployee,
+	string PermanentEmployee,
 	int BillsCount,
 	string CreatedUtc);

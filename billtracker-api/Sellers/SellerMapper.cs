@@ -18,7 +18,7 @@ internal static class SellerMapper
 			seller.Id,
 			seller.Name,
 			seller.Surname,
-			seller.PermanentEmployee,
+			seller.PermanentEmployee ? "Yes" : "No",
 			seller.Bills?.Count() ?? 0,
 			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}

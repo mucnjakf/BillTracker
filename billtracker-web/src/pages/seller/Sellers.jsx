@@ -37,6 +37,7 @@ const Sellers = () => {
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
     { key: 'surname', label: 'Surname' },
+    { key: 'permanentEmployee', label: 'Permanent employee' },
     { key: 'billsCount', label: 'Bills' },
     { key: 'createdUtc', label: 'Created' },
   ]
