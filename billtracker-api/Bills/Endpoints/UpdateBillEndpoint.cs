@@ -9,7 +9,7 @@ namespace billtracker_api.Bills.Endpoints;
 internal sealed record UpdateBillRequest
 {
 	[QueryParam]
-	public int CustomerId { get; init; }
+	public int? CustomerId { get; init; }
 
 	[RouteParam]
 	public int BillId { get; init; }
@@ -32,9 +32,14 @@ internal sealed class UpdateBillEndpoint(AppDbContext appDbContext)
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateBillRequest req, CancellationToken ct)
 	{
 		var bill = await appDbContext.Bills
-			.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
+			.SingleOrDefaultAsync(x => x.Id == req.BillId, ct);
 
 		if (bill is null)
+		{
+			return TypedResults.NotFound();
+		}
+
+		if (req.CustomerId is not null && bill.CustomerId != req.CustomerId)
 		{
 			return TypedResults.NotFound();
 		}

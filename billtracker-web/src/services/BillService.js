@@ -49,7 +49,7 @@ class BillService {
     }
   }
 
-  async getBillList (sellerId, pageNumber = 1, pageSize = 10) {
+  async getSellerBillList (sellerId, pageNumber = 1, pageSize = 10) {
     try {
       const response = await this.api.get(`list?sellerId=${sellerId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
       return { data: response.data, error: null }

@@ -2,6 +2,7 @@ using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
@@ -58,7 +59,13 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 		await appDbContext.Bills.AddAsync(bill, ct);
 		await appDbContext.SaveChangesAsync(ct);
 
-		var billDto = bill.ToBillDto();
+		bill = await appDbContext.Bills
+			.AsNoTracking()
+			.Include(x => x.Customer)
+			.Include(x => x.Seller)
+			.SingleOrDefaultAsync(x => x.Id == bill.Id, ct);
+
+		var billDto = bill!.ToBillDto();
 
 		return TypedResults.Created($"{HttpContext.Request.Host}/api/customers/{customer.Id}/bills/{bill.Id}", billDto);
 	}

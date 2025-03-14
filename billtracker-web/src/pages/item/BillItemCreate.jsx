@@ -145,7 +145,7 @@ const BillItemCreate = () => {
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
-            label: `${bill.customer?.name} ${bill.customer?.surname}`,
+            label: bill.customerName,
             href: `/customers/${customerId}`,
             isActive: true,
           },

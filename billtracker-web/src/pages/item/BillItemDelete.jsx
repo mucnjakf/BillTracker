@@ -57,17 +57,17 @@ const BillItemDelete = () => {
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
-            label: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+            label: item.customerName,
             href: `/customers/${customerId}`,
             isActive: true,
           },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
-          { label: `${item.bill?.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
+          { label: item.billNumber, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
           { label: 'Items' },
           returnUrl.startsWith(`/customers/${customerId}/bills/${billId}/items/`)
             ?
             {
-              label: `${item.product?.name}`,
+              label: item.productName,
               href: `/customers/${customerId}/bills/${billId}/items/${itemId}`,
               isActive: true,
             }
@@ -90,7 +90,7 @@ const BillItemDelete = () => {
             <BtRowCol
               columns={[
                 { size: 'col-3', label: 'ID', value: item.id },
-                { size: 'col-9', label: 'Bill', value: item.bill?.billNumber },
+                { size: 'col-9', label: 'Bill', value: item.billNumber },
               ]}
             />
 
@@ -99,9 +99,9 @@ const BillItemDelete = () => {
                 {
                   size: 'col-6',
                   label: 'Customer',
-                  value: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+                  value: item.customerName,
                 },
-                { size: 'col-6', label: 'Product', value: item.product?.name },
+                { size: 'col-6', label: 'Product', value: item.productName },
               ]}
             />
 
@@ -111,7 +111,7 @@ const BillItemDelete = () => {
                 {
                   size: 'col-4',
                   label: 'Price',
-                  value: item.product?.price,
+                  value: item.productPrice,
                 },
                 {
                   size: 'col-4',

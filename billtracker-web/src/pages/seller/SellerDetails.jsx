@@ -43,7 +43,7 @@ const SellerDetails = () => {
 
   useEffect(() => {
     const getSellerBills = async () => {
-      const { data, error } = await BillService.getBillList(sellerId, currentPage, pageSize)
+      const { data, error } = await BillService.getSellerBillList(sellerId, currentPage, pageSize)
 
       if (error) {
         setError(error)

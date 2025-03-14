@@ -39,7 +39,7 @@ const CustomerBillUpdate = () => {
         return
       }
 
-      setCustomerName(`${data.customer.name} ${data.customer.surname}`)
+      setCustomerName(`${data.customerName}`)
       setBillNumber(data.billNumber)
       setDate(DateTimeUtilities.formatDateForInput(data.date))
       setComment(data.comment)

@@ -63,7 +63,7 @@ const CustomerBillDetails = () => {
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
-            label: `${bill.customer?.name} ${bill.customer?.surname}`,
+            label: `${bill.customerName}`,
             href: `/customers/${customerId}`,
             isActive: true,
           },
@@ -104,12 +104,12 @@ const CustomerBillDetails = () => {
               {
                 size: 'col-3',
                 label: 'Customer',
-                value: `${bill.customer?.name} ${bill.customer?.surname}`,
+                value: bill.customerName,
               },
               {
                 size: 'col-3',
                 label: 'Seller',
-                value: bill.seller === null ? '-' : `${bill.seller?.name}`,
+                value: bill.sellerName === null ? '-' : `${bill.sellerName}`,
               },
             ]}
           />

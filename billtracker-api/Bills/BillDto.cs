@@ -11,7 +11,7 @@ internal sealed record BillDto(
 	string BillNumber,
 	string Comment,
 	decimal Total,
-	// TODO: u simple types
-	CustomerDto Customer,
-	SellerDto? Seller,
-	CreditCardDto? CreditCard);
+	int CustomerId,
+	string CustomerName,
+	int? SellerId,
+	string? SellerName);

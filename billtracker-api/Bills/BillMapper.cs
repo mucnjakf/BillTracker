@@ -15,9 +15,10 @@ internal static class BillMapper
 			bill.BillNumber,
 			bill.Comment,
 			bill.Items?.Sum(x => x.TotalPrice) ?? 0,
-			bill.Customer.ToCustomerDto(),
-			bill.Seller?.ToSellerDto(),
-			bill.CreditCard?.ToCreditCardDto());
+			bill.Customer.Id,
+			$"{bill.Customer.Name} {bill.Customer.Surname}",
+			bill.Seller?.Id,
+			$"{bill.Seller?.Name} {bill.Seller?.Surname}");
 	}
 
 	internal static BillListDto ToBillListDto(this Bill bill)

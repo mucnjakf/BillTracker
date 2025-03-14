@@ -12,8 +12,17 @@ internal static class ItemMapper
 			item.Guid,
 			item.Quantity,
 			item.TotalPrice,
-			item.Bill.ToBillDto(),
-			item.Product.ToProductDto(),
+			item.Bill.Id,
+			item.Bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
+			item.Bill.BillNumber,
+			item.Product.Id,
+			item.Product.Name,
+			item.Product.ProductNumber,
+			item.Product.SubCategory.Name,
+			item.Product.SubCategory.Category.Name,
+			item.Product.Price,
+			$"{item.Bill.Customer.Name} {item.Bill.Customer.Surname}",
+			$"{item.Bill.Seller?.Name} {item.Bill.Seller?.Surname}",
 			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 
