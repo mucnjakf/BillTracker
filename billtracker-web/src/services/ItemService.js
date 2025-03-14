@@ -41,7 +41,7 @@ class ItemService {
 
   async getBillItem (billId, itemId) {
     try {
-      const response = await this.api.get(`bills/${billId}/items/${itemId}`)
+      const response = await this.api.get(`${itemId}?billId=${billId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {

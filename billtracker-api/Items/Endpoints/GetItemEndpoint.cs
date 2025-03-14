@@ -6,26 +6,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Items.Endpoints;
 
-internal sealed record GetBillItemRequest
+internal sealed record GetItemRequest
 {
-	[RouteParam]
-	public int BillId { get; init; }
+	[QueryParam]
+	public int? BillId { get; init; }
 
 	[RouteParam]
 	public int ItemId { get; init; }
 }
 
-internal sealed class GetBillItemEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetBillItemRequest, Results<Ok<ItemDto>, NotFound>>
+internal sealed class GetItemEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetItemRequest, Results<Ok<ItemDto>, NotFound>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Bills}/{{billId}}/items/{{itemId}}");
+		Get($"{AppRoutes.Items}/{{itemId}}");
 		Description(x => x.WithTags(AppRouteTags.Items));
 	}
 
-	public override async Task<Results<Ok<ItemDto>, NotFound>> ExecuteAsync(GetBillItemRequest req, CancellationToken ct)
+	public override async Task<Results<Ok<ItemDto>, NotFound>> ExecuteAsync(GetItemRequest req, CancellationToken ct)
 	{
 		var item = await appDbContext.Items
 			.AsNoTracking()
@@ -38,9 +38,14 @@ internal sealed class GetBillItemEndpoint(AppDbContext appDbContext)
 			.Include(x => x.Product)
 			.ThenInclude(x => x.SubCategory)
 			.ThenInclude(x => x.Category)
-			.SingleOrDefaultAsync(x => x.BillId == req.BillId && x.Id == req.ItemId, ct);
+			.SingleOrDefaultAsync(x => x.Id == req.ItemId, ct);
 
 		if (item is null)
+		{
+			return TypedResults.NotFound();
+		}
+
+		if (req.BillId is not null && item.BillId != req.BillId)
 		{
 			return TypedResults.NotFound();
 		}
