@@ -103,7 +103,7 @@ class ItemService {
 
   async deleteItem (billId, itemId) {
     try {
-      await this.api.delete(`bills/${billId}/items/${itemId}`)
+      await this.api.delete(itemId)
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {

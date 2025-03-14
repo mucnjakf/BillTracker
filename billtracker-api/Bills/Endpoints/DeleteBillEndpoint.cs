@@ -12,7 +12,7 @@ internal sealed record DeleteBillRequest
 	public int BillId { get; init; }
 
 	[QueryParam]
-	public int CustomerId { get; init; }
+	public int? CustomerId { get; init; }
 }
 
 internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
@@ -29,9 +29,14 @@ internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
 	{
 		var bill = await appDbContext.Bills
 			.Include(x => x.Items)
-			.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
+			.SingleOrDefaultAsync(x => x.Id == req.BillId, ct);
 
 		if (bill is null)
+		{
+			return TypedResults.NotFound();
+		}
+
+		if (req.CustomerId is not null && bill.CustomerId != req.CustomerId)
 		{
 			return TypedResults.NotFound();
 		}
