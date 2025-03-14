@@ -29,15 +29,17 @@ const Customers = () => {
     { value: 'name-desc', label: 'Name DESC' },
     { value: 'surname-asc', label: 'Surname ASC' },
     { value: 'surname-desc', label: 'Surname DESC' },
+    { value: 'billsCount-asc', label: 'Bills ASC' },
+    { value: 'billsCount-desc', label: 'Bills DESC' },
   ]
 
   const tableColumns = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
     { key: 'surname', label: 'Surname' },
-    { key: 'email', label: 'Email' },
     { key: 'telephone', label: 'Telephone' },
     { key: 'cityName', label: 'City' },
+    { key: 'billsCount', label: 'Bills' },
     { key: 'createdUtc', label: 'Created' },
   ]
 

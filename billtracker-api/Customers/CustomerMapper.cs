@@ -8,9 +8,9 @@ internal static class CustomerMapper
 			customer.Id,
 			customer.Name,
 			customer.Surname,
-			customer.Email,
 			customer.Telephone,
 			customer.City?.Name ?? "-",
+			customer.Bills?.Count() ?? 0,
 			customer.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 

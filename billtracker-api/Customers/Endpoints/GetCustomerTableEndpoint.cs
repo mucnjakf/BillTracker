@@ -38,6 +38,7 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 	{
 		IQueryable<Customer> query = appDbContext.Customers
 			.AsNoTracking()
+			.Include(x => x.Bills)
 			.Include(x => x.City);
 
 		query = Search(req.SearchQuery, query);
@@ -76,6 +77,8 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 			"name-desc" => query.OrderByDescending(x => x.Name),
 			"surname-asc" => query.OrderBy(x => x.Surname),
 			"surname-desc" => query.OrderByDescending(x => x.Surname),
+			"billsCount-asc" => query.OrderBy(x => x.Bills!.Count()),
+			"billsCount-desc" => query.OrderByDescending(x => x.Bills!.Count()),
 			_ => query.OrderByDescending(x => x.CreatedUtc)
 		};
 	}
