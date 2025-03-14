@@ -7,18 +7,17 @@ namespace billtracker_api.Bills.Endpoints;
 
 internal sealed record CreateBillRequest
 {
-	[RouteParam]
-	public int CustomerId { get; init; }
-
 	public DateTimeOffset Date { get; init; }
 
 	public string BillNumber { get; init; } = null!;
 
 	public string Comment { get; init; } = null!;
 
+	public int CustomerId { get; init; }
+
 	public int? SellerId { get; init; }
 
-	public int? CreditCardId { get; init; } // TODO: doesent make sense to have credit card  here without customer i na fe
+	public int? CreditCardId { get; init; } // TODO: remove
 }
 
 internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
@@ -27,7 +26,7 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Post($"{AppRoutes.Customers}/{{customerId}}/bills");
+		Post(AppRoutes.Bills);
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 

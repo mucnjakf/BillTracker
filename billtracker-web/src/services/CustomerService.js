@@ -30,6 +30,15 @@ class CustomerService {
     }
   }
 
+  async getCityCustomerList (cityId, pageNumber = 1, pageSize = 10) {
+    try {
+      const response = await this.api.get(`list?cityId=${cityId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getCustomer (customerId) {
     try {
       const response = await this.api.get(customerId)
