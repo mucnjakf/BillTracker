@@ -8,7 +8,6 @@ namespace billtracker_api.Items.Endpoints;
 
 internal sealed record CreateItemRequest
 {
-	[RouteParam]
 	public int BillId { get; init; }
 
 	public int Quantity { get; init; }
@@ -22,7 +21,7 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Post($"{AppRoutes.Bills}/{{billId}}/items");
+		Post(AppRoutes.Items);
 		Description(x => x.WithTags(AppRouteTags.Items));
 	}
 

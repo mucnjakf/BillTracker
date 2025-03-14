@@ -72,17 +72,17 @@ const BillItemUpdate = () => {
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
-            label: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+            label: item.customerName,
             href: `/customers/${customerId}`,
             isActive: true,
           },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
-          { label: `${item.bill?.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
+          { label: item.billNumber, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
           { label: 'Items' },
           returnUrl.startsWith(`/customers/${customerId}/bills/${billId}/items/`)
             ?
             {
-              label: `${item.product?.name}`,
+              label: item.productName,
               href: `/customers/${customerId}/bills/${billId}/items/${itemId}`,
               isActive: true,
             }
@@ -116,12 +116,12 @@ const BillItemUpdate = () => {
                   {
                     size: 'col-7',
                     label: 'Product',
-                    value: item.product?.name,
+                    value: item.productName,
                   },
                   {
                     size: 'col-5',
                     label: 'Product number',
-                    value: item.product?.productNumber,
+                    value: item.productNumber,
                   },
                 ]}
               />
@@ -132,12 +132,12 @@ const BillItemUpdate = () => {
                   {
                     size: 'col-6',
                     label: 'Price',
-                    value: item.product?.price,
+                    value: item.productPrice,
                   },
                   {
                     size: 'col-6',
                     label: 'Total price',
-                    value: item.product?.price * quantity,
+                    value: item.productPrice * quantity,
                   },
                 ]}
               />

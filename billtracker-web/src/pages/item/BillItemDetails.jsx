@@ -40,14 +40,14 @@ const BillItemDetails = () => {
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
-            label: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+            label: item.customerName,
             href: `/customers/${customerId}`,
             isActive: true,
           },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
-          { label: `${item.bill?.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
+          { label: `${item.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
           { label: 'Items' },
-          { label: `${item.product?.name}` },
+          { label: item.productName },
         ]}
       />
 
@@ -67,15 +67,15 @@ const BillItemDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-4', label: 'Product', value: item.product?.name },
-              { size: 'col-4', label: 'Category', value: item.product?.categoryName },
-              { size: 'col-4', label: 'Sub-category', value: item.product?.subCategoryName },
+              { size: 'col-4', label: 'Product', value: item.productName },
+              { size: 'col-4', label: 'Category', value: item.productCategory },
+              { size: 'col-4', label: 'Sub-category', value: item.productSubCategory },
             ]}
           />
 
           <BtRowCol
             columns={[
-              { size: 'col-4', label: 'Price', value: item.product?.price },
+              { size: 'col-4', label: 'Price', value: item.productPrice },
               { size: 'col-4', label: 'Quantity', value: item.quantity },
               { size: 'col-4', label: 'Total price', value: item.totalPrice },
             ]}
@@ -84,16 +84,16 @@ const BillItemDetails = () => {
           <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'Bill', value: item.bill?.billNumber },
+              { size: 'col-4', label: 'Bill', value: item.billNumber },
               {
                 size: 'col-4',
                 label: 'Customer',
-                value: `${item.bill?.customer?.name} ${item.bill?.customer?.surname}`,
+                value: item.customerName,
               },
               {
                 size: 'col-4',
                 label: 'Seller',
-                value: `${item.bill?.seller?.name} ${item.bill?.seller?.surname}`,
+                value: item.sellerName,
               },
             ]}
           />

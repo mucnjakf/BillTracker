@@ -3,7 +3,7 @@ import axios from 'axios'
 class ItemService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/',
+      baseURL: 'http://localhost:5140/api/items/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -59,7 +59,8 @@ class ItemService {
 
   async createItem (billId, quantity, productId) {
     try {
-      await this.api.post(`bills/${billId}/items`, {
+      await this.api.post('', {
+        billId: billId,
         quantity: quantity,
         productId: productId,
       })
