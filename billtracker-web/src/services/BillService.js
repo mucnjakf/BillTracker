@@ -49,9 +49,9 @@ class BillService {
     }
   }
 
-  async getCustomerBillsListLatest (customerId) {
+  async getCustomerBillsLatest (customerId) {
     try {
-      const response = await this.api.get(`customers/${customerId}/bills/list/latest`)
+      const response = await this.api.get(`latest?customerId=${customerId}`)
       return { data: response.data, error: null }
     } catch {
       return { data: null, error: 'Unknown error occurred.' }

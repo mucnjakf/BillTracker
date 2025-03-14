@@ -39,7 +39,7 @@ const CustomerDetails = () => {
 
   useEffect(() => {
     const getCustomerBills = async () => {
-      const { data, error } = await BillService.getCustomerBillsListLatest(customerId)
+      const { data, error } = await BillService.getCustomerBillsLatest(customerId)
 
       if (error) {
         setError(error)

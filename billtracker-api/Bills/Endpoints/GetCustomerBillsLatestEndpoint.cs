@@ -6,23 +6,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
-internal sealed record GetCustomerBillListLatestRequest
+internal sealed record GetCustomerBillsLatestRequest
 {
-	[RouteParam]
+	[QueryParam]
 	public int CustomerId { get; init; }
 }
 
-internal sealed class GetCustomerBillListLatestEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCustomerBillListLatestRequest, Ok<IEnumerable<BillListDto>>>
+internal sealed class GetCustomerBillsLatestEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerBillsLatestRequest, Ok<IEnumerable<BillListDto>>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Customers}/{{customerId}}/bills/list/latest");
+		Get($"{AppRoutes.Bills}/latest");
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
-	public override async Task<Ok<IEnumerable<BillListDto>>> ExecuteAsync(GetCustomerBillListLatestRequest req, CancellationToken ct)
+	public override async Task<Ok<IEnumerable<BillListDto>>> ExecuteAsync(GetCustomerBillsLatestRequest req, CancellationToken ct)
 	{
 		var query = await appDbContext.Bills
 			.AsNoTracking()
@@ -32,8 +32,8 @@ internal sealed class GetCustomerBillListLatestEndpoint(AppDbContext appDbContex
 			.Take(10)
 			.ToListAsync(ct);
 
-		var billsList = query.Select(x => x.ToBillListDto());
+		var bills = query.Select(x => x.ToBillListDto());
 
-		return TypedResults.Ok(billsList);
+		return TypedResults.Ok(bills);
 	}
 }
