@@ -173,7 +173,7 @@ const BtRoutes = () => {
           element: <h1>Categories</h1>,
         },
         {
-          path: '/sub-categories',
+          path: '/subcategories',
           element: <h1>Sub-categories</h1>,
         },
         {

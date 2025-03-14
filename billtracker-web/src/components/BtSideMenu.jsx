@@ -53,7 +53,7 @@ const BtSideMenu = () => {
               <BsTags className="me-3"/>
               Categories
             </Nav.Link>
-            <Nav.Link href="/sub-categories"
+            <Nav.Link href="/subcategories"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/sub-categories') ? 'bg-dark text-white' : ''}`}>
               <BsTag className="me-3"/>
               Sub-categories

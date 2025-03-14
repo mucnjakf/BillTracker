@@ -50,7 +50,7 @@ const BillItemCreate = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const { data, error } = await CategoryService.getCategories()
+      const { data, error } = await CategoryService.getCategoriesAll()
 
       if (error) {
         setError(error)

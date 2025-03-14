@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Categories.Endpoints;
 
-internal sealed class GetCategoriesEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CategoryDto>>>
+internal sealed class GetCategoriesAllEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CategoryDto>>>
 {
 	public override void Configure()
 	{

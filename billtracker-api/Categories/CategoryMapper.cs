@@ -6,7 +6,9 @@ internal static class CategoryMapper
 	{
 		return new(
 			category.Id,
-			category.Name
+			category.Guid,
+			category.Name,
+			category.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm")
 		);
 	}
 }
