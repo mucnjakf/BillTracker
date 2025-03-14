@@ -8,11 +8,11 @@ namespace billtracker_api.Items.Endpoints;
 
 internal sealed record DeleteItemRequest
 {
-	[QueryParam]
-	public int? BillId { get; init; }
-
 	[RouteParam]
 	public int ItemId { get; init; }
+
+	[QueryParam]
+	public int? BillId { get; init; }
 }
 
 internal sealed class DeleteItemEndpoint(AppDbContext appDbContext)

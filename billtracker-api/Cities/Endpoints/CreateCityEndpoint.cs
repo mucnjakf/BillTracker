@@ -21,7 +21,9 @@ internal sealed class CreateCityEndpoint(AppDbContext appDbContext)
 
 	public override async Task<Results<Created<CityDto>, BadRequest>> ExecuteAsync(CreateCityRequest req, CancellationToken ct)
 	{
-		var cityExists = await appDbContext.Cities.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper(), ct);
+		var cityExists = await appDbContext.Cities
+			.AsNoTracking()
+			.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper(), ct);
 
 		if (cityExists)
 		{

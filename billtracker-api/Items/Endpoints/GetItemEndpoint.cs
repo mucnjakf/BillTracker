@@ -8,11 +8,11 @@ namespace billtracker_api.Items.Endpoints;
 
 internal sealed record GetItemRequest
 {
-	[QueryParam]
-	public int? BillId { get; init; }
-
 	[RouteParam]
 	public int ItemId { get; init; }
+
+	[QueryParam]
+	public int? BillId { get; init; }
 }
 
 internal sealed class GetItemEndpoint(AppDbContext appDbContext)
@@ -33,8 +33,6 @@ internal sealed class GetItemEndpoint(AppDbContext appDbContext)
 			.ThenInclude(x => x.Customer)
 			.Include(x => x.Bill)
 			.ThenInclude(x => x.Seller)
-			.Include(x => x.Bill)
-			.ThenInclude(x => x.CreditCard)
 			.Include(x => x.Product)
 			.ThenInclude(x => x.SubCategory)
 			.ThenInclude(x => x.Category)

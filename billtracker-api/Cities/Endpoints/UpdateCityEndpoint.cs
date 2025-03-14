@@ -36,7 +36,9 @@ internal sealed class UpdateCityEndpoint(AppDbContext appDbContext)
 			return TypedResults.NotFound();
 		}
 
-		var cityExists = await appDbContext.Cities.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper(), ct);
+		var cityExists = await appDbContext.Cities
+			.AsNoTracking()
+			.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper(), ct);
 
 		if (cityExists)
 		{

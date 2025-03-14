@@ -2,6 +2,7 @@ using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Sellers.Endpoints;
 

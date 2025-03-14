@@ -21,7 +21,9 @@ internal sealed class RegisterUserEndpoint(AppDbContext appDbContext, IPasswordH
 		RegisterUserRequest req,
 		CancellationToken ct)
 	{
-		var emailInUse = await appDbContext.Users.AnyAsync(x => x.Email == req.Email, ct);
+		var emailInUse = await appDbContext.Users
+			.AsNoTracking()
+			.AnyAsync(x => x.Email == req.Email, ct);
 
 		if (emailInUse)
 		{

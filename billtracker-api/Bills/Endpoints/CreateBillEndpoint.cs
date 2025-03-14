@@ -35,16 +35,18 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 		CreateBillRequest req,
 		CancellationToken ct)
 	{
-		var customer = await appDbContext.Customers.FindAsync([req.CustomerId], ct);
+		var customer = await appDbContext.Customers
+			.AsNoTracking()
+			.SingleOrDefaultAsync(x => x.Id == req.CustomerId, ct);
 
 		if (customer is null)
 		{
 			return TypedResults.NotFound();
 		}
 
-		var seller = await appDbContext.Sellers.FindAsync([req.SellerId], ct);
-
-		var creditCard = await appDbContext.CreditCards.FindAsync([req.CreditCardId], ct);
+		var seller = await appDbContext.Sellers
+			.AsNoTracking()
+			.SingleOrDefaultAsync(x => x.Id == req.SellerId, ct);
 
 		var bill = new Bill
 		{
@@ -53,7 +55,7 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 			Comment = req.Comment,
 			CustomerId = customer.Id,
 			SellerId = seller?.Id,
-			CreditCardId = creditCard?.Id
+			CreditCardId = null
 		};
 
 		await appDbContext.Bills.AddAsync(bill, ct);
@@ -67,6 +69,6 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 
 		var billDto = bill!.ToBillDto();
 
-		return TypedResults.Created($"{HttpContext.Request.Host}/api/customers/{customer.Id}/bills/{bill.Id}", billDto);
+		return TypedResults.Created($"{HttpContext.Request.Host}/api/customers/{customer.Id}/bills/{billDto.Id}", billDto);
 	}
 }

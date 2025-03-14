@@ -29,14 +29,18 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext)
 		CreateItemRequest req,
 		CancellationToken ct)
 	{
-		var bill = await appDbContext.Bills.FindAsync([req.BillId], ct);
+		var bill = await appDbContext.Bills
+			.AsNoTracking()
+			.SingleOrDefaultAsync(x => x.Id == req.BillId, ct);
 
 		if (bill is null)
 		{
 			return TypedResults.NotFound();
 		}
 
-		var product = await appDbContext.Products.FindAsync([req.ProductId], ct);
+		var product = await appDbContext.Products
+			.AsNoTracking()
+			.SingleOrDefaultAsync(x => x.Id == req.ProductId, ct);
 
 		if (product is null)
 		{

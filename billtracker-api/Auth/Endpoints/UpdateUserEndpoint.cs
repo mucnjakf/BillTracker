@@ -41,6 +41,7 @@ internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHas
 		}
 
 		var emailInUse = await appDbContext.Users
+			.AsNoTracking()
 			.Where(x => x.Id != user.Id)
 			.AnyAsync(x => x.Email == req.Email, ct);
 

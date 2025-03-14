@@ -1,6 +1,7 @@
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Auth.Endpoints;
 
@@ -22,7 +23,9 @@ internal sealed class GetUserEndpoint(AppDbContext appDbContext)
 
 	public override async Task<Results<Ok<UserDto>, NotFound>> ExecuteAsync(GetUserRequest req, CancellationToken ct)
 	{
-		var user = await appDbContext.Users.FindAsync([req.UserId], ct);
+		var user = await appDbContext.Users
+			.AsNoTracking()
+			.SingleOrDefaultAsync(x => x.Id == req.UserId, ct);
 
 		if (user is null)
 		{

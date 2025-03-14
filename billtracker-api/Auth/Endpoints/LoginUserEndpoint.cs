@@ -26,7 +26,9 @@ internal sealed class LoginUserEndpoint(
 		LoginUserRequest req,
 		CancellationToken ct)
 	{
-		var user = await appDbContext.Users.SingleOrDefaultAsync(x => x.Email == req.Email, ct);
+		var user = await appDbContext.Users
+			.AsNoTracking()
+			.SingleOrDefaultAsync(x => x.Email == req.Email, ct);
 
 		if (user is null)
 		{
