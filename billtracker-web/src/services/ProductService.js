@@ -3,7 +3,7 @@ import axios from 'axios'
 class ProductService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/subcategories/',
+      baseURL: 'http://localhost:5140/api/products',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -11,9 +11,9 @@ class ProductService {
     })
   }
 
-  async getSubCategoryProducts (subCategoryId) {
+  async getSubCategoryProductsAll (subCategoryId) {
     try {
-      const response = await this.api.get(`${subCategoryId}/products`)
+      const response = await this.api.get(`?subCategoryId=${subCategoryId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {

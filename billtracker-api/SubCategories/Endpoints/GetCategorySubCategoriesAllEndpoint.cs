@@ -6,26 +6,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.SubCategories.Endpoints;
 
-internal sealed record GetCategorySubCategoriesRequest
+internal sealed record GetCategorySubCategoriesAllRequest
 {
-	[RouteParam]
+	[QueryParam]
 	public int CategoryId { get; init; }
 }
 
-internal sealed class GetCategorySubCategoriesEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCategorySubCategoriesRequest, Ok<IEnumerable<SubCategoryDto>>>
+internal sealed class GetCategorySubCategoriesAllEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCategorySubCategoriesAllRequest, Ok<IEnumerable<SubCategoryDto>>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Categories}/{{categoryId}}/subcategories");
+		Get(AppRoutes.SubCategories);
 		Description(x => x.WithTags(AppRouteTags.SubCategories));
 	}
 
-	public override async Task<Ok<IEnumerable<SubCategoryDto>>> ExecuteAsync(GetCategorySubCategoriesRequest req, CancellationToken ct)
+	public override async Task<Ok<IEnumerable<SubCategoryDto>>> ExecuteAsync(GetCategorySubCategoriesAllRequest req, CancellationToken ct)
 	{
 		var subCategories = await appDbContext.SubCategories
 			.AsNoTracking()
+			.Include(x => x.Category)
 			.Where(x => x.CategoryId == req.CategoryId)
 			.ToListAsync(ct);
 
