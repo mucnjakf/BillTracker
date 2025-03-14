@@ -21,19 +21,19 @@ const Bills = () => {
   const sortOptions = [
     { value: 'date-desc', label: 'Date DESC' },
     { value: 'date-asc', label: 'Date ASC' },
-    { value: 'billNumber-asc', label: 'Bill number ASC' },
-    { value: 'billNumber-desc', label: 'Bill number DESC' },
     { value: 'itemsCount-asc', label: 'Items ASC' },
     { value: 'itemsCount-desc', label: 'Items DESC' },
+    { value: 'total-asc', label: 'Total ASC' },
+    { value: 'total-desc', label: 'Total DESC' },
+
   ]
 
   const tableColumns = [
     { key: 'id', label: 'ID' },
     { key: 'date', label: 'Date' },
     { key: 'billNumber', label: 'Bill number' },
-    { key: 'customerName', label: 'Customer' },
-    { key: 'sellerName', label: 'Seller' },
-    { key: 'itemsCount', label: 'Items' },
+    { key: 'itemCount', label: 'Items' },
+    { key: 'total', label: 'Total' },
   ]
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Bills = () => {
           searchQuery={searchQuery}
           onChange={setSearchQuery}
           setCurrentPage={setCurrentPage}
-          placeholder="Search by bill number or customer"
+          placeholder="Search by bill number"
         />
 
         <BtSort

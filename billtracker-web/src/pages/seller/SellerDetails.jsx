@@ -11,6 +11,7 @@ import BtListGroup from '../../components/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import SellerService from '../../services/SellerService.js'
 import BtPagination from '../../components/BtPagination.jsx'
+import BillService from '../../services/BillService.js'
 
 const SellerDetails = () => {
   const navigate = useNavigate()
@@ -42,7 +43,7 @@ const SellerDetails = () => {
 
   useEffect(() => {
     const getSellerBills = async () => {
-      const { data, error } = await SellerService.getSellerBillsList(sellerId, currentPage, pageSize)
+      const { data, error } = await BillService.getBillList(sellerId, currentPage, pageSize)
 
       if (error) {
         setError(error)

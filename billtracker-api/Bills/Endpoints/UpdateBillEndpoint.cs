@@ -8,7 +8,7 @@ namespace billtracker_api.Bills.Endpoints;
 
 internal sealed record UpdateBillRequest
 {
-	[RouteParam]
+	[QueryParam]
 	public int CustomerId { get; init; }
 
 	[RouteParam]
@@ -25,7 +25,7 @@ internal sealed class UpdateBillEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Put($"{AppRoutes.Customers}/{{customerId}}/bills/{{billId}}");
+		Put($"{AppRoutes.Bills}/{{billId}}");
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 

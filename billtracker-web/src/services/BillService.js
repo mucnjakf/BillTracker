@@ -49,6 +49,15 @@ class BillService {
     }
   }
 
+  async getBillList (sellerId, pageNumber = 1, pageSize = 10) {
+    try {
+      const response = await this.api.get(`list?sellerId=${sellerId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getCustomerBillsLatest (customerId) {
     try {
       const response = await this.api.get(`latest?customerId=${customerId}`)
@@ -103,7 +112,7 @@ class BillService {
 
   async updateBill (customerId, billId, date, comment) {
     try {
-      await this.api.put(`customers/${customerId}/bills/${billId}`, {
+      await this.api.put(`${billId}?customerId=${customerId}`, {
         date: new Date(date),
         comment: comment,
       })
@@ -125,7 +134,7 @@ class BillService {
 
   async deleteBill (customerId, billId) {
     try {
-      await this.api.delete(`bills/${billId}?customerId=${customerId}`)
+      await this.api.delete(`${billId}?customerId=${customerId}`)
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {

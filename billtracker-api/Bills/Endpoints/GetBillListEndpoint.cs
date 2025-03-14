@@ -1,17 +1,16 @@
 using billtracker_api.Auth;
 using billtracker_api.Pagination;
-
-namespace billtracker_api.Bills.Endpoints;
-
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-internal sealed record GetSellerBillsListRequest
+namespace billtracker_api.Bills.Endpoints;
+
+internal sealed record GetBillListRequest
 {
-	[RouteParam]
-	public int SellerId { get; init; }
+	[QueryParam]
+	public int? SellerId { get; init; }
 
 	[QueryParam]
 	public int PageNumber { get; init; } = 1;
@@ -20,23 +19,28 @@ internal sealed record GetSellerBillsListRequest
 	public int PageSize { get; init; } = 10;
 }
 
-internal sealed class GetSellerBillsListEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetSellerBillsListRequest, Ok<PagedList<BillListDto>>>
+internal sealed class GetBillListEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetBillListRequest, Ok<PagedList<BillListDto>>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Sellers}/{{sellerId}}/bills/list");
+		Get($"{AppRoutes.Bills}/list");
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
-	public override async Task<Ok<PagedList<BillListDto>>> ExecuteAsync(GetSellerBillsListRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<BillListDto>>> ExecuteAsync(GetBillListRequest req, CancellationToken ct)
 	{
-		var query = appDbContext.Bills
+		IQueryable<Bill> query = appDbContext.Bills
 			.AsNoTracking()
-			.Include(x => x.Items)
-			.Where(x => x.SellerId == req.SellerId)
-			.OrderByDescending(x => x.Date);
+			.Include(x => x.Items);
+
+		if (req.SellerId is not null)
+		{
+			query = query.Where(x => x.SellerId == req.SellerId);
+		}
+
+		query = query.OrderByDescending(x => x.Date);
 
 		var bills = query.Select(x => x.ToBillListDto());
 
