@@ -11,6 +11,7 @@ import CityService from '../../services/CityService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import BtPagination from '../../components/BtPagination.jsx'
+import CustomerService from '../../services/CustomerService.js'
 
 const CityDetails = () => {
   const navigate = useNavigate()
@@ -41,7 +42,7 @@ const CityDetails = () => {
 
   useEffect(() => {
     const getCityCustomers = async () => {
-      const { data, error } = await CityService.getCityCustomersList(cityId, currentPage, pageSize)
+      const { data, error } = await CustomerService.getCityCustomerList(cityId, currentPage, pageSize)
 
       if (error) {
         setError(error)

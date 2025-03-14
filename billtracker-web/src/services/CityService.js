@@ -127,15 +127,6 @@ class CityService {
       }
     }
   }
-
-  async getCityCustomersList (cityId, pageNumber = 1, pageSize = 10) {
-    try {
-      const response = await this.api.get(`${cityId}/customers/list?&pageNumber=${pageNumber}&pageSize=${pageSize}`)
-      return { data: response.data, error: null }
-    } catch {
-      return { data: null, error: 'Unknown error occurred.' }
-    }
-  }
 }
 
 export default new CityService()

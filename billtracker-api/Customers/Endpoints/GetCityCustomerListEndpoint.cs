@@ -8,9 +8,9 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-internal sealed record GetCityCustomersListRequest
+internal sealed record GetCityCustomerListRequest
 {
-	[RouteParam]
+	[QueryParam]
 	public int CityId { get; init; }
 
 	[QueryParam]
@@ -20,17 +20,17 @@ internal sealed record GetCityCustomersListRequest
 	public int PageSize { get; init; } = 10;
 }
 
-internal sealed class GetCityCustomersListEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCityCustomersListRequest, Ok<PagedList<CustomerListDto>>>
+internal sealed class GetCityCustomerListEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCityCustomerListRequest, Ok<PagedList<CustomerListDto>>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Cities}/{{cityId}}/customers/list");
+		Get($"{AppRoutes.Customers}/list");
 		Description(x => x.WithTags(AppRouteTags.Customers));
 	}
 
-	public override async Task<Ok<PagedList<CustomerListDto>>> ExecuteAsync(GetCityCustomersListRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<CustomerListDto>>> ExecuteAsync(GetCityCustomerListRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.Customers
 			.AsNoTracking()

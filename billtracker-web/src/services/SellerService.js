@@ -128,6 +128,7 @@ class SellerService {
     }
   }
 
+  // TODO: figure out
   async getSellerBillsList (sellerId, pageNumber = 1, pageSize = 10) {
     try {
       const response = await this.api.get(`${sellerId}/bills/list?pageNumber=${pageNumber}&pageSize=${pageSize}`)
