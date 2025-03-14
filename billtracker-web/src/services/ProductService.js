@@ -3,7 +3,7 @@ import axios from 'axios'
 class ProductService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/products',
+      baseURL: 'http://localhost:5140/api/products/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

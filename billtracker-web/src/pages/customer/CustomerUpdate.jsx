@@ -53,7 +53,7 @@ const CustomerUpdate = () => {
 
   useEffect(() => {
     const getCities = async () => {
-      const { data, error } = await CityService.getCities()
+      const { data, error } = await CityService.getCitiesAll()
 
       if (error) {
         setError(error)

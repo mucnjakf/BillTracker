@@ -47,7 +47,7 @@ const CustomerBillCreate = () => {
 
   useEffect(() => {
     const getSellers = async () => {
-      const { data, error } = await SellerService.getSellers()
+      const { data, error } = await SellerService.getSellersAll()
 
       if (error) {
         setError(error)

@@ -11,6 +11,22 @@ class CityService {
     })
   }
 
+  async getCitiesAll () {
+    try {
+      const response = await this.api.get()
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async getCityTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
       let url = `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
@@ -30,22 +46,6 @@ class CityService {
     }
   }
 
-  async getCitiesAll () {
-    try {
-      const response = await this.api.get()
-      return { data: response.data, error: null }
-    } catch (error) {
-      switch (error.status) {
-        case 401:
-          return { data: null, error: 'You are not authenticated.' }
-        case 403:
-          return { data: null, error: 'You are not authorized.' }
-        default:
-          return { data: null, error: 'Unknown error occurred.' }
-      }
-    }
-  }
-
   async getCity (cityId) {
     try {
       const response = await this.api.get(cityId)
@@ -61,15 +61,6 @@ class CityService {
         default:
           return { data: null, error: 'Unknown error occurred.' }
       }
-    }
-  }
-
-  async getCityCustomersList (cityId, pageNumber = 1, pageSize = 10) {
-    try {
-      const response = await this.api.get(`${cityId}/customers/list?&pageNumber=${pageNumber}&pageSize=${pageSize}`)
-      return { data: response.data, error: null }
-    } catch {
-      return { data: null, error: 'Unknown error occurred.' }
     }
   }
 
@@ -134,6 +125,15 @@ class CityService {
         default:
           return { data: null, error: 'Unknown error occurred.' }
       }
+    }
+  }
+
+  async getCityCustomersList (cityId, pageNumber = 1, pageSize = 10) {
+    try {
+      const response = await this.api.get(`${cityId}/customers/list?&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
     }
   }
 }

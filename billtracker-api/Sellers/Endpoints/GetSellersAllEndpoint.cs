@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Sellers.Endpoints;
 
-internal sealed class GetSellersEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<SellerDto>>>
+internal sealed class GetSellersAllEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<SellerDto>>>
 {
 	public override void Configure()
 	{
