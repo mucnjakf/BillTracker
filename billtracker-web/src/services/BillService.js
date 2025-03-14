@@ -32,7 +32,7 @@ class BillService {
 
   async getCustomerBillTable (customerId, pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
-      let url = `customers/${customerId}/bills/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+      let url = `table?customerId=${customerId}&pageNumber=${pageNumber}&pageSize=${pageSize}`
 
       if (searchQuery !== '') {
         url += `&searchQuery=${searchQuery}`

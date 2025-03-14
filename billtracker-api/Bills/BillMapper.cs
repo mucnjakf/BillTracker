@@ -6,16 +6,6 @@ namespace billtracker_api.Bills;
 
 internal static class BillMapper
 {
-	internal static CustomerBillTableDto ToCustomerBillTableDto(this Bill bill)
-	{
-		return new(
-			bill.Id,
-			bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
-			bill.BillNumber,
-			bill.Items?.Count() ?? 0,
-			bill.Items?.Sum(x => x.TotalPrice) ?? 0);
-	}
-
 	internal static BillDto ToBillDto(this Bill bill)
 	{
 		return new(
@@ -46,8 +36,7 @@ internal static class BillMapper
 			bill.Id,
 			bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
 			bill.BillNumber,
-			$"{bill.Customer.Name} {bill.Customer.Surname}",
-			bill.Seller is null ? "-" : $"{bill.Seller!.Name} {bill.Seller!.Surname}",
-			bill.Items?.Count() ?? 0);
+			bill.Items?.Count() ?? 0,
+			bill.Items?.Sum(x => x.TotalPrice) ?? 0);
 	}
 }

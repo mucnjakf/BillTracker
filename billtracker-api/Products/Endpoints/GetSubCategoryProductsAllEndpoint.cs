@@ -9,7 +9,7 @@ namespace billtracker_api.Products.Endpoints;
 internal sealed record GetSubCategoryProductsAllRequest
 {
 	[QueryParam]
-	public int SubCategoryId { get; init; }
+	public int SubCategoryId { get; init; } // TODO: to optional and rename
 }
 
 internal sealed class GetSubCategoryProductsAllEndpoint(AppDbContext appDbContext)

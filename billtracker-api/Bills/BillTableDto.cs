@@ -4,6 +4,5 @@ internal sealed record BillTableDto(
 	int Id,
 	string Date,
 	string BillNumber,
-	string CustomerName,
-	string SellerName,
-	int ItemsCount);
+	int ItemCount,
+	decimal Total);

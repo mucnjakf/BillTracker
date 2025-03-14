@@ -11,6 +11,9 @@ namespace billtracker_api.Bills.Endpoints;
 internal sealed record GetBillTableRequest
 {
 	[QueryParam]
+	public int? CustomerId { get; init; }
+
+	[QueryParam]
 	public int PageNumber { get; init; } = 1;
 
 	[QueryParam]
@@ -41,6 +44,11 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 			.Include(x => x.Seller)
 			.Include(x => x.Items);
 
+		if (req.CustomerId is not null)
+		{
+			query = query.Where(x => x.CustomerId == req.CustomerId);
+		}
+
 		query = Search(req.SearchQuery, query);
 		query = Sort(req.SortBy, query);
 
@@ -61,8 +69,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 
 		var capitalSearchQuery = searchQuery.ToUpper();
 
-		query = query.Where(x =>
-			x.BillNumber.ToUpper().Contains(capitalSearchQuery) || x.Customer.Name.ToUpper().Contains(capitalSearchQuery) || x.Customer.Surname.ToUpper().Contains(capitalSearchQuery));
+		query = query.Where(x => x.BillNumber.ToUpper().Contains(capitalSearchQuery));
 
 		return query;
 	}
@@ -73,10 +80,10 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 		{
 			"date-asc" => query.OrderBy(x => x.Date),
 			"date-desc" => query.OrderByDescending(x => x.Date),
-			"billNumber-asc" => query.OrderBy(x => x.BillNumber),
-			"billNumber-desc" => query.OrderByDescending(x => x.BillNumber),
 			"itemsCount-asc" => query.OrderBy(x => x.Items!.Count()),
 			"itemsCount-desc" => query.OrderByDescending(x => x.Items!.Count()),
+			"total-asc" => query.OrderBy(x => x.Items!.Sum(y => y.TotalPrice)),
+			"total-desc" => query.OrderByDescending(x => x.Items!.Sum(y => y.TotalPrice)),
 			_ => query.OrderByDescending(x => x.Date)
 		};
 	}
