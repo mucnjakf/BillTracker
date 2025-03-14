@@ -8,8 +8,8 @@ namespace billtracker_api.Items.Endpoints;
 
 internal sealed record UpdateItemRequest
 {
-	[RouteParam]
-	public int BillId { get; init; }
+	[QueryParam]
+	public int? BillId { get; init; }
 
 	[RouteParam]
 	public int ItemId { get; init; }
@@ -23,7 +23,7 @@ internal sealed class UpdateItemEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Put($"{AppRoutes.Bills}/{{billId}}/items/{{itemId}}");
+		Put($"{AppRoutes.Items}/{{itemId}}");
 		Description(x => x.WithTags(AppRouteTags.Items));
 	}
 
@@ -31,9 +31,14 @@ internal sealed class UpdateItemEndpoint(AppDbContext appDbContext)
 	{
 		var item = await appDbContext.Items
 			.Include(x => x.Product)
-			.SingleOrDefaultAsync(x => x.BillId == req.BillId && x.Id == req.ItemId, ct);
+			.SingleOrDefaultAsync(x => x.Id == req.ItemId, ct);
 
 		if (item is null)
+		{
+			return TypedResults.NotFound();
+		}
+
+		if (req.BillId is not null && item.BillId != req.BillId)
 		{
 			return TypedResults.NotFound();
 		}

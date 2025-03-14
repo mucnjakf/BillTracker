@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Items.Endpoints;
 
-internal sealed record GetBillItemListRequest
+internal sealed record GetItemListRequest
 {
-	[RouteParam]
-	public int BillId { get; init; }
+	[QueryParam]
+	public int? BillId { get; init; }
 
 	[QueryParam]
 	public int PageNumber { get; init; } = 1;
@@ -19,22 +19,28 @@ internal sealed record GetBillItemListRequest
 	public int PageSize { get; init; } = 10;
 }
 
-internal sealed class GetBillItemListEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetBillItemListRequest, Ok<PagedList<ItemListDto>>>
+internal sealed class GetItemListEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetItemListRequest, Ok<PagedList<ItemListDto>>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Bills}/{{billId}}/items/list");
+		Get($"{AppRoutes.Items}/list");
 		Description(x => x.WithTags(AppRouteTags.Items));
 	}
 
-	public override async Task<Ok<PagedList<ItemListDto>>> ExecuteAsync(GetBillItemListRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<ItemListDto>>> ExecuteAsync(GetItemListRequest req, CancellationToken ct)
 	{
-		var query = appDbContext.Items
+		IQueryable<Item> query = appDbContext.Items
 			.AsNoTracking()
-			.Include(x => x.Product)
-			.Where(x => x.BillId == req.BillId);
+			.Include(x => x.Product);
+
+		if (req.BillId is not null)
+		{
+			query = query.Where(x => x.BillId == req.BillId);
+		}
+
+		query = query.OrderByDescending(x => x.TotalPrice);
 
 		var items = query.Select(x => x.ToItemListDto());
 

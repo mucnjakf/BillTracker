@@ -13,7 +13,7 @@ class ItemService {
 
   async getItemTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
-      let url = `items/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+      let url = `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
 
       if (searchQuery !== '') {
         url += `&searchQuery=${searchQuery}`
@@ -32,7 +32,7 @@ class ItemService {
 
   async getBillItemList (billId, pageNumber = 1, pageSize = 10) {
     try {
-      const response = await this.api.get(`bills/${billId}/items/list?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      const response = await this.api.get(`list?billId=${billId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
       return { data: response.data, error: null }
     } catch {
       return { data: null, error: 'Unknown error occurred.' }
@@ -82,7 +82,7 @@ class ItemService {
 
   async updateItem (billId, itemId, quantity) {
     try {
-      await this.api.put(`bills/${billId}/items/${itemId}`, {
+      await this.api.put(`${itemId}?billId=${billId}`, {
         quantity: quantity,
       })
 
