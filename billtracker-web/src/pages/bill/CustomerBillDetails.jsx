@@ -12,6 +12,7 @@ import ItemService from '../../services/ItemService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import BtPagination from '../../components/BtPagination.jsx'
 
 const CustomerBillDetails = () => {
   const navigate = useNavigate()
@@ -19,7 +20,9 @@ const CustomerBillDetails = () => {
   const { customerId, billId } = useParams()
 
   const [bill, setBill] = useState({})
-  const [billItems, setBillItems] = useState([])
+  const [pagedBillItems, setPagedBillItems] = useState({ items: [] })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
 
   const [error, setError] = useState(null)
 
@@ -40,18 +43,18 @@ const CustomerBillDetails = () => {
 
   useEffect(() => {
     const getBillItems = async () => {
-      const { data, error } = await ItemService.getBillItemList(billId)
+      const { data, error } = await ItemService.getBillItemList(billId, currentPage, pageSize)
 
       if (error) {
         setError(error)
         return
       }
 
-      setBillItems(data)
+      setPagedBillItems(data)
     }
 
     getBillItems()
-  }, [billId])
+  }, [billId, currentPage, pageSize])
 
   return (
     <>
@@ -132,7 +135,7 @@ const CustomerBillDetails = () => {
 
       <div style={{ width: '1000px' }}>
         <div className="d-flex justify-content-between mb-3 align-items-center">
-          <h3 className="mb-0">Items</h3>
+          <h3 className="mb-0">Items - {pagedBillItems.totalCount}</h3>
 
           <Button
             style={{ width: '125px' }}
@@ -146,7 +149,7 @@ const CustomerBillDetails = () => {
         </div>
 
         <BtListGroup
-          items={billItems}
+          items={pagedBillItems.items}
           onClick={(itemId) => navigate(`bills/${billId}/items/${itemId}`)}
           renderListItem={(item) => (
             <>
@@ -187,6 +190,18 @@ const CustomerBillDetails = () => {
               </ButtonGroup>
             </>
           )}/>
+
+        {pagedBillItems.items.length > 0 && (
+          <BtPagination
+            currentPage={currentPage}
+            totalPages={pagedBillItems.totalPages}
+            totalItems={pagedBillItems.items.length}
+            totalCount={pagedBillItems.totalCount}
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </>)
 }

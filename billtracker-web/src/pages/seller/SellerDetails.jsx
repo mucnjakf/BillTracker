@@ -7,74 +7,89 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { BsTrash, BsPencilSquare, BsCardText } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
-import CityService from '../../services/CityService.js'
 import BtListGroup from '../../components/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
+import SellerService from '../../services/SellerService.js'
 import BtPagination from '../../components/BtPagination.jsx'
 
-const CityDetails = () => {
+const SellerDetails = () => {
   const navigate = useNavigate()
 
-  const { cityId } = useParams()
+  const { sellerId } = useParams()
 
-  const [city, setCity] = useState({})
-  const [pagedCityCustomers, setPagedCityCustomers] = useState({ items: [] })
+  const [seller, setSeller] = useState({})
+
+  const [pagedSellerBills, setPagedSellerBills] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
 
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const getCity = async () => {
-      const { data, error } = await CityService.getCity(cityId)
+    const getSeller = async () => {
+      const { data, error } = await SellerService.getSeller(sellerId)
 
       if (error) {
         setError(error)
         return
       }
 
-      setCity(data)
+      setSeller(data)
     }
 
-    getCity()
-  }, [cityId])
+    getSeller()
+  }, [sellerId])
 
   useEffect(() => {
-    const getCityCustomers = async () => {
-      const { data, error } = await CityService.getCityCustomersList(cityId, currentPage, pageSize)
+    const getSellerBills = async () => {
+      const { data, error } = await SellerService.getSellerBillsList(sellerId, currentPage, pageSize)
 
       if (error) {
         setError(error)
         return
       }
 
-      setPagedCityCustomers(data)
+      setPagedSellerBills(data)
     }
 
-    getCityCustomers()
-  }, [cityId, currentPage, pageSize])
+    getSellerBills()
+  }, [sellerId, currentPage, pageSize])
 
   return (
     <>
       <BtBreadcrumb
         paths={[
           { label: 'Home', href: '/', isActive: true },
-          { label: 'Cities', href: '/cities', isActive: true },
-          { label: `${city.name}` },
+          { label: 'Sellers', href: '/sellers', isActive: true },
+          { label: `${seller.firstName} ${seller.lastName}` },
         ]}
       />
 
-      <BtPageTitle text="City details"/>
+      <BtPageTitle text="Seller details"/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtRowCol
+            columns={[
+              { size: 'col-5', label: 'ID', value: seller.id },
+              { size: 'col-7', label: 'GUID', value: seller.guid },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-5', label: 'Name', value: seller.firstName },
+              { size: 'col-7', label: 'Surname', value: seller.lastName },
+            ]}
+          />
+
+          <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'ID', value: city.id },
-              { size: 'col-8', label: 'Name', value: city.name },
+              { size: 'col-5', label: 'Permanent employee', value: seller.permanentEmployee },
+              { size: 'col-7', label: 'Created', value: seller.createdUtc },
             ]}
           />
         </BtCard.Body>
@@ -83,7 +98,7 @@ const CityDetails = () => {
       <div className="d-flex mb-5">
         <BtButton
           variant="secondary"
-          onClick={() => navigate(`update?returnUrl=/cities/${cityId}`)}
+          onClick={() => navigate(`update?returnUrl=/sellers/${sellerId}`)}
           icon={BsPencilSquare}
           label="Update"
           className="me-3"
@@ -91,44 +106,45 @@ const CityDetails = () => {
 
         <BtButton
           variant="danger"
-          onClick={() => navigate(`delete?returnUrl=/cities/${cityId}`)}
+          onClick={() => navigate(`delete?returnUrl=/sellers/${sellerId}`)}
           icon={BsTrash}
           label="Delete"
         />
       </div>
 
       <div style={{ width: '1000px' }}>
-        <h3 className="mb-3">Customers</h3>
+        <h3 className="mb-3">Bills</h3>
 
         <BtListGroup
-          items={pagedCityCustomers.items}
-          renderListItem={(customer) => (
+          items={pagedSellerBills.items}
+          renderListItem={(bill) => (
             <>
               <div className="d-flex justify-content-between w-100 me-4 align-items-center">
-                <div className="fw-bold">
-                  {customer.name} {customer.surname}
+                <div>
+                  <span className="small text-muted">{bill.date}:</span> <span
+                  className="fw-bold">{bill.billNumber}</span>
                 </div>
                 <div>
-                  {customer.email}
+                  <span className="small text-muted">Total:</span> <span className="fw-bold">{bill.total}</span>
                 </div>
               </div>
 
               <Button
                 className="pb-2"
                 variant="primary"
-                onClick={() => location.href = `/customers/${customer.id}`}
+                onClick={() => location.href = `/customers/${bill.customerId}/bills/${bill.id}`}
               >
                 <BsCardText/>
               </Button>
             </>
           )}/>
 
-        {pagedCityCustomers.items.length > 0 && (
+        {pagedSellerBills.items.length > 0 && (
           <BtPagination
             currentPage={currentPage}
-            totalPages={pagedCityCustomers.totalPages}
-            totalItems={pagedCityCustomers.items.length}
-            totalCount={pagedCityCustomers.totalCount}
+            totalPages={pagedSellerBills.totalPages}
+            totalItems={pagedSellerBills.items.length}
+            totalCount={pagedSellerBills.totalCount}
             pageSize={pageSize}
             setPageSize={setPageSize}
             setCurrentPage={setCurrentPage}
@@ -139,4 +155,4 @@ const CityDetails = () => {
   )
 }
 
-export default CityDetails
+export default SellerDetails

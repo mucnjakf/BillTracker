@@ -8,6 +8,7 @@ import BtAuthProvider from './components/BtAuthProvider'
 import BtRoutes from './routes/BtRoutes'
 import BtSideMenu from './components/BtSideMenu.jsx'
 import { createRoot } from 'react-dom/client'
+import { BsArrowLeft } from 'react-icons/bs'
 
 createRoot(document.getElementById('root')).render(
   <BtAuthProvider>
@@ -24,6 +25,11 @@ createRoot(document.getElementById('root')).render(
         </Col>
 
         <Col className="col-10 my-2">
+          <button className="btn btn-sm mb-3" onClick={() => history.back()}>
+            {<BsArrowLeft/>}
+            &nbsp; Back
+          </button>
+
           <BtRoutes/>
         </Col>
       </Row>

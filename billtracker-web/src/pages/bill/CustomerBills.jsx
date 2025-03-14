@@ -69,8 +69,10 @@ const CustomerBills = () => {
   const sortOptions = [
     { value: 'date-desc', label: 'Date DESC' },
     { value: 'date-asc', label: 'Date ASC' },
-    { value: 'number-asc', label: 'Number ASC' },
-    { value: 'number-desc', label: 'Number DESC' },
+    { value: 'itemsCount-asc', label: 'Items ASC' },
+    { value: 'itemsCount-desc', label: 'Items DESC' },
+    { value: 'total-asc', label: 'Total ASC' },
+    { value: 'total-desc', label: 'Total DESC' },
   ]
 
   const tableColumns = [

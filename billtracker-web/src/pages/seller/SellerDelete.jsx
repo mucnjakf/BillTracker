@@ -7,7 +7,6 @@ import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtRowCol from '../../components/BtRowCol.jsx'
-import CityService from '../../services/CityService.js'
 import SellerService from '../../services/SellerService.js'
 
 const SellerDelete = () => {

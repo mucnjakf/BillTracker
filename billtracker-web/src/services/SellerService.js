@@ -30,6 +30,15 @@ class SellerService {
     }
   }
 
+  async getSellerBillsList (sellerId, pageNumber = 1, pageSize = 10) {
+    try {
+      const response = await this.api.get(`${sellerId}/bills/list?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getSellers () {
     try {
       const response = await this.api.get()
