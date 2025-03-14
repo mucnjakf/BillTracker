@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
-internal sealed record GetCustomerBillRequest
+internal sealed record GetBillRequest
 {
 	[RouteParam]
 	public int BillId { get; init; }
 
 	[QueryParam]
-	public int CustomerId { get; init; }
+	public int? CustomerId { get; init; }
 }
 
-internal sealed class GetCustomerBillEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCustomerBillRequest, Results<Ok<BillDto>, NotFound>>
+internal sealed class GetBillEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetBillRequest, Results<Ok<BillDto>, NotFound>>
 {
 	public override void Configure()
 	{
@@ -25,7 +25,7 @@ internal sealed class GetCustomerBillEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
-	public override async Task<Results<Ok<BillDto>, NotFound>> ExecuteAsync(GetCustomerBillRequest req, CancellationToken ct)
+	public override async Task<Results<Ok<BillDto>, NotFound>> ExecuteAsync(GetBillRequest req, CancellationToken ct)
 	{
 		var bill = await appDbContext.Bills
 			.AsNoTracking()
@@ -34,9 +34,14 @@ internal sealed class GetCustomerBillEndpoint(AppDbContext appDbContext)
 			.Include(x => x.Seller)
 			.Include(x => x.CreditCard)
 			.Include(x => x.Items)
-			.SingleOrDefaultAsync(x => x.CustomerId == req.CustomerId && x.Id == req.BillId, ct);
+			.SingleOrDefaultAsync(x => x.Id == req.BillId, ct);
 
 		if (bill is null)
+		{
+			return TypedResults.NotFound();
+		}
+		
+		if (req.CustomerId is not null && bill.CustomerId != req.CustomerId)
 		{
 			return TypedResults.NotFound();
 		}

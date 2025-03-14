@@ -8,10 +8,10 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-internal sealed record GetCityCustomerListRequest
+internal sealed record GetCustomerListRequest
 {
 	[QueryParam]
-	public int CityId { get; init; }
+	public int? CityId { get; init; }
 
 	[QueryParam]
 	public int PageNumber { get; init; } = 1;
@@ -20,8 +20,8 @@ internal sealed record GetCityCustomerListRequest
 	public int PageSize { get; init; } = 10;
 }
 
-internal sealed class GetCityCustomerListEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCityCustomerListRequest, Ok<PagedList<CustomerListDto>>>
+internal sealed class GetCustomerListEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetCustomerListRequest, Ok<PagedList<CustomerListDto>>>
 {
 	public override void Configure()
 	{
@@ -30,11 +30,15 @@ internal sealed class GetCityCustomerListEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags(AppRouteTags.Customers));
 	}
 
-	public override async Task<Ok<PagedList<CustomerListDto>>> ExecuteAsync(GetCityCustomerListRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<CustomerListDto>>> ExecuteAsync(GetCustomerListRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.Customers
-			.AsNoTracking()
-			.Where(x => x.CityId == req.CityId);
+			.AsNoTracking();
+
+		if (req.CityId is not null)
+		{
+			query = query.Where(x => x.CityId == req.CityId);
+		}
 
 		var bills = query.Select(x => x.ToCustomerListDto());
 
