@@ -38,6 +38,7 @@ import Categories from '../pages/category/Categories.jsx'
 import CategoryCreate from '../pages/category/CategoryCreate.jsx'
 import CategoryDelete from '../pages/category/CategoryDelete.jsx'
 import CategoryUpdate from '../pages/category/CategoryUpdate.jsx'
+import CategoryDetails from '../pages/category/CategoryDetails.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -179,6 +180,10 @@ const BtRoutes = () => {
         {
           path: '/categories/create',
           element: <CategoryCreate/>,
+        },
+        {
+          path: '/categories/:categoryId',
+          element: <CategoryDetails/>,
         },
         {
           path: '/categories/:categoryId/update',

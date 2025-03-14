@@ -1,11 +1,10 @@
 using billtracker_api.Auth;
-
-namespace billtracker_api.Cities.Endpoints;
-
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+
+namespace billtracker_api.Cities.Endpoints;
 
 internal sealed record DeleteCityRequest
 {

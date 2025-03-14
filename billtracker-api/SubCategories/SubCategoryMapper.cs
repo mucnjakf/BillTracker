@@ -12,4 +12,11 @@ internal static class SubCategoryMapper
 			subCategory.Category.Name,
 			subCategory.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
+
+	internal static SubCategoryListDto ToSubCategoryListDto(this SubCategory subCategory)
+	{
+		return new(
+			subCategory.Id,
+			subCategory.Name);
+	}
 }

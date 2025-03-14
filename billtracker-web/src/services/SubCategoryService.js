@@ -26,6 +26,15 @@ class SubCategoryService {
       }
     }
   }
+
+  async getCategorySubCategoriesList (categoryId, pageNumber = 1, pageSize = 10) {
+    try {
+      const response = await this.api.get(`list?categoryId=${categoryId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
 }
 
 export default new SubCategoryService()

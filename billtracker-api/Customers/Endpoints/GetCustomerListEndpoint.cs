@@ -1,12 +1,11 @@
 using billtracker_api.Auth;
-using billtracker_api.Pagination;
-
-namespace billtracker_api.Customers.Endpoints;
-
 using billtracker_api.Database;
+using billtracker_api.Pagination;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+
+namespace billtracker_api.Customers.Endpoints;
 
 internal sealed record GetCustomerListRequest
 {
@@ -40,10 +39,10 @@ internal sealed class GetCustomerListEndpoint(AppDbContext appDbContext)
 			query = query.Where(x => x.CityId == req.CityId);
 		}
 
-		var bills = query.Select(x => x.ToCustomerListDto());
+		var customers = query.Select(x => x.ToCustomerListDto());
 
-		var billsList = await PagedList<CustomerListDto>.ToPagedListAsync(bills, req.PageNumber, req.PageSize);
+		var customersList = await PagedList<CustomerListDto>.ToPagedListAsync(customers, req.PageNumber, req.PageSize);
 
-		return TypedResults.Ok(billsList);
+		return TypedResults.Ok(customersList);
 	}
 }
