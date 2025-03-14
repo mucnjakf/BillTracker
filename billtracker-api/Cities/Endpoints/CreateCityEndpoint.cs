@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Cities.Endpoints;
@@ -13,9 +14,9 @@ internal sealed class CreateCityEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Post("/api/cities");
-		Description(x => x.WithTags("Cities"));
+		Roles(AppRoles.User);
+		Post(AppRoutes.Cities);
+		Description(x => x.WithTags(AppRouteTags.Cities));
 	}
 
 	public override async Task<Results<Created<CityDto>, BadRequest>> ExecuteAsync(CreateCityRequest req, CancellationToken ct)

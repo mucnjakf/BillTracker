@@ -24,9 +24,9 @@ internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHas
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Put("/api/auth/users/{userId}");
-		Description(x => x.WithTags("Auth"));
+		Roles(AppRoles.User);
+		Put($"{AppRoutes.Auth}/users/{{userId}}");
+		Description(x => x.WithTags(AppRouteTags.Auth));
 	}
 
 	public override async Task<Results<NoContent, BadRequest, NotFound>> ExecuteAsync(

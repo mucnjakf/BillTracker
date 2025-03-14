@@ -18,8 +18,8 @@ internal sealed class LoginUserEndpoint(
 	public override void Configure()
 	{
 		AllowAnonymous();
-		Post("/api/auth/login");
-		Description(x => x.WithTags("Auth"));
+		Post($"{AppRoutes.Auth}/login");
+		Description(x => x.WithTags(AppRouteTags.Auth));
 	}
 
 	public override async Task<Results<Ok<AuthDto>, UnauthorizedHttpResult>> ExecuteAsync(
@@ -44,7 +44,7 @@ internal sealed class LoginUserEndpoint(
 		{
 			options.SigningKey = configuration["Jwt:Secret"]!;
 			options.ExpireAt = DateTime.UtcNow.AddDays(configuration.GetValue<int>("Jwt:ExpireDays"));
-			options.User.Roles.Add("User");
+			options.User.Roles.Add(AppRoles.User);
 			options.User.Claims.Add((JwtRegisteredClaimNames.Sub, user.Id.ToString()));
 			options.User.Claims.Add((JwtRegisteredClaimNames.Email, user.Email));
 			options.Issuer = configuration["Jwt:Issuer"];

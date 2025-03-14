@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -11,9 +12,9 @@ internal sealed class CreateSellerEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Post("/api/sellers");
-		Description(x => x.WithTags("Sellers"));
+		Roles(AppRoles.User);
+		Post(AppRoutes.Sellers);
+		Description(x => x.WithTags(AppRouteTags.Sellers));
 	}
 
 	public override async Task<Created<SellerDto>> ExecuteAsync(CreateSellerRequest req, CancellationToken ct)

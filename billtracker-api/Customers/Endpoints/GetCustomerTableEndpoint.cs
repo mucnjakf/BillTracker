@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using billtracker_api.Pagination;
 using FastEndpoints;
@@ -27,8 +28,8 @@ internal sealed class GetCustomerTableEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		AllowAnonymous();
-		Get("/api/customers/table");
-		Description(x => x.WithTags("Customers"));
+		Get($"{AppRoutes.Customers}/table");
+		Description(x => x.WithTags(AppRouteTags.Customers));
 	}
 
 	public override async Task<Ok<PagedList<CustomerTableDto>>> ExecuteAsync(

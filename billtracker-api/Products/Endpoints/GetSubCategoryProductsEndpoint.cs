@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,9 +17,9 @@ internal sealed class GetSubCategoryProductsEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/subcategories/{subCategoryId}/products");
-		Description(x => x.WithTags("Products"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.SubCategories}/{{subCategoryId}}/products");
+		Description(x => x.WithTags(AppRouteTags.Products));
 	}
 
 	public override async Task<Ok<IEnumerable<ProductDto>>> ExecuteAsync(GetSubCategoryProductsRequest req, CancellationToken ct)

@@ -135,7 +135,7 @@ const CustomerBillDetails = () => {
 
       <div style={{ width: '1000px' }}>
         <div className="d-flex justify-content-between mb-3 align-items-center">
-          <h3 className="mb-0">Items - {pagedBillItems.totalCount}</h3>
+          <h3 className="mb-0">Items</h3>
 
           <Button
             style={{ width: '125px' }}

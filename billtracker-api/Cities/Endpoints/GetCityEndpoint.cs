@@ -1,3 +1,5 @@
+using billtracker_api.Auth;
+
 namespace billtracker_api.Cities.Endpoints;
 
 using billtracker_api.Database;
@@ -16,9 +18,9 @@ internal sealed class GetCityEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/cities/{cityId}");
-		Description(x => x.WithTags("Cities"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Cities}/{{cityId}}");
+		Description(x => x.WithTags(AppRouteTags.Cities));
 	}
 
 	public override async Task<Results<Ok<CityDto>, NotFound>> ExecuteAsync(

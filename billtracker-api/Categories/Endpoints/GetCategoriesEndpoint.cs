@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -9,9 +10,9 @@ internal sealed class GetCategoriesEndpoint(AppDbContext appDbContext) : Endpoin
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/categories");
-		Description(x => x.WithTags("Categories"));
+		Roles(AppRoles.User);
+		Get(AppRoutes.Categories);
+		Description(x => x.WithTags(AppRouteTags.Categories));
 	}
 
 	public override async Task<Ok<IEnumerable<CategoryDto>>> ExecuteAsync(CancellationToken ct)

@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Pagination;
 
 namespace billtracker_api.Customers.Endpoints;
@@ -24,9 +25,9 @@ internal sealed class GetCityCustomersListEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/cities/{cityId}/customers/list");
-		Description(x => x.WithTags("Customers"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Cities}/{{cityId}}/customers/list");
+		Description(x => x.WithTags(AppRouteTags.Customers));
 	}
 
 	public override async Task<Ok<PagedList<CustomerListDto>>> ExecuteAsync(GetCityCustomersListRequest req, CancellationToken ct)

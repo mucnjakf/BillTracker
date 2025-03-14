@@ -1,3 +1,5 @@
+using billtracker_api.Auth;
+
 namespace billtracker_api.Cities.Endpoints;
 
 using billtracker_api.Database;
@@ -16,9 +18,9 @@ internal sealed class DeleteCityEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Delete("/api/cities/{cityId}");
-		Description(x => x.WithTags("Cities"));
+		Roles(AppRoles.User);
+		Delete($"{AppRoutes.Cities}/{{cityId}}");
+		Description(x => x.WithTags(AppRouteTags.Cities));
 	}
 
 	public override async Task<Results<NoContent, NotFound, BadRequest>> ExecuteAsync(

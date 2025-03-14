@@ -15,9 +15,9 @@ internal sealed class GetUserEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/auth/users/{userId}");
-		Description(x => x.WithTags("Auth"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Auth}/users/{{userId}}");
+		Description(x => x.WithTags(AppRouteTags.Auth));
 	}
 
 	public override async Task<Results<Ok<UserDto>, NotFound>> ExecuteAsync(GetUserRequest req, CancellationToken ct)

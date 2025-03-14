@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,9 +17,9 @@ internal sealed class DeleteSellerEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Delete("/api/sellers/{sellerId}");
-		Description(x => x.WithTags("Sellers"));
+		Roles(AppRoles.User);
+		Delete($"{AppRoutes.Sellers}/{{sellerId}}");
+		Description(x => x.WithTags(AppRouteTags.Sellers));
 	}
 
 	public override async Task<Results<NoContent, NotFound, BadRequest>> ExecuteAsync(

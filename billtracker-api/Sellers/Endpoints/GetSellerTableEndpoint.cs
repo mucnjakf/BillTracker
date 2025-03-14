@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using billtracker_api.Pagination;
 using FastEndpoints;
@@ -26,9 +27,9 @@ internal sealed class GetSellerTableEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/sellers/table");
-		Description(x => x.WithTags("Sellers"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Sellers}/table");
+		Description(x => x.WithTags(AppRouteTags.Sellers));
 	}
 
 	public override async Task<Ok<PagedList<SellerTableDto>>> ExecuteAsync(

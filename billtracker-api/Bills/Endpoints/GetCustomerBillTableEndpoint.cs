@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using billtracker_api.Pagination;
 using FastEndpoints;
@@ -29,9 +30,9 @@ internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/customers/{customerId}/bills/table");
-		Description(x => x.WithTags("Bills"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Customers}/{{customerId}}/bills/table");
+		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
 	public override async Task<Ok<PagedList<CustomerBillTableDto>>> ExecuteAsync(GetCustomerBillTableRequest req, CancellationToken ct)

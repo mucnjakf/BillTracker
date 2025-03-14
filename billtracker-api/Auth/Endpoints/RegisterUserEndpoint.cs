@@ -13,8 +13,8 @@ internal sealed class RegisterUserEndpoint(AppDbContext appDbContext, IPasswordH
 	public override void Configure()
 	{
 		AllowAnonymous();
-		Post("/api/auth/register");
-		Description(x => x.WithTags("Auth"));
+		Post($"{AppRoutes.Auth}/register");
+		Description(x => x.WithTags(AppRouteTags.Auth));
 	}
 
 	public override async Task<Results<NoContent, BadRequest>> ExecuteAsync(

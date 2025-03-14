@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Pagination;
 
 namespace billtracker_api.Bills.Endpoints;
@@ -24,9 +25,9 @@ internal sealed class GetSellerBillsListEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/sellers/{sellerId}/bills/list");
-		Description(x => x.WithTags("Sellers"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Sellers}/{{sellerId}}/bills/list");
+		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
 	public override async Task<Ok<PagedList<BillListDto>>> ExecuteAsync(GetSellerBillsListRequest req, CancellationToken ct)

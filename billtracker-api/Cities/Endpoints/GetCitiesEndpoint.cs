@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -9,9 +10,9 @@ internal sealed class GetCitiesEndpoint(AppDbContext appDbContext) : EndpointWit
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/cities");
-		Description(x => x.WithTags("Cities"));
+		Roles(AppRoles.User);
+		Get(AppRoutes.Cities);
+		Description(x => x.WithTags(AppRouteTags.Cities));
 	}
 
 	public override async Task<Ok<IEnumerable<CityDto>>> ExecuteAsync(CancellationToken ct)

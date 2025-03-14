@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Customers;
 using billtracker_api.Database;
 using billtracker_api.Pagination;
@@ -27,9 +28,9 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/bills/table");
-		Description(x => x.WithTags("Bills"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Bills}/table");
+		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
 	public override async Task<Ok<PagedList<BillTableDto>>> ExecuteAsync(GetBillTableRequest req, CancellationToken ct)
@@ -61,9 +62,7 @@ internal sealed class GetBillTableEndpoint(AppDbContext appDbContext)
 		var capitalSearchQuery = searchQuery.ToUpper();
 
 		query = query.Where(x =>
-			x.BillNumber.ToUpper().Contains(capitalSearchQuery) || 
-			x.Customer.Name.ToUpper().Contains(capitalSearchQuery) || 
-			x.Customer.Surname.ToUpper().Contains(capitalSearchQuery));
+			x.BillNumber.ToUpper().Contains(capitalSearchQuery) || x.Customer.Name.ToUpper().Contains(capitalSearchQuery) || x.Customer.Surname.ToUpper().Contains(capitalSearchQuery));
 
 		return query;
 	}

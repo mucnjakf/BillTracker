@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using billtracker_api.Pagination;
 using FastEndpoints;
@@ -26,9 +27,9 @@ internal sealed class GetCityTableEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/cities/table");
-		Description(x => x.WithTags("Cities"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Cities}/table");
+		Description(x => x.WithTags(AppRouteTags.Cities));
 	}
 
 	public override async Task<Ok<PagedList<CityTableDto>>> ExecuteAsync(

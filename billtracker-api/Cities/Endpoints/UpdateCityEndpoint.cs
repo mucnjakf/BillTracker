@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -19,9 +20,9 @@ internal sealed class UpdateCityEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Put("/api/cities/{cityId}");
-		Description(x => x.WithTags("Cities"));
+		Roles(AppRoles.User);
+		Put($"{AppRoutes.Cities}/{{cityId}}");
+		Description(x => x.WithTags(AppRouteTags.Cities));
 	}
 
 	public override async Task<Results<NoContent, NotFound, BadRequest>> ExecuteAsync(

@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,9 +17,9 @@ internal sealed class GetCustomerBillListLatestEndpoint(AppDbContext appDbContex
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/customers/{customerId}/bills/list/latest");
-		Description(x => x.WithTags("Bills"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Customers}/{{customerId}}/bills/list/latest");
+		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
 	public override async Task<Ok<IEnumerable<BillListDto>>> ExecuteAsync(GetCustomerBillListLatestRequest req, CancellationToken ct)

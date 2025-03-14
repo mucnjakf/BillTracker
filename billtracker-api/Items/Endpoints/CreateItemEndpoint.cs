@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -20,9 +21,9 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Post("/api/bills/{billId}/items");
-		Description(x => x.WithTags("Items"));
+		Roles(AppRoles.User);
+		Post($"{AppRoutes.Bills}/{{billId}}/items");
+		Description(x => x.WithTags(AppRouteTags.Items));
 	}
 
 	public override async Task<Results<Created<ItemDto>, NotFound>> ExecuteAsync(

@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -23,9 +24,9 @@ internal sealed class UpdateBillEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Put("/api/customers/{customerId}/bills/{billId}");
-		Description(x => x.WithTags("Bills"));
+		Roles(AppRoles.User);
+		Put($"{AppRoutes.Customers}/{{customerId}}/bills/{{billId}}");
+		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
 	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(UpdateBillRequest req, CancellationToken ct)

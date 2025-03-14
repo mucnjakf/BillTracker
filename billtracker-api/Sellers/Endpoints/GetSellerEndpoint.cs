@@ -1,3 +1,4 @@
+using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,9 +17,9 @@ internal sealed class GetSellerEndpoint(AppDbContext appDbContext)
 {
 	public override void Configure()
 	{
-		Roles("User");
-		Get("/api/sellers/{sellerId}");
-		Description(x => x.WithTags("Sellers"));
+		Roles(AppRoles.User);
+		Get($"{AppRoutes.Sellers}/{{sellerId}}");
+		Description(x => x.WithTags(AppRouteTags.Sellers));
 	}
 
 	public override async Task<Results<Ok<SellerDto>, NotFound>> ExecuteAsync(
