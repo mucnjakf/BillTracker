@@ -30,7 +30,7 @@ class CityService {
     }
   }
 
-  async getCities () {
+  async getCitiesAll () {
     try {
       const response = await this.api.get()
       return { data: response.data, error: null }

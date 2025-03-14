@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Cities.Endpoints;
 
-internal sealed class GetCitiesEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CityDto>>>
+internal sealed class GetCitiesAllEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<IEnumerable<CityDto>>>
 {
 	public override void Configure()
 	{

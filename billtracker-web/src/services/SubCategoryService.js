@@ -3,7 +3,7 @@ import axios from 'axios'
 class SubCategoryService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/categories/',
+      baseURL: 'http://localhost:5140/api/subcategories',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -11,9 +11,9 @@ class SubCategoryService {
     })
   }
 
-  async getCategorySubCategories (categoryId) {
+  async getCategorySubCategoriesAll (categoryId) {
     try {
-      const response = await this.api.get(`${categoryId}/subcategories`)
+      const response = await this.api.get(`?categoryId=${categoryId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
