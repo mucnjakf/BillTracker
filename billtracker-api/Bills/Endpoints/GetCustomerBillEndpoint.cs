@@ -9,10 +9,10 @@ namespace billtracker_api.Bills.Endpoints;
 internal sealed record GetCustomerBillRequest
 {
 	[RouteParam]
-	public int CustomerId { get; init; }
-
-	[RouteParam]
 	public int BillId { get; init; }
+
+	[QueryParam]
+	public int CustomerId { get; init; }
 }
 
 internal sealed class GetCustomerBillEndpoint(AppDbContext appDbContext)
@@ -21,7 +21,7 @@ internal sealed class GetCustomerBillEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.Customers}/{{customerId}}/bills/{{billId}}");
+		Get($"{AppRoutes.Bills}/{{billId}}");
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 

@@ -60,7 +60,7 @@ class BillService {
 
   async getCustomerBill (customerId, billId) {
     try {
-      const response = await this.api.get(`customers/${customerId}/bills/${billId}`)
+      const response = await this.api.get(`${billId}?customerId=${customerId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
