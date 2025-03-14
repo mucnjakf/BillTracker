@@ -34,6 +34,7 @@ import SellerCreate from '../pages/seller/SellerCreate.jsx'
 import SellerUpdate from '../pages/seller/SellerUpdate.jsx'
 import SellerDelete from '../pages/seller/SellerDelete.jsx'
 import SellerDetails from '../pages/seller/SellerDetails.jsx'
+import Categories from '../pages/category/Categories.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -170,7 +171,7 @@ const BtRoutes = () => {
         },
         {
           path: '/categories',
-          element: <h1>Categories</h1>,
+          element: <Categories/>,
         },
         {
           path: '/subcategories',
