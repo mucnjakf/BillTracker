@@ -2,13 +2,12 @@ using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace billtracker_api.Sellers.Endpoints;
 
 internal sealed record UpdateSellerRequest
 {
-	[FromRoute]
+	[RouteParam]
 	public int SellerId { get; init; }
 
 	public string Name { get; init; } = null!;

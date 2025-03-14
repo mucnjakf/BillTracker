@@ -63,7 +63,7 @@ const Categories = () => {
       variant: 'danger',
       icon: <BsTrash/>,
       onClick: (categoryId) =>
-        navigate(`${categoryId}/delete?returnUrl=/cities`),
+        navigate(`${categoryId}/delete?returnUrl=/categories`),
     },
   ]
 
