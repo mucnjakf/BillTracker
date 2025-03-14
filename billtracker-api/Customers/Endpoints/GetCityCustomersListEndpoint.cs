@@ -1,3 +1,5 @@
+using billtracker_api.Pagination;
+
 namespace billtracker_api.Customers.Endpoints;
 
 using billtracker_api.Database;
@@ -9,10 +11,16 @@ internal sealed record GetCityCustomersListRequest
 {
 	[RouteParam]
 	public int CityId { get; init; }
+
+	[QueryParam]
+	public int PageNumber { get; init; } = 1;
+
+	[QueryParam]
+	public int PageSize { get; init; } = 10;
 }
 
 internal sealed class GetCityCustomersListEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetCityCustomersListRequest, Ok<IEnumerable<CustomerListDto>>>
+	: Endpoint<GetCityCustomersListRequest, Ok<PagedList<CustomerListDto>>>
 {
 	public override void Configure()
 	{
@@ -21,14 +29,15 @@ internal sealed class GetCityCustomersListEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags("Customers"));
 	}
 
-	public override async Task<Ok<IEnumerable<CustomerListDto>>> ExecuteAsync(GetCityCustomersListRequest req, CancellationToken ct)
+	public override async Task<Ok<PagedList<CustomerListDto>>> ExecuteAsync(GetCityCustomersListRequest req, CancellationToken ct)
 	{
-		var query = await appDbContext.Customers
+		var query = appDbContext.Customers
 			.AsNoTracking()
-			.Where(x => x.CityId == req.CityId)
-			.ToListAsync(ct);
+			.Where(x => x.CityId == req.CityId);
 
-		var billsList = query.Select(x => x.ToCustomerListDto());
+		var bills = query.Select(x => x.ToCustomerListDto());
+
+		var billsList = await PagedList<CustomerListDto>.ToPagedListAsync(bills, req.PageNumber, req.PageSize);
 
 		return TypedResults.Ok(billsList);
 	}

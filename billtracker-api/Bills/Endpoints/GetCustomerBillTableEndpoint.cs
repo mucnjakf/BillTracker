@@ -71,8 +71,10 @@ internal sealed class GetCustomerBillTableEndpoint(AppDbContext appDbContext)
 		{
 			"date-asc" => query.OrderBy(x => x.Date),
 			"date-desc" => query.OrderByDescending(x => x.Date),
-			"number-asc" => query.OrderBy(x => x.BillNumber),
-			"number-desc" => query.OrderByDescending(x => x.BillNumber),
+			"itemsCount-asc" => query.OrderBy(x => x.Items!.Count()),
+			"itemsCount-desc" => query.OrderByDescending(x => x.Items!.Count()),
+			"total-asc" => query.OrderBy(x => x.Items!.Sum(y => y.TotalPrice)),
+			"total-desc" => query.OrderByDescending(x => x.Items!.Sum(y => y.TotalPrice)),
 			_ => query.OrderByDescending(x => x.Date)
 		};
 	}
