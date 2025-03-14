@@ -11,7 +11,7 @@ class CategoryService {
     })
   }
 
-  async getCategories () {
+  async getCategoriesAll () {
     try {
       const response = await this.api.get()
       return { data: response.data, error: null }

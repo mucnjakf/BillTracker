@@ -11,7 +11,9 @@ internal static class ProductMapper
 			product.ProductNumber,
 			product.Color,
 			product.Price,
+			product.SubCategory.Id,
 			product.SubCategory.Name,
+			product.SubCategory.Category.Id,
 			product.SubCategory.Category.Name,
 			product.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}

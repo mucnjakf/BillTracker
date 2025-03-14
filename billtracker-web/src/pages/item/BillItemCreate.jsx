@@ -92,7 +92,7 @@ const BillItemCreate = () => {
     if (!subCategoryId) return
 
     const getProducts = async () => {
-      const { data, error } = await ProductService.getSubCategoryProducts(subCategoryId)
+      const { data, error } = await ProductService.getSubCategoryProductsAll(subCategoryId)
 
       if (error) {
         setError(error)

@@ -7,6 +7,8 @@ internal sealed record ProductDto(
 	string ProductNumber,
 	string Color,
 	decimal Price,
+	int SubCategoryId,
 	string SubCategoryName,
+	int CategoryId,
 	string CategoryName,
 	string CreatedUtc);

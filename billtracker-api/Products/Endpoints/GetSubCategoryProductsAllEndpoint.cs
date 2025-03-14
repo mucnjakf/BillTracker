@@ -6,23 +6,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Products.Endpoints;
 
-internal sealed record GetSubCategoryProductsRequest
+internal sealed record GetSubCategoryProductsAllRequest
 {
-	[RouteParam]
+	[QueryParam]
 	public int SubCategoryId { get; init; }
 }
 
-internal sealed class GetSubCategoryProductsEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetSubCategoryProductsRequest, Ok<IEnumerable<ProductDto>>>
+internal sealed class GetSubCategoryProductsAllEndpoint(AppDbContext appDbContext)
+	: Endpoint<GetSubCategoryProductsAllRequest, Ok<IEnumerable<ProductDto>>>
 {
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Get($"{AppRoutes.SubCategories}/{{subCategoryId}}/products");
+		Get(AppRoutes.Products);
 		Description(x => x.WithTags(AppRouteTags.Products));
 	}
 
-	public override async Task<Ok<IEnumerable<ProductDto>>> ExecuteAsync(GetSubCategoryProductsRequest req, CancellationToken ct)
+	public override async Task<Ok<IEnumerable<ProductDto>>> ExecuteAsync(GetSubCategoryProductsAllRequest req, CancellationToken ct)
 	{
 		var products = await appDbContext.Products
 			.AsNoTracking()
