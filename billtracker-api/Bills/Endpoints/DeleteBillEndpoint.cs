@@ -9,10 +9,10 @@ namespace billtracker_api.Bills.Endpoints;
 internal sealed record DeleteBillRequest
 {
 	[RouteParam]
-	public int CustomerId { get; init; }
-
-	[RouteParam]
 	public int BillId { get; init; }
+
+	[QueryParam]
+	public int CustomerId { get; init; }
 }
 
 internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
@@ -21,7 +21,7 @@ internal sealed class DeleteBillEndpoint(AppDbContext appDbContext)
 	public override void Configure()
 	{
 		Roles(AppRoles.User);
-		Delete($"{AppRoutes.Customers}/{{customerId}}/bills/{{billId}}");
+		Delete($"{AppRoutes.Bills}/{{billId}}");
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 

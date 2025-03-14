@@ -3,7 +3,7 @@ import axios from 'axios'
 class BillService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:5140/api/',
+      baseURL: 'http://localhost:5140/api/bills/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -13,7 +13,7 @@ class BillService {
 
   async getBillTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
-      let url = `bills/table?pageNumber=${pageNumber}&pageSize=${pageSize}`
+      let url = `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
 
       if (searchQuery !== '') {
         url += `&searchQuery=${searchQuery}`
@@ -78,10 +78,11 @@ class BillService {
 
   async createBill (customerId, date, billNumber, comment, sellerId) {
     try {
-      await this.api.post(`customers/${customerId}/bills`, {
+      await this.api.post('', {
         date: new Date(date),
         billNumber: billNumber,
         comment: comment,
+        customerId: customerId,
         sellerId: sellerId,
       })
 
@@ -124,7 +125,7 @@ class BillService {
 
   async deleteBill (customerId, billId) {
     try {
-      await this.api.delete(`customers/${customerId}/bills/${billId}`)
+      await this.api.delete(`bills/${billId}?customerId=${customerId}`)
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {
