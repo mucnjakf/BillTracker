@@ -8,7 +8,7 @@ internal sealed class Category
 
 	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; init; } = null!;
+	public string Name { get; set; } = null!;
 
 	public IEnumerable<SubCategory>? SubCategories { get; init; }
 	
