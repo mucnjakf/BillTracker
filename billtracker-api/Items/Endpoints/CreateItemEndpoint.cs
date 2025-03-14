@@ -71,6 +71,6 @@ internal sealed class CreateItemEndpoint(AppDbContext appDbContext)
 
 		var itemDto = item!.ToItemDto();
 
-		return TypedResults.Created($"{HttpContext.Request.Host}/api/bills/{bill.Id}/items/{itemDto.Id}", itemDto);
+		return TypedResults.Created($"{HttpContext.Request.Host}/api/items/{itemDto.Id}", itemDto);
 	}
 }

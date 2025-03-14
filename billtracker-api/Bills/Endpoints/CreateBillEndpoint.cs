@@ -69,6 +69,6 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 
 		var billDto = bill!.ToBillDto();
 
-		return TypedResults.Created($"{HttpContext.Request.Host}/api/customers/{customer.Id}/bills/{billDto.Id}", billDto);
+		return TypedResults.Created($"{HttpContext.Request.Host}/api/bills/{billDto.Id}", billDto);
 	}
 }
