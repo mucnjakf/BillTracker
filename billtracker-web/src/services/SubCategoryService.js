@@ -55,9 +55,9 @@ class SubCategoryService {
     }
   }
 
-  async getSubCategory (subCategoryId) {
+  async getCategorySubCategory (categoryId, subCategoryId) {
     try {
-      const response = await this.api.get(subCategoryId)
+      const response = await this.api.get(`${subCategoryId}?categoryId=${categoryId}`)
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
@@ -118,9 +118,9 @@ class SubCategoryService {
     }
   }
 
-  async deleteSubCategory (subCategoryId) {
+  async deleteSubCategory (categoryId, subCategoryId) {
     try {
-      await this.api.delete(subCategoryId)
+      await this.api.delete(`${subCategoryId}?categoryId=${categoryId}`)
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {

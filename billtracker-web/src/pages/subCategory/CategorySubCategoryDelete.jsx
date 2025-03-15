@@ -25,7 +25,7 @@ const CategorySubCategoryDelete = () => {
 
   useEffect(() => {
     const getSubCategory = async () => {
-      const { data, error } = await SubCategoryService.getSubCategory(subCategoryId)
+      const { data, error } = await SubCategoryService.getCategorySubCategory(categoryId, subCategoryId)
 
       if (error) {
         setError(error)
@@ -42,7 +42,7 @@ const CategorySubCategoryDelete = () => {
     e.preventDefault()
     setError(null)
 
-    const { error } = await SubCategoryService.deleteSubCategory(subCategoryId)
+    const { error } = await SubCategoryService.deleteSubCategory(categoryId, subCategoryId)
 
     if (error) {
       setError(error)

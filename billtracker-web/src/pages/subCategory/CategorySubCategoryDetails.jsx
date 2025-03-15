@@ -24,7 +24,7 @@ const CategorySubCategoryDetails = () => {
 
   useEffect(() => {
     const getSubCategory = async () => {
-      const { data, error } = await SubCategoryService.getSubCategory(subCategoryId)
+      const { data, error } = await SubCategoryService.getCategorySubCategory(categoryId, subCategoryId)
 
       if (error) {
         setError(error)
