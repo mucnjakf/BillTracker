@@ -10,6 +10,9 @@ internal sealed record GetSubCategoryRequest
 {
 	[RouteParam]
 	public int SubCategoryId { get; init; }
+
+	[QueryParam]
+	public int? CategoryId { get; init; }
 }
 
 internal sealed class GetSubCategoryEndpoint(AppDbContext appDbContext)
@@ -32,6 +35,11 @@ internal sealed class GetSubCategoryEndpoint(AppDbContext appDbContext)
 			.SingleOrDefaultAsync(x => x.Id == req.SubCategoryId, ct);
 
 		if (subCategory is null)
+		{
+			return TypedResults.NotFound();
+		}
+
+		if (req.CategoryId is not null && subCategory.CategoryId != req.CategoryId)
 		{
 			return TypedResults.NotFound();
 		}

@@ -124,7 +124,7 @@ const SubCategoryProducts = () => {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (productId) => navigate(`${productId}/delete?returnUrl=/categories/${categoryId}/subcategories/${productId}/products`),
+      onClick: (productId) => navigate(`${productId}/delete?returnUrl=/categories/${categoryId}/subcategories/${subCategoryId}/products`),
     },
   ]
 

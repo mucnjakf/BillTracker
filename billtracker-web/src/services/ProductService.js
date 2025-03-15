@@ -55,6 +55,24 @@ class ProductService {
     }
   }
 
+  async getSubCategoryProduct (subCategoryId, productId) {
+    try {
+      const response = await this.api.get(`${productId}?subCategoryId=${subCategoryId}`)
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Product not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async createProduct (name, productNumber, color, price, subCategoryId) {
     try {
       await this.api.post('', {
@@ -74,6 +92,26 @@ class ProductService {
           return { data: null, error: 'You are not authenticated.' }
         case 403:
           return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
+  async deleteProduct (subCategoryId, productId) {
+    try {
+      await this.api.delete(`${productId}?subCategoryId=${subCategoryId}`)
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 400:
+          return { data: null, error: 'Product contains items.' }
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Product not found.' }
         default:
           return { data: null, error: 'Unknown error occurred.' }
       }
