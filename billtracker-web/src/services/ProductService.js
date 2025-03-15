@@ -54,6 +54,31 @@ class ProductService {
       return { data: null, error: 'Unknown error occurred.' }
     }
   }
+
+  async createProduct (name, productNumber, color, price, subCategoryId) {
+    try {
+      await this.api.post('', {
+        name: name,
+        productNumber: productNumber,
+        color: color,
+        price: price,
+        subCategoryId: subCategoryId,
+      })
+
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 400:
+          return { data: null, error: 'Sub-category not found.' }
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
 }
 
 export default new ProductService()

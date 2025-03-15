@@ -49,6 +49,7 @@ internal sealed class CreateProductEndpoint(AppDbContext appDbContext)
 		product = await appDbContext.Products
 			.AsNoTracking()
 			.Include(x => x.SubCategory)
+			.ThenInclude(x => x.Category)
 			.SingleOrDefaultAsync(x => x.Id == product.Id, ct);
 
 		var productDto = product!.ToProductDto();
