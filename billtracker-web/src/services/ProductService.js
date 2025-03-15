@@ -98,6 +98,30 @@ class ProductService {
     }
   }
 
+  async updateProduct (productId, subCategoryId, name, productNumber, color, price) {
+    try {
+      await this.api.put(`${productId}?subCategoryId=${subCategoryId}`, {
+        name: name,
+        productNumber: productNumber,
+        color: color,
+        price: price,
+      })
+
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'Product not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async deleteProduct (subCategoryId, productId) {
     try {
       await this.api.delete(`${productId}?subCategoryId=${subCategoryId}`)

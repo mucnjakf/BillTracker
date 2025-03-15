@@ -23,7 +23,7 @@ internal sealed record UpdateProductRequest
 }
 
 internal sealed class UpdateProductEndpoint(AppDbContext appDbContext)
-	: Endpoint<UpdateProductRequest, Results<NoContent, NotFound, BadRequest>>
+	: Endpoint<UpdateProductRequest, Results<NoContent, NotFound>>
 {
 	public override void Configure()
 	{
@@ -32,7 +32,7 @@ internal sealed class UpdateProductEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags(AppRouteTags.Products));
 	}
 
-	public override async Task<Results<NoContent, NotFound, BadRequest>> ExecuteAsync(
+	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(
 		UpdateProductRequest req,
 		CancellationToken ct)
 	{
