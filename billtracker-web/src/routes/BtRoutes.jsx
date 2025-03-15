@@ -22,8 +22,6 @@ import BillItemCreate from '../pages/item/BillItemCreate.jsx'
 import BillItemDelete from '../pages/item/BillItemDelete.jsx'
 import BillItemDetails from '../pages/item/BillItemDetails.jsx'
 import BillItemUpdate from '../pages/item/BillItemUpdate.jsx'
-import Bills from '../pages/bill/Bills.jsx'
-import Items from '../pages/item/Items.jsx'
 import Cities from '../pages/city/Cities.jsx'
 import CityCreate from '../pages/city/CityCreate.jsx'
 import CityUpdate from '../pages/city/CityUpdate.jsx'
@@ -129,14 +127,6 @@ const BtRoutes = () => {
         {
           path: '/customers/:customerId/bills/:billId/items/:itemId/delete',
           element: <BillItemDelete/>,
-        },
-        {
-          path: '/bills',
-          element: <Bills/>,
-        },
-        {
-          path: '/items',
-          element: <Items/>,
         },
         {
           path: '/cities',
