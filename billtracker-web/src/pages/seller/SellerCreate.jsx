@@ -53,7 +53,7 @@ const SellerCreate = () => {
         ]}
       />
 
-      <BtPageTitle text="Seller create"/>
+      <BtPageTitle text="Create seller"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

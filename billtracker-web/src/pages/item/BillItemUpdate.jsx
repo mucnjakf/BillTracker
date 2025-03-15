@@ -92,7 +92,7 @@ const BillItemUpdate = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Bill item update"/>
+      <BtPageTitle text={`Update ${item.quantity} ${item.productName}`}/>
 
       <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">

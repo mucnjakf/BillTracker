@@ -140,7 +140,7 @@ const SubCategoryProducts = () => {
       ]}
     />
 
-    <BtPageTitle text="Sub-category products"/>
+    <BtPageTitle text={`${subCategory.name} products`}/>
 
     <div className="d-flex mb-3">
       <BtSearch

@@ -76,7 +76,7 @@ const BillItemDelete = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Bill item delete"/>
+      <BtPageTitle text={`Delete ${item.quantity} ${item.productName}`}/>
 
       <BtCard width="500px">
         <BtCard.Body>

@@ -66,7 +66,7 @@ const CategorySubCategoryDetails = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Category sub-category details"/>
+      <BtPageTitle text={`${subCategory.name} details`}/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>

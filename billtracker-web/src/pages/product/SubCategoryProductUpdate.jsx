@@ -102,7 +102,7 @@ const SubCategoryProductUpdate = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Sub-category product update"/>
+      <BtPageTitle text={`Update ${name}`}/>
 
       <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">

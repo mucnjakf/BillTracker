@@ -65,7 +65,7 @@ const CityDelete = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="City delete"/>
+      <BtPageTitle text={`Delete ${city.name}`}/>
 
       <BtCard width="500px">
         <BtCard.Body>

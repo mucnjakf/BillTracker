@@ -158,7 +158,7 @@ const BillItemCreate = () => {
         ]}
       />
 
-      <BtPageTitle text="Bill item create"/>
+      <BtPageTitle text="Create item"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

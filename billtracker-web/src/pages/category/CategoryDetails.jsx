@@ -62,7 +62,7 @@ const CategoryDetails = () => {
         ]}
       />
 
-      <BtPageTitle text="Category details"/>
+      <BtPageTitle text={`${category.name} details`}/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>

@@ -50,7 +50,7 @@ const CityCreate = () => {
         ]}
       />
 
-      <BtPageTitle text="City create"/>
+      <BtPageTitle text="Create city"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

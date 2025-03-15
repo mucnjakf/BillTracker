@@ -62,7 +62,7 @@ const CustomerDetails = () => {
         ]}
       />
 
-      <BtPageTitle text="Customer details"/>
+      <BtPageTitle text={`${customer.name} ${customer.surname} details`}/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>

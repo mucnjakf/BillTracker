@@ -110,7 +110,7 @@ const CustomerUpdate = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Customer update"/>
+      <BtPageTitle text={`Update ${name} ${surname}`}/>
 
       <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">

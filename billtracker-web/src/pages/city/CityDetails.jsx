@@ -66,7 +66,7 @@ const CityDetails = () => {
         ]}
       />
 
-      <BtPageTitle text="City details"/>
+      <BtPageTitle text={`${city.name} details`}/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>
@@ -110,7 +110,7 @@ const CityDetails = () => {
                 <div className="fw-bold">
                   {customer.name} {customer.surname}
                 </div>
-                <div>
+                <div className="small">
                   {customer.email}
                 </div>
               </div>

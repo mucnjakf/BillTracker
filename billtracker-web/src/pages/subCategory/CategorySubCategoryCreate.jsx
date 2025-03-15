@@ -72,7 +72,7 @@ const CategorySubCategoryCreate = () => {
         ]}
       />
 
-      <BtPageTitle text="Category sub-category create"/>
+      <BtPageTitle text="Create sub-category"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

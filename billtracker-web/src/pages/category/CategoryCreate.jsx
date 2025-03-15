@@ -50,7 +50,7 @@ const CategoryCreate = () => {
         ]}
       />
 
-      <BtPageTitle text="Category create"/>
+      <BtPageTitle text="Create category"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

@@ -71,7 +71,7 @@ const CategorySubCategoryDelete = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Category sub-category delete"/>
+      <BtPageTitle text={`Delete ${subCategory.name}`}/>
 
       <BtCard width="500px">
         <BtCard.Body>

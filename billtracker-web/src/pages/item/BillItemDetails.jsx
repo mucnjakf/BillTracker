@@ -51,7 +51,7 @@ const BillItemDetails = () => {
         ]}
       />
 
-      <BtPageTitle text="Bill item details"/>
+      <BtPageTitle text={`${item.quantity} ${item.productName} details`}/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>

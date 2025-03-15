@@ -120,7 +120,7 @@ const CategorySubCategories = () => {
       ]}
     />
 
-    <BtPageTitle text="Category sub-categories"/>
+    <BtPageTitle text={`${category.name} sub-categories`}/>
 
     <div className="d-flex mb-3">
       <BtSearch

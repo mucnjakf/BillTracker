@@ -121,7 +121,7 @@ const CustomerBills = () => {
       ]}
     />
 
-    <BtPageTitle text="Customer bills"/>
+    <BtPageTitle text={`${customer.name} ${customer.surname} bills`}/>
 
     <div className="d-flex mb-3">
       <BtSearch

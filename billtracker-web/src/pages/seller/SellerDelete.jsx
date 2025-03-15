@@ -65,7 +65,7 @@ const SellerDelete = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Seller delete"/>
+      <BtPageTitle text={`Delete ${seller.name}`}/>
 
       <BtCard width="500px">
         <BtCard.Body>
