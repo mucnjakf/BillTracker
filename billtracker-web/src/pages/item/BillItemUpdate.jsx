@@ -19,6 +19,7 @@ const BillItemUpdate = () => {
   const { customerId, billId, itemId } = useParams()
 
   const [item, setItem] = useState({})
+
   const [quantity, setQuantity] = useState(0)
 
   const [error, setError] = useState(null)

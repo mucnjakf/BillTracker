@@ -20,6 +20,7 @@ const CustomerBillDetails = () => {
   const { customerId, billId } = useParams()
 
   const [bill, setBill] = useState({})
+
   const [pagedBillItems, setPagedBillItems] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
@@ -68,7 +69,7 @@ const CustomerBillDetails = () => {
             isActive: true,
           },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
-          { label: `${bill.billNumber}` },
+          { label: bill.billNumber },
         ]}
       />
 

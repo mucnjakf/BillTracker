@@ -18,6 +18,7 @@ const CategorySubCategoryUpdate = () => {
   const { categoryId, subCategoryId } = useParams()
 
   const [categoryName, setCategoryName] = useState('')
+
   const [name, setName] = useState('')
 
   const [error, setError] = useState(null)
@@ -40,7 +41,7 @@ const CategorySubCategoryUpdate = () => {
     }
 
     getSubCategory()
-  }, [subCategoryId])
+  }, [categoryId, subCategoryId])
 
   const handleUpdate = async (e) => {
     e.preventDefault()

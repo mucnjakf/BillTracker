@@ -22,9 +22,11 @@ const BillItemCreate = () => {
   const { customerId, billId } = useParams()
 
   const [bill, setBill] = useState({})
+
   const [categories, setCategories] = useState([])
   const [subCategories, setSubCategories] = useState([])
   const [products, setProducts] = useState([])
+
   const [categoryId, setCategoryId] = useState(null)
   const [subCategoryId, setSubCategoryId] = useState(null)
   const [productId, setProductId] = useState(null)
@@ -150,7 +152,7 @@ const BillItemCreate = () => {
             isActive: true,
           },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
-          { label: `${bill.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
+          { label: bill.billNumber, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
           { label: 'Items' },
           { label: 'Create' },
         ]}

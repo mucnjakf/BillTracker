@@ -20,6 +20,7 @@ const CustomerUpdate = () => {
   const { customerId } = useParams()
 
   const [cities, setCities] = useState([])
+
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')

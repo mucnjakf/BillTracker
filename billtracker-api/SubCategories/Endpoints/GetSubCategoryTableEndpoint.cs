@@ -10,7 +10,7 @@ namespace billtracker_api.SubCategories.Endpoints;
 internal sealed record GetSubCategoryTableRequest
 {
 	[QueryParam]
-	public int? CategoryId { get; set; }
+	public int? CategoryId { get; init; }
 
 	[QueryParam]
 	public int PageNumber { get; init; } = 1;

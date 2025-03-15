@@ -17,6 +17,7 @@ const CategorySubCategoryCreate = () => {
   const { categoryId } = useParams()
 
   const [category, setCategory] = useState({})
+
   const [name, setName] = useState('')
 
   const [error, setError] = useState(null)
@@ -71,7 +72,7 @@ const CategorySubCategoryCreate = () => {
         ]}
       />
 
-      <BtPageTitle text="Sub-category create"/>
+      <BtPageTitle text="Category sub-category create"/>
 
       <Form noValidate validated={validated} onSubmit={handleCreate}>
         <BtCard width="500px">

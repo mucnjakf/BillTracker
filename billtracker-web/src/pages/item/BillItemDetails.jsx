@@ -45,7 +45,7 @@ const BillItemDetails = () => {
             isActive: true,
           },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
-          { label: `${item.billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
+          { label: item.billNumber, href: `/customers/${customerId}/bills/${billId}`, isActive: true },
           { label: 'Items' },
           { label: item.productName },
         ]}

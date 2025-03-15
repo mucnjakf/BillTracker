@@ -18,6 +18,7 @@ const CategorySubCategories = () => {
   const { categoryId } = useParams()
 
   const [category, setCategory] = useState({})
+
   const [pagedSubCategories, setPagedSubCategories] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
@@ -78,7 +79,6 @@ const CategorySubCategories = () => {
   const tableColumns = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
-    { key: 'categoryName', label: 'Category' },
     { key: 'productsCount', label: 'Products' },
     { key: 'createdUtc', label: 'Created' },
   ]

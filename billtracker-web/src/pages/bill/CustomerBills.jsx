@@ -18,6 +18,7 @@ const CustomerBills = () => {
   const { customerId } = useParams()
 
   const [customer, setCustomer] = useState({})
+
   const [pagedBills, setPagedBills] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)

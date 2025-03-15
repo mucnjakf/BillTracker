@@ -22,6 +22,7 @@ const CustomerBillCreate = () => {
 
   const [customer, setCustomer] = useState({})
   const [sellers, setSellers] = useState([])
+
   const [date, setDate] = useState('')
   const [billNumber, setBillNumber] = useState('')
   const [sellerId, setSellerId] = useState(null)

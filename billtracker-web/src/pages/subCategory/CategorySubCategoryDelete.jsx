@@ -36,7 +36,7 @@ const CategorySubCategoryDelete = () => {
     }
 
     getSubCategory()
-  }, [subCategoryId])
+  }, [categoryId, subCategoryId])
 
   const handleDelete = async (e) => {
     e.preventDefault()

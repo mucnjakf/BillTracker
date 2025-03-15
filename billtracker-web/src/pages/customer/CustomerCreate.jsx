@@ -16,6 +16,7 @@ const CustomerCreate = () => {
   const navigate = useNavigate()
 
   const [cities, setCities] = useState([])
+
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')

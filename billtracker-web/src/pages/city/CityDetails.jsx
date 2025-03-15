@@ -19,6 +19,7 @@ const CityDetails = () => {
   const { cityId } = useParams()
 
   const [city, setCity] = useState({})
+
   const [pagedCityCustomers, setPagedCityCustomers] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
@@ -61,7 +62,7 @@ const CityDetails = () => {
         paths={[
           { label: 'Home', href: '/', isActive: true },
           { label: 'Cities', href: '/cities', isActive: true },
-          { label: `${city.name}` },
+          { label: city.name },
         ]}
       />
 

@@ -35,7 +35,7 @@ const CategorySubCategoryDetails = () => {
     }
 
     getSubCategory()
-  }, [subCategoryId])
+  }, [categoryId, subCategoryId])
 
   useEffect(() => {
     const getSubCategoryProducts = async () => {
@@ -66,7 +66,7 @@ const CategorySubCategoryDetails = () => {
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Sub-categories details"/>
+      <BtPageTitle text="Category sub-category details"/>
 
       <BtCard className="mb-3" width="1000px">
         <BtCard.Body>
@@ -122,7 +122,7 @@ const CategorySubCategoryDetails = () => {
 
           <BtButton
             variant="primary"
-            onClick={() => navigate(`products`)}
+            onClick={() => navigate('products')}
             icon={BsBox}
             label="See all"
           />
@@ -142,7 +142,7 @@ const CategorySubCategoryDetails = () => {
               <Button
                 className="pb-2"
                 variant="primary"
-                onClick={() => location.href = `products/${product.id}`}
+                onClick={() => navigate(`products/${product.id}`)}
               >
                 <BsCardText/>
               </Button>

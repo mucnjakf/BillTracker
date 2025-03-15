@@ -20,6 +20,7 @@ const CustomerBillUpdate = () => {
   const { customerId, billId } = useParams()
 
   const [customerName, setCustomerName] = useState('')
+
   const [billNumber, setBillNumber] = useState('')
   const [date, setDate] = useState('')
   const [comment, setComment] = useState('')
@@ -39,11 +40,12 @@ const CustomerBillUpdate = () => {
         return
       }
 
-      setCustomerName(`${data.customerName}`)
+      setCustomerName(data.customerName)
       setBillNumber(data.billNumber)
       setDate(DateTimeUtilities.formatDateForInput(data.date))
       setComment(data.comment)
     }
+
     getBill()
   }, [customerId, billId])
 

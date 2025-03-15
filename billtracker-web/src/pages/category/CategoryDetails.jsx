@@ -58,7 +58,7 @@ const CategoryDetails = () => {
         paths={[
           { label: 'Home', href: '/', isActive: true },
           { label: 'Categories', href: '/categories', isActive: true },
-          { label: `${category.name}` },
+          { label: category.name },
         ]}
       />
 

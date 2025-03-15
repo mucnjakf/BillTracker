@@ -25,4 +25,14 @@ internal static class ProductMapper
 			product.Name,
 			product.Price);
 	}
+
+	internal static ProductTableDto ToProductTableDto(this Product product)
+	{
+		return new(
+			product.Id,
+			product.Name,
+			product.ProductNumber,
+			product.Price,
+			product.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
+	}
 }
