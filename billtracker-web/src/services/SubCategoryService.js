@@ -55,6 +55,15 @@ class SubCategoryService {
     }
   }
 
+  async getCategorySubCategoriesLatest (categoryId) {
+    try {
+      const response = await this.api.get(`latest?categoryId=${categoryId}`)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getSubCategory (subCategoryId) {
     try {
       const response = await this.api.get(subCategoryId)

@@ -5,11 +5,10 @@ import BtRowCol from '../../components/BtRowCol'
 import BtPageTitle from '../../components/BtPageTitle'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
-import { BsTrash, BsPencilSquare, BsCardText } from 'react-icons/bs'
+import { BsTrash, BsPencilSquare, BsCardText, BsTag } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtListGroup from '../../components/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
-import BtPagination from '../../components/BtPagination.jsx'
 import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
 
@@ -19,9 +18,7 @@ const CategoryDetails = () => {
   const { categoryId } = useParams()
 
   const [category, setCategory] = useState({})
-  const [pagedCategorySubCategories, setPagedCategorySubCategories] = useState({ items: [] })
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
+  const [categorySubCategories, setCategorySubCategories] = useState([])
 
   const [error, setError] = useState(null)
 
@@ -42,18 +39,18 @@ const CategoryDetails = () => {
 
   useEffect(() => {
     const getCategorySubCategories = async () => {
-      const { data, error } = await SubCategoryService.getCategorySubCategoryList(categoryId, currentPage, pageSize)
+      const { data, error } = await SubCategoryService.getCategorySubCategoriesLatest(categoryId)
 
       if (error) {
         setError(error)
         return
       }
 
-      setPagedCategorySubCategories(data)
+      setCategorySubCategories(data)
     }
 
     getCategorySubCategories()
-  }, [categoryId, currentPage, pageSize])
+  }, [categoryId])
 
   return (
     <>
@@ -106,10 +103,19 @@ const CategoryDetails = () => {
       </div>
 
       <div style={{ width: '1000px' }}>
-        <h3 className="mb-3">Sub-categories</h3>
+        <div className="d-flex justify-content-between mb-3 align-items-center">
+          <h3 className="mb-0">Latest sub-categories</h3>
+
+          <BtButton
+            variant="primary"
+            onClick={() => navigate(`subcategories`)}
+            icon={BsTag}
+            label="See all"
+          />
+        </div>
 
         <BtListGroup
-          items={pagedCategorySubCategories.items}
+          items={categorySubCategories}
           renderListItem={(subCategory) => (
             <>
               <div className="fw-bold d-flex align-items-center">
@@ -119,24 +125,12 @@ const CategoryDetails = () => {
               <Button
                 className="pb-2"
                 variant="primary"
-                onClick={() => location.href = `/subcategories/${subCategory.id}`}
+                onClick={() => navigate(`subcategories/${subCategory.id}`)}
               >
                 <BsCardText/>
               </Button>
             </>
           )}/>
-
-        {pagedCategorySubCategories.items.length > 0 && (
-          <BtPagination
-            currentPage={currentPage}
-            totalPages={pagedCategorySubCategories.totalPages}
-            totalItems={pagedCategorySubCategories.items.length}
-            totalCount={pagedCategorySubCategories.totalCount}
-            pageSize={pageSize}
-            setPageSize={setPageSize}
-            setCurrentPage={setCurrentPage}
-          />
-        )}
       </div>
     </>
   )
