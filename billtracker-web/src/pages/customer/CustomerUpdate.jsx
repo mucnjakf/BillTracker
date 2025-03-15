@@ -165,7 +165,6 @@ const CustomerUpdate = () => {
               label="City"
               value={cityId}
               onChange={setCityId}
-              placeholder="Select city"
               items={cities}
               required={true}
             />

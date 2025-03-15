@@ -2,6 +2,7 @@ using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.SubCategories.Endpoints;
 
@@ -16,7 +17,7 @@ internal sealed record UpdateSubCategoryRequest
 }
 
 internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
-	: Endpoint<UpdateSubCategoryRequest, Results<NoContent, NotFound>>
+	: Endpoint<UpdateSubCategoryRequest, Results<NoContent, NotFound, BadRequest>>
 {
 	public override void Configure()
 	{
@@ -25,7 +26,7 @@ internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags(AppRouteTags.SubCategories));
 	}
 
-	public override async Task<Results<NoContent, NotFound>> ExecuteAsync(
+	public override async Task<Results<NoContent, NotFound, BadRequest>> ExecuteAsync(
 		UpdateSubCategoryRequest req,
 		CancellationToken ct)
 	{
@@ -35,7 +36,7 @@ internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
 		{
 			return TypedResults.NotFound();
 		}
-
+		
 		var category = await appDbContext.Categories.FindAsync([req.CategoryId], cancellationToken: ct);
 
 		if (category is null)
@@ -43,6 +44,15 @@ internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
 			return TypedResults.NotFound();
 		}
 
+		var subCategoryExists = await appDbContext.SubCategories
+			.AsNoTracking()
+			.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper() && x.CategoryId == category.Id, ct);
+
+		if (subCategoryExists)
+		{
+			return TypedResults.BadRequest();
+		}
+		
 		subCategory.Name = req.Name;
 		subCategory.CategoryId = category.Id;
 

@@ -105,6 +105,8 @@ class SubCategoryService {
       return { data: null, error: null }
     } catch (error) {
       switch (error.status) {
+        case 400:
+          return { data: null, error: 'Sub-category already exists.' }
         case 401:
           return { data: null, error: 'You are not authenticated.' }
         case 403:
