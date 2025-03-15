@@ -12,7 +12,7 @@ import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
 
-const SubCategoryCreate = () => {
+const CategorySubCategoryCreate = () => {
   const navigate = useNavigate()
 
   const [categories, setCategories] = useState([])
@@ -121,4 +121,4 @@ const SubCategoryCreate = () => {
   )
 }
 
-export default SubCategoryCreate
+export default CategorySubCategoryCreate

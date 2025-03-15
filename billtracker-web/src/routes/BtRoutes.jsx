@@ -37,11 +37,11 @@ import CategoryCreate from '../pages/category/CategoryCreate.jsx'
 import CategoryDelete from '../pages/category/CategoryDelete.jsx'
 import CategoryUpdate from '../pages/category/CategoryUpdate.jsx'
 import CategoryDetails from '../pages/category/CategoryDetails.jsx'
-import SubCategories from '../pages/subCategory/SubCategories.jsx'
-import SubCategoryCreate from '../pages/subCategory/SubCategoryCreate.jsx'
-import SubCategoryDetails from '../pages/subCategory/SubCategoryDetails.jsx'
-import SubCategoryUpdate from '../pages/subCategory/SubCategoryUpdate.jsx'
-import SubCategoryDelete from '../pages/subCategory/SubCategoryDelete.jsx'
+import CategorySubCategoryCreate from '../pages/subCategory/CategorySubCategoryCreate.jsx'
+import CategorySubCategoryDetails from '../pages/subCategory/CategorySubCategoryDetails.jsx'
+import CategorySubCategoryUpdate from '../pages/subCategory/CategorySubCategoryUpdate.jsx'
+import CategorySubCategoryDelete from '../pages/subCategory/CategorySubCategoryDelete.jsx'
+import CategorySubCategories from '../pages/subCategory/CategorySubCategories.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -129,24 +129,44 @@ const BtRoutes = () => {
           element: <BillItemDelete/>,
         },
         {
-          path: '/cities',
-          element: <Cities/>,
+          path: '/categories',
+          element: <Categories/>,
         },
         {
-          path: '/cities/create',
-          element: <CityCreate/>,
+          path: '/categories/create',
+          element: <CategoryCreate/>,
         },
         {
-          path: '/cities/:cityId',
-          element: <CityDetails/>,
+          path: '/categories/:categoryId',
+          element: <CategoryDetails/>,
         },
         {
-          path: '/cities/:cityId/update',
-          element: <CityUpdate/>,
+          path: '/categories/:categoryId/update',
+          element: <CategoryUpdate/>,
         },
         {
-          path: '/cities/:cityId/delete',
-          element: <CityDelete/>,
+          path: '/categories/:categoryId/delete',
+          element: <CategoryDelete/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories',
+          element: <CategorySubCategories/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/create',
+          element: <CategorySubCategoryCreate/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId',
+          element: <CategorySubCategoryDetails/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/update',
+          element: <CategorySubCategoryUpdate/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/delete',
+          element: <CategorySubCategoryDelete/>,
         },
         {
           path: '/sellers',
@@ -169,48 +189,24 @@ const BtRoutes = () => {
           element: <SellerDelete/>,
         },
         {
-          path: '/categories',
-          element: <Categories/>,
+          path: '/cities',
+          element: <Cities/>,
         },
         {
-          path: '/categories/create',
-          element: <CategoryCreate/>,
+          path: '/cities/create',
+          element: <CityCreate/>,
         },
         {
-          path: '/categories/:categoryId',
-          element: <CategoryDetails/>,
+          path: '/cities/:cityId',
+          element: <CityDetails/>,
         },
         {
-          path: '/categories/:categoryId/update',
-          element: <CategoryUpdate/>,
+          path: '/cities/:cityId/update',
+          element: <CityUpdate/>,
         },
         {
-          path: '/categories/:categoryId/delete',
-          element: <CategoryDelete/>,
-        },
-        {
-          path: '/subcategories',
-          element: <SubCategories/>,
-        },
-        {
-          path: '/subcategories/create',
-          element: <SubCategoryCreate/>,
-        },
-        {
-          path: '/subcategories/:subCategoryId',
-          element: <SubCategoryDetails/>,
-        },
-        {
-          path: '/subcategories/:subCategoryId/update',
-          element: <SubCategoryUpdate/>,
-        },
-        {
-          path: '/subcategories/:subCategoryId/delete',
-          element: <SubCategoryDelete/>,
-        },
-        {
-          path: '/products',
-          element: <h1>Products</h1>,
+          path: '/cities/:cityId/delete',
+          element: <CityDelete/>,
         },
         {
           path: '/account',

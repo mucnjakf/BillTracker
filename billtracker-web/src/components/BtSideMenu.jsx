@@ -2,14 +2,10 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useAuth } from './BtAuthProvider.jsx'
 import {
-  BsBasket,
-  BsBoxSeam,
   BsBuildings,
-  BsCashCoin,
   BsHouse,
   BsPerson,
   BsShop,
-  BsTag,
   BsTags,
 } from 'react-icons/bs'
 
@@ -33,20 +29,10 @@ const BtSideMenu = () => {
 
         {accessToken ? (
           <>
-            <Nav.Link href="/products"
-                      className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/products') ? 'bg-dark text-white' : ''}`}>
-              <BsBoxSeam className="me-3"/>
-              Products
-            </Nav.Link>
             <Nav.Link href="/categories"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/categories') ? 'bg-dark text-white' : ''}`}>
               <BsTags className="me-3"/>
               Categories
-            </Nav.Link>
-            <Nav.Link href="/subcategories"
-                      className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/subcategories') ? 'bg-dark text-white' : ''}`}>
-              <BsTag className="me-3"/>
-              Sub-categories
             </Nav.Link>
             <Nav.Link href="/sellers"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/sellers') ? 'bg-dark text-white' : ''}`}>

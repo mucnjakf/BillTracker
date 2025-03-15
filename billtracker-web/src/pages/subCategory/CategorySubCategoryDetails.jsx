@@ -13,7 +13,7 @@ import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
 import BtPagination from '../../components/BtPagination.jsx'
 
-const SubCategoryDetails = () => {
+const CategorySubCategoryDetails = () => {
   const navigate = useNavigate()
 
   const { subCategoryId } = useParams()
@@ -155,4 +155,4 @@ const SubCategoryDetails = () => {
   )
 }
 
-export default SubCategoryDetails
+export default CategorySubCategoryDetails

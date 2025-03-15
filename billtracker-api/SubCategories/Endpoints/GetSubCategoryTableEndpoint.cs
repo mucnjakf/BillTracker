@@ -10,6 +10,9 @@ namespace billtracker_api.SubCategories.Endpoints;
 internal sealed record GetSubCategoryTableRequest
 {
 	[QueryParam]
+	public int? CategoryId { get; set; }
+
+	[QueryParam]
 	public int PageNumber { get; init; } = 1;
 
 	[QueryParam]
@@ -40,6 +43,11 @@ internal sealed class GetSubCategoryTableEndpoint(AppDbContext appDbContext)
 			.AsNoTracking()
 			.Include(x => x.Category)
 			.Include(x => x.Products);
+
+		if (req.CategoryId is not null)
+		{
+			query = query.Where(x => x.CategoryId == req.CategoryId);
+		}
 
 		query = Search(req.SearchQuery, query);
 		query = Sort(req.SortBy, query);

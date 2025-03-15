@@ -9,7 +9,7 @@ import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import SubCategoryService from '../../services/SubCategoryService.js'
 
-const SubCategoryDelete = () => {
+const CategorySubCategoryDelete = () => {
   const navigate = useNavigate()
 
   const location = useLocation()
@@ -111,4 +111,4 @@ const SubCategoryDelete = () => {
   )
 }
 
-export default SubCategoryDelete
+export default CategorySubCategoryDelete
