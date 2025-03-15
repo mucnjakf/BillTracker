@@ -42,7 +42,7 @@ const CategoryDetails = () => {
 
   useEffect(() => {
     const getCategorySubCategories = async () => {
-      const { data, error } = await SubCategoryService.getCategorySubCategoriesList(categoryId, currentPage, pageSize)
+      const { data, error } = await SubCategoryService.getCategorySubCategoryList(categoryId, currentPage, pageSize)
 
       if (error) {
         setError(error)
