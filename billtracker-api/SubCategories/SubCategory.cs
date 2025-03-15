@@ -9,13 +9,13 @@ internal sealed class SubCategory
 
 	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; init; } = null!;
+	public string Name { get; set; } = null!;
 
-	public int CategoryId { get; init; }
+	public int CategoryId { get; set; }
 
 	public Category Category { get; init; } = null!;
 
 	public IEnumerable<Product>? Products { get; init; }
-	
+
 	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }
