@@ -95,11 +95,10 @@ class SubCategoryService {
     }
   }
 
-  async updateSubCategory (subCategoryId, name, categoryId) {
+  async updateSubCategory (categoryId, subCategoryId, name) {
     try {
-      await this.api.put(subCategoryId, {
+      await this.api.put(`${subCategoryId}?categoryId=${categoryId}`, {
         name: name,
-        categoryId: categoryId,
       })
 
       return { data: null, error: null }
@@ -112,7 +111,7 @@ class SubCategoryService {
         case 403:
           return { data: null, error: 'You are not authorized.' }
         case 404:
-          return { data: null, error: 'Sub-category or category not found.' }
+          return { data: null, error: 'Sub-category not found.' }
         default:
           return { data: null, error: 'Unknown error occurred.' }
       }

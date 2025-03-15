@@ -9,19 +9,19 @@ internal sealed class Product
 
 	public Guid Guid { get; init; } = Guid.NewGuid();
 
-	public string Name { get; init; } = null!;
+	public string Name { get; set; } = null!;
 
-	public string ProductNumber { get; init; } = null!;
+	public string ProductNumber { get; set; } = null!;
 
-	public string Color { get; init; } = null!;
+	public string Color { get; set; } = null!;
 
-	public decimal Price { get; init; }
-	
+	public decimal Price { get; set; }
+
 	public int SubCategoryId { get; init; }
 
 	public SubCategory SubCategory { get; init; } = null!;
 
 	public IEnumerable<Item>? Items { get; init; }
-	
+
 	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }

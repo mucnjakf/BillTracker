@@ -54,11 +54,7 @@ const CategorySubCategoryUpdate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await SubCategoryService.updateSubCategory(
-      subCategoryId,
-      name,
-      categoryId,
-    )
+    const { error } = await SubCategoryService.updateSubCategory(categoryId, subCategoryId, name)
 
     if (error) {
       setError(error)

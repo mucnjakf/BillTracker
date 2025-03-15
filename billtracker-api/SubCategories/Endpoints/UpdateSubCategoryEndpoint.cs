@@ -11,9 +11,10 @@ internal sealed record UpdateSubCategoryRequest
 	[RouteParam]
 	public int SubCategoryId { get; init; }
 
+	[QueryParam]
+	public int? CategoryId { get; init; }
+	
 	public string Name { get; init; } = null!;
-
-	public int CategoryId { get; init; }
 }
 
 internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
@@ -36,17 +37,15 @@ internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
 		{
 			return TypedResults.NotFound();
 		}
-		
-		var category = await appDbContext.Categories.FindAsync([req.CategoryId], cancellationToken: ct);
 
-		if (category is null)
+		if (req.CategoryId is not null && subCategory.CategoryId != req.CategoryId)
 		{
 			return TypedResults.NotFound();
 		}
-
+		
 		var subCategoryExists = await appDbContext.SubCategories
 			.AsNoTracking()
-			.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper() && x.CategoryId == category.Id, ct);
+			.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper() && x.CategoryId == req.CategoryId, ct);
 
 		if (subCategoryExists)
 		{
@@ -54,7 +53,6 @@ internal sealed class UpdateSubCategoryEndpoint(AppDbContext appDbContext)
 		}
 		
 		subCategory.Name = req.Name;
-		subCategory.CategoryId = category.Id;
 
 		await appDbContext.SaveChangesAsync(ct);
 
