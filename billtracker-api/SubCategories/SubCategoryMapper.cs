@@ -19,4 +19,14 @@ internal static class SubCategoryMapper
 			subCategory.Id,
 			subCategory.Name);
 	}
+
+	internal static SubCategoryTableDto ToSubCategoryTableDto(this SubCategory subCategory)
+	{
+		return new(
+			subCategory.Id,
+			subCategory.Name,
+			subCategory.Category.Name,
+			subCategory.Products?.Count() ?? 0,
+			subCategory.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
+	}
 }
