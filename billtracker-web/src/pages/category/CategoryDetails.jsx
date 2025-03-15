@@ -72,10 +72,17 @@ const CategoryDetails = () => {
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: category.id },
+              { size: 'col-6', label: 'GUID', value: category.guid },
+            ]}
+          />
+
+          <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'ID', value: category.id },
-              { size: 'col-8', label: 'Name', value: category.name },
+              { size: 'col-6', label: 'Name', value: category.name },
+              { size: 'col-6', label: 'Created', value: category.createdUtc },
             ]}
           />
         </BtCard.Body>
@@ -98,7 +105,6 @@ const CategoryDetails = () => {
         />
       </div>
 
-      {/*TODO: add subcategory button*/}
       <div style={{ width: '1000px' }}>
         <h3 className="mb-3">Sub-categories</h3>
 

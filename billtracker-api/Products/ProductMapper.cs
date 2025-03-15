@@ -17,4 +17,12 @@ internal static class ProductMapper
 			product.SubCategory.Category.Name,
 			product.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
+
+	internal static ProductListDto ToProductListDto(this Product product)
+	{
+		return new(
+			product.Id,
+			product.Name,
+			product.Price);
+	}
 }
