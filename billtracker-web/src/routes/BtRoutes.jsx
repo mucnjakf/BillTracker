@@ -39,6 +39,11 @@ import CategoryCreate from '../pages/category/CategoryCreate.jsx'
 import CategoryDelete from '../pages/category/CategoryDelete.jsx'
 import CategoryUpdate from '../pages/category/CategoryUpdate.jsx'
 import CategoryDetails from '../pages/category/CategoryDetails.jsx'
+import SubCategories from '../pages/subCategory/SubCategories.jsx'
+import SubCategoryCreate from '../pages/subCategory/SubCategoryCreate.jsx'
+import SubCategoryDetails from '../pages/subCategory/SubCategoryDetails.jsx'
+import SubCategoryUpdate from '../pages/subCategory/SubCategoryUpdate.jsx'
+import SubCategoryDelete from '../pages/subCategory/SubCategoryDelete.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -195,7 +200,23 @@ const BtRoutes = () => {
         },
         {
           path: '/subcategories',
-          element: <h1>Sub-categories</h1>,
+          element: <SubCategories/>,
+        },
+        {
+          path: '/subcategories/create',
+          element: <SubCategoryCreate/>,
+        },
+        {
+          path: '/subcategories/:subCategoryId',
+          element: <SubCategoryDetails/>,
+        },
+        {
+          path: '/subcategories/:subCategoryId/update',
+          element: <SubCategoryUpdate/>,
+        },
+        {
+          path: '/subcategories/:subCategoryId/delete',
+          element: <SubCategoryDelete/>,
         },
         {
           path: '/products',
