@@ -27,34 +27,6 @@ class SubCategoryService {
     }
   }
 
-  async getSubCategoryTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
-    try {
-      let url = `table?pageNumber=${pageNumber}&pageSize=${pageSize}`
-
-      if (searchQuery !== '') {
-        url += `&searchQuery=${searchQuery}`
-      }
-
-      if (sortBy !== '') {
-        url += `&sortBy=${sortBy}`
-      }
-
-      const response = await this.api.get(url)
-      return { data: response.data, error: null }
-    } catch {
-      return { data: null, error: 'Unknown error occurred.' }
-    }
-  }
-
-  async getCategorySubCategoryList (categoryId, pageNumber = 1, pageSize = 10) {
-    try {
-      const response = await this.api.get(`list?categoryId=${categoryId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
-      return { data: response.data, error: null }
-    } catch {
-      return { data: null, error: 'Unknown error occurred.' }
-    }
-  }
-
   async getCategorySubCategoryTable (categoryId, pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
     try {
       let url = `table?categoryId=${categoryId}&pageNumber=${pageNumber}&pageSize=${pageSize}`

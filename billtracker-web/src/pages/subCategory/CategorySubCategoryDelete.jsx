@@ -14,14 +14,14 @@ const CategorySubCategoryDelete = () => {
 
   const location = useLocation()
 
-  const { subCategoryId } = useParams()
+  const { categoryId, subCategoryId } = useParams()
 
   const [subCategory, setSubCategory] = useState({})
 
   const [error, setError] = useState(null)
 
   const returnUrl =
-    new URLSearchParams(location.search).get('returnUrl') || '/subcategories'
+    new URLSearchParams(location.search).get('returnUrl') || `/categories/${categoryId}/subcategories`
 
   useEffect(() => {
     const getSubCategory = async () => {
@@ -49,7 +49,7 @@ const CategorySubCategoryDelete = () => {
       return
     }
 
-    navigate('/subcategories')
+    navigate(`/categories/${categoryId}/subcategories`)
   }
 
   return (
@@ -57,15 +57,21 @@ const CategorySubCategoryDelete = () => {
       <BtBreadcrumb
         paths={[
           { label: 'Home', href: '/', isActive: true },
-          { label: 'Sub-categories', href: '/subcategories', isActive: true },
-          returnUrl.startsWith('/subcategories/')
-            ? { label: subCategory.name, href: `/subcategories/${subCategoryId}`, isActive: true }
+          { label: 'Categories', href: '/categories', isActive: true },
+          { label: subCategory.categoryName, href: `/categories/${categoryId}`, isActive: true },
+          { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },
+          returnUrl.startsWith(`/categories/${categoryId}/subcategories/`)
+            ? {
+              label: subCategory.name,
+              href: `/categories/${categoryId}/subcategories/${subCategoryId}`,
+              isActive: true,
+            }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Sub-category delete"/>
+      <BtPageTitle text="Category sub-category delete"/>
 
       <BtCard width="500px">
         <BtCard.Body>

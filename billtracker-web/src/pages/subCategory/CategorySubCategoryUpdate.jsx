@@ -6,28 +6,25 @@ import Form from 'react-bootstrap/Form'
 import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtFloatingSelect from '../../components/BtFloatingSelect.jsx'
 import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import SubCategoryService from '../../services/SubCategoryService.js'
-import CategoryService from '../../services/CategoryService.js'
 
 const CategorySubCategoryUpdate = () => {
   const navigate = useNavigate()
 
   const location = useLocation()
 
-  const { subCategoryId } = useParams()
+  const { categoryId, subCategoryId } = useParams()
 
-  const [categories, setCategories] = useState([])
+  const [categoryName, setCategoryName] = useState('')
   const [name, setName] = useState('')
-  const [categoryId, setCategoryId] = useState(null)
 
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 
   const returnUrl =
-    new URLSearchParams(location.search).get('returnUrl') || '/subcategories'
+    new URLSearchParams(location.search).get('returnUrl') || `/categories/${categoryId}/subcategories`
 
   useEffect(() => {
     const getSubCategory = async () => {
@@ -38,27 +35,12 @@ const CategorySubCategoryUpdate = () => {
         return
       }
 
+      setCategoryName(data.categoryName)
       setName(data.name)
-      setCategoryId(data.categoryId)
     }
 
     getSubCategory()
   }, [subCategoryId])
-
-  useEffect(() => {
-    const getCategories = async () => {
-      const { data, error } = await CategoryService.getCategoriesAll()
-
-      if (error) {
-        setError(error)
-        return
-      }
-
-      setCategories(data)
-    }
-
-    getCategories()
-  }, [])
 
   const handleUpdate = async (e) => {
     e.preventDefault()
@@ -91,15 +73,17 @@ const CategorySubCategoryUpdate = () => {
       <BtBreadcrumb
         paths={[
           { label: 'Home', href: '/', isActive: true },
-          { label: 'Sub-categories', href: '/subcategories', isActive: true },
-          returnUrl.startsWith('/subcategories/')
-            ? { label: name, href: `/subcategories/${subCategoryId}`, isActive: true }
+          { label: 'Categories', href: '/categories', isActive: true },
+          { label: categoryName, href: `/categories/${categoryId}`, isActive: true },
+          { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },
+          returnUrl.startsWith(`/categories/${categoryId}/subcategories/`)
+            ? { label: name, href: `/categories/${categoryId}/subcategories/${subCategoryId}`, isActive: true }
             : null,
           { label: 'Update' },
         ].filter(Boolean)}
       />
 
-      <BtPageTitle text="Sub-category update"/>
+      <BtPageTitle text="Category sub-category update"/>
 
       <Form noValidate validated={validated} onSubmit={handleUpdate}>
         <BtCard width="500px">
@@ -114,15 +98,6 @@ const CategorySubCategoryUpdate = () => {
               placeholder="Name"
               value={name}
               onChange={setName}
-              required={true}
-            />
-
-            <BtFloatingSelect
-              controlId="selectCategories"
-              label="Category"
-              value={categoryId}
-              onChange={(id) => setCategoryId(Number(id))}
-              items={categories}
               required={true}
             />
           </BtCard.Body>

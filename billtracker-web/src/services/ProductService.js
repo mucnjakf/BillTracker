@@ -27,9 +27,9 @@ class ProductService {
     }
   }
 
-  async getSubCategoryProductList (subCategoryId, pageNumber = 1, pageSize = 10) {
+  async getSubCategoryProductsLatest (subCategoryId) {
     try {
-      const response = await this.api.get(`list?subCategoryId=${subCategoryId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      const response = await this.api.get(`latest?subCategoryId=${subCategoryId}`)
       return { data: response.data, error: null }
     } catch {
       return { data: null, error: 'Unknown error occurred.' }

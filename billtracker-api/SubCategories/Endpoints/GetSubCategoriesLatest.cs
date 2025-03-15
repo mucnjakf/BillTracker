@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.SubCategories.Endpoints;
 
-internal sealed record GetSubCategoryLatestRequest
+internal sealed record GetSubCategoriesLatestRequest
 {
 	[QueryParam]
 	public int? CategoryId { get; init; }
 }
 
 internal sealed class GetSubCategoriesLatestEndpoint(AppDbContext appDbContext)
-	: Endpoint<GetSubCategoryLatestRequest, Ok<IEnumerable<SubCategoryListDto>>>
+	: Endpoint<GetSubCategoriesLatestRequest, Ok<IEnumerable<SubCategoryListDto>>>
 {
 	public override void Configure()
 	{
@@ -22,7 +22,7 @@ internal sealed class GetSubCategoriesLatestEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags(AppRouteTags.SubCategories));
 	}
 
-	public override async Task<Ok<IEnumerable<SubCategoryListDto>>> ExecuteAsync(GetSubCategoryLatestRequest req, CancellationToken ct)
+	public override async Task<Ok<IEnumerable<SubCategoryListDto>>> ExecuteAsync(GetSubCategoriesLatestRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.SubCategories
 			.AsNoTracking();

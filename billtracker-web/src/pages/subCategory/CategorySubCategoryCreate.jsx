@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/BtPageTitle.jsx'
@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form'
 import BtCard from '../../components/BtCard.jsx'
 import BtAlert from '../../components/BtAlert.jsx'
 import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtFloatingSelect from '../../components/BtFloatingSelect.jsx'
 import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import CategoryService from '../../services/CategoryService.js'
@@ -15,28 +14,28 @@ import SubCategoryService from '../../services/SubCategoryService.js'
 const CategorySubCategoryCreate = () => {
   const navigate = useNavigate()
 
-  const [categories, setCategories] = useState([])
+  const { categoryId } = useParams()
+
+  const [category, setCategory] = useState({})
   const [name, setName] = useState('')
-  const [categoryId, setCategoryId] = useState(null)
 
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
 
   useEffect(() => {
-    const getCategories = async () => {
-      const { data, error } = await CategoryService.getCategoriesAll()
+    const getCategory = async () => {
+      const { data, error } = await CategoryService.getCategory(categoryId)
 
       if (error) {
         setError(error)
         return
       }
 
-      setCategories(data)
-      setCategoryId(data[0].id)
+      setCategory(data)
     }
 
-    getCategories()
-  }, [])
+    getCategory()
+  }, [categoryId])
 
   const handleCreate = async (e) => {
     e.preventDefault()
@@ -57,7 +56,7 @@ const CategorySubCategoryCreate = () => {
       return
     }
 
-    navigate('/subcategories')
+    navigate(`/categories/${categoryId}/subcategories`)
   }
 
   return (
@@ -65,7 +64,9 @@ const CategorySubCategoryCreate = () => {
       <BtBreadcrumb
         paths={[
           { label: 'Home', href: '/', isActive: true },
-          { label: 'Sub-categories', href: '/subcategories', isActive: true },
+          { label: 'Categories', href: '/categories', isActive: true },
+          { label: category.name, href: `/categories/${categoryId}`, isActive: true },
+          { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },
           { label: 'Create' },
         ]}
       />
@@ -80,20 +81,10 @@ const CategorySubCategoryCreate = () => {
             <BtFloatingTextInput
               controlId="txtName"
               label="Name"
-              className="mb-3"
               type="text"
               placeholder="Name"
               value={name}
               onChange={setName}
-              required={true}
-            />
-
-            <BtFloatingSelect
-              controlId="selectCategories"
-              label="Category"
-              value={categoryId}
-              onChange={(id) => setCategoryId(Number(id))}
-              items={categories}
               required={true}
             />
           </BtCard.Body>
@@ -109,7 +100,7 @@ const CategorySubCategoryCreate = () => {
 
             <BtButton
               variant="secondary"
-              onClick={() => navigate('/subcategories')}
+              onClick={() => navigate(`/categories/${categoryId}/subcategories`)}
               className="w-100"
               icon={BsXCircle}
               label="Cancel"

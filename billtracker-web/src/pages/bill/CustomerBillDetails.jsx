@@ -63,7 +63,7 @@ const CustomerBillDetails = () => {
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
-            label: `${bill.customerName}`,
+            label: bill.customerName,
             href: `/customers/${customerId}`,
             isActive: true,
           },
