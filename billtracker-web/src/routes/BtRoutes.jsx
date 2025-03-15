@@ -42,6 +42,11 @@ import CategorySubCategoryDetails from '../pages/subCategory/CategorySubCategory
 import CategorySubCategoryUpdate from '../pages/subCategory/CategorySubCategoryUpdate.jsx'
 import CategorySubCategoryDelete from '../pages/subCategory/CategorySubCategoryDelete.jsx'
 import CategorySubCategories from '../pages/subCategory/CategorySubCategories.jsx'
+import SubCategoryProducts from '../pages/product/SubCategoryProducts.jsx'
+import SubCategoryProductCreate from '../pages/product/SubCategoryProductCreate.jsx'
+import SubCategoryProductDetails from '../pages/product/SubCategoryProductDetails.jsx'
+import SubCategoryProductUpdate from '../pages/product/SubCategoryProductUpdate.jsx'
+import SubCategoryProductDelete from '../pages/product/SubCategoryProductDelete.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -167,6 +172,26 @@ const BtRoutes = () => {
         {
           path: '/categories/:categoryId/subcategories/:subCategoryId/delete',
           element: <CategorySubCategoryDelete/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/products',
+          element: <SubCategoryProducts/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/products/create',
+          element: <SubCategoryProductCreate/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/products/:productId',
+          element: <SubCategoryProductDetails/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/products/:productId/update',
+          element: <SubCategoryProductUpdate/>,
+        },
+        {
+          path: '/categories/:categoryId/subcategories/:subCategoryId/products/:productId/delete',
+          element: <SubCategoryProductDelete/>,
         },
         {
           path: '/sellers',
