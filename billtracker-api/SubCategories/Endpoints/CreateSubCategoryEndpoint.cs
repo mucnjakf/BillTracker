@@ -11,7 +11,7 @@ internal sealed record CreateSubCategoryRequest(
 	int CategoryId);
 
 internal sealed class CreateSubCategoryEndpoint(AppDbContext appDbContext)
-	: Endpoint<CreateSubCategoryRequest, Results<Created<SubCategoryDto>, NotFound>>
+	: Endpoint<CreateSubCategoryRequest, Results<Created<SubCategoryDto>, NotFound, BadRequest>>
 {
 	public override void Configure()
 	{
@@ -20,7 +20,7 @@ internal sealed class CreateSubCategoryEndpoint(AppDbContext appDbContext)
 		Description(x => x.WithTags(AppRouteTags.SubCategories));
 	}
 
-	public override async Task<Results<Created<SubCategoryDto>, NotFound>> ExecuteAsync(CreateSubCategoryRequest req, CancellationToken ct)
+	public override async Task<Results<Created<SubCategoryDto>, NotFound, BadRequest>> ExecuteAsync(CreateSubCategoryRequest req, CancellationToken ct)
 	{
 		var category = await appDbContext.Categories
 			.AsNoTracking()
@@ -29,6 +29,15 @@ internal sealed class CreateSubCategoryEndpoint(AppDbContext appDbContext)
 		if (category is null)
 		{
 			return TypedResults.NotFound();
+		}
+
+		var subCategoryExists = await appDbContext.SubCategories
+			.AsNoTracking()
+			.AnyAsync(x => x.Name.ToUpper() == req.Name.ToUpper() && x.CategoryId == category.Id, ct);
+
+		if (subCategoryExists)
+		{
+			return TypedResults.BadRequest();
 		}
 
 		var subCategory = new SubCategory
