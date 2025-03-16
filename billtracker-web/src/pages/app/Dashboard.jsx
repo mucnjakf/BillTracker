@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
 import {
+  Area,
+  AreaChart,
   Bar,
   BarChart,
   Legend,
@@ -21,6 +23,7 @@ const Dashboard = () => {
   const [salesTrendOverTime, setSalesTrendOverTime] = useState([])
   const [topSellingProducts, setTopSellingProducts] = useState([])
   const [salesByCategory, setSalesByCategory] = useState([])
+  const [billActivity, setBillActivity] = useState([])
 
   useEffect(() => {
     const getSalesTrendOverTime = async () => {
@@ -41,9 +44,16 @@ const Dashboard = () => {
       setSalesByCategory(data)
     }
 
+    const getBillActivity = async () => {
+      const { data, error } = await BillService.getBillActivity()
+
+      setBillActivity(data)
+    }
+
     getSalesTrendOverTime()
     getTopSellingProducts()
     getSalesByCategory()
+    getBillActivity()
   }, [])
 
   return (
@@ -51,7 +61,7 @@ const Dashboard = () => {
       <h1 className="mb-3">Dashboard</h1>
 
       <Container fluid>
-        <Row>
+        <Row className="mb-3">
           <Col className="col-4 ps-0">
             <h3>Sales trend over time</h3>
 
@@ -96,6 +106,32 @@ const Dashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
             </div>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="col-4 ps-0">
+            <h3>Billing activity</h3>
+
+            <div className="border rounded pt-4 pe-4 pb-3">
+              <ResponsiveContainer height={300}>
+                <AreaChart data={billActivity}>
+                  <XAxis dataKey="date"/>
+                  <YAxis/>
+                  <Tooltip/>
+                  <Legend/>
+                  <Area type="monotone" dataKey="billCount" name="Bill count" stroke="#82ca9d" fill="#82ca9d"/>
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </Col>
+
+          <Col className="col-4">
+
+          </Col>
+
+          <Col className="col-4 pe-0">
+
           </Col>
         </Row>
       </Container>

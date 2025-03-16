@@ -15,9 +15,12 @@ internal sealed class GetSalesByCategoryEndpoint(AppDbContext appDbContext) : En
 		Description(x => x.WithTags(AppRouteTags.Categories));
 	}
 
-	public override async Task<Ok<List<SalesByCategoryDto>>> ExecuteAsync(CancellationToken ct)
+	public override Task<Ok<List<SalesByCategoryDto>>> ExecuteAsync(CancellationToken ct)
 	{
 		var salesByCategory = appDbContext.Items
+			.Include(x => x.Product)
+			.ThenInclude(x => x.SubCategory)
+			.ThenInclude(x => x.Category)
 			.GroupBy(x => x.Product.SubCategory.Category.Name)
 			.AsEnumerable()
 			.Select(x => new SalesByCategoryDto
@@ -29,6 +32,6 @@ internal sealed class GetSalesByCategoryEndpoint(AppDbContext appDbContext) : En
 			.Take(5)
 			.ToList();
 
-		return TypedResults.Ok(salesByCategory);
+		return Task.FromResult(TypedResults.Ok(salesByCategory));
 	}
 }
