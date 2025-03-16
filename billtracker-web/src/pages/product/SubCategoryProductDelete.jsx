@@ -91,28 +91,53 @@ const SubCategoryProductDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              columns={[
-                { size: 'col-4', label: 'ID', value: product.id },
-                { size: 'col-8', label: 'Name', value: product.name },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: product.guid },
+            ]}
+          />
 
-            <BtRowCol
-              columns={[
-                { size: 'col-6', label: 'Product number', value: product.productNumber },
-                { size: 'col-6', label: 'Price', value: product.price },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: product.id },
+              { size: 'col-6', label: 'Product number', value: product.productNumber },
+            ]}
+          />
 
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                { size: 'col-6', label: 'Color', value: product.color },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              {
+                size: 'col-12',
+                label: 'Name',
+                value: product.name,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              {
+                size: 'col-6',
+                label: 'Color',
+                value: product.color,
+              },
+              { size: 'col-6', label: 'Price', value: product.price },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Category', value: product.categoryName },
+              { size: 'col-6', label: 'Sub-category', value: product.subCategoryName },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[
+              { size: 'col-6', label: 'Created', value: product.createdUtc },
+            ]}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>

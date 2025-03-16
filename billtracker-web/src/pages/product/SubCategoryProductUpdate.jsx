@@ -17,9 +17,7 @@ const SubCategoryProductUpdate = () => {
 
   const { categoryId, subCategoryId, productId } = useParams()
 
-  const [categoryName, setCategoryName] = useState('')
-  const [subCategoryName, setSubCategoryName] = useState('')
-
+  const [product, setProduct] = useState({})
   const [name, setName] = useState('')
   const [productNumber, setProductNumber] = useState('')
   const [color, setColor] = useState('')
@@ -40,8 +38,7 @@ const SubCategoryProductUpdate = () => {
         return
       }
 
-      setCategoryName(data.categoryName)
-      setSubCategoryName(data.subCategoryName)
+      setProduct(data)
       setName(data.name)
       setProductNumber(data.productNumber)
       setColor(data.color)
@@ -79,10 +76,10 @@ const SubCategoryProductUpdate = () => {
         paths={[
           { label: 'Home', href: '/', isActive: true },
           { label: 'Categories', href: '/categories', isActive: true },
-          { label: categoryName, href: `/categories/${categoryId}`, isActive: true },
+          { label: product.categoryName, href: `/categories/${categoryId}`, isActive: true },
           { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },
           {
-            label: subCategoryName,
+            label: product.subCategoryName,
             href: `/categories/${categoryId}/subcategories/${subCategoryId}`,
             isActive: true,
           },
@@ -151,6 +148,46 @@ const SubCategoryProductUpdate = () => {
               onChange={setPrice}
               min={1}
               required={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              type="text"
+              placeholder="ID"
+              value={product.id}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              type="text"
+              placeholder="GUID"
+              value={product.guid}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCategoryName"
+              label="Category"
+              type="text"
+              placeholder="Category"
+              value={product.categoryName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtSubCategory"
+              label="Sub-category"
+              type="text"
+              placeholder="Sub-category"
+              value={product.subCategoryName}
+              disabled={true}
             />
           </BtCard.Body>
 

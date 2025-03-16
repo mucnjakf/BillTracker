@@ -65,34 +65,44 @@ const SubCategoryProductDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-2', label: 'ID', value: product.id },
+              { size: 'col-6', label: 'ID', value: product.id },
               { size: 'col-6', label: 'GUID', value: product.guid },
-              { size: 'col-4', label: 'Created', value: product.createdUtc },
             ]}
           />
 
           <BtRowCol
             columns={[
               {
-                size: 'col-4',
+                size: 'col-6',
                 label: 'Name',
                 value: product.name,
               },
+              { size: 'col-6', label: 'Product number', value: product.productNumber },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
               {
-                size: 'col-4',
-                label: 'Price',
-                value: product.price,
+                size: 'col-6',
+                label: 'Color',
+                value: product.color,
               },
-              { size: 'col-4', label: 'Product number', value: product.productNumber },
+              { size: 'col-6', label: 'Price', value: product.price },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Category', value: product.categoryName },
+              { size: 'col-6', label: 'Sub-category', value: product.subCategoryName },
             ]}
           />
 
           <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'Color', value: product.color },
-              { size: 'col-4', label: 'Sub-category', value: product.subCategoryName },
-              { size: 'col-4', label: 'Category', value: product.categoryName },
+              { size: 'col-6', label: 'Created', value: product.createdUtc },
             ]}
           />
         </BtCard.Body>

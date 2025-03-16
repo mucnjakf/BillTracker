@@ -133,6 +133,26 @@ const SubCategoryProductCreate = () => {
               onChange={setPrice}
               min={1}
               required={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCategory"
+              label="Category"
+              type="text"
+              placeholder="Category"
+              value={subCategory.categoryName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtSubCategory"
+              label="Sub-category"
+              type="text"
+              placeholder="Sub-category"
+              value={subCategory.name}
+              disabled={true}
             />
           </BtCard.Body>
 
