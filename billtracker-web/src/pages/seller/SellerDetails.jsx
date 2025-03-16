@@ -74,23 +74,23 @@ const SellerDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-5', label: 'ID', value: seller.id },
-              { size: 'col-7', label: 'GUID', value: seller.guid },
+              { size: 'col-6', label: 'ID', value: seller.id },
+              { size: 'col-6', label: 'GUID', value: seller.guid },
             ]}
           />
 
           <BtRowCol
             columns={[
-              { size: 'col-5', label: 'Name', value: seller.firstName },
-              { size: 'col-7', label: 'Surname', value: seller.lastName },
+              { size: 'col-6', label: 'Name', value: seller.firstName },
+              { size: 'col-6', label: 'Surname', value: seller.lastName },
             ]}
           />
 
           <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-5', label: 'Permanent employee', value: seller.permanentEmployee },
-              { size: 'col-7', label: 'Created', value: seller.createdUtc },
+              { size: 'col-6', label: 'Permanent employee', value: seller.permanentEmployee },
+              { size: 'col-6', label: 'Created', value: seller.createdUtc },
             ]}
           />
         </BtCard.Body>

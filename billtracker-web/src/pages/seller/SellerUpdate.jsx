@@ -10,6 +10,7 @@ import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 import SellerService from '../../services/SellerService.js'
 import BtCheckbox from '../../components/BtCheckbox.jsx'
+import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const SellerUpdate = () => {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ const SellerUpdate = () => {
 
   const { sellerId } = useParams()
 
+  const [seller, setSeller] = useState({})
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [permanentEmployee, setPermanentEmployee] = useState(false)
@@ -37,9 +39,10 @@ const SellerUpdate = () => {
         return
       }
 
+      setSeller(data)
       setName(data.firstName)
       setSurname(data.lastName)
-      setPermanentEmployee(data.permanentEmployee)
+      setPermanentEmployee(data.permanentEmployee === 'Yes')
     }
 
     getSeller()
@@ -107,6 +110,36 @@ const SellerUpdate = () => {
               value={surname}
               onChange={setSurname}
               required={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              className="mb-3"
+              type="text"
+              placeholder="ID"
+              value={seller.id}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              className="mb-3"
+              type="text"
+              placeholder="GUID"
+              value={seller.guid}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCreatedUtc"
+              label="Created"
+              className="mb-3"
+              type="datetime-local"
+              placeholder="Created"
+              value={DateTimeUtilities.formatDateForInput(seller.createdUtc || '')}
+              disabled={true}
             />
 
             <BtCheckbox

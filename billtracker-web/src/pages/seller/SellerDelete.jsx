@@ -75,23 +75,32 @@ const SellerDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              columns={[
-                { size: 'col-4', label: 'ID', value: seller.id },
-                { size: 'col-8', label: 'Created', value: seller.createdUtc },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: seller.guid },
+            ]}
+          />
 
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                { size: 'col-4', label: 'Name', value: seller.firstName },
-                { size: 'col-4', label: 'Surname', value: seller.lastName },
-                { size: 'col-4', label: 'Permanent employee', value: seller.permanentEmployee },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: seller.id },
+              { size: 'col-6', label: 'Created', value: seller.createdUtc },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Name', value: seller.firstName },
+              { size: 'col-6', label: 'Surname', value: seller.lastName },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[
+              { size: 'col-12', label: 'Permanent employee', value: seller.permanentEmployee },
+            ]}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>
