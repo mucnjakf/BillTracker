@@ -64,6 +64,22 @@ class CategoryService {
     }
   }
 
+  async getSalesByCategory () {
+    try {
+      const response = await this.api.get('sales-by-category')
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async createCategory (name) {
     try {
       const response = await this.api.post('', {
