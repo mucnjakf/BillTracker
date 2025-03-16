@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
+import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const CustomerUpdate = () => {
   const navigate = useNavigate()
@@ -21,6 +22,7 @@ const CustomerUpdate = () => {
 
   const [cities, setCities] = useState([])
 
+  const [customer, setCustomer] = useState({})
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
@@ -42,6 +44,7 @@ const CustomerUpdate = () => {
         return
       }
 
+      setCustomer(data)
       setName(data.name)
       setSurname(data.surname)
       setEmail(data.email)
@@ -168,6 +171,36 @@ const CustomerUpdate = () => {
               onChange={setCityId}
               items={cities}
               required={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              className="mb-3"
+              type="text"
+              placeholder="ID"
+              value={customer.id}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              className="mb-3"
+              type="GUID"
+              placeholder="GUID"
+              value={customer.guid}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCreatedUtc"
+              label="Created"
+              type="datetime-local"
+              placeholder="Created"
+              value={DateTimeUtilities.formatDateForInput(customer.createdUtc || '')}
+              disabled={true}
             />
           </BtCard.Body>
 

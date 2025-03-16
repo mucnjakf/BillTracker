@@ -70,33 +70,38 @@ const CustomerDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-2', label: 'ID', value: customer.id },
-              { size: 'col-10', label: 'GUID', value: customer.guid },
+              { size: 'col-6', label: 'ID', value: customer.id },
+              { size: 'col-6', label: 'GUID', value: customer.guid },
             ]}
           />
 
           <BtRowCol
             columns={[
+              { size: 'col-6', label: 'Name', value: customer.name },
+              { size: 'col-6', label: 'Surname', value: customer.surname },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Email', value: customer.email },
               {
-                size: 'col-4',
-                label: 'Created',
-                value: customer.createdUtc,
+                size: 'col-6',
+                label: 'Telephone',
+                value: customer.telephone,
               },
-              { size: 'col-4', label: 'Name', value: customer.name },
-              { size: 'col-4', label: 'Surname', value: customer.surname },
             ]}
           />
 
           <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'Email', value: customer.email },
+              { size: 'col-6', label: 'City', value: customer.cityName },
               {
-                size: 'col-4',
-                label: 'Telephone',
-                value: customer.telephone,
+                size: 'col-6',
+                label: 'Created',
+                value: customer.createdUtc,
               },
-              { size: 'col-4', label: 'City', value: customer.cityName },
             ]}
           />
         </BtCard.Body>

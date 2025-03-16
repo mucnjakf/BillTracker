@@ -75,22 +75,48 @@ const CustomerDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              columns={[
-                { size: 'col-6', label: 'ID', value: customer.id },
-                { size: 'col-6', label: 'Email', value: customer.email },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: customer.guid },
+            ]}
+          />
 
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                { size: 'col-6', label: 'Name', value: customer.name },
-                { size: 'col-6', label: 'Surname', value: customer.surname },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: customer.id },
+              {
+                size: 'col-6',
+                label: 'Created',
+                value: customer.createdUtc,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Name', value: customer.name },
+              { size: 'col-6', label: 'Surname', value: customer.surname },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'Email', value: customer.email },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[
+              {
+                size: 'col-6',
+                label: 'Telephone',
+                value: customer.telephone,
+              },
+              { size: 'col-6', label: 'City', value: customer.cityName },
+
+            ]}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>
