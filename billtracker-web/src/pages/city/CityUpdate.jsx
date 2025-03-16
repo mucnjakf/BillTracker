@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
+import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const CityUpdate = () => {
   const navigate = useNavigate()
@@ -17,6 +18,7 @@ const CityUpdate = () => {
 
   const { cityId } = useParams()
 
+  const [city, setCity] = useState({})
   const [name, setName] = useState('')
 
   const [error, setError] = useState(null)
@@ -34,6 +36,7 @@ const CityUpdate = () => {
         return
       }
 
+      setCity(data)
       setName(data.name)
     }
 
@@ -91,6 +94,35 @@ const CityUpdate = () => {
               value={name}
               onChange={setName}
               required={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              className="mb-3"
+              type="text"
+              placeholder="ID"
+              value={city.id}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              className="mb-3"
+              type="GUID"
+              placeholder="GUID"
+              value={city.guid}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCreatedUtc"
+              label="Created"
+              type="datetime-local"
+              placeholder="Created"
+              value={DateTimeUtilities.formatDateForInput(city.createdUtc || '')}
+              disabled={true}
             />
           </BtCard.Body>
 

@@ -73,10 +73,17 @@ const CityDetails = () => {
           {error && <BtAlert variant="danger" text={error}/>}
 
           <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: city.id },
+              { size: 'col-6', label: 'GUID', value: city.guid },
+            ]}
+          />
+
+          <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'ID', value: city.id },
-              { size: 'col-8', label: 'Name', value: city.name },
+              { size: 'col-6', label: 'Name', value: city.name },
+              { size: 'col-6', label: 'Created', value: city.createdUtc },
             ]}
           />
         </BtCard.Body>

@@ -75,15 +75,24 @@ const CityDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                { size: 'col-4', label: 'ID', value: city.id },
-                { size: 'col-8', label: 'Name', value: city.name },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: city.guid },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: city.id },
+              { size: 'col-6', label: 'Name', value: city.name },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[
+              { size: 'col-6', label: 'Created', value: city.createdUtc },
+            ]}/>
         </BtCard.Body>
 
         <BtCard.Footer>
