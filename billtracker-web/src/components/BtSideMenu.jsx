@@ -3,9 +3,9 @@ import Navbar from 'react-bootstrap/Navbar'
 import { useAuth } from './BtAuthProvider.jsx'
 import {
   BsBuildings,
-  BsHouse,
   BsPerson,
   BsShop,
+  BsSpeedometer2,
   BsTags,
 } from 'react-icons/bs'
 
@@ -17,8 +17,8 @@ const BtSideMenu = () => {
       <Nav className="d-flex flex-column w-100 px-2">
         <Nav.Link href="/"
                   className={`mb-2 px-3 rounded w-100 ${location.pathname === '/' ? 'bg-dark text-white' : ''}`}>
-          <BsHouse className="me-3"/>
-          Home
+          <BsSpeedometer2 className="me-3"/>
+          Dashboard
         </Nav.Link>
 
         <Nav.Link href="/customers"

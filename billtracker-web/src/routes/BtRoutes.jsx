@@ -1,7 +1,7 @@
 import { useAuth } from '../components/BtAuthProvider'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 import BtProtectedRoute from './BtProtectedRoute'
-import Home from '../pages/app/Home'
+import Dashboard from '../pages/app/Dashboard.jsx'
 import Account from '../pages/auth/Account'
 import AccountUpdate from '../pages/auth/AccountUpdate'
 import Login from '../pages/auth/Login'
@@ -54,7 +54,7 @@ const BtRoutes = () => {
   const routesForPublic = [
     {
       path: '/',
-      element: <Home/>,
+      element: <Dashboard/>,
     },
     {
       path: '/customers',

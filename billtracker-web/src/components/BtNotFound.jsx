@@ -14,7 +14,8 @@ const NotFound = () => {
         The page you are looking for may have been moved, renamed, or no longer exists.
       </p>
       <p>
-        Please check the URL and try again, or return to <a href="/" className="text-decoration-none fw-bold">home</a>.
+        Please check the URL and try again, or return to <a href="/"
+                                                            className="text-decoration-none fw-bold">dashboard</a>.
       </p>
     </>
   )
