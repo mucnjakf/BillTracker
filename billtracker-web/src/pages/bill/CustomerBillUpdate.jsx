@@ -11,6 +11,7 @@ import { useLocation, useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
 import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
+import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
 
 const CustomerBillUpdate = () => {
   const navigate = useNavigate()
@@ -19,8 +20,7 @@ const CustomerBillUpdate = () => {
 
   const { customerId, billId } = useParams()
 
-  const [customerName, setCustomerName] = useState('')
-
+  const [bill, setBill] = useState({})
   const [billNumber, setBillNumber] = useState('')
   const [date, setDate] = useState('')
   const [comment, setComment] = useState('')
@@ -40,7 +40,7 @@ const CustomerBillUpdate = () => {
         return
       }
 
-      setCustomerName(data.customerName)
+      setBill(data)
       setBillNumber(data.billNumber)
       setDate(DateTimeUtilities.formatDateForInput(data.date))
       setComment(data.comment)
@@ -82,7 +82,7 @@ const CustomerBillUpdate = () => {
         paths={[
           { label: 'Home', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
-          { label: `${customerName}`, href: `/customers/${customerId}`, isActive: true },
+          { label: `${bill.customerName}`, href: `/customers/${customerId}`, isActive: true },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
           returnUrl.startsWith(`/customers/${customerId}/bills/`)
             ? { label: `${billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true }
@@ -112,6 +112,66 @@ const CustomerBillUpdate = () => {
               value={comment}
               onChange={setComment}
               required={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              className="mb-3"
+              type="text"
+              placeholder="ID"
+              value={bill.id}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              className="mb-3"
+              type="text"
+              placeholder="GUID"
+              value={bill.guid}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtBillNumber"
+              label="Bill number"
+              className="mb-3"
+              type="text"
+              placeholder="Bill number"
+              value={bill.billNumber}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtTotal"
+              label="Total"
+              className="mb-3"
+              type="number"
+              placeholder="Total"
+              value={bill.total}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCustomerName"
+              label="Customer"
+              className="mb-3"
+              type="text"
+              placeholder="Customer"
+              value={bill.customerName}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtSellerName"
+              label="Seller"
+              type="text"
+              placeholder="Seller"
+              value={bill.sellerName}
+              disabled={true}
             />
           </BtCard.Body>
 

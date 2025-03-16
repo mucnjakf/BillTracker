@@ -80,41 +80,51 @@ const CustomerBillDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              columns={[
-                { size: 'col-3', label: 'ID', value: bill.id },
-                { size: 'col-9', label: 'Date', value: bill.date },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: bill.guid },
+            ]}
+          />
 
-            <BtRowCol
-              columns={[
-                {
-                  size: 'col-6',
-                  label: 'Bill number',
-                  value: bill.billNumber,
-                },
-                { size: 'col-6', label: 'Total', value: bill.total },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: bill.id },
+              { size: 'col-6', label: 'Date', value: bill.date },
+            ]}
+          />
 
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                {
-                  size: 'col-6',
-                  label: 'Customer',
-                  value: bill.customerName,
-                },
-                {
-                  size: 'col-6',
-                  label: 'Seller',
-                  value: bill.sellerName === null ? '-' : `${bill.sellerName}`,
-                },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              {
+                size: 'col-6',
+                label: 'Bill number',
+                value: bill.billNumber,
+              },
+              {
+                size: 'col-6',
+                label: 'Total',
+                value: bill.total,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'Comment', value: bill.comment },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[
+              { size: 'col-6', label: 'Customer', value: bill.customerName },
+              {
+                size: 'col-6',
+                label: 'Seller',
+                value: bill.sellerName,
+              },
+            ]}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>

@@ -141,9 +141,18 @@ const CustomerBillCreate = () => {
               value={comment}
               onChange={setComment}
               required={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCustomer"
+              label="Customer"
+              type="text"
+              placeholder="Customer"
+              value={`${customer.name}${customer.surname}`}
+              disabled={true}
             />
           </BtCard.Body>
-
           <BtCard.Footer className="d-flex w-100">
             <BtButton
               type="submit"

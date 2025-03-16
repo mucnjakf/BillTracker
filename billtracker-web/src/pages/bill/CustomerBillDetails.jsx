@@ -81,36 +81,41 @@ const CustomerBillDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-2', label: 'ID', value: bill.id },
-              { size: 'col-10', label: 'GUID', value: bill.guid },
+              { size: 'col-6', label: 'ID', value: bill.id },
+              { size: 'col-6', label: 'GUID', value: bill.guid },
             ]}
           />
 
           <BtRowCol
             columns={[
-              { size: 'col-4', label: 'Date', value: bill.date },
+              { size: 'col-6', label: 'Date', value: bill.date },
               {
-                size: 'col-4',
+                size: 'col-6',
                 label: 'Bill number',
                 value: bill.billNumber,
               },
-              { size: 'col-4', label: 'Total', value: bill.total },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Comment', value: bill.comment },
+              {
+                size: 'col-6',
+                label: 'Total',
+                value: bill.total,
+              },
             ]}
           />
 
           <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-6', label: 'Comment', value: bill.comment },
+              { size: 'col-6', label: 'Customer', value: bill.customerName },
               {
-                size: 'col-3',
-                label: 'Customer',
-                value: bill.customerName,
-              },
-              {
-                size: 'col-3',
+                size: 'col-6',
                 label: 'Seller',
-                value: bill.sellerName === null ? '-' : `${bill.sellerName}`,
+                value: bill.sellerName,
               },
             ]}
           />
