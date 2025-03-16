@@ -2,7 +2,6 @@ using billtracker_api.Auth;
 using billtracker_api.Bills;
 using billtracker_api.Categories;
 using billtracker_api.Cities;
-using billtracker_api.CreditCards;
 using billtracker_api.Customers;
 using billtracker_api.Items;
 using billtracker_api.Products;
@@ -19,8 +18,6 @@ internal sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbC
 	public DbSet<Category> Categories { get; set; }
 
 	public DbSet<City> Cities { get; set; }
-
-	public DbSet<CreditCard> CreditCards { get; set; }
 
 	public DbSet<Customer> Customers { get; set; }
 

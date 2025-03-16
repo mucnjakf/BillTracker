@@ -54,8 +54,7 @@ internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
 			BillNumber = req.BillNumber,
 			Comment = req.Comment,
 			CustomerId = customer.Id,
-			SellerId = seller?.Id,
-			CreditCardId = null
+			SellerId = seller?.Id
 		};
 
 		await appDbContext.Bills.AddAsync(bill, ct);

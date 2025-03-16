@@ -23,11 +23,6 @@ internal sealed class BillEntityTypeConfiguration : IEntityTypeConfiguration<Bil
 			.WithMany(x => x.Bills)
 			.HasForeignKey(x => x.SellerId);
 		
-		builder
-			.HasOne(x => x.CreditCard)
-			.WithMany(x => x.Bills)
-			.HasForeignKey(x => x.CreditCardId);
-		
 		builder.Property(x => x.CreatedUtc).HasDefaultValue(DateTimeOffset.UtcNow);
 	}
 }

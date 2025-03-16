@@ -1,7 +1,3 @@
-using billtracker_api.CreditCards;
-using billtracker_api.Customers;
-using billtracker_api.Sellers;
-
 namespace billtracker_api.Bills;
 
 internal static class BillMapper

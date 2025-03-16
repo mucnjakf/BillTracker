@@ -1,4 +1,3 @@
-using billtracker_api.CreditCards;
 using billtracker_api.Customers;
 using billtracker_api.Items;
 using billtracker_api.Sellers;
@@ -25,11 +24,7 @@ internal sealed class Bill
 
 	public Seller? Seller { get; init; }
 
-	public int? CreditCardId { get; init; }
-
-	public CreditCard? CreditCard { get; init; }
-
 	public IEnumerable<Item>? Items { get; init; }
-	
+
 	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
 }
