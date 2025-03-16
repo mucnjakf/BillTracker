@@ -30,6 +30,7 @@ internal sealed class GetSalesByCategoryEndpoint(AppDbContext appDbContext) : En
 			))
 			.OrderByDescending(x => x.TotalSales)
 			.Take(5)
+			.Reverse()
 			.ToList();
 
 		return Task.FromResult(TypedResults.Ok(salesByCategory));

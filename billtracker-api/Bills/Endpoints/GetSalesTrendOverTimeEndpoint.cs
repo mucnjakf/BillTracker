@@ -15,16 +15,20 @@ internal sealed class GetSalesTrendOverTimeEndpoint(AppDbContext appDbContext) :
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
-	public override async Task<Ok<List<SalesTrendOverTimeDto>>> ExecuteAsync(CancellationToken ct)
+	public override Task<Ok<List<SalesTrendOverTimeDto>>> ExecuteAsync(CancellationToken ct)
 	{
-		var salesTrendOverTime = await appDbContext.Bills
+		var salesTrendOverTime = appDbContext.Bills
 			.Include(x => x.Items)
+			.AsEnumerable()
 			.GroupBy(x => x.Date.Date)
 			.Select(x => new SalesTrendOverTimeDto(
 				x.Key.ToString("dd. MM. yyyy."),
 				x.Sum(y => y.Items!.Sum(z => z.TotalPrice))))
-			.ToListAsync(ct);
+			.OrderByDescending(x => x.Date)
+			.Take(5)
+			.Reverse()
+			.ToList();
 
-		return TypedResults.Ok(salesTrendOverTime);
+		return Task.FromResult(TypedResults.Ok(salesTrendOverTime));
 	}
 }

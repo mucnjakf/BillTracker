@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
-import {
-  Area,
-  AreaChart,
-  Bar,
-  BarChart,
-  Legend,
-  Line,
-  LineChart, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ItemService from '../../services/ItemService.js'
 import CategoryService from '../../services/CategoryService.js'
 import CustomerService from '../../services/CustomerService.js'
+import {
+  Area, AreaChart, Bar, BarChart, Line, LineChart, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis,
+  Radar, RadarChart, RadialBar, RadialBarChart, ResponsiveContainer, Tooltip, XAxis, YAxis,
+} from 'recharts'
 
 const Dashboard = () => {
   const [salesTrendOverTime, setSalesTrendOverTime] = useState([])
@@ -26,6 +17,7 @@ const Dashboard = () => {
   const [salesByCategory, setSalesByCategory] = useState([])
   const [billActivity, setBillActivity] = useState([])
   const [customersByCity, setCustomersByCity] = useState([])
+  const [revenueBySeller, setRevenueBySeller] = useState([])
 
   useEffect(() => {
     const getSalesTrendOverTime = async () => {
@@ -53,11 +45,17 @@ const Dashboard = () => {
       setCustomersByCity(data)
     }
 
+    const getRevenueBySeller = async () => {
+      const { data } = await BillService.getRevenueBySeller()
+      setRevenueBySeller(data)
+    }
+
     getSalesTrendOverTime()
     getTopSellingProducts()
     getSalesByCategory()
     getBillActivity()
     getCustomersByCity()
+    getRevenueBySeller()
   }, [])
 
   return (
@@ -65,8 +63,8 @@ const Dashboard = () => {
       <h1 className="mb-3">Dashboard</h1>
 
       <Container fluid>
-        <Row className="mb-3">
-          <Col className="col-4 ps-0">
+        <Row className="mb-4">
+          <Col className="col-6 ps-0">
             <h3>Sales trend over time</h3>
 
             <div className="border rounded pt-4 pe-4 pb-3">
@@ -75,14 +73,13 @@ const Dashboard = () => {
                   <XAxis dataKey="date"/>
                   <YAxis/>
                   <Tooltip/>
-                  <Legend/>
-                  <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#F07167"/>
+                  <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#ef476f"/>
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </Col>
 
-          <Col className="col-4">
+          <Col className="col-6 pe-0">
             <h3>Top selling products</h3>
 
             <div className="border rounded pt-4 pe-4 pb-3">
@@ -91,30 +88,29 @@ const Dashboard = () => {
                   <XAxis dataKey="productName"/>
                   <YAxis/>
                   <Tooltip/>
-                  <Legend/>
-                  <Bar dataKey="quantitySold" name="Quantity sold" fill="#0081A7"/>
+                  <Bar dataKey="quantitySold" name="Quantity sold" fill="#f78c6b"/>
                 </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </Col>
-
-          <Col className="col-4 pe-0">
-            <h3>Sales by top 5 categories</h3>
-
-            <div className="border rounded pt-4 pe-4 pb-3">
-              <ResponsiveContainer height={300}>
-                <PieChart>
-                  <Pie data={salesByCategory} dataKey="totalSales" nameKey="category" cx="50%"
-                       cy="50%" outerRadius={80} fill="#333333" label/>
-                  <Tooltip/>
-                </PieChart>
               </ResponsiveContainer>
             </div>
           </Col>
         </Row>
 
-        <Row>
-          <Col className="col-4 ps-0">
+        <Row className="mb-4">
+          <Col className="col-6 ps-0">
+            <h3>Sales by categories</h3>
+
+            <div className="border rounded pt-4 pe-4 pb-3">
+              <ResponsiveContainer height={300}>
+                <PieChart>
+                  <Pie data={salesByCategory} dataKey="totalSales" nameKey="category" cx="50%"
+                       cy="50%" outerRadius={80} fill="#ffd166" label/>
+                  <Tooltip/>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </Col>
+
+          <Col className="col-6 pe-0">
             <h3>Billing activity</h3>
 
             <div className="border rounded pt-4 pe-4 pb-3">
@@ -123,15 +119,16 @@ const Dashboard = () => {
                   <XAxis dataKey="date"/>
                   <YAxis/>
                   <Tooltip/>
-                  <Legend/>
-                  <Area type="monotone" dataKey="billCount" name="Bill count" stroke="#2D1E2F" fill="#324376"/>
+                  <Area type="monotone" dataKey="billCount" name="Bill count" stroke="#2D1E2F" fill="#06d6a0"/>
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </Col>
+        </Row>
 
-          <Col className="col-4">
-            <h3>Customers by top 5 cities</h3>
+        <Row>
+          <Col className="col-6 ps-0">
+            <h3>Customers by cities</h3>
 
             <div className="border rounded pt-4 pe-4 pb-3">
               <ResponsiveContainer height={300}>
@@ -140,14 +137,25 @@ const Dashboard = () => {
                   <PolarGrid/>
                   <PolarAngleAxis dataKey="cityName"/>
                   <PolarRadiusAxis/>
-                  <Radar name="Customers" dataKey="customerCount" stroke="#8884d8" fill="#D64933" fillOpacity={0.6}/>
+                  <Radar name="Customers" dataKey="customerCount" stroke="#8884d8" fill="#118ab2" fillOpacity={0.6}/>
                 </RadarChart>
               </ResponsiveContainer>
             </div>
           </Col>
 
-          <Col className="col-4 pe-0">
+          <Col className="col-6 pe-0">
+            <h3>Revenue by seller</h3>
 
+            <div className="border rounded pt-4 pe-4 pb-3">
+              <ResponsiveContainer height={300}>
+                <RadialBarChart innerRadius="10%" outerRadius="80%" data={revenueBySeller} startAngle={180}
+                                endAngle={0}>
+                  <RadialBar minAngle={15} label={{ position: 'insideStart', fill: '#ffffff' }}
+                             dataKey="totalRevenue" name="Total revenue" clockWise={true}/>
+                  <Tooltip/>
+                </RadialBarChart>
+              </ResponsiveContainer>
+            </div>
           </Col>
         </Row>
       </Container>

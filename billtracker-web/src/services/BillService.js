@@ -98,6 +98,22 @@ class BillService {
     }
   }
 
+  async getRevenueBySeller () {
+    try {
+      const response = await this.api.get('revenue-by-seller')
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async createBill (customerId, date, billNumber, comment, sellerId) {
     try {
       const response = await this.api.post('', {

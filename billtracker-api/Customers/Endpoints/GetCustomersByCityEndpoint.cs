@@ -15,7 +15,7 @@ internal sealed class GetCustomersByCityEndpoint(AppDbContext appDbContext) : En
 		Description(x => x.WithTags(AppRouteTags.Customers));
 	}
 
-	public override async Task<Ok<List<CustomersByCityDto>>> ExecuteAsync(CancellationToken ct)
+	public override Task<Ok<List<CustomersByCityDto>>> ExecuteAsync(CancellationToken ct)
 	{
 		var customersByCity = appDbContext.Customers
 			.Include(x => x.City)
@@ -27,9 +27,10 @@ internal sealed class GetCustomersByCityEndpoint(AppDbContext appDbContext) : En
 				x.Count()
 			))
 			.OrderByDescending(x => x.CustomerCount)
-			.Take(10)
+			.Take(5)
+			.Reverse()
 			.ToList();
 
-		return TypedResults.Ok(customersByCity);
+		return Task.FromResult(TypedResults.Ok(customersByCity));
 	}
 }

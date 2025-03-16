@@ -15,17 +15,21 @@ internal sealed class GetBillActivityEndpoint(AppDbContext appDbContext) : Endpo
 		Description(x => x.WithTags(AppRouteTags.Bills));
 	}
 
-	public override async Task<Ok<List<BillActivityDto>>> ExecuteAsync(CancellationToken ct)
+	public override Task<Ok<List<BillActivityDto>>> ExecuteAsync(CancellationToken ct)
 	{
-		var billActivity = await appDbContext.Bills
+		var billActivity = appDbContext.Bills
+			.AsEnumerable()
 			.GroupBy(x => x.Date.Date)
 			.Select(x => new BillActivityDto
 			(
 				x.Key.ToString("dd. MM. yyyy."),
 				x.Count()
 			))
-			.ToListAsync(ct);
+			.OrderByDescending(x => x.Date)
+			.Take(5)
+			.Reverse()
+			.ToList();
 
-		return TypedResults.Ok(billActivity);
+		return Task.FromResult(TypedResults.Ok(billActivity));
 	}
 }

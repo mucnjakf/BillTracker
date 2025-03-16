@@ -28,6 +28,7 @@ internal sealed class GetTopSellingProductsEndpoint(AppDbContext appDbContext) :
 			))
 			.OrderByDescending(x => x.QuantitySold)
 			.Take(5)
+			.Reverse()
 			.ToList();
 
 
