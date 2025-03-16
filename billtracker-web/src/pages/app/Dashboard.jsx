@@ -7,7 +7,7 @@ import {
   BarChart,
   Legend,
   Line,
-  LineChart, Pie, PieChart,
+  LineChart, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -18,42 +18,46 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ItemService from '../../services/ItemService.js'
 import CategoryService from '../../services/CategoryService.js'
+import CustomerService from '../../services/CustomerService.js'
 
 const Dashboard = () => {
   const [salesTrendOverTime, setSalesTrendOverTime] = useState([])
   const [topSellingProducts, setTopSellingProducts] = useState([])
   const [salesByCategory, setSalesByCategory] = useState([])
   const [billActivity, setBillActivity] = useState([])
+  const [customersByCity, setCustomersByCity] = useState([])
 
   useEffect(() => {
     const getSalesTrendOverTime = async () => {
-      const { data, error } = await BillService.getSalesTrendOverTime()
-
+      const { data } = await BillService.getSalesTrendOverTime()
       setSalesTrendOverTime(data)
     }
 
     const getTopSellingProducts = async () => {
-      const { data, error } = await ItemService.getTopSellingProducts()
-
+      const { data } = await ItemService.getTopSellingProducts()
       setTopSellingProducts(data)
     }
 
     const getSalesByCategory = async () => {
-      const { data, error } = await CategoryService.getSalesByCategory()
-
+      const { data } = await CategoryService.getSalesByCategory()
       setSalesByCategory(data)
     }
 
     const getBillActivity = async () => {
-      const { data, error } = await BillService.getBillActivity()
-
+      const { data } = await BillService.getBillActivity()
       setBillActivity(data)
+    }
+
+    const getCustomersByCity = async () => {
+      const { data } = await CustomerService.getCustomersByCity()
+      setCustomersByCity(data)
     }
 
     getSalesTrendOverTime()
     getTopSellingProducts()
     getSalesByCategory()
     getBillActivity()
+    getCustomersByCity()
   }, [])
 
   return (
@@ -72,7 +76,7 @@ const Dashboard = () => {
                   <YAxis/>
                   <Tooltip/>
                   <Legend/>
-                  <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#8884d8"/>
+                  <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#F07167"/>
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -88,7 +92,7 @@ const Dashboard = () => {
                   <YAxis/>
                   <Tooltip/>
                   <Legend/>
-                  <Bar dataKey="quantitySold" name="Quantity sold" fill="#82ca9d"/>
+                  <Bar dataKey="quantitySold" name="Quantity sold" fill="#0081A7"/>
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -101,7 +105,7 @@ const Dashboard = () => {
               <ResponsiveContainer height={300}>
                 <PieChart>
                   <Pie data={salesByCategory} dataKey="totalSales" nameKey="category" cx="50%"
-                       cy="50%" outerRadius={80} fill="#ffc658" label/>
+                       cy="50%" outerRadius={80} fill="#333333" label/>
                   <Tooltip/>
                 </PieChart>
               </ResponsiveContainer>
@@ -120,14 +124,26 @@ const Dashboard = () => {
                   <YAxis/>
                   <Tooltip/>
                   <Legend/>
-                  <Area type="monotone" dataKey="billCount" name="Bill count" stroke="#82ca9d" fill="#82ca9d"/>
+                  <Area type="monotone" dataKey="billCount" name="Bill count" stroke="#2D1E2F" fill="#324376"/>
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </Col>
 
           <Col className="col-4">
+            <h3>Customers by top 5 cities</h3>
 
+            <div className="border rounded pt-4 pe-4 pb-3">
+              <ResponsiveContainer height={300}>
+                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={customersByCity}>
+                  <Tooltip/>
+                  <PolarGrid/>
+                  <PolarAngleAxis dataKey="cityName"/>
+                  <PolarRadiusAxis/>
+                  <Radar name="Customers" dataKey="customerCount" stroke="#8884d8" fill="#D64933" fillOpacity={0.6}/>
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
           </Col>
 
           <Col className="col-4 pe-0">
