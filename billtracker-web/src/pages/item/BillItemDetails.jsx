@@ -59,41 +59,81 @@ const BillItemDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-2', label: 'ID', value: item.id },
+              { size: 'col-6', label: 'ID', value: item.id },
               { size: 'col-6', label: 'GUID', value: item.guid },
-              { size: 'col-4', label: 'Created', value: item.createdUtc },
             ]}
           />
 
           <BtRowCol
             columns={[
-              { size: 'col-4', label: 'Product', value: item.productName },
-              { size: 'col-4', label: 'Category', value: item.productCategory },
-              { size: 'col-4', label: 'Sub-category', value: item.productSubCategory },
+              {
+                size: 'col-6',
+                label: 'Product',
+                value: item.productName,
+              },
+              { size: 'col-6', label: 'Product number', value: item.productNumber },
             ]}
           />
 
           <BtRowCol
             columns={[
-              { size: 'col-4', label: 'Price', value: item.productPrice },
-              { size: 'col-4', label: 'Quantity', value: item.quantity },
-              { size: 'col-4', label: 'Total price', value: item.totalPrice },
+              { size: 'col-6', label: 'Category', value: item.productCategory },
+              {
+                size: 'col-6',
+                label: 'Sub-category',
+                value: item.productSubCategory,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Product price', value: item.productPrice },
+              {
+                size: 'col-6',
+                label: 'Product color',
+                value: item.productColor,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Quantity', value: item.quantity },
+              { size: 'col-6', label: 'Total price', value: item.totalPrice },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Bill date', value: item.billDate },
+              { size: 'col-6', label: 'Bill number', value: item.billNumber },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'Bill comment', value: item.billComment },
+            ]}/>
+
+          <BtRowCol
+            columns={[
+              {
+                size: 'col-6',
+                label: 'Customer',
+                value: item.customerName,
+              },
+              { size: 'col-6', label: 'Seller', value: item.sellerName },
             ]}
           />
 
           <BtRowCol
             isLastRow={true}
             columns={[
-              { size: 'col-4', label: 'Bill', value: item.billNumber },
               {
-                size: 'col-4',
-                label: 'Customer',
-                value: item.customerName,
-              },
-              {
-                size: 'col-4',
-                label: 'Seller',
-                value: item.sellerName,
+                size: 'col-12',
+                label: 'Created',
+                value: item.createdUtc,
               },
             ]}
           />

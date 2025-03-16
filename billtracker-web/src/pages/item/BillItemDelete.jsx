@@ -86,46 +86,80 @@ const BillItemDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              columns={[
-                { size: 'col-3', label: 'ID', value: item.id },
-                { size: 'col-9', label: 'Bill', value: item.billNumber },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: item.guid },
+            ]}
+          />
 
-            <BtRowCol
-              columns={[
-                {
-                  size: 'col-6',
-                  label: 'Customer',
-                  value: item.customerName,
-                },
-                { size: 'col-6', label: 'Product', value: item.productName },
-              ]}
-            />
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: item.id },
+              {
+                size: 'col-6',
+                label: 'Created',
+                value: item.createdUtc,
+              },
+            ]}
+          />
 
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                {
-                  size: 'col-4',
-                  label: 'Price',
-                  value: item.productPrice,
-                },
-                {
-                  size: 'col-4',
-                  label: 'Quantity',
-                  value: item.quantity,
-                },
-                {
-                  size: 'col-4',
-                  label: 'Total price',
-                  value: item.totalPrice,
-                },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              {
+                size: 'col-12',
+                label: 'Product',
+                value: item.productName,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Product number', value: item.productNumber },
+              { size: 'col-6', label: 'Product price', value: item.productPrice },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Category', value: item.productCategory },
+              {
+                size: 'col-6',
+                label: 'Sub-category',
+                value: item.productSubCategory,
+              },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Quantity', value: item.quantity },
+              { size: 'col-6', label: 'Total price', value: item.totalPrice },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'Bill date', value: item.billDate },
+              { size: 'col-6', label: 'Bill number', value: item.billNumber },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              {
+                size: 'col-6',
+                label: 'Customer',
+                value: item.customerName,
+              },
+              { size: 'col-6', label: 'Seller', value: item.sellerName },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[]}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>

@@ -213,15 +213,47 @@ const BillItemCreate = () => {
               />
             )}
 
-            {selectedProduct && (
-              <div className="px-2">
+            <BtFloatingTextInput
+              controlId="txtBillNumber"
+              label="Bill number"
+              type="text"
+              placeholder="Bill number"
+              value={bill.billNumber}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCustomerName"
+              label="Customer"
+              type="text"
+              placeholder="Customer"
+              value={bill.customerName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtSellerName"
+              label="Seller"
+              type="text"
+              placeholder="Seller"
+              value={bill.sellerName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <hr/>
+
+            <div className="text-center">
+              {selectedProduct && (
                 <BtRowCol
                   isLastRow={true}
                   columns={[
                     {
                       size: 'col-4',
-                      label: 'Product number',
-                      value: selectedProduct.productNumber,
+                      label: 'Quantity',
+                      value: quantity,
                     },
                     {
                       size: 'col-4',
@@ -233,10 +265,9 @@ const BillItemCreate = () => {
                       label: 'Total price',
                       value: selectedProduct.price * quantity,
                     },
-                  ]}
-                />
-              </div>
-            )}
+                  ]}/>
+              )}
+            </div>
           </BtCard.Body>
 
           <BtCard.Footer className="d-flex w-100">

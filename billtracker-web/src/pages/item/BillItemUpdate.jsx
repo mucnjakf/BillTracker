@@ -111,37 +111,109 @@ const BillItemUpdate = () => {
               className="mb-3"
             />
 
-            <div className="px-2">
-              <BtRowCol
-                columns={[
-                  {
-                    size: 'col-7',
-                    label: 'Product',
-                    value: item.productName,
-                  },
-                  {
-                    size: 'col-5',
-                    label: 'Product number',
-                    value: item.productNumber,
-                  },
-                ]}
-              />
 
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              type="text"
+              placeholder="ID"
+              value={item.id}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              type="text"
+              placeholder="GUID"
+              value={item.guid}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtBillNumber"
+              label="Bill number"
+              type="text"
+              placeholder="Bill number"
+              value={item.billNumber}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCustomerName"
+              label="Customer"
+              type="text"
+              placeholder="Customer"
+              value={item.customerName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtSellerName"
+              label="Seller"
+              type="text"
+              placeholder="Seller"
+              value={item.sellerName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtProductName"
+              label="Product"
+              type="text"
+              placeholder="Product"
+              value={item.productName}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCategoryName"
+              label="Category"
+              type="text"
+              placeholder="Category"
+              value={item.productCategory}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtSubCategoryName"
+              label="Sub-category"
+              type="text"
+              placeholder="Sub-category"
+              value={item.productSubCategory}
+              disabled={true}
+              className="mb-3"
+            />
+
+            <hr/>
+
+            <div className="text-center">
               <BtRowCol
                 isLastRow={true}
                 columns={[
                   {
-                    size: 'col-6',
+                    size: 'col-4',
+                    label: 'Quantity',
+                    value: quantity,
+                  },
+                  {
+                    size: 'col-4',
                     label: 'Price',
                     value: item.productPrice,
                   },
                   {
-                    size: 'col-6',
+                    size: 'col-4',
                     label: 'Total price',
                     value: item.productPrice * quantity,
                   },
-                ]}
-              />
+                ]}/>
             </div>
           </BtCard.Body>
 
