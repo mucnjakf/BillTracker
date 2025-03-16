@@ -15,14 +15,16 @@ internal static class ItemMapper
 			item.Bill.Id,
 			item.Bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
 			item.Bill.BillNumber,
+			item.Bill.Comment,
+			$"{item.Bill.Customer.Name} {item.Bill.Customer.Surname}",
+			$"{item.Bill.Seller?.Name} {item.Bill.Seller?.Surname}",
 			item.Product.Id,
 			item.Product.Name,
 			item.Product.ProductNumber,
+			item.Product.Color,
+			item.Product.Price,
 			item.Product.SubCategory.Name,
 			item.Product.SubCategory.Category.Name,
-			item.Product.Price,
-			$"{item.Bill.Customer.Name} {item.Bill.Customer.Surname}",
-			$"{item.Bill.Seller?.Name} {item.Bill.Seller?.Surname}",
 			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
 

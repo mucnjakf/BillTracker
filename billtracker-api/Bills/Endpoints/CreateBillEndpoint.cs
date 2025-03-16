@@ -17,8 +17,6 @@ internal sealed record CreateBillRequest
 	public int CustomerId { get; init; }
 
 	public int? SellerId { get; init; }
-
-	public int? CreditCardId { get; init; } // TODO: remove
 }
 
 internal sealed class CreateBillEndpoint(AppDbContext appDbContext)
