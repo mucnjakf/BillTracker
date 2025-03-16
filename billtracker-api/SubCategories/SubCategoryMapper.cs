@@ -17,7 +17,8 @@ internal static class SubCategoryMapper
 	{
 		return new(
 			subCategory.Id,
-			subCategory.Name);
+			subCategory.Name,
+			subCategory.Products?.Count() ?? 0);
 	}
 
 	internal static SubCategoryTableDto ToSubCategoryTableDto(this SubCategory subCategory)

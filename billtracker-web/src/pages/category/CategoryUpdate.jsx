@@ -9,6 +9,7 @@ import { useLocation, useNavigate, useParams } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
 import CategoryService from '../../services/CategoryService.js'
+import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const CategoryUpdate = () => {
   const navigate = useNavigate()
@@ -17,6 +18,7 @@ const CategoryUpdate = () => {
 
   const { categoryId } = useParams()
 
+  const [category, setCategory] = useState({})
   const [name, setName] = useState('')
 
   const [error, setError] = useState(null)
@@ -34,6 +36,7 @@ const CategoryUpdate = () => {
         return
       }
 
+      setCategory(data)
       setName(data.name)
     }
 
@@ -91,6 +94,35 @@ const CategoryUpdate = () => {
               value={name}
               onChange={setName}
               required={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              className="mb-3"
+              type="text"
+              placeholder="ID"
+              value={category.id}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              className="mb-3"
+              type="text"
+              placeholder="GUID"
+              value={category.guid}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCreated"
+              label="Created"
+              type="datetime-local"
+              placeholder="Created"
+              value={DateTimeUtilities.formatDateForInput(category.createdUtc || '')}
+              disabled={true}
             />
           </BtCard.Body>
 

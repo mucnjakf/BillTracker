@@ -118,8 +118,14 @@ const CategoryDetails = () => {
           items={categorySubCategories}
           renderListItem={(subCategory) => (
             <>
-              <div className="fw-bold d-flex align-items-center">
-                {subCategory.name}
+              <div className="d-flex justify-content-between w-100 me-4 align-items-center">
+                <div className="fw-bold">
+                  {subCategory.name}
+                </div>
+                <div>
+                  <span className="small text-muted">Products:</span> <span
+                  className="fw-bold">{subCategory.productsCount}</span>
+                </div>
               </div>
 
               <Button

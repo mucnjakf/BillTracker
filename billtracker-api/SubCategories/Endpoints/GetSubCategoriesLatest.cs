@@ -25,6 +25,7 @@ internal sealed class GetSubCategoriesLatestEndpoint(AppDbContext appDbContext)
 	public override async Task<Ok<IEnumerable<SubCategoryListDto>>> ExecuteAsync(GetSubCategoriesLatestRequest req, CancellationToken ct)
 	{
 		var query = appDbContext.SubCategories
+			.Include(x => x.Products)
 			.AsNoTracking();
 
 		if (req.CategoryId is not null)

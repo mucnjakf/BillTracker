@@ -75,15 +75,25 @@ const CategoryDelete = () => {
 
           <hr/>
 
-          <div>
-            <BtRowCol
-              isLastRow={true}
-              columns={[
-                { size: 'col-4', label: 'ID', value: category.id },
-                { size: 'col-8', label: 'Name', value: category.name },
-              ]}
-            />
-          </div>
+          <BtRowCol
+            columns={[
+              { size: 'col-12', label: 'GUID', value: category.guid },
+            ]}
+          />
+
+          <BtRowCol
+            columns={[
+              { size: 'col-6', label: 'ID', value: category.id },
+              { size: 'col-6', label: 'Name', value: category.name },
+            ]}
+          />
+
+          <BtRowCol
+            isLastRow={true}
+            columns={[
+              { size: 'col-12', label: 'Created', value: category.createdUtc },
+            ]}
+          />
         </BtCard.Body>
 
         <BtCard.Footer>
