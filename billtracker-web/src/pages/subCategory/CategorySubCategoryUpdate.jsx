@@ -9,6 +9,7 @@ import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
 import BtButton from '../../components/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import SubCategoryService from '../../services/SubCategoryService.js'
+import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const CategorySubCategoryUpdate = () => {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ const CategorySubCategoryUpdate = () => {
 
   const { categoryId, subCategoryId } = useParams()
 
-  const [categoryName, setCategoryName] = useState('')
+  const [subCategory, setSubCategory] = useState({})
 
   const [name, setName] = useState('')
 
@@ -36,7 +37,7 @@ const CategorySubCategoryUpdate = () => {
         return
       }
 
-      setCategoryName(data.categoryName)
+      setSubCategory(data)
       setName(data.name)
     }
 
@@ -71,7 +72,7 @@ const CategorySubCategoryUpdate = () => {
         paths={[
           { label: 'Home', href: '/', isActive: true },
           { label: 'Categories', href: '/categories', isActive: true },
-          { label: categoryName, href: `/categories/${categoryId}`, isActive: true },
+          { label: subCategory.categoryName, href: `/categories/${categoryId}`, isActive: true },
           { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },
           returnUrl.startsWith(`/categories/${categoryId}/subcategories/`)
             ? { label: name, href: `/categories/${categoryId}/subcategories/${subCategoryId}`, isActive: true }
@@ -96,6 +97,45 @@ const CategorySubCategoryUpdate = () => {
               value={name}
               onChange={setName}
               required={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtId"
+              label="ID"
+              className="mb-3"
+              type="text"
+              placeholder="ID"
+              value={subCategory.id}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtGuid"
+              label="GUID"
+              className="mb-3"
+              type="text"
+              placeholder="GUID"
+              value={subCategory.guid}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCategoryName"
+              label="Category"
+              className="mb-3"
+              type="text"
+              placeholder="Category"
+              value={subCategory.categoryName}
+              disabled={true}
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCreatedUtc"
+              label="Created"
+              type="datetime-local"
+              placeholder="Created"
+              value={DateTimeUtilities.formatDateForInput(subCategory.createdUtc || '')}
+              disabled={true}
             />
           </BtCard.Body>
 

@@ -87,6 +87,16 @@ const CategorySubCategoryCreate = () => {
               value={name}
               onChange={setName}
               required={true}
+              className="mb-3"
+            />
+
+            <BtFloatingTextInput
+              controlId="txtCategoryName"
+              label="Category"
+              type="text"
+              placeholder="Category"
+              value={category.name}
+              disabled={true}
             />
           </BtCard.Body>
 
