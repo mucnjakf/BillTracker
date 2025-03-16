@@ -33,14 +33,14 @@ const SellerCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await SellerService.createSeller(name, surname, permanentEmployee)
+    const { data: sellerId, error } = await SellerService.createSeller(name, surname, permanentEmployee)
 
     if (error) {
       setError(error)
       return
     }
 
-    navigate('/sellers')
+    navigate(`/sellers/${sellerId}`)
   }
 
   return (

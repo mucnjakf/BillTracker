@@ -50,14 +50,14 @@ const CategorySubCategoryCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await SubCategoryService.createSubCategory(name, categoryId)
+    const { data: subCategoryId, error } = await SubCategoryService.createSubCategory(name, categoryId)
 
     if (error) {
       setError(error)
       return
     }
 
-    navigate(`/categories/${categoryId}/subcategories`)
+    navigate(`/categories/${categoryId}/subcategories/${subCategoryId}`)
   }
 
   return (

@@ -66,13 +66,13 @@ class SellerService {
 
   async createSeller (name, surname, permanentEmployee) {
     try {
-      await this.api.post('', {
+      const response = await this.api.post('', {
         name: name,
         surname: surname,
         permanentEmployee: permanentEmployee,
       })
 
-      return { data: null, error: null }
+      return { data: response.data.id, error: null }
     } catch (error) {
       switch (error.status) {
         case 401:

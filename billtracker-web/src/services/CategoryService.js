@@ -66,11 +66,11 @@ class CategoryService {
 
   async createCategory (name) {
     try {
-      await this.api.post('', {
+      const response = await this.api.post('', {
         name: name,
       })
 
-      return { data: null, error: null }
+      return { data: response.data.id, error: null }
     } catch (error) {
       switch (error.status) {
         case 400:

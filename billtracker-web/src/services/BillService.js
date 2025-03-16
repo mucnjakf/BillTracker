@@ -68,7 +68,7 @@ class BillService {
 
   async createBill (customerId, date, billNumber, comment, sellerId) {
     try {
-      await this.api.post('', {
+      const response = await this.api.post('', {
         date: new Date(date),
         billNumber: billNumber,
         comment: comment,
@@ -76,7 +76,7 @@ class BillService {
         sellerId: sellerId,
       })
 
-      return { data: null, error: null }
+      return { data: response.data.id, error: null }
     } catch (error) {
       switch (error.status) {
         case 401:

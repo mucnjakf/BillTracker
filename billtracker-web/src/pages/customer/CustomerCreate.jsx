@@ -54,14 +54,17 @@ const CustomerCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await CustomerService.createCustomer(name, surname, email, telephone, cityId === 0 ? null : cityId)
+    const {
+      data: customerId,
+      error,
+    } = await CustomerService.createCustomer(name, surname, email, telephone, cityId === 0 ? null : cityId)
 
     if (error) {
       setError(error)
       return
     }
 
-    navigate('/customers')
+    navigate( `/customers/${customerId}`)
   }
 
   return (

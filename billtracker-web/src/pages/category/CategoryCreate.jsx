@@ -30,14 +30,14 @@ const CategoryCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await CategoryService.createCategory(name)
+    const { data: categoryId, error } = await CategoryService.createCategory(name)
 
     if (error) {
       setError(error)
       return
     }
 
-    navigate('/categories')
+    navigate(`/categories/${categoryId}`)
   }
 
   return (

@@ -30,14 +30,14 @@ const CityCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await CityService.createCity(name)
+    const { data: cityId, error } = await CityService.createCity(name)
 
     if (error) {
       setError(error)
       return
     }
 
-    navigate('/cities')
+    navigate(`/cities/${cityId}`)
   }
 
   return (

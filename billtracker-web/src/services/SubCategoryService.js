@@ -75,12 +75,12 @@ class SubCategoryService {
 
   async createSubCategory (name, categoryId) {
     try {
-      await this.api.post('', {
+      const response = await this.api.post('', {
         name: name,
         categoryId: categoryId,
       })
 
-      return { data: null, error: null }
+      return { data: response.data.id, error: null }
     } catch (error) {
       switch (error.status) {
         case 400:

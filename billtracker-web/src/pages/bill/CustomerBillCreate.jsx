@@ -74,14 +74,17 @@ const CustomerBillCreate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await BillService.createBill(customerId, date, billNumber, comment, sellerId === 0 ? null : sellerId)
+    const {
+      data: billId,
+      error,
+    } = await BillService.createBill(customerId, date, billNumber, comment, sellerId === 0 ? null : sellerId)
 
     if (error) {
       setError(error)
       return
     }
 
-    navigate(`/customers/${customerId}/bills`)
+    navigate(`/customers/${customerId}/bills/${billId}`)
   }
 
   return (
