@@ -28,5 +28,3 @@ internal sealed class GetSalesTrendOverTimeEndpoint(AppDbContext appDbContext) :
 		return TypedResults.Ok(salesTrendOverTime);
 	}
 }
-
-internal sealed record SalesTrendOverTimeDto(string Date, decimal TotalSales);

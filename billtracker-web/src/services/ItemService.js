@@ -38,6 +38,22 @@ class ItemService {
     }
   }
 
+  async getTopSellingProducts () {
+    try {
+      const response = await this.api.get('top-selling-products')
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async createItem (billId, quantity, productId) {
     try {
       await this.api.post('', {
