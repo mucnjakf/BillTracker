@@ -17,4 +17,6 @@ internal sealed class Seller
 	public IEnumerable<Bill>? Bills { get; init; }
 	
 	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
+
+	public string GetFullName() => $"{Name} {Surname}";
 }

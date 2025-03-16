@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     setAccessToken(data.accessToken)
-    navigate('/')
+    location.href = '/'
   }
 
   return (
