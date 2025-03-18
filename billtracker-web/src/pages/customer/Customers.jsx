@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
 import BtAlert from '../../components/BtAlert.jsx'
-import CustomerCreateModal from './CustomerCreateModal.jsx'
 
 const Customers = () => {
   const navigate = useNavigate()
@@ -20,8 +19,6 @@ const Customers = () => {
   const [pageSize, setPageSize] = useState(10)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('created-desc')
-
-  const [showCustomerCreateModal, setShowCustomerCreateModal] = useState(false)
 
   const [error, setError] = useState(null)
 
@@ -51,7 +48,7 @@ const Customers = () => {
       label: 'Create',
       variant: 'success',
       icon: <BsPlusCircle/>,
-      onClick: () => setShowCustomerCreateModal(true),
+      onClick: () => navigate(`create`),
     },
     {
       label: 'View',
@@ -148,9 +145,6 @@ const Customers = () => {
           setCurrentPage={setCurrentPage}
         />
       )}
-
-      <CustomerCreateModal show={showCustomerCreateModal}
-                           toggleModal={() => setShowCustomerCreateModal(!showCustomerCreateModal)}/>
     </>
   )
 }

@@ -8,7 +8,7 @@ import Login from '../pages/auth/Login'
 import Logout from '../pages/auth/Logout'
 import Register from '../pages/auth/Register'
 import CustomerBills from '../pages/bill/CustomerBills.jsx'
-import CustomerCreateModal from '../pages/customer/CustomerCreateModal.jsx'
+import CustomerCreate from '../pages/customer/CustomerCreate'
 import CustomerDelete from '../pages/customer/CustomerDelete'
 import CustomerDetails from '../pages/customer/CustomerDetails'
 import Customers from '../pages/customer/Customers'
@@ -83,7 +83,7 @@ const BtRoutes = () => {
       children: [
         {
           path: '/customers/create',
-          element: <CustomerCreateModal/>,
+          element: <CustomerCreate/>,
         },
         {
           path: '/customers/:customerId',
