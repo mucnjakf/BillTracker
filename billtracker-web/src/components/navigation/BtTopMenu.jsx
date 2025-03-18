@@ -1,9 +1,9 @@
-import BillTrackerLogo from '../assets/billtracker.svg'
+import BillTrackerLogo from '../../assets/billtracker.svg'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Image from 'react-bootstrap/Image'
-import { useAuth } from './BtAuthProvider'
+import { useAuth } from '../auth/BtAuthProvider.jsx'
 import {
   BsBoxArrowRight,
   BsBoxArrowInLeft,

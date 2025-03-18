@@ -1,8 +1,7 @@
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import { useAuth } from './BtAuthProvider'
-import { BsPlusCircle } from 'react-icons/bs'
+import { useAuth } from '../auth/BtAuthProvider.jsx'
 
 const BtTable = ({ columns, data, actions }) => {
   const { accessToken } = useAuth()

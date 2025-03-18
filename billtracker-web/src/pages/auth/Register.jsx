@@ -1,13 +1,13 @@
 import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BsPersonCircle } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 
 const Register = () => {
   const navigate = useNavigate()

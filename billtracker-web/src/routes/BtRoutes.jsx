@@ -1,4 +1,4 @@
-import { useAuth } from '../components/BtAuthProvider'
+import { useAuth } from '../components/auth/BtAuthProvider.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router'
 import BtProtectedRoute from './BtProtectedRoute'
 import Dashboard from '../pages/app/Dashboard.jsx'
@@ -14,7 +14,7 @@ import CustomerDetails from '../pages/customer/CustomerDetails'
 import Customers from '../pages/customer/Customers'
 import CustomerUpdate from '../pages/customer/CustomerUpdate'
 import CustomerBillCreate from '../pages/bill/CustomerBillCreate.jsx'
-import BtNotFound from '../components/BtNotFound'
+import NotFound from '../pages/app/NotFound.jsx'
 import CustomerBillDelete from '../pages/bill/CustomerBillDelete.jsx'
 import CustomerBillUpdate from '../pages/bill/CustomerBillUpdate.jsx'
 import CustomerBillDetails from '../pages/bill/CustomerBillDetails.jsx'
@@ -62,7 +62,7 @@ const BtRoutes = () => {
     },
     {
       path: '*',
-      element: <BtNotFound/>,
+      element: <NotFound/>,
     },
   ]
 

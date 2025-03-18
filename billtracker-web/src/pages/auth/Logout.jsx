@@ -1,4 +1,4 @@
-import { useAuth } from '../../components/BtAuthProvider'
+import { useAuth } from '../../components/auth/BtAuthProvider.jsx'
 
 const Logout = () => {
   const { setAccessToken } = useAuth()

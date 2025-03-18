@@ -1,6 +1,6 @@
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { useAuth } from './BtAuthProvider.jsx'
+import { useAuth } from '../auth/BtAuthProvider.jsx'
 import {
   BsBuildings,
   BsPerson,

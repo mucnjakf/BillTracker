@@ -7,7 +7,7 @@ import SalesByCategoryChart from '../../components/charts/SalesByCategoryChart.j
 import BillingActivityChart from '../../components/charts/BillingActivityChart.jsx'
 import CustomersByCityChart from '../../components/charts/CustomersByCityChart.jsx'
 import RevenueBySellerChart from '../../components/charts/RevenueBySellerChart.jsx'
-import { useAuth } from '../../components/BtAuthProvider.jsx'
+import { useAuth } from '../../components/auth/BtAuthProvider.jsx'
 
 const Dashboard = () => {
   const { accessToken } = useAuth()

@@ -1,18 +1,15 @@
 import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtPageTitle from '../../components/BtPageTitle'
-import { useAuth } from '../../components/BtAuthProvider'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import { useAuth } from '../../components/auth/BtAuthProvider.jsx'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
 import { BsBoxArrowInLeft } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 
 const Login = () => {
-  const navigate = useNavigate()
-
   const { setAccessToken } = useAuth()
 
   const [email, setEmail] = useState('')
