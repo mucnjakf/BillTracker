@@ -16,9 +16,9 @@ const RevenueBySellerChart = () => {
 
   return (
     <>
-      <h3>Revenue by seller</h3>
+      <h3>Monthly revenue by seller</h3>
 
-      <div className="border rounded pt-4 pe-4 pb-3">
+      <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
           <RadialBarChart innerRadius="10%" outerRadius="80%" data={revenueBySeller} startAngle={180}
                           endAngle={0}>

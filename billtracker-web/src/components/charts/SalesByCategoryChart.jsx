@@ -18,7 +18,7 @@ const SalesByCategoryChart = () => {
     <>
       <h3>Sales by category</h3>
 
-      <div className="border rounded pt-4 pe-4 pb-3">
+      <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
           <PieChart>
             <Pie data={salesByCategory} dataKey="totalSales" nameKey="category" cx="50%"

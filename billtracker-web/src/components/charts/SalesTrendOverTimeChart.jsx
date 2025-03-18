@@ -18,7 +18,7 @@ const SalesTrendOverTimeChart = () => {
     <>
       <h3>Sales trend over time</h3>
 
-      <div className="border rounded pt-4 pe-4 pb-3">
+      <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
           <LineChart data={salesTrendOverTime}>
             <XAxis dataKey="date"/>

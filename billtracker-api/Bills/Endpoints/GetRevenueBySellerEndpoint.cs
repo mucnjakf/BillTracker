@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace billtracker_api.Bills.Endpoints;
 
-internal sealed class GetRevenueBySellerEndpoint(AppDbContext appDbContext) : EndpointWithoutRequest<Ok<List<RevenueBySellerDto>>>
+internal sealed class GetRevenueBySellerEndpoint(AppDbContext appDbContext, TimeProvider timeProvider) : EndpointWithoutRequest<Ok<List<RevenueBySellerDto>>>
 {
 	public override void Configure()
 	{
@@ -17,11 +17,13 @@ internal sealed class GetRevenueBySellerEndpoint(AppDbContext appDbContext) : En
 
 	public override Task<Ok<List<RevenueBySellerDto>>> ExecuteAsync(CancellationToken ct)
 	{
+		var dateTimeNow = timeProvider.GetUtcNow();
+
 		var revenueBySeller = appDbContext.Bills
 			.Include(x => x.Seller)
 			.Include(x => x.Items)
 			.AsEnumerable()
-			.Where(x => x.SellerId != null)
+			.Where(x => x.SellerId != null && x.Date.Year == dateTimeNow.Date.Year && x.Date.Month == dateTimeNow.Date.Month)
 			.GroupBy(x => x.Seller!.GetFullName())
 			.Select(x => new RevenueBySellerDto
 			(

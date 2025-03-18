@@ -18,7 +18,7 @@ const BillingActivityChart = () => {
     <>
       <h3>Billing activity</h3>
 
-      <div className="border rounded pt-4 pe-4 pb-3">
+      <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
           <AreaChart data={billActivity}>
             <XAxis dataKey="date"/>

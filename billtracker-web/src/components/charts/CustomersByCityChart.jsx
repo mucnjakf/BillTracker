@@ -17,7 +17,7 @@ const CustomersByCityChart = () => {
     <>
       <h3>Customers by city</h3>
 
-      <div className="border rounded pt-4 pe-4 pb-3">
+      <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
           <RadarChart cx="50%" cy="50%" outerRadius="80%" data={customersByCity}>
             <Tooltip/>

@@ -20,7 +20,7 @@ internal sealed class GetCustomersByCityEndpoint(AppDbContext appDbContext) : En
 		var customersByCity = appDbContext.Customers
 			.Include(x => x.City)
 			.AsEnumerable()
-			.GroupBy(x => x.City!.Name)
+			.GroupBy(x => x.City?.Name ?? "No city")
 			.Select(x => new CustomersByCityDto
 			(
 				x.Key,

@@ -18,7 +18,7 @@ const TopSellingProductsChart = () => {
     <>
       <h3>Top selling products</h3>
 
-      <div className="border rounded pt-4 pe-4 pb-3">
+      <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
           <BarChart data={topSellingProducts}>
             <XAxis dataKey="productName"/>
