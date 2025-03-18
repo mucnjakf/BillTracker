@@ -25,7 +25,8 @@ public static class Program
 				.AddFastEndpoints()
 				.AddSwagger()
 				.AddPasswordHasher()
-				.AddDatabase(builder.Configuration);
+				.AddDatabase(builder.Configuration)
+				.AddSingleton(TimeProvider.System);
 		}
 
 		var app = builder.Build();
