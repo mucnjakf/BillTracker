@@ -1,15 +1,15 @@
 import Form from 'react-bootstrap/Form'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 import SellerService from '../../services/SellerService.js'
-import BtCheckbox from '../../components/BtCheckbox.jsx'
+import BtCheckbox from '../../components/form/BtCheckbox.jsx'
 import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const SellerUpdate = () => {
@@ -74,7 +74,7 @@ const SellerUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Sellers', href: '/sellers', isActive: true },
           returnUrl.startsWith('/sellers/')
             ? { label: `${name} ${surname}`, href: `/sellers/${sellerId}`, isActive: true }

@@ -1,14 +1,14 @@
 import Form from 'react-bootstrap/Form'
 import CityService from '../../services/CityService'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 
 const CityCreate = () => {
   const navigate = useNavigate()
@@ -44,7 +44,7 @@ const CityCreate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Cities', href: '/cities', isActive: true },
           { label: 'Create' },
         ]}

@@ -2,14 +2,14 @@ import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
 import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
-import BtSearch from '../../components/BtSearch.jsx'
-import BtSort from '../../components/BtSort.jsx'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtTable from '../../components/BtTable.jsx'
-import BtPagination from '../../components/BtPagination.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtSearch from '../../components/datagrid/BtSearch.jsx'
+import BtSort from '../../components/datagrid/BtSort.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtTable from '../../components/datagrid/BtTable.jsx'
+import BtPagination from '../../components/datagrid/BtPagination.jsx'
 import CustomerService from '../../services/CustomerService.js'
 
 const CustomerBills = () => {
@@ -114,7 +114,7 @@ const CustomerBills = () => {
   return (<>
     <BtBreadcrumb
       paths={[
-        { label: 'Home', href: '/', isActive: true },
+        { label: 'Dashboard', href: '/', isActive: true },
         { label: 'Customers', href: '/customers', isActive: true },
         { label: `${customer.name} ${customer.surname}`, href: `/customers/${customerId}`, isActive: true },
         { label: 'Bills' },

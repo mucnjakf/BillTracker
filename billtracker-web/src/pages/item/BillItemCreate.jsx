@@ -1,19 +1,19 @@
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
 import { useNavigate, useParams } from 'react-router'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import Form from 'react-bootstrap/Form'
 import { useEffect, useState } from 'react'
 import ItemService from '../../services/ItemService.js'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtCard from '../../components/BtCard.jsx'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtButton from '../../components/BtButton.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import BtFloatingSelect from '../../components/BtFloatingSelect.jsx'
+import BtFloatingSelect from '../../components/form/BtFloatingSelect.jsx'
 import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
-import BtRowCol from '../../components/BtRowCol.jsx'
+import BtRowCol from '../../components/display/BtRowCol.jsx'
 import BillService from '../../services/BillService.js'
 
 const BillItemCreate = () => {
@@ -144,7 +144,7 @@ const BillItemCreate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
             label: bill.customerName,

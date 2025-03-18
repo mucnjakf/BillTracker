@@ -1,12 +1,12 @@
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtRowCol from '../../components/BtRowCol.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtRowCol from '../../components/display/BtRowCol.jsx'
 import CityService from '../../services/CityService.js'
 
 const CityDelete = () => {
@@ -56,10 +56,10 @@ const CityDelete = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Cities', href: '/cities', isActive: true },
           returnUrl.startsWith('/cities/')
-            ? { label: `${city.name}`, href: `/cities/${cityId}`, isActive: true }
+            ? { label: city.name, href: `/cities/${cityId}`, isActive: true }
             : null,
           { label: 'Delete' },
         ].filter(Boolean)}

@@ -1,15 +1,15 @@
 import CustomerService from '../../services/CustomerService'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtRowCol from '../../components/BtRowCol'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtRowCol from '../../components/display/BtRowCol.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { BsTrash, BsPencilSquare, BsCashCoin, BsCardText } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 import BillService from '../../services/BillService.js'
-import BtListGroup from '../../components/BtListGroup.jsx'
+import BtListGroup from '../../components/display/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 
 const CustomerDetails = () => {
@@ -56,7 +56,7 @@ const CustomerDetails = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           { label: `${customer.name} ${customer.surname}` },
         ]}

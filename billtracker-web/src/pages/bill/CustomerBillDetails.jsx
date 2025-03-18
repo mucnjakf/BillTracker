@@ -1,18 +1,18 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtRowCol from '../../components/BtRowCol.jsx'
-import BtButton from '../../components/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtRowCol from '../../components/display/BtRowCol.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
 import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
 import ItemService from '../../services/ItemService.js'
-import BtListGroup from '../../components/BtListGroup.jsx'
+import BtListGroup from '../../components/display/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import BtPagination from '../../components/BtPagination.jsx'
+import BtPagination from '../../components/datagrid/BtPagination.jsx'
 
 const CustomerBillDetails = () => {
   const navigate = useNavigate()
@@ -61,7 +61,7 @@ const CustomerBillDetails = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
             label: bill.customerName,

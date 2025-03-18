@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
-import BtSearch from '../../components/BtSearch.jsx'
-import BtSort from '../../components/BtSort.jsx'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtTable from '../../components/BtTable.jsx'
-import BtPagination from '../../components/BtPagination.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtSearch from '../../components/datagrid/BtSearch.jsx'
+import BtSort from '../../components/datagrid/BtSort.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtTable from '../../components/datagrid/BtTable.jsx'
+import BtPagination from '../../components/datagrid/BtPagination.jsx'
 import CategoryService from '../../services/CategoryService.js'
 import SubCategoryService from '../../services/SubCategoryService.js'
 
@@ -113,7 +113,7 @@ const CategorySubCategories = () => {
   return (<>
     <BtBreadcrumb
       paths={[
-        { label: 'Home', href: '/', isActive: true },
+        { label: 'Dashboard', href: '/', isActive: true },
         { label: 'Categories', href: '/categories', isActive: true },
         { label: category.name, href: `/categories/${categoryId}`, isActive: true },
         { label: 'Sub-categories' },

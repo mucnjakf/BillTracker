@@ -1,15 +1,15 @@
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import ItemService from '../../services/ItemService.js'
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtButton from '../../components/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import Form from 'react-bootstrap/Form'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtRowCol from '../../components/BtRowCol.jsx'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtRowCol from '../../components/display/BtRowCol.jsx'
 
 const BillItemUpdate = () => {
   const navigate = useNavigate()
@@ -70,7 +70,7 @@ const BillItemUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           {
             label: item.customerName,

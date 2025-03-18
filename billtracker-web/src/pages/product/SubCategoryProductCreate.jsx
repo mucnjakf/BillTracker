@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import Form from 'react-bootstrap/Form'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
-import BtButton from '../../components/BtButton.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
@@ -70,7 +70,7 @@ const SubCategoryProductCreate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Categories', href: '/categories', isActive: true },
           { label: subCategory.categoryName, href: `/categories/${categoryId}`, isActive: true },
           { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },

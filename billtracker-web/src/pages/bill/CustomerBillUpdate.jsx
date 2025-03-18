@@ -1,17 +1,17 @@
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import Form from 'react-bootstrap/Form'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtFloatingDateTimePicker from '../../components/BtFloatingDateTimePicker.jsx'
-import BtFloatingTextArea from '../../components/BtFloatingTextArea.jsx'
-import BtButton from '../../components/BtButton.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtFloatingDateTimePicker from '../../components/form/BtFloatingDateTimePicker.jsx'
+import BtFloatingTextArea from '../../components/form/BtFloatingTextArea.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
 import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput.jsx'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
 
 const CustomerBillUpdate = () => {
   const navigate = useNavigate()
@@ -80,9 +80,9 @@ const CustomerBillUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
-          { label: `${bill.customerName}`, href: `/customers/${customerId}`, isActive: true },
+          { label: bill.customerName, href: `/customers/${customerId}`, isActive: true },
           { label: 'Bills', href: `/customers/${customerId}/bills`, isActive: true },
           returnUrl.startsWith(`/customers/${customerId}/bills/`)
             ? { label: `${billNumber}`, href: `/customers/${customerId}/bills/${billId}`, isActive: true }

@@ -1,15 +1,15 @@
-import { useAuth } from '../../components/BtAuthProvider'
+import { useAuth } from '../../components/auth/BtAuthProvider.jsx'
 import { useState, useEffect } from 'react'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
 import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
-import BtCard from '../../components/BtCard'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtButton from '../../components/BtButton.jsx'
-import BtPageTitle from '../../components/BtPageTitle'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtAlert from '../../components/BtAlert'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 
 const AccountUpdate = () => {
   const navigate = useNavigate()
@@ -67,7 +67,7 @@ const AccountUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Account', href: '/account', isActive: true },
           { label: 'Update' },
         ]}

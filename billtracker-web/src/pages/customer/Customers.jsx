@@ -1,15 +1,15 @@
 import CustomerService from '../../services/CustomerService'
-import BtSearch from '../../components/BtSearch'
-import BtSort from '../../components/BtSort'
-import BtPagination from '../../components/BtPagination'
-import BtTable from '../../components/BtTable'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtCard from '../../components/BtCard'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtSearch from '../../components/datagrid/BtSearch.jsx'
+import BtSort from '../../components/datagrid/BtSort.jsx'
+import BtPagination from '../../components/datagrid/BtPagination.jsx'
+import BtTable from '../../components/datagrid/BtTable.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 
 const Customers = () => {
   const navigate = useNavigate()
@@ -100,7 +100,7 @@ const Customers = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers' }]}
       />
 

@@ -1,16 +1,16 @@
 import Form from 'react-bootstrap/Form'
 import CityService from '../../services/CityService'
 import CustomerService from '../../services/CustomerService'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtPageTitle from '../../components/BtPageTitle'
-import BtFloatingSelect from '../../components/BtFloatingSelect'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtFloatingSelect from '../../components/form/BtFloatingSelect.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 import DateTimeUtilities from '../../utilities/DateTimeUtilities.js'
 
 const CustomerUpdate = () => {
@@ -104,7 +104,7 @@ const CustomerUpdate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Customers', href: '/customers', isActive: true },
           returnUrl.startsWith('/customers/')
             ? { label: `${name} ${surname}`, href: `/customers/${customerId}`, isActive: true }

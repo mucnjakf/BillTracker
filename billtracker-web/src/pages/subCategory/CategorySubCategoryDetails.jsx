@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import BtBreadcrumb from '../../components/BtBreadcrumb.jsx'
-import BtPageTitle from '../../components/BtPageTitle.jsx'
-import BtCard from '../../components/BtCard.jsx'
-import BtAlert from '../../components/BtAlert.jsx'
-import BtRowCol from '../../components/BtRowCol.jsx'
-import BtButton from '../../components/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
+import BtRowCol from '../../components/display/BtRowCol.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
 import { BsBox, BsCardText, BsPencilSquare, BsTrash } from 'react-icons/bs'
-import BtListGroup from '../../components/BtListGroup.jsx'
+import BtListGroup from '../../components/display/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
@@ -56,7 +56,7 @@ const CategorySubCategoryDetails = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Categories', href: '/categories', isActive: true },
           { label: subCategory.categoryName, href: `/categories/${categoryId}`, isActive: true },
           { label: 'Sub-categories', href: `/categories/${categoryId}/subcategories`, isActive: true },

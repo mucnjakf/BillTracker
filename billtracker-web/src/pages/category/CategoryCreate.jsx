@@ -1,13 +1,13 @@
 import Form from 'react-bootstrap/Form'
-import BtFloatingTextInput from '../../components/BtFloatingTextInput'
-import BtCard from '../../components/BtCard'
-import BtButton from '../../components/BtButton.jsx'
-import BtBreadcrumb from '../../components/BtBreadcrumb'
-import BtPageTitle from '../../components/BtPageTitle'
+import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
+import BtCard from '../../components/display/BtCard.jsx'
+import BtButton from '../../components/general/BtButton.jsx'
+import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
-import BtAlert from '../../components/BtAlert.jsx'
+import BtAlert from '../../components/general/BtAlert.jsx'
 import CategoryService from '../../services/CategoryService.js'
 
 const CategoryCreate = () => {
@@ -44,7 +44,7 @@ const CategoryCreate = () => {
     <>
       <BtBreadcrumb
         paths={[
-          { label: 'Home', href: '/', isActive: true },
+          { label: 'Dashboard', href: '/', isActive: true },
           { label: 'Categories', href: '/categories', isActive: true },
           { label: 'Create' },
         ]}
