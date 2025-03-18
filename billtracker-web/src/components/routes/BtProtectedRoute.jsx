@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router'
-import { useAuth } from '../components/auth/BtAuthProvider.jsx'
+import { useAuth } from '../auth/BtAuthProvider.jsx'
 
 const ProtectedRoute = () => {
   const { accessToken } = useAuth()
