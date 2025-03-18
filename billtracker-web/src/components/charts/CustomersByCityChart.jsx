@@ -15,7 +15,7 @@ const CustomersByCityChart = () => {
   }, [])
   return (
     <>
-      <h3>Customers by city</h3>
+      <h4>Customers by city</h4>
 
       <div className="border rounded p-3">
         <ResponsiveContainer height={300}>

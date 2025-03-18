@@ -16,7 +16,7 @@ const TopSellingProductsChart = () => {
 
   return (
     <>
-      <h3>Top selling products</h3>
+      <h4>Top selling products</h4>
 
       <div className="border rounded p-3">
         <ResponsiveContainer height={300}>

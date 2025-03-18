@@ -16,7 +16,7 @@ const SalesTrendOverTimeChart = () => {
 
   return (
     <>
-      <h3>Sales trend over time</h3>
+      <h4>Sales trend over time</h4>
 
       <div className="border rounded p-3">
         <ResponsiveContainer height={300}>

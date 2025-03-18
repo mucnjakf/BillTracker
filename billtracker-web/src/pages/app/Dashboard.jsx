@@ -17,33 +17,33 @@ const Dashboard = () => {
       <h1 className="mb-3">Dashboard</h1>
 
       {accessToken ? (
-          <Container fluid>
+          <Container fluid className="p-0">
             <Row className="mb-4">
-              <Col className="col-6 ps-0">
+              <Col className="col-6">
                 <SalesTrendOverTimeChart/>
               </Col>
 
-              <Col className="col-6 pe-0">
+              <Col className="col-6">
                 <TopSellingProductsChart/>
               </Col>
             </Row>
 
             <Row className="mb-4">
-              <Col className="col-6 ps-0">
+              <Col className="col-6">
                 <SalesByCategoryChart/>
               </Col>
 
-              <Col className="col-6 pe-0">
+              <Col className="col-6">
                 <BillingActivityChart/>
               </Col>
             </Row>
 
             <Row>
-              <Col className="col-6 ps-0">
+              <Col className="col-6">
                 <CustomersByCityChart/>
               </Col>
 
-              <Col className="col-6 pe-0">
+              <Col className="col-6">
                 <RevenueBySellerChart/>
               </Col>
             </Row>

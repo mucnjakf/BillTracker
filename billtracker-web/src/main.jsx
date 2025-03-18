@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')).render(
         </Col>
       </Row>
 
-      <Row className="flex-fill px-3 ps-0">
+      <Row className="flex-fill">
         <Col className="col-2 p-1 border-end">
           <BtSideMenu/>
         </Col>

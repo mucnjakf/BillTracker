@@ -16,7 +16,7 @@ const BillingActivityChart = () => {
 
   return (
     <>
-      <h3>Billing activity</h3>
+      <h4>Billing activity</h4>
 
       <div className="border rounded p-3">
         <ResponsiveContainer height={300}>

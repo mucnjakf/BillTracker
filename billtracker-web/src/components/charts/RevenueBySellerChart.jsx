@@ -16,7 +16,7 @@ const RevenueBySellerChart = () => {
 
   return (
     <>
-      <h3>Monthly revenue by seller</h3>
+      <h4>Monthly revenue by seller</h4>
 
       <div className="border rounded p-3">
         <ResponsiveContainer height={300}>

@@ -16,7 +16,7 @@ const SalesByCategoryChart = () => {
 
   return (
     <>
-      <h3>Sales by category</h3>
+      <h4>Sales by category</h4>
 
       <div className="border rounded p-3">
         <ResponsiveContainer height={300}>
