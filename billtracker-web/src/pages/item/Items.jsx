@@ -8,10 +8,10 @@ import BtCard from '../../components/display/BtCard.jsx'
 import BtAlert from '../../components/general/BtAlert.jsx'
 import BtTable from '../../components/datagrid/BtTable.jsx'
 import BtPagination from '../../components/datagrid/BtPagination.jsx'
-import BillService from '../../services/BillService.js'
+import ItemService from '../../services/ItemService.js'
 
-const Bills = () => {
-  const [pagedBills, setPagedBills] = useState({ items: [] })
+const Items = () => {
+  const [pagedItems, setPagedItems] = useState({ items: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
   const [searchQuery, setSearchQuery] = useState('')
@@ -20,20 +20,21 @@ const Bills = () => {
   const [error, setError] = useState(null)
 
   const sortOptions = [
-    { value: 'date-desc', label: 'Date DESC' },
-    { value: 'date-asc', label: 'Date ASC' },
-    { value: 'itemsCount-asc', label: 'Items ASC' },
-    { value: 'itemsCount-desc', label: 'Items DESC' },
+    { value: 'created-desc', label: 'Created DESC' },
+    { value: 'created-asc', label: 'Created ASC' },
+    { value: 'productName-asc', label: 'Product ASC' },
+    { value: 'productName-desc', label: 'Product DESC' },
     { value: 'total-asc', label: 'Total ASC' },
     { value: 'total-desc', label: 'Total DESC' },
   ]
 
   const tableColumns = [
     { key: 'id', label: 'ID' },
-    { key: 'date', label: 'Date' },
+    { key: 'productName', label: 'Product' },
     { key: 'billNumber', label: 'Bill number' },
-    { key: 'itemCount', label: 'Items' },
-    { key: 'total', label: 'Total' },
+    { key: 'customerName', label: 'Customer' },
+    { key: 'totalPrice', label: 'Total price' },
+    { key: 'createdUtc', label: 'Created' },
   ]
 
   const tableActions = [
@@ -44,26 +45,26 @@ const Bills = () => {
       label: 'Details',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (bill) => location.href = `/customers/${bill.customerId}/bills/${bill.id}`,
+      onClick: (item) => location.href = `/customers/${item.customerId}/bills/${item.billId}/items/${item.id}`,
     },
     {
       label: 'Update',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (bill) => location.href = `/customers/${bill.customerId}/bills/${bill.id}/update?returnUrl=/customers/${bill.customerId}/bills/${bill.id}`,
+      onClick: (item) => location.href = `/customers/${item.customerId}/bills/${item.billId}/items/${item.id}/update?returnUrl=/customers/${item.customerId}/bills/${item.billId}/items/${item.id}`,
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (bill) => location.href = `/customers/${bill.customerId}/bills/${bill.id}/delete?returnUrl=/customers/${bill.customerId}/bills/${bill.id}`,
+      onClick: (item) => location.href = `/customers/${item.customerId}/bills/${item.billId}/items/${item.id}/delete?returnUrl=/customers/${item.customerId}/bills/${item.billId}/items/${item.id}`,
     },
   ]
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      const getBills = async () => {
-        const { data, error } = await BillService.getBillTable(
+      const getItems = async () => {
+        const { data, error } = await ItemService.getItemTable(
           currentPage,
           pageSize,
           searchQuery,
@@ -75,10 +76,10 @@ const Bills = () => {
           return
         }
 
-        setPagedBills(data)
+        setPagedItems(data)
       }
 
-      getBills()
+      getItems()
     }, 500)
 
     return () => clearTimeout(debounce)
@@ -89,17 +90,17 @@ const Bills = () => {
       <BtBreadcrumb
         paths={[
           { label: 'Dashboard', href: '/', isActive: true },
-          { label: 'Bills' }]}
+          { label: 'Items' }]}
       />
 
-      <BtPageTitle text="Bills"/>
+      <BtPageTitle text="Items"/>
 
       <div className="d-flex mb-3">
         <BtSearch
           searchQuery={searchQuery}
           onChange={setSearchQuery}
           setCurrentPage={setCurrentPage}
-          placeholder="Search by bill number"
+          placeholder="Search by product"
         />
 
         <BtSort
@@ -116,18 +117,18 @@ const Bills = () => {
 
           <BtTable
             columns={tableColumns}
-            data={pagedBills.items}
+            data={pagedItems.items}
             actions={tableActions}
           />
         </BtCard.Body>
       </BtCard>
 
-      {pagedBills.items.length > 0 && (
+      {pagedItems.items.length > 0 && (
         <BtPagination
           currentPage={currentPage}
-          totalPages={pagedBills.totalPages}
-          totalItems={pagedBills.items.length}
-          totalCount={pagedBills.totalCount}
+          totalPages={pagedItems.totalPages}
+          totalItems={pagedItems.items.length}
+          totalCount={pagedItems.totalCount}
           pageSize={pageSize}
           setPageSize={setPageSize}
           setCurrentPage={setCurrentPage}
@@ -137,4 +138,4 @@ const Bills = () => {
   )
 }
 
-export default Bills
+export default Items

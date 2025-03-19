@@ -11,6 +11,25 @@ class ItemService {
     })
   }
 
+  async getItemTable (pageNumber = 1, pageSize = 10, searchQuery = '', sortBy = '') {
+    try {
+      let url = `table?&pageNumber=${pageNumber}&pageSize=${pageSize}`
+
+      if (searchQuery !== '') {
+        url += `&searchQuery=${searchQuery}`
+      }
+
+      if (sortBy !== '') {
+        url += `&sortBy=${sortBy}`
+      }
+
+      const response = await this.api.get(url)
+      return { data: response.data, error: null }
+    } catch {
+      return { data: null, error: 'Unknown error occurred.' }
+    }
+  }
+
   async getBillItemList (billId, pageNumber = 1, pageSize = 10) {
     try {
       const response = await this.api.get(`list?billId=${billId}&pageNumber=${pageNumber}&pageSize=${pageSize}`)

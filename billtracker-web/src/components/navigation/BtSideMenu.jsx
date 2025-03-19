@@ -2,7 +2,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useAuth } from '../auth/BtAuthProvider.jsx'
 import {
-  BsBuildings, BsCashCoin,
+  BsBuildings, BsCart, BsCashCoin,
   BsPerson,
   BsShop,
   BsSpeedometer2,
@@ -33,6 +33,11 @@ const BtSideMenu = () => {
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/bills') ? 'bg-dark text-white' : ''}`}>
               <BsCashCoin className="me-3"/>
               Bills
+            </Nav.Link>
+            <Nav.Link href="/items"
+                      className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/items') ? 'bg-dark text-white' : ''}`}>
+              <BsCart className="me-3"/>
+              Items
             </Nav.Link>
             <Nav.Link href="/categories"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/categories') ? 'bg-dark text-white' : ''}`}>

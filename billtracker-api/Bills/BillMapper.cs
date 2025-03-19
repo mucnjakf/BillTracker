@@ -34,6 +34,7 @@ internal static class BillMapper
 			bill.Date.ToString("dd. MM. yyyy. - HH:mm"),
 			bill.BillNumber,
 			bill.Items?.Count() ?? 0,
-			bill.Items?.Sum(x => x.TotalPrice) ?? 0);
+			bill.Items?.Sum(x => x.TotalPrice) ?? 0,
+			bill.CustomerId);
 	}
 }
