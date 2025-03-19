@@ -4,4 +4,5 @@ internal sealed record SubCategoryTableDto(
 	int Id,
 	string Name,
 	int ProductsCount,
-	string CreatedUtc);
+	string CreatedUtc,
+	int CategoryId);

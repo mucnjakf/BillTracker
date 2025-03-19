@@ -27,6 +27,7 @@ internal static class SubCategoryMapper
 			subCategory.Id,
 			subCategory.Name,
 			subCategory.Products?.Count() ?? 0,
-			subCategory.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
+			subCategory.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"),
+			subCategory.Category.Id);
 	}
 }

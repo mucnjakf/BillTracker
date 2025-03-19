@@ -5,4 +5,6 @@ internal sealed record ProductTableDto(
 	string Name,
 	string ProductNumber,
 	decimal Price,
-	string CreatedUtc);
+	string CreatedUtc,
+	int CategoryId,
+	int SubCategoryId);

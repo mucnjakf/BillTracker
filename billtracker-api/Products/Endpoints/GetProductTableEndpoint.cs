@@ -40,6 +40,8 @@ internal sealed class GetProductTableEndpoint(AppDbContext appDbContext)
 		CancellationToken ct)
 	{
 		var query = appDbContext.Products
+			.Include(x => x.SubCategory)
+			.ThenInclude(x => x.Category)
 			.AsNoTracking();
 
 		if (req.SubCategoryId is not null)

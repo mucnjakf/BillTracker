@@ -149,6 +149,7 @@ const SubCategoryProductUpdate = () => {
               min={1}
               required={true}
               className="mb-3"
+              step=".01"
             />
 
             <BtFloatingTextInput
