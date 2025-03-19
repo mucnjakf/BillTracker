@@ -8,6 +8,7 @@ import BtAlert from '../../components/general/BtAlert.jsx'
 import BtRowCol from '../../components/display/BtRowCol.jsx'
 import BtButton from '../../components/general/BtButton.jsx'
 import { BsPencilSquare, BsTrash } from 'react-icons/bs'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const BillItemDetails = () => {
   const navigate = useNavigate()
@@ -88,7 +89,7 @@ const BillItemDetails = () => {
 
           <BtRowCol
             columns={[
-              { size: 'col-6', label: 'Product price', value: item.productPrice },
+              { size: 'col-6', label: 'Product price', value: CurrencyUtilities.formatCurrency(item.productPrice) },
               {
                 size: 'col-6',
                 label: 'Product color',
@@ -100,7 +101,7 @@ const BillItemDetails = () => {
           <BtRowCol
             columns={[
               { size: 'col-6', label: 'Quantity', value: item.quantity },
-              { size: 'col-6', label: 'Total price', value: item.totalPrice },
+              { size: 'col-6', label: 'Total price', value: CurrencyUtilities.formatCurrency(item.totalPrice) },
             ]}
           />
 

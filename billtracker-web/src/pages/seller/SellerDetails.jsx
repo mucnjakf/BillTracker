@@ -12,6 +12,7 @@ import Button from 'react-bootstrap/Button'
 import SellerService from '../../services/SellerService.js'
 import BtPagination from '../../components/datagrid/BtPagination.jsx'
 import BillService from '../../services/BillService.js'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const SellerDetails = () => {
   const navigate = useNavigate()
@@ -126,7 +127,8 @@ const SellerDetails = () => {
                   className="fw-bold">{bill.billNumber}</span>
                 </div>
                 <div>
-                  <span className="small text-muted">Total:</span> <span className="fw-bold">{bill.total}</span>
+                  <span className="small text-muted">Total:</span> <span
+                  className="fw-bold">{CurrencyUtilities.formatCurrency(bill.total)}</span>
                 </div>
               </div>
 

@@ -15,6 +15,7 @@ import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
 import BtRowCol from '../../components/display/BtRowCol.jsx'
 import BillService from '../../services/BillService.js'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const BillItemCreate = () => {
   const navigate = useNavigate()
@@ -258,12 +259,12 @@ const BillItemCreate = () => {
                     {
                       size: 'col-4',
                       label: 'Price',
-                      value: selectedProduct.price,
+                      value: CurrencyUtilities.formatCurrency(selectedProduct.price),
                     },
                     {
                       size: 'col-4',
                       label: 'Total price',
-                      value: selectedProduct.price * quantity,
+                      value: CurrencyUtilities.formatCurrency(selectedProduct.price * quantity),
                     },
                   ]}/>
               )}

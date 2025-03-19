@@ -10,6 +10,7 @@ import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import Form from 'react-bootstrap/Form'
 import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
 import BtRowCol from '../../components/display/BtRowCol.jsx'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const BillItemUpdate = () => {
   const navigate = useNavigate()
@@ -206,12 +207,12 @@ const BillItemUpdate = () => {
                   {
                     size: 'col-4',
                     label: 'Price',
-                    value: item.productPrice,
+                    value: CurrencyUtilities.formatCurrency(item.productPrice),
                   },
                   {
                     size: 'col-4',
                     label: 'Total price',
-                    value: item.productPrice * quantity,
+                    value: CurrencyUtilities.formatCurrency(item.productPrice * quantity),
                   },
                 ]}/>
             </div>

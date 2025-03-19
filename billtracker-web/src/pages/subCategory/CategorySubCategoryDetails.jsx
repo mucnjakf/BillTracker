@@ -11,6 +11,7 @@ import BtListGroup from '../../components/display/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import SubCategoryService from '../../services/SubCategoryService.js'
 import ProductService from '../../services/ProductService.js'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const CategorySubCategoryDetails = () => {
   const navigate = useNavigate()
@@ -136,7 +137,7 @@ const CategorySubCategoryDetails = () => {
                 <div className="fw-bold">{product.name}</div>
 
                 <div><span className="small text-muted">Price:</span> <span
-                  className="fw-bold">{product.price}</span></div>
+                  className="fw-bold">{CurrencyUtilities.formatCurrency(product.price)}</span></div>
               </div>
 
               <Button

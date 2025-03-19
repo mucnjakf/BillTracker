@@ -11,6 +11,7 @@ import BtAlert from '../../components/general/BtAlert.jsx'
 import BillService from '../../services/BillService.js'
 import BtListGroup from '../../components/display/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const CustomerDetails = () => {
   const navigate = useNavigate()
@@ -146,7 +147,8 @@ const CustomerDetails = () => {
                   className="fw-bold">{bill.billNumber}</span>
                 </div>
                 <div>
-                  <span className="small text-muted">Total:</span> <span className="fw-bold">{bill.total}</span>
+                  <span className="small text-muted">Total:</span> <span
+                  className="fw-bold">{CurrencyUtilities.formatCurrency(bill.total)}</span>
                 </div>
               </div>
 

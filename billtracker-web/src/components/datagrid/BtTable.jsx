@@ -2,6 +2,7 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import { useAuth } from '../auth/BtAuthProvider.jsx'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const BtTable = ({ columns, data, actions }) => {
   const { accessToken } = useAuth()
@@ -33,8 +34,9 @@ const BtTable = ({ columns, data, actions }) => {
           data.map((item) => (
             <tr key={item.id} className="align-middle">
               {columns.map((col) => (
-                <td key={col.key}>{item[col.key]}</td>
-              ))}
+                col.key !== 'total'
+                  ? (<td key={col.key}>{item[col.key]}</td>)
+                  : (<td key={col.key}>{CurrencyUtilities.formatCurrency(item[col.key])}</td>)))}
               {
                 <td>
                   {accessToken && (

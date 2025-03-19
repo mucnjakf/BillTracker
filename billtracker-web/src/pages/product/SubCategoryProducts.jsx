@@ -97,7 +97,7 @@ const SubCategoryProducts = () => {
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
     { key: 'productNumber', label: 'Product number' },
-    { key: 'price', label: 'Price' },
+    { key: 'total', label: 'Price' },
     { key: 'createdUtc', label: 'Created' },
   ]
 

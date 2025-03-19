@@ -8,6 +8,7 @@ import BtRowCol from '../../components/display/BtRowCol.jsx'
 import BtButton from '../../components/general/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import ProductService from '../../services/ProductService.js'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const SubCategoryProductDelete = () => {
   const navigate = useNavigate()
@@ -121,7 +122,7 @@ const SubCategoryProductDelete = () => {
                 label: 'Color',
                 value: product.color,
               },
-              { size: 'col-6', label: 'Price', value: product.price },
+              { size: 'col-6', label: 'Price', value: CurrencyUtilities.formatCurrency(product.price) },
             ]}
           />
 

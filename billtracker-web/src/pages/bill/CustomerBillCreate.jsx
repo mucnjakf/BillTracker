@@ -149,7 +149,7 @@ const CustomerBillCreate = () => {
               label="Customer"
               type="text"
               placeholder="Customer"
-              value={`${customer.name}${customer.surname}`}
+              value={`${customer.name} ${customer.surname}`}
               disabled={true}
             />
           </BtCard.Body>

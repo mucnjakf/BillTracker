@@ -13,6 +13,7 @@ import BtListGroup from '../../components/display/BtListGroup.jsx'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import BtPagination from '../../components/datagrid/BtPagination.jsx'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const CustomerBillDetails = () => {
   const navigate = useNavigate()
@@ -103,7 +104,7 @@ const CustomerBillDetails = () => {
               {
                 size: 'col-6',
                 label: 'Total',
-                value: bill.total,
+                value: CurrencyUtilities.formatCurrency(bill.total),
               },
             ]}
           />
@@ -164,8 +165,9 @@ const CustomerBillDetails = () => {
                   {item.productName}
                 </div>
                 <div>
-                  <span className="small text-muted">{item.productPrice} x {item.quantity} = </span>
-                  <span className="fw-bold">{item.totalPrice}</span>
+                  <span
+                    className="small text-muted">{CurrencyUtilities.formatCurrency(item.productPrice)} x {item.quantity} = </span>
+                  <span className="fw-bold">{CurrencyUtilities.formatCurrency(item.totalPrice)}</span>
                 </div>
               </div>
 

@@ -8,6 +8,7 @@ import BtAlert from '../../components/general/BtAlert.jsx'
 import BtButton from '../../components/general/BtButton.jsx'
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
 import BtRowCol from '../../components/display/BtRowCol.jsx'
+import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
 
 const CustomerBillDelete = () => {
   const navigate = useNavigate()
@@ -103,7 +104,7 @@ const CustomerBillDelete = () => {
               {
                 size: 'col-6',
                 label: 'Total',
-                value: bill.total,
+                value: CurrencyUtilities.formatCurrency(bill.total),
               },
             ]}
           />

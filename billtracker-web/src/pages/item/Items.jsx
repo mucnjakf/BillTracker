@@ -33,7 +33,7 @@ const Items = () => {
     { key: 'productName', label: 'Product' },
     { key: 'billNumber', label: 'Bill number' },
     { key: 'customerName', label: 'Customer' },
-    { key: 'totalPrice', label: 'Total price' },
+    { key: 'total', label: 'Total price' },
     { key: 'createdUtc', label: 'Created' },
   ]
 
