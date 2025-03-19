@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtBreadcrumb from '../../components/navigation/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import BtCard from '../../components/display/BtCard.jsx'
 import BtAlert from '../../components/general/BtAlert.jsx'

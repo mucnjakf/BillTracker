@@ -1,5 +1,5 @@
 import CustomerService from '../../services/CustomerService'
-import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtBreadcrumb from '../../components/navigation/BtBreadcrumb.jsx'
 import BtCard from '../../components/display/BtCard.jsx'
 import BtButton from '../../components/general/BtButton.jsx'
 import BtRowCol from '../../components/display/BtRowCol.jsx'

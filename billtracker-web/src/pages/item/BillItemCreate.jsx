@@ -1,4 +1,4 @@
-import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtBreadcrumb from '../../components/navigation/BtBreadcrumb.jsx'
 import { useNavigate, useParams } from 'react-router'
 import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import Form from 'react-bootstrap/Form'

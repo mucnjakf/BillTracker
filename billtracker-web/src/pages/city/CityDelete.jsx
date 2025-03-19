@@ -1,6 +1,6 @@
 import BtCard from '../../components/display/BtCard.jsx'
 import BtButton from '../../components/general/BtButton.jsx'
-import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtBreadcrumb from '../../components/navigation/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router'

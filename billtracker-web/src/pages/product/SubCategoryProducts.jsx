@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import { BsCardText, BsPencilSquare, BsPlusCircle, BsTrash } from 'react-icons/bs'
-import BtBreadcrumb from '../../components/general/BtBreadcrumb.jsx'
+import BtBreadcrumb from '../../components/navigation/BtBreadcrumb.jsx'
 import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import BtSearch from '../../components/datagrid/BtSearch.jsx'
 import BtSort from '../../components/datagrid/BtSort.jsx'
