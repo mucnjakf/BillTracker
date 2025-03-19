@@ -49,21 +49,21 @@ const Categories = () => {
       label: 'View',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (categoryId) => navigate(`${categoryId}`),
+      onClick: (category) => navigate(`${category.id}`),
     },
     {
       label: 'Edit',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (categoryId) =>
-        navigate(`${categoryId}/update?returnUrl=/categories`),
+      onClick: (category) =>
+        navigate(`${category.id}/update?returnUrl=/categories`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (categoryId) =>
-        navigate(`${categoryId}/delete?returnUrl=/categories`),
+      onClick: (category) =>
+        navigate(`${category.id}/delete?returnUrl=/categories`),
     },
   ]
 

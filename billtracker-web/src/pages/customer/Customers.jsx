@@ -54,21 +54,21 @@ const Customers = () => {
       label: 'View',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (customerId) => navigate(`${customerId}`),
+      onClick: (customer) => navigate(`${customer.id}`),
     },
     {
       label: 'Edit',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (customerId) =>
-        navigate(`${customerId}/update?returnUrl=/customers`),
+      onClick: (customer) =>
+        navigate(`${customer.id}/update?returnUrl=/customers`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (customerId) =>
-        navigate(`${customerId}/delete?returnUrl=/customers`),
+      onClick: (customer) =>
+        navigate(`${customer.id}/delete?returnUrl=/customers`),
     },
   ]
 

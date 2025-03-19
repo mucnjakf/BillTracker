@@ -112,19 +112,19 @@ const SubCategoryProducts = () => {
       label: 'Details',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (productId) => navigate(`${productId}`),
+      onClick: (product) => navigate(`${product.id}`),
     },
     {
       label: 'Update',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (productId) => navigate(`${productId}/update?returnUrl=/categories/${categoryId}/subcategories/${subCategoryId}/products`),
+      onClick: (product) => navigate(`${product.id}/update?returnUrl=/categories/${categoryId}/subcategories/${subCategoryId}/products`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (productId) => navigate(`${productId}/delete?returnUrl=/categories/${categoryId}/subcategories/${subCategoryId}/products`),
+      onClick: (product) => navigate(`${product.id}/delete?returnUrl=/categories/${categoryId}/subcategories/${subCategoryId}/products`),
     },
   ]
 

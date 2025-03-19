@@ -14,7 +14,7 @@ const BtTable = ({ columns, data, actions }) => {
             <th key={col.key}>{col.label}</th>
           ))}
           <th style={{ width: '130px' }}>
-            {accessToken &&
+            {accessToken && actions[0].label !== '' &&
               actions.slice(0, 1).map((action) => (
                 <Button
                   key={action.label}
@@ -44,7 +44,7 @@ const BtTable = ({ columns, data, actions }) => {
                           className="pb-2"
                           key={action.label}
                           variant={action.variant}
-                          onClick={() => action.onClick(item.id)}
+                          onClick={() => action.onClick(item)}
                         >
                           {action.icon}
                         </Button>

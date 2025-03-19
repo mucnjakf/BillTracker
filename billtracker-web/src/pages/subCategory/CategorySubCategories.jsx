@@ -94,19 +94,19 @@ const CategorySubCategories = () => {
       label: 'Details',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (subCategoryId) => navigate(`${subCategoryId}`),
+      onClick: (subCategory) => navigate(`${subCategory.id}`),
     },
     {
       label: 'Update',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (subCategoryId) => navigate(`${subCategoryId}/update?returnUrl=/categories/${categoryId}/subcategories`),
+      onClick: (subCategory) => navigate(`${subCategory.id}/update?returnUrl=/categories/${categoryId}/subcategories`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (subCategoryId) => navigate(`${subCategoryId}/delete?returnUrl=/categories/${categoryId}/subcategories`),
+      onClick: (subCategory) => navigate(`${subCategory.id}/delete?returnUrl=/categories/${categoryId}/subcategories`),
     },
   ]
 

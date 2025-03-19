@@ -49,21 +49,21 @@ const Cities = () => {
       label: 'View',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (cityId) => navigate(`${cityId}`),
+      onClick: (city) => navigate(`${city.id}`),
     },
     {
       label: 'Edit',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (cityId) =>
-        navigate(`${cityId}/update?returnUrl=/cities`),
+      onClick: (city) =>
+        navigate(`${city.id}/update?returnUrl=/cities`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (cityId) =>
-        navigate(`${cityId}/delete?returnUrl=/cities`),
+      onClick: (city) =>
+        navigate(`${city.id}/delete?returnUrl=/cities`),
     },
   ]
 

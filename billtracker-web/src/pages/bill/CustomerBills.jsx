@@ -95,19 +95,19 @@ const CustomerBills = () => {
       label: 'Details',
       variant: 'primary',
       icon: <BsCardText/>,
-      onClick: (billId) => navigate(`${billId}`),
+      onClick: (bill) => navigate(`${bill.id}`),
     },
     {
       label: 'Update',
       variant: 'secondary',
       icon: <BsPencilSquare/>,
-      onClick: (billId) => navigate(`${billId}/update?returnUrl=/customers/${customerId}/bills`),
+      onClick: (bill) => navigate(`${bill.id}/update?returnUrl=/customers/${customerId}/bills`),
     },
     {
       label: 'Delete',
       variant: 'danger',
       icon: <BsTrash/>,
-      onClick: (billId) => navigate(`${billId}/delete?returnUrl=/customers/${customerId}/bills`),
+      onClick: (bill) => navigate(`${bill.id}/delete?returnUrl=/customers/${customerId}/bills`),
     },
   ]
 

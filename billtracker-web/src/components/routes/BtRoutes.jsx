@@ -47,6 +47,7 @@ import SubCategoryProductCreate from '../../pages/product/SubCategoryProductCrea
 import SubCategoryProductDetails from '../../pages/product/SubCategoryProductDetails.jsx'
 import SubCategoryProductUpdate from '../../pages/product/SubCategoryProductUpdate.jsx'
 import SubCategoryProductDelete from '../../pages/product/SubCategoryProductDelete.jsx'
+import Bills from '../../pages/bill/Bills.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -192,6 +193,10 @@ const BtRoutes = () => {
         {
           path: '/categories/:categoryId/subcategories/:subCategoryId/products/:productId/delete',
           element: <SubCategoryProductDelete/>,
+        },
+        {
+          path: '/bills',
+          element: <Bills/>,
         },
         {
           path: '/sellers',
