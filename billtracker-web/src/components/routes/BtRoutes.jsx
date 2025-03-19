@@ -49,6 +49,7 @@ import SubCategoryProductUpdate from '../../pages/product/SubCategoryProductUpda
 import SubCategoryProductDelete from '../../pages/product/SubCategoryProductDelete.jsx'
 import Bills from '../../pages/bill/Bills.jsx'
 import Items from '../../pages/item/Items.jsx'
+import SubCategories from '../../pages/subCategory/SubCategories.jsx'
 
 const BtRoutes = () => {
   const { accessToken } = useAuth()
@@ -202,6 +203,10 @@ const BtRoutes = () => {
         {
           path: '/items',
           element: <Items/>,
+        },
+        {
+          path: '/subcategories',
+          element: <SubCategories/>,
         },
         {
           path: '/sellers',

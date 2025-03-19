@@ -43,11 +43,11 @@ internal static class ItemMapper
 		return new(
 			item.Id,
 			item.Product.Name,
-			item.Product.Price,
-			item.Quantity,
 			item.TotalPrice,
 			item.Bill.BillNumber,
 			$"{item.Bill.Customer.Name} {item.Bill.Customer.Surname}",
-			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
+			item.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"),
+			item.Bill.Customer.Id,
+			item.Bill.Id);
 	}
 }

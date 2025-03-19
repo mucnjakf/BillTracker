@@ -5,7 +5,7 @@ import {
   BsBuildings, BsCart, BsCashCoin,
   BsPerson,
   BsShop,
-  BsSpeedometer2,
+  BsSpeedometer2, BsTag,
   BsTags,
 } from 'react-icons/bs'
 
@@ -43,6 +43,11 @@ const BtSideMenu = () => {
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/categories') ? 'bg-dark text-white' : ''}`}>
               <BsTags className="me-3"/>
               Categories
+            </Nav.Link>
+            <Nav.Link href="/subcategories"
+                      className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/subcategories') ? 'bg-dark text-white' : ''}`}>
+              <BsTag className="me-3"/>
+              Sub-categories
             </Nav.Link>
             <Nav.Link href="/sellers"
                       className={`mb-2 px-3 rounded w-100 ${location.pathname.startsWith('/sellers') ? 'bg-dark text-white' : ''}`}>
