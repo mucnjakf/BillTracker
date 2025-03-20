@@ -22,6 +22,7 @@ const BtAuthProvider = ({ children }) => {
         id: decoded.sub,
         email: decoded.email,
         name: decoded.name,
+        profileImage: decoded.picture,
       }
 
       setUser(userData)

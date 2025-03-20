@@ -29,13 +29,14 @@ class AuthService {
     }
   }
 
-  async registerUser (name, surname, email, password) {
+  async registerUser (name, surname, email, password, profileImage) {
     try {
       await this.api.post('register', {
         name: name,
         surname: surname,
         email: email,
         password: password,
+        profileImage: profileImage,
       })
 
       return { data: null, error: null }

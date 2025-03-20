@@ -16,9 +16,26 @@ const Register = () => {
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [profileImage, setProfileImage] = useState(null)
 
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
+
+  const readProfileImage = () => {
+    return new Promise((resolve, reject) => {
+      if (profileImage) {
+        const fileReader = new FileReader()
+        fileReader.onloadend = () => {
+          const base64ProfileImage = fileReader.result.split(',')[1]
+          resolve(base64ProfileImage) // Resolve the promise with the base64 string
+        }
+        fileReader.onerror = () => reject('Error reading file') // Handle errors
+        fileReader.readAsDataURL(profileImage)
+      } else {
+        resolve(null) // Return null if no image is selected
+      }
+    })
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -32,7 +49,8 @@ const Register = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await AuthService.registerUser(name, surname, email, password)
+    const base64ProfileImage = await readProfileImage()
+    const { error } = await AuthService.registerUser(name, surname, email, password, base64ProfileImage)
 
     if (error) {
       setError(error)
@@ -91,7 +109,13 @@ const Register = () => {
             value={password}
             onChange={setPassword}
             required={true}
+            className="mb-4"
           />
+
+          <Form.Group controlId="fileProfileImage">
+            <Form.Label>Profile image</Form.Label>
+            <Form.Control type="file" accept="image/*" onChange={(e) => setProfileImage(e.target.files[0])}/>
+          </Form.Group>
         </BtCard.Body>
 
         <BtCard.Footer>

@@ -9,9 +9,22 @@ import {
   BsBoxArrowInLeft,
   BsPersonCircle,
 } from 'react-icons/bs'
+import { useEffect, useState } from 'react'
+import AuthService from '../../services/AuthService.js'
 
 const BtTopMenu = () => {
   const { accessToken, user } = useAuth()
+
+  const [profileImage, setProfileImage] = useState()
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await AuthService.getUser(user.id)
+      setProfileImage(data.profileImage)
+    }
+
+    getUser()
+  }, [user.id])
 
   return (
     <Navbar className="d-flex justify-content-between mx-2">
@@ -31,8 +44,13 @@ const BtTopMenu = () => {
           <Dropdown>
             <Dropdown.Toggle
               variant={location.pathname === '/account' ? 'dark' : 'outline-dark'}
-              style={{ width: '160px' }}
+              style={{ width: '200px' }}
             >
+              {profileImage !== undefined
+                ? <Image src={`data:image/jpeg;base64,${profileImage}`}
+                         style={{ width: '36px', height: '36px', marginRight: '15px', border: '1px solid' }}
+                         roundedCircle/> : (
+                  <BsPersonCircle style={{ width: '36px', height: '36px', marginRight: '15px' }}/>)}
               {user.email}
             </Dropdown.Toggle>
 

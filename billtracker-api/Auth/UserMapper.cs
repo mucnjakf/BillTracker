@@ -10,6 +10,7 @@ internal static class UserMapper
 			user.Name,
 			user.Surname,
 			user.Email,
-			user.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
+			user.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"),
+			user.ProfileImage is not null ? Convert.ToBase64String(user.ProfileImage.ToArray()) : null);
 	}
 }

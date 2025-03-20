@@ -3,17 +3,41 @@ import { useAuth } from '../../components/auth/BtAuthProvider.jsx'
 import BtDashboardCardRow from '../../components/dashboard/BtDashboardCardRow.jsx'
 import BtDashboardListRow from '../../components/dashboard/BtDashboardListRow.jsx'
 import BtDashboardChartRow from '../../components/dashboard/BtDashboardChartRow.jsx'
+import { useEffect, useState } from 'react'
+import AuthService from '../../services/AuthService.js'
+import Image from 'react-bootstrap/Image'
+import { BsPersonCircle } from 'react-icons/bs'
 
 const Dashboard = () => {
   const { accessToken, user } = useAuth()
+
+  const [profileImage, setProfileImage] = useState()
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await AuthService.getUser(user.id)
+      setProfileImage(data.profileImage)
+    }
+
+    getUser()
+  }, [user.id])
 
   return (
     <>
       {accessToken ? (
           <>
-            <div className="mb-3">
-              <span className="text-muted">Welcome back,</span>
-              <h1 className="fw-bold mt-1">{user.name}</h1>
+            <div className="mb-3 d-flex align-items-center">
+              {profileImage !== undefined
+                ? <Image src={`data:image/jpeg;base64,${profileImage}`}
+                         style={{ width: '60px', height: '60px', marginRight: '15px', border: '1px solid' }}
+                         roundedCircle/>
+                : (
+                  <BsPersonCircle style={{ width: '60px', height: '60px', marginRight: '15px' }}/>
+                )}
+              <div>
+                <span className="text-muted">Welcome,</span>
+                <h1 className="fw-bold mt-1">{user.name}</h1>
+              </div>
             </div>
 
             <Container fluid className="p-0">

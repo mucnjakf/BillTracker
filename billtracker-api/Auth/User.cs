@@ -13,6 +13,8 @@ internal sealed class User
 	public string Email { get; set; } = null!;
 
 	public string Password { get; set; } = null!;
-	
+
 	public DateTimeOffset CreatedUtc { get; init; } = DateTimeOffset.UtcNow;
+
+	public byte[]? ProfileImage { get; set; }
 }

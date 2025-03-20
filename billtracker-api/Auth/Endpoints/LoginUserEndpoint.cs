@@ -42,6 +42,10 @@ internal sealed class LoginUserEndpoint(
 			return TypedResults.Unauthorized();
 		}
 
+		var profileImage = user.ProfileImage is not null
+			? Convert.ToBase64String(user.ProfileImage.ToArray())
+			: string.Empty;
+
 		var jwt = JwtBearer.CreateToken(options =>
 		{
 			options.SigningKey = configuration["Jwt:Secret"]!;
