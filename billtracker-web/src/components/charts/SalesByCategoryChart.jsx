@@ -28,7 +28,7 @@ const SalesByCategoryChart = () => {
             cx="50%"
             cy="50%"
             outerRadius={80}
-            fill="#ffd166"
+            fill="#208637"
             label={({ name }) => name}/>
           <Tooltip formatter={(value) => CurrencyUtilities.formatCurrency(value)}/>
         </PieChart>

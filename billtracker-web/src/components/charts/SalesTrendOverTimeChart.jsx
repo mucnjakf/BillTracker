@@ -24,7 +24,7 @@ const SalesTrendOverTimeChart = () => {
           <XAxis dataKey="date"/>
           <YAxis tickFormatter={CurrencyUtilities.formatCurrency}/>
           <Tooltip formatter={(value) => CurrencyUtilities.formatCurrency(value)}/>
-          <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#ef476f"/>
+          <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#585f63"/>
         </LineChart>
       </ResponsiveContainer>
     </div>

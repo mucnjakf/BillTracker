@@ -23,7 +23,7 @@ const TopSellingProductsChart = () => {
           <XAxis dataKey="productName"/>
           <YAxis/>
           <Tooltip/>
-          <Bar dataKey="quantitySold" name="Quantity sold" fill="#f78c6b"/>
+          <Bar dataKey="quantitySold" name="Quantity sold" fill="#0062cc"/>
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -23,7 +23,7 @@ const BillingActivityChart = () => {
           <XAxis dataKey="date"/>
           <YAxis/>
           <Tooltip/>
-          <Area type="monotone" dataKey="billCount" name="Bills" stroke="#2D1E2F" fill="#06d6a0"/>
+          <Area type="monotone" dataKey="billCount" name="Bills" stroke="#2D1E2F" fill="#a51d2a"/>
         </AreaChart>
       </ResponsiveContainer>
     </div>
