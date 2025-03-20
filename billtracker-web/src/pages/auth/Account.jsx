@@ -52,8 +52,9 @@ const Account = () => {
           <Row>
             <Col className="col-3 border-end">
               {currentUser.profileImage !== undefined
-                ? <Image src={`data:image/jpeg;base64,${currentUser.profileImage}`} style={{ border: '1px solid' }}
-                         roundedCircle fluid/> : (
+                ? <Image src={`data:image/jpeg;base64,${currentUser.profileImage}`}
+                         style={{ width: '200px', height: '200px', border: '1px solid' }}
+                         roundedCircle/> : (
                   <div className="text-center h-100 align-content-center">
                     <BsPersonCircle style={{ width: '100px', height: '100px', marginBottom: '15px' }}/>
                     <p>No profile image</p>

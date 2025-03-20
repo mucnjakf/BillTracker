@@ -1,6 +1,6 @@
 import { useAuth } from '../../components/auth/BtAuthProvider.jsx'
 import { useState, useEffect } from 'react'
-import { BsCheckCircle, BsXCircle } from 'react-icons/bs'
+import { BsCheckCircle, BsPersonCircle, BsXCircle } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
 import Form from 'react-bootstrap/Form'
 import AuthService from '../../services/AuthService'
@@ -10,6 +10,7 @@ import BtButton from '../../components/general/BtButton.jsx'
 import BtPageTitle from '../../components/display/BtPageTitle.jsx'
 import BtFloatingTextInput from '../../components/form/BtFloatingTextInput.jsx'
 import BtAlert from '../../components/general/BtAlert.jsx'
+import Image from 'react-bootstrap/Image'
 
 const AccountUpdate = () => {
   const navigate = useNavigate()
@@ -20,6 +21,8 @@ const AccountUpdate = () => {
   const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [profileImage, setProfileImage] = useState(null)
+  const [currentProfileImage, setCurrentProfileImage] = useState(null)
 
   const [error, setError] = useState(null)
   const [validated, setValidated] = useState(false)
@@ -36,10 +39,30 @@ const AccountUpdate = () => {
       setName(data.name)
       setSurname(data.surname)
       setEmail(data.email)
+      setProfileImage(data.profileImage)
+      setCurrentProfileImage(data.profileImage)
     }
 
     getUser()
   }, [user.id])
+
+  const readProfileImage = () => {
+    return new Promise((resolve, reject) => {
+      console.log(profileImage)
+
+      if (profileImage instanceof File) {
+        const fileReader = new FileReader()
+        fileReader.onloadend = () => {
+          const base64ProfileImage = fileReader.result.split(',')[1]
+          resolve(base64ProfileImage)
+        }
+        fileReader.onerror = () => reject('Error reading file')
+        fileReader.readAsDataURL(profileImage)
+      } else {
+        resolve(null)
+      }
+    })
+  }
 
   const handleUpdate = async (e) => {
     e.preventDefault()
@@ -53,7 +76,8 @@ const AccountUpdate = () => {
     setValidated(true)
     setError(null)
 
-    const { error } = await AuthService.updateUser(user.id, name, surname, email, password)
+    const base64ProfileImage = await readProfileImage()
+    const { error } = await AuthService.updateUser(user.id, name, surname, email, password, base64ProfileImage)
 
     if (error) {
       setError(error)
@@ -84,6 +108,18 @@ const AccountUpdate = () => {
               variant="warning"
               text="After updating account, you will be logged out!"
             />
+
+            <div className="text-center mb-3">
+              {currentProfileImage !== null
+                ? <Image src={`data:image/jpeg;base64,${currentProfileImage}`}
+                         style={{ width: '200px', height: '200px', border: '1px solid' }}
+                         roundedCircle/> : (
+                  <div className="h-100 align-content-center">
+                    <BsPersonCircle style={{ width: '200px', height: '200px', marginBottom: '15px' }}/>
+                    <p>No profile image</p>
+                  </div>
+                )}
+            </div>
 
             <BtFloatingTextInput
               controlId="txtName"
@@ -125,7 +161,13 @@ const AccountUpdate = () => {
               placeholder="Password"
               value={password}
               onChange={setPassword}
+              className="mb-4"
             />
+
+            <Form.Group controlId="fileProfileImage">
+              <Form.Label>Profile image</Form.Label>
+              <Form.Control type="file" accept="image/*" onChange={(e) => setProfileImage(e.target.files[0])}/>
+            </Form.Group>
           </BtCard.Body>
 
           <BtCard.Footer>

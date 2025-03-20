@@ -27,12 +27,12 @@ const Register = () => {
         const fileReader = new FileReader()
         fileReader.onloadend = () => {
           const base64ProfileImage = fileReader.result.split(',')[1]
-          resolve(base64ProfileImage) // Resolve the promise with the base64 string
+          resolve(base64ProfileImage)
         }
-        fileReader.onerror = () => reject('Error reading file') // Handle errors
+        fileReader.onerror = () => reject('Error reading file')
         fileReader.readAsDataURL(profileImage)
       } else {
-        resolve(null) // Return null if no image is selected
+        resolve(null)
       }
     })
   }

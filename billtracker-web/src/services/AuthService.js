@@ -69,13 +69,14 @@ class AuthService {
     }
   }
 
-  async updateUser (userId, name, surname, email, password) {
+  async updateUser (userId, name, surname, email, password, profileImage) {
     try {
       await this.api.put(`users/${userId}`, {
         name: name,
         surname: surname,
         email: email,
         password: password,
+        profileImage: profileImage,
       })
 
       return { data: null, error: null }
