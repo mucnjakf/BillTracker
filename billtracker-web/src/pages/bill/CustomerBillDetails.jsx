@@ -157,7 +157,6 @@ const CustomerBillDetails = () => {
 
         <BtListGroup
           items={pagedBillItems.items}
-          onClick={(itemId) => navigate(`bills/${billId}/items/${itemId}`)}
           renderListItem={(item) => (
             <>
               <div className="d-flex justify-content-between w-100 me-4 align-items-center">

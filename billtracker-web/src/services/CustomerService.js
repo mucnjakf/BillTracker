@@ -73,6 +73,38 @@ class CustomerService {
     }
   }
 
+  async getCustomersByCity () {
+    try {
+      const response = await this.api.get('customers-by-city')
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
+  async getCustomersLatestList () {
+    try {
+      const response = await this.api.get('latest')
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
   async createCustomer (name, surname, email, telephone, cityId) {
     try {
       const response = await this.api.post('', {
