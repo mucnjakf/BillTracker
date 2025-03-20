@@ -22,7 +22,24 @@ const Dashboard = () => {
               <BtDashboardChartRow/>
             </Container>
           </>)
-        : <></>}
+        : <>
+          <h1 className="mb-3 fw-bold">Welcome to BillTracker</h1>
+
+          <p className="mb-3 w-50">
+            Bill Tracker is your all-in-one solution for managing business operations efficiently. <br/>
+            Easily handle <strong>customers, bills, items, products, categories, subcategories, sellers, and
+            cities</strong>, all in one place.
+          </p>
+
+          <p className="w-50">
+            To unlock the full functionality, please <a href="/login"
+                                                        className="text-dark text-decoration-none"><strong>log
+            in</strong></a> or <a href="/register" className="text-dark text-decoration-none"><strong>register</strong></a>. <br/>
+            Not ready yet? You can still <a href="/customers" className="text-dark text-decoration-none"><strong>view
+            customer data</strong></a> without an
+            account.
+          </p>
+        </>}
     </>
   )
 }
