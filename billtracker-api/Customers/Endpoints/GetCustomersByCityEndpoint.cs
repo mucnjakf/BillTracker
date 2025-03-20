@@ -27,7 +27,7 @@ internal sealed class GetCustomersByCityEndpoint(AppDbContext appDbContext) : En
 				x.Count()
 			))
 			.OrderByDescending(x => x.CustomerCount)
-			.Take(5)
+			.Take(6)
 			.ToList();
 
 		return Task.FromResult(TypedResults.Ok(customersByCity));

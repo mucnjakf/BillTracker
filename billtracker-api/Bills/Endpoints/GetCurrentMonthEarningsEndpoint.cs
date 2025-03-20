@@ -20,7 +20,7 @@ internal sealed class GetCurrentMonthEarningsEndpoint(AppDbContext appDbContext,
 	{
 		var earnings = await appDbContext.Bills
 			.Include(x => x.Items)
-			.Where(x => x.Date.Date == timeProvider.GetUtcNow().Date)
+			.Where(x => x.Date.Month == timeProvider.GetUtcNow().Month && x.Date.Year == timeProvider.GetUtcNow().Year)
 			.SumAsync(x => x.Items!.Sum(y => y.TotalPrice), cancellationToken: ct);
 
 		return TypedResults.Ok(new CurrentMonthEarningsDto(earnings));

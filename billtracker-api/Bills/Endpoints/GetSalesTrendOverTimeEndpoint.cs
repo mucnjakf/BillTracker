@@ -24,8 +24,8 @@ internal sealed class GetSalesTrendOverTimeEndpoint(AppDbContext appDbContext) :
 			.Select(x => new SalesTrendOverTimeDto(
 				x.Key.ToString("dd. MM. yyyy."),
 				x.Sum(y => y.Items!.Sum(z => z.TotalPrice))))
-			.OrderByDescending(x => DateTime.Parse(x.Date))
-			.Take(5)
+			.OrderByDescending(x => x.Date)
+			.Take(6)
 			.Reverse()
 			.ToList();
 

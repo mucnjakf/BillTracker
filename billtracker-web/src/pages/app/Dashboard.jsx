@@ -27,7 +27,7 @@ const Dashboard = () => {
       {accessToken ? (
           <>
             <div className="mb-3 d-flex align-items-center">
-              {profileImage !== undefined
+              {profileImage !== null
                 ? <Image src={`data:image/jpeg;base64,${profileImage}`}
                          style={{ width: '60px', height: '60px', marginRight: '15px', border: '1px solid' }}
                          roundedCircle/>

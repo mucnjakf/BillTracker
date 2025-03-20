@@ -25,7 +25,7 @@ internal sealed class GetBillActivityEndpoint(AppDbContext appDbContext) : Endpo
 				x.Key.ToString("dd. MM. yyyy."),
 				x.Count()
 			))
-			.OrderByDescending(x => DateTime.Parse(x.Date))
+			.OrderByDescending(x => x.Date)
 			.Take(5)
 			.Reverse()
 			.ToList();
