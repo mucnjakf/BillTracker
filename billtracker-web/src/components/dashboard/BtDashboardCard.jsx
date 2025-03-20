@@ -1,4 +1,4 @@
-import BtCard from './BtCard.jsx'
+import BtCard from '../display/BtCard.jsx'
 
 const BtDashboardCard = ({ value, label, icon: Icon }) => {
   return (
