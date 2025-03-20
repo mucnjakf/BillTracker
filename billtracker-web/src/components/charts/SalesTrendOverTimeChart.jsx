@@ -16,20 +16,19 @@ const SalesTrendOverTimeChart = () => {
   }, [])
 
   return (
-    <>
-      <h4>Sales trend over time</h4>
+    <div className="border rounded p-3">
+      <h4 className="mb-4">Sales trend over time</h4>
 
-      <div className="border rounded p-3">
-        <ResponsiveContainer height={300}>
-          <LineChart data={salesTrendOverTime}>
-            <XAxis dataKey="date"/>
-            <YAxis tickFormatter={CurrencyUtilities.formatCurrency}/>
-            <Tooltip formatter={(value) => CurrencyUtilities.formatCurrency(value)}/>
-            <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#ef476f"/>
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </>)
+      <ResponsiveContainer height={300}>
+        <LineChart data={salesTrendOverTime}>
+          <XAxis dataKey="date"/>
+          <YAxis tickFormatter={CurrencyUtilities.formatCurrency}/>
+          <Tooltip formatter={(value) => CurrencyUtilities.formatCurrency(value)}/>
+          <Line type="monotone" name="Total sales" dataKey="totalSales" stroke="#ef476f"/>
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  )
 }
 
 export default SalesTrendOverTimeChart

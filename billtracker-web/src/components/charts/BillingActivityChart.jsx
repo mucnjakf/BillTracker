@@ -15,20 +15,18 @@ const BillingActivityChart = () => {
   }, [])
 
   return (
-    <>
-      <h4>Billing activity</h4>
+    <div className="border rounded p-3">
+      <h4 className="mb-4">Billing activity</h4>
 
-      <div className="border rounded p-3">
-        <ResponsiveContainer height={300}>
-          <AreaChart data={billActivity}>
-            <XAxis dataKey="date"/>
-            <YAxis/>
-            <Tooltip/>
-            <Area type="monotone" dataKey="billCount" name="Bills" stroke="#2D1E2F" fill="#06d6a0"/>
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-    </>
+      <ResponsiveContainer height={300}>
+        <AreaChart data={billActivity}>
+          <XAxis dataKey="date"/>
+          <YAxis/>
+          <Tooltip/>
+          <Area type="monotone" dataKey="billCount" name="Bills" stroke="#2D1E2F" fill="#06d6a0"/>
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

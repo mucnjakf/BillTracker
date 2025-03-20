@@ -16,26 +16,24 @@ const SalesByCategoryChart = () => {
   }, [])
 
   return (
-    <>
-      <h4>Sales by category</h4>
+    <div className="border rounded p-3">
+      <h4 className="mb-4">Sales by category</h4>
 
-      <div className="border rounded p-3">
-        <ResponsiveContainer height={300}>
-          <PieChart>
-            <Pie
-              data={salesByCategory}
-              dataKey="totalSales"
-              nameKey="category"
-              cx="50%"
-              cy="50%"
-              outerRadius={80}
-              fill="#ffd166"
-              label={({ name }) => name}/>
-            <Tooltip formatter={(value) => CurrencyUtilities.formatCurrency(value)}/>
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-    </>
+      <ResponsiveContainer height={300}>
+        <PieChart>
+          <Pie
+            data={salesByCategory}
+            dataKey="totalSales"
+            nameKey="category"
+            cx="50%"
+            cy="50%"
+            outerRadius={80}
+            fill="#ffd166"
+            label={({ name }) => name}/>
+          <Tooltip formatter={(value) => CurrencyUtilities.formatCurrency(value)}/>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

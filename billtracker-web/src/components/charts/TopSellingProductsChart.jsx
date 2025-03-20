@@ -15,20 +15,18 @@ const TopSellingProductsChart = () => {
   }, [])
 
   return (
-    <>
-      <h4>Top selling products</h4>
+    <div className="border rounded p-3">
+      <h4 className="mb-4">Top selling products</h4>
 
-      <div className="border rounded p-3">
-        <ResponsiveContainer height={300}>
-          <BarChart data={topSellingProducts}>
-            <XAxis dataKey="productName"/>
-            <YAxis/>
-            <Tooltip/>
-            <Bar dataKey="quantitySold" name="Quantity sold" fill="#f78c6b"/>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-    </>
+      <ResponsiveContainer height={300}>
+        <BarChart data={topSellingProducts}>
+          <XAxis dataKey="productName"/>
+          <YAxis/>
+          <Tooltip/>
+          <Bar dataKey="quantitySold" name="Quantity sold" fill="#f78c6b"/>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
