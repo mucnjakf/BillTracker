@@ -5,15 +5,15 @@ import BtDashboardListRow from '../../components/dashboard/BtDashboardListRow.js
 import BtDashboardChartRow from '../../components/dashboard/BtDashboardChartRow.jsx'
 
 const Dashboard = () => {
-  const { accessToken } = useAuth()
+  const { accessToken, user } = useAuth()
 
   return (
     <>
       {accessToken ? (
           <>
             <div className="mb-3">
-              <span className="text-muted"> Welcome back,</span>
-              <h1 className="fw-bold mt-1">John Doe</h1>
+              <span className="text-muted">Welcome back,</span>
+              <h1 className="fw-bold mt-1">{user.name}</h1>
             </div>
 
             <Container fluid className="p-0">
