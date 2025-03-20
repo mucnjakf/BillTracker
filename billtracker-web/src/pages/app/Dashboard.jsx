@@ -29,10 +29,10 @@ const Dashboard = () => {
             <div className="mb-3 d-flex align-items-center">
               {profileImage !== null
                 ? <Image src={`data:image/jpeg;base64,${profileImage}`}
-                         style={{ width: '60px', height: '60px', marginRight: '15px', border: '1px solid' }}
+                         style={{ width: '80px', height: '80px', marginRight: '15px', border: '1px solid' }}
                          roundedCircle/>
                 : (
-                  <BsPersonCircle style={{ width: '60px', height: '60px', marginRight: '15px' }}/>
+                  <BsPersonCircle style={{ width: '80px', height: '80px', marginRight: '15px' }}/>
                 )}
               <div>
                 <span className="text-muted">Welcome,</span>

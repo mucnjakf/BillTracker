@@ -54,7 +54,7 @@ const BtTopMenu = () => {
               {user.email}
             </Dropdown.Toggle>
 
-            <Dropdown.Menu style={{ width: '160px' }}>
+            <Dropdown.Menu style={{ width: '200px' }}>
               <Dropdown.Item href="/account">
                 <BsPersonCircle className="me-3"/>
                 Account

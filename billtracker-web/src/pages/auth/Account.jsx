@@ -12,6 +12,7 @@ import BtAlert from '../../components/general/BtAlert.jsx'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
 
 const Account = () => {
   const navigate = useNavigate()
@@ -19,6 +20,7 @@ const Account = () => {
   const { user } = useAuth()
 
   const [currentUser, setCurrentUser] = useState({})
+  const [profileImage, setProfileImage] = useState(null)
 
   const [error, setError] = useState(null)
 
@@ -32,10 +34,16 @@ const Account = () => {
       }
 
       setCurrentUser(data)
+      setProfileImage(data.profileImage)
     }
 
     getUser()
   }, [user.id])
+
+  const deleteProfileImage = async () => {
+    await AuthService.deleteProfileImage(currentUser.id)
+    setProfileImage(null)
+  }
 
   return (
     <>
@@ -51,10 +59,17 @@ const Account = () => {
 
           <Row>
             <Col className="col-3 border-end">
-              {currentUser.profileImage !== null
-                ? <Image src={`data:image/jpeg;base64,${currentUser.profileImage}`}
-                         style={{ width: '200px', height: '200px', border: '1px solid' }}
-                         roundedCircle/> : (
+              {profileImage !== null
+                ? (
+                  <div className="d-flex justify-content-center align-items-center flex-column">
+                    <Image src={`data:image/jpeg;base64,${profileImage}`}
+                           style={{ width: '200px', height: '200px', border: '1px solid' }}
+                           roundedCircle/>
+
+                    <Button variant="link" className="text-decoration-none text-dark mt-1" onClick={deleteProfileImage}>Delete
+                      image</Button>
+                  </div>
+                ) : (
                   <div className="text-center h-100 align-content-center">
                     <BsPersonCircle style={{ width: '100px', height: '100px', marginBottom: '15px' }}/>
                     <p>No profile image</p>

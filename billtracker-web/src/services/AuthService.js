@@ -95,6 +95,26 @@ class AuthService {
       }
     }
   }
+
+  async deleteProfileImage (userId) {
+    try {
+      await this.api.delete(`users/${userId}/profile-image`)
+
+      return { data: null, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        case 404:
+          return { data: null, error: 'User not found.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
 }
 
 export default new AuthService()
