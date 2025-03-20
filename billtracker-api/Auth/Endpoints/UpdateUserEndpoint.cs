@@ -17,6 +17,8 @@ internal sealed record UpdateUserRequest
 	public string Email { get; init; } = null!;
 
 	public string? Password { get; init; }
+
+	public string? ProfileImage { get; init; }
 }
 
 internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHasher passwordHasher)
@@ -62,6 +64,11 @@ internal sealed class UpdateUserEndpoint(AppDbContext appDbContext, IPasswordHas
 			{
 				user.Password = passwordHasher.Hash(req.Password);
 			}
+		}
+
+		if (!string.IsNullOrEmpty(req.ProfileImage))
+		{
+			user.ProfileImage = Convert.FromBase64String(req.ProfileImage);
 		}
 
 		await appDbContext.SaveChangesAsync(ct);
