@@ -49,6 +49,7 @@ internal sealed class LoginUserEndpoint(
 			options.User.Roles.Add(AppRoles.User);
 			options.User.Claims.Add((JwtRegisteredClaimNames.Sub, user.Id.ToString()));
 			options.User.Claims.Add((JwtRegisteredClaimNames.Email, user.Email));
+			options.User.Claims.Add((JwtRegisteredClaimNames.Name, $"{user.Name} {user.Surname}"));
 			options.Issuer = configuration["Jwt:Issuer"];
 			options.Audience = configuration["Jwt:Audience"];
 		});
