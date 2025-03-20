@@ -9,7 +9,17 @@ const SalesTrendOverTimeChart = () => {
   useEffect(() => {
     const getSalesTrendOverTime = async () => {
       const { data } = await BillService.getSalesTrendOverTime()
-      setSalesTrendOverTime(data)
+
+      const formattedData = data.map(item => ({
+        ...item,
+        date: new Intl.DateTimeFormat('hr-HR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        }).format(new Date(item.date)),
+      }))
+
+      setSalesTrendOverTime(formattedData)
     }
 
     getSalesTrendOverTime()

@@ -1,3 +1,4 @@
+using System.Globalization;
 using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
@@ -22,10 +23,10 @@ internal sealed class GetSalesTrendOverTimeEndpoint(AppDbContext appDbContext) :
 			.AsEnumerable()
 			.GroupBy(x => x.Date.Date)
 			.Select(x => new SalesTrendOverTimeDto(
-				x.Key.ToString("dd. MM. yyyy."),
+				x.Key.ToString(CultureInfo.InvariantCulture),
 				x.Sum(y => y.Items!.Sum(z => z.TotalPrice))))
-			.OrderByDescending(x => x.Date)
-			.Take(6)
+			.OrderByDescending(x => DateTime.Parse(x.Date))
+			.Take(5)
 			.Reverse()
 			.ToList();
 

@@ -8,7 +8,16 @@ const BillingActivityChart = () => {
   useEffect(() => {
     const getBillActivity = async () => {
       const { data } = await BillService.getBillActivity()
-      setBillActivity(data)
+      const formattedData = data.map(item => ({
+        ...item,
+        date: new Intl.DateTimeFormat('hr-HR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        }).format(new Date(item.date)),
+      }))
+
+      setBillActivity(formattedData)
     }
 
     getBillActivity()

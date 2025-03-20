@@ -1,3 +1,4 @@
+using System.Globalization;
 using billtracker_api.Auth;
 using billtracker_api.Database;
 using FastEndpoints;
@@ -22,10 +23,10 @@ internal sealed class GetBillActivityEndpoint(AppDbContext appDbContext) : Endpo
 			.GroupBy(x => x.Date.Date)
 			.Select(x => new BillActivityDto
 			(
-				x.Key.ToString("dd. MM. yyyy."),
+				x.Key.ToString(CultureInfo.InvariantCulture),
 				x.Count()
 			))
-			.OrderByDescending(x => x.Date)
+			.OrderByDescending(x => DateTime.Parse(x.Date))
 			.Take(5)
 			.Reverse()
 			.ToList();
