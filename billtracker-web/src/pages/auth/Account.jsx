@@ -51,7 +51,7 @@ const Account = () => {
 
           <Row>
             <Col className="col-3 border-end">
-              {currentUser.profileImage !== undefined
+              {currentUser.profileImage !== null
                 ? <Image src={`data:image/jpeg;base64,${currentUser.profileImage}`}
                          style={{ width: '200px', height: '200px', border: '1px solid' }}
                          roundedCircle/> : (

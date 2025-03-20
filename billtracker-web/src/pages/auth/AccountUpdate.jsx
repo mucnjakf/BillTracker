@@ -48,8 +48,6 @@ const AccountUpdate = () => {
 
   const readProfileImage = () => {
     return new Promise((resolve, reject) => {
-      console.log(profileImage)
-
       if (profileImage instanceof File) {
         const fileReader = new FileReader()
         fileReader.onloadend = () => {

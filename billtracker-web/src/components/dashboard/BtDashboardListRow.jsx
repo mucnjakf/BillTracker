@@ -21,7 +21,6 @@ const BtDashboardListRow = () => {
 
       const getCustomersByCity = async () => {
         const { data } = await CustomerService.getCustomersByCity()
-        console.log(data)
         setCustomersByCity(data)
       }
 
@@ -45,7 +44,7 @@ const BtDashboardListRow = () => {
               <h3 className="m-0">Latest customers</h3>
 
               <Button
-                className="pb-2"
+                className="pb-2 me-3"
                 variant="success"
                 onClick={() => location.href = '/customers/create'}
               >
@@ -57,18 +56,16 @@ const BtDashboardListRow = () => {
             <BtListGroup
               items={latestCustomers}
               renderListItem={(customer) => (
-                <>
-                  <div className="d-flex justify-content-between align-items-center w-100">
-                    <div>
-                      {customer.name} {customer.surname}
-                    </div>
-
-                    <Button variant="primary" className="pb-2"
-                            onClick={() => location.href = `/customers/${customer.id}`}>
-                      <BsCardText/>
-                    </Button>
+                <div className="d-flex justify-content-between align-items-center w-100">
+                  <div>
+                    {customer.name} {customer.surname}
                   </div>
-                </>
+
+                  <Button variant="primary" className="pb-2"
+                          onClick={() => location.href = `/customers/${customer.id}`}>
+                    <BsCardText/>
+                  </Button>
+                </div>
               )}/>
           </BtCard.Body>
         </BtCard>
@@ -82,17 +79,15 @@ const BtDashboardListRow = () => {
             <BtListGroup
               items={customersByCity}
               renderListItem={(item) => (
-                <>
-                  <div className="d-flex justify-content-between align-items-center w-100">
-                    <div>
-                      {item.cityName}
-                    </div>
-
-                    <div>
-                      {item.customerCount}
-                    </div>
+                <div className="d-flex justify-content-between w-100 align-items-center">
+                  <div>
+                    {item.cityName}
                   </div>
-                </>
+
+                  <div>
+                    {item.customerCount}
+                  </div>
+                </div>
               )}/>
           </BtCard.Body>
         </BtCard>
@@ -105,7 +100,7 @@ const BtDashboardListRow = () => {
               <h3 className="m-0">Latest sellers</h3>
 
               <Button
-                className="pb-2"
+                className="pb-2 me-3"
                 variant="success"
                 onClick={() => location.href = `/sellers/create`}
               >
@@ -117,18 +112,16 @@ const BtDashboardListRow = () => {
             <BtListGroup
               items={latestSellers}
               renderListItem={(seller) => (
-                <>
-                  <div className="d-flex justify-content-between align-items-center w-100">
-                    <div>
-                      {seller.name} {seller.surname}
-                    </div>
-
-                    <Button variant="primary" className="pb-2"
-                            onClick={() => location.href = `/sellers/${seller.id}`}>
-                      <BsCardText/>
-                    </Button>
+                <div className="d-flex justify-content-between align-items-center w-100">
+                  <div>
+                    {seller.name} {seller.surname}
                   </div>
-                </>
+
+                  <Button variant="primary" className="pb-2"
+                          onClick={() => location.href = `/sellers/${seller.id}`}>
+                    <BsCardText/>
+                  </Button>
+                </div>
               )}/>
           </BtCard.Body>
         </BtCard>

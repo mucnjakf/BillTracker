@@ -46,7 +46,7 @@ const BtTopMenu = () => {
               variant={location.pathname === '/account' ? 'dark' : 'outline-dark'}
               style={{ width: '200px' }}
             >
-              {profileImage !== undefined
+              {profileImage !== null
                 ? <Image src={`data:image/jpeg;base64,${profileImage}`}
                          style={{ width: '36px', height: '36px', marginRight: '15px', border: '1px solid' }}
                          roundedCircle/> : (
