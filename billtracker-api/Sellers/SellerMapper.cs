@@ -24,4 +24,12 @@ internal static class SellerMapper
 			seller.Bills?.Count() ?? 0,
 			seller.CreatedUtc.ToString("dd. MM. yyyy. - HH:mm"));
 	}
+
+	internal static SellerListDto ToSellerListDto(this Seller seller)
+	{
+		return new(
+			seller.Id,
+			seller.Name,
+			seller.Surname);
+	}
 }
