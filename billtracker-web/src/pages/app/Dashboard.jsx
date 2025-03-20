@@ -7,15 +7,24 @@ import { useEffect, useState } from 'react'
 import AuthService from '../../services/AuthService.js'
 import Image from 'react-bootstrap/Image'
 import { BsPersonCircle } from 'react-icons/bs'
+import BtAlert from '../../components/general/BtAlert.jsx'
 
 const Dashboard = () => {
   const { accessToken, user } = useAuth()
 
   const [profileImage, setProfileImage] = useState()
 
+  const [error, setError] = useState(null)
+
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await AuthService.getUser(user.id)
+      const { data, error } = await AuthService.getUser(user.id)
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       setProfileImage(data.profileImage)
     }
 
@@ -26,6 +35,8 @@ const Dashboard = () => {
     <>
       {accessToken ? (
           <>
+            {error && <BtAlert variant="danger" text={error}/>}
+
             <div className="mb-3 d-flex align-items-center">
               {profileImage !== null
                 ? <Image src={`data:image/jpeg;base64,${profileImage}`}
@@ -58,7 +69,8 @@ const Dashboard = () => {
           <p className="w-50">
             To unlock the full functionality, please <a href="/login"
                                                         className="text-dark text-decoration-none"><strong>log
-            in</strong></a> or <a href="/register" className="text-dark text-decoration-none"><strong>register</strong></a>. <br/>
+            in</strong></a> or <a href="/register"
+                                  className="text-dark text-decoration-none"><strong>register</strong></a>. <br/>
             Not ready yet? You can still <a href="/customers" className="text-dark text-decoration-none"><strong>view
             customer data</strong></a> without an
             account.

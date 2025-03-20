@@ -2,13 +2,21 @@ import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import CurrencyUtilities from '../../utilities/CurrencyUtilities.js'
+import BtAlert from '../general/BtAlert.jsx'
 
 const SalesTrendOverTimeChart = () => {
   const [salesTrendOverTime, setSalesTrendOverTime] = useState([])
 
+  const [error, setError] = useState(null)
+
   useEffect(() => {
     const getSalesTrendOverTime = async () => {
-      const { data } = await BillService.getSalesTrendOverTime()
+      const { data, error } = await BillService.getSalesTrendOverTime()
+
+      if (error) {
+        setError(error)
+        return
+      }
 
       const formattedData = data.map(item => ({
         ...item,
@@ -27,6 +35,8 @@ const SalesTrendOverTimeChart = () => {
 
   return (
     <div className="border rounded p-3">
+      {error && <BtAlert variant="danger" text={error}/>}
+
       <h4 className="mb-4">Sales trend over time</h4>
 
       <ResponsiveContainer height={300}>

@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react'
 import BillService from '../../services/BillService.js'
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import BtAlert from '../general/BtAlert.jsx'
 
 const BillingActivityChart = () => {
   const [billActivity, setBillActivity] = useState([])
 
+  const [error, setError] = useState(null)
+
   useEffect(() => {
     const getBillActivity = async () => {
-      const { data } = await BillService.getBillActivity()
+      const { data, error } = await BillService.getBillActivity()
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       const formattedData = data.map(item => ({
         ...item,
         date: new Intl.DateTimeFormat('hr-HR', {
@@ -25,6 +34,8 @@ const BillingActivityChart = () => {
 
   return (
     <div className="border rounded p-3">
+      {error && <BtAlert variant="danger" text={error}/>}
+
       <h4 className="mb-4">Billing activity</h4>
 
       <ResponsiveContainer height={300}>

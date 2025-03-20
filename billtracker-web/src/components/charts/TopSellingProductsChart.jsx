@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react'
 import ItemService from '../../services/ItemService.js'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import BtAlert from '../general/BtAlert.jsx'
 
 const TopSellingProductsChart = () => {
   const [topSellingProducts, setTopSellingProducts] = useState([])
 
+  const [error, setError] = useState(null)
+
   useEffect(() => {
     const getTopSellingProducts = async () => {
-      const { data } = await ItemService.getTopSellingProducts()
+      const { data, error } = await ItemService.getTopSellingProducts()
+
+      if (error) {
+        setError(error)
+        return
+      }
+
       setTopSellingProducts(data)
     }
 
@@ -16,6 +25,8 @@ const TopSellingProductsChart = () => {
 
   return (
     <div className="border rounded p-3">
+      {error && <BtAlert variant="danger" text={error}/>}
+
       <h4 className="mb-4">Top selling products</h4>
 
       <ResponsiveContainer height={300}>

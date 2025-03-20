@@ -79,4 +79,4 @@ const BtDashboardCardRow = () => {
   )
 }
 
-export default BtDashboardCardRow;
+export default BtDashboardCardRow
