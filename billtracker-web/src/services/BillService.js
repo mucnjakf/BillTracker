@@ -117,9 +117,25 @@ class BillService {
     }
   }
 
-  async getRevenueBySeller () {
+  async getCurrentMonthEarnings () {
     try {
-      const response = await this.api.get('revenue-by-seller')
+      const response = await this.api.get('current-month-earnings')
+      return { data: response.data, error: null }
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          return { data: null, error: 'You are not authenticated.' }
+        case 403:
+          return { data: null, error: 'You are not authorized.' }
+        default:
+          return { data: null, error: 'Unknown error occurred.' }
+      }
+    }
+  }
+
+  async getTotalBillsCount () {
+    try {
+      const response = await this.api.get('total-count')
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {

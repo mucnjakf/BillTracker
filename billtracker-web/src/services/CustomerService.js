@@ -57,9 +57,9 @@ class CustomerService {
     }
   }
 
-  async getCustomersByCity () {
+  async getTotalCustomersCount () {
     try {
-      const response = await this.api.get('customers-by-city')
+      const response = await this.api.get('total-count')
       return { data: response.data, error: null }
     } catch (error) {
       switch (error.status) {
