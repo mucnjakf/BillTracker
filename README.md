@@ -10,9 +10,26 @@ Customer & Billing Management Web Application - 2025.
 #
 
 ### **⚙️ Tech Stack**
-`todo`
+- Frontend
+  - React
+  - React Router
+  - React Bootstrap
+  - Axios
+  - JWT Decode
+  - Recharts
+  - Vite
+- Backend
+  - .NET 9 - ASP.NET Core Web API
+  - Fast Endpoints
+  - Entity Framework Core
+- Database
+  - PostgreSQL
 
 #
 
 ### **🛠️ Tools**
-`todo`
+- Source Control: GitHub
+- IDE: Rider, WebStorm
+- API Client: Postman
+- RDBMS: DataGrip
+- CLI: Windows Terminal
