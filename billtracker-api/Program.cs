@@ -4,6 +4,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace billtracker_api;
 
@@ -73,7 +74,11 @@ public static class Program
 
 		var connectionString = configuration.GetConnectionString("Default")!;
 
-		services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+		services.AddDbContext<AppDbContext>(options =>
+		{
+			options.UseNpgsql(connectionString);
+			options.ConfigureWarnings(builder => builder.Ignore([new(RelationalEventId.PendingModelChangesWarning.Id)]));
+		});
 
 		return services;
 	}
